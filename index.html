@@ -154,29 +154,115 @@ input.b{width:48px;height:32px;font-size:16px;border-width:1.5px;border-radius:7
 @media(max-width:430px){.eq.sum{font-size:15px}.eq.sum input.b.w4{width:56px;font-size:16px}}
 .info .ic{font:900 15px system-ui,-apple-system,sans-serif;font-style:normal}
 input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:var(--navy);pointer-events:none}input.b.given.ok{border-style:solid}
+/* 13 topics */
+.hrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:space-between}
+.pk{display:flex;align-items:center;gap:5px;font-size:12px;opacity:.95}
+.pk select{font:600 16px system-ui,-apple-system,sans-serif;max-width:62vw;border-radius:8px;border:0;padding:3px 6px;background:#fff;color:var(--navy)}
+.locked{opacity:.42}
+.opts{display:flex;flex-direction:column;gap:6px}.opts .btn{text-align:right;font-weight:600}
+.row-opts{display:flex;flex-wrap:wrap;gap:6px}.row-opts .btn{min-width:84px}
+.btn.opt.ok{background:var(--good);border-color:var(--good);color:#fff}
+.btn.opt.no{border-color:var(--warn);background:#fff6e8;animation:nudge .35s}
+.btn:disabled{opacity:.6;cursor:default}
+.pvt{direction:ltr;border-collapse:collapse;margin:4px auto;text-align:center}
+.pvt th{font-size:12.5px;background:#eef4fb;color:var(--navy);border:1px solid var(--line);padding:2px}
+.pvt tr.sub td{font-size:10.5px;color:var(--mute);border:1px solid var(--line);padding:1px 2px}
+.pvt td{border:1px solid var(--line);padding:3px}.pvt tr>td:nth-child(3){border-right:2.5px solid var(--navy)}
+.pvt input.dg{width:38px}
+.seqv{direction:ltr;display:grid;grid-template-columns:repeat(10,1fr);align-items:end;max-width:520px;margin:4px auto 2px;row-gap:0}
+.seqv .al{text-align:center;font-weight:700;color:var(--org);font-size:13px;display:flex;align-items:center;justify-content:center;gap:1px}
+.seqv .al input.b{width:44px}
+.seqv .arc{display:block;height:14px;border:2px solid var(--org);border-bottom:0;border-radius:50% 50% 0 0/100% 100% 0 0;margin:0 18%}
+.seqv .nm{text-align:center;font-weight:800;font-size:14px;border-top:2px solid var(--navy);padding-top:3px}
+.seqv .nm input.b{width:58px}
+.barm{direction:ltr;display:flex;border:2px solid var(--navy);border-radius:8px;overflow:hidden;max-width:520px;margin:4px auto;min-height:30px}
+.barm>span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;border-left:1.5px solid var(--navy);background:#dce8f6;font-size:13.5px}
+.barm>span:first-child{border-left:0}.barm>span.o{background:#fde3c8}
+.barlbl{text-align:center;font-size:12px;color:var(--mute)}
+.barm.fq{min-height:44px}.barm.fq button{flex:1;border:0;border-left:2px solid var(--navy);background:#fff;padding:4px 2px;display:flex;flex-wrap:wrap;gap:3px;justify-content:center;align-content:center;cursor:pointer;min-width:0}
+.barm.fq button:first-child{border-left:0}.barm.fq button.on{background:var(--blue)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--org)}
+.bond{direction:ltr;width:150px;margin:2px auto;text-align:center}.bond .bt{display:inline-block;border:2px solid var(--navy);border-radius:50%;min-width:44px;padding:4px 6px;font-weight:800;font-size:16px}
+.bond svg{display:block;width:120px;height:20px;margin:0 auto}.bond line{stroke:var(--navy);stroke-width:2}
+.bond .bb{display:flex;justify-content:space-between}
+.expr{direction:ltr;display:flex;align-items:center;justify-content:center;gap:6px;font-size:20px;font-weight:800}
+.btn.opb{min-width:44px;font-size:20px;padding:2px 10px}
+.grp{display:inline-flex;align-items:center;gap:6px;border:2px solid transparent;border-radius:999px;padding:0 6px}.grp.ring{border-color:var(--org)}
+.prect{position:relative;margin:24px auto 34px;border:2.5px solid var(--navy);background:#dce8f6}
+.prect .sd{position:absolute;font-weight:700;font-size:13px;white-space:nowrap}
+.prect .pt{top:-22px;left:50%;transform:translateX(-50%)}.prect .pb{bottom:-38px;left:50%;transform:translateX(-50%)}
+.prect .pl{left:-8px;top:50%;transform:translate(-100%,-50%)}.prect .pr{right:-8px;top:50%;transform:translate(100%,-50%)}
+.pgsvg{display:block;width:200px;max-width:70vw;margin:0 auto}
+.pgsvg polygon{fill:#eef4fb;stroke:var(--navy);stroke-width:2.5}
+.pgsvg .blue{stroke:var(--blue);stroke-width:5;stroke-linecap:round}
+.pgsvg .vd{fill:#fff;stroke:#9aa5b5;stroke-width:1.5}.pgsvg .vd.on{fill:var(--org);stroke:var(--org)}
+.pgsvg .vx{fill:transparent;cursor:pointer}.pgsvg .vt{font:700 13px system-ui,sans-serif;fill:var(--org);text-anchor:middle}
+.pgsvg .edv{stroke:var(--navy);stroke-width:3}.pgsvg .edv.tgt{stroke:#c0392b;stroke-width:6}.pgsvg .edv.ok{stroke:var(--good);stroke-width:6}.pgsvg .edv.no{stroke:var(--warn);stroke-width:5}
+.pgsvg .ed{stroke:transparent;stroke-width:22;cursor:pointer}
+.cnt{text-align:center;font-size:12.5px;color:var(--mute)}
+.sqsvg{display:block;margin:2px auto;max-width:100%;height:auto}.sqsvg rect{fill:#fde3c8;stroke:var(--navy);stroke-width:1.5}
+#ss_rect .sqsvg rect{fill:#dce8f6}
+.bx{display:inline-block;min-width:26px;border:1.5px solid var(--blue);border-radius:5px;padding:0 4px;text-align:center}
+.mute{color:var(--mute);font-size:.92em}
+#allDone h2{font-size:17px;color:var(--good);margin:2px 0 6px}
 </style>
 </head>
 <body>
-<header><div class="hw"><h1>דף עבודה · מיפוי כיתה ה׳</h1><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
+<header><div class="hw"><div class="hrow"><h1>דף עבודה · מיפוי כיתה ה׳</h1><label class="pk"><span>נושא:</span><select id="pick" aria-label="בחירת נושא"></select></label></div><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
 <main>
 
-<section class="card" id="ex1">
- <div class="ch"><span class="n">1</span><h2 tabindex="-1">כפל ארוך: <bdi dir="ltr" id="m_title">64 × 37</bdi></h2>
-  <button class="info" data-open="mult" aria-label="עזרה בכפל ארוך"><span class="ic">?</span>עזרה</button></div>
- <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?</div>
- <div id="ex1body"></div>
-</section>
-
-<section class="card" id="ex2" hidden>
- <div class="ch"><span class="n">2</span><h2 tabindex="-1">חיבור שברים עם אותו מכנה</h2>
-  <button class="info" data-open="frac" aria-label="עזרה בחיבור שברים"><span class="ic">?</span>עזרה</button></div>
- <div id="ex2body"></div>
-</section>
+<div id="topics"></div>
+<section class="card" id="allDone" hidden><h2 tabindex="-1">🎉 סיימת את כל הנושאים!</h2><p>עברת על כל 13 הנושאים של ההכנה למיפוי. אפשר לחזור לכל נושא ולתרגל עוד – בכל פעם יש מספרים חדשים.</p><button class="btn pri big" data-top="1">↑ חזרה לנושא הראשון</button></section>
 
 <p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
 </main>
 
-<section class="explain" id="explain-mult" hidden aria-label="הסבר">
+<section class="explain" id="explain-pv" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="pv">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>ערך המקום וכתיבת מספר במילים</h2>
+<div class="idea"><span class="lbl">הרעיון</span>לכל ספרה יש "בית", והבית קובע כמה היא שווה.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 460 160" xmlns="http://www.w3.org/2000/svg" style="max-height:52mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="20" y="10" width="210" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="125.0" y="33" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">אלפים</text><rect x="230" y="10" width="210" height="34" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="335.0" y="33" font-size="17" fill="#3a78c2" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">יחידות</text><rect x="20" y="44" width="70" height="30" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="55.0" y="64" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">מאות</text><rect x="20" y="74" width="70" height="52" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="55.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">7</text><rect x="90" y="44" width="70" height="30" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="125.0" y="64" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">עשרות</text><rect x="90" y="74" width="70" height="52" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="125.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">0</text><rect x="160" y="44" width="70" height="30" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="195.0" y="64" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">יחידות</text><rect x="160" y="74" width="70" height="52" fill="#fff" stroke="#e8862a" stroke-width="1.6" rx="0" /><text x="195.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">3</text><rect x="230" y="44" width="70" height="30" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="265.0" y="64" font-size="14" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">מאות</text><rect x="230" y="74" width="70" height="52" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="265.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">2</text><rect x="300" y="44" width="70" height="30" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="335.0" y="64" font-size="14" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">עשרות</text><rect x="300" y="74" width="70" height="52" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="335.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">1</text><rect x="370" y="44" width="70" height="30" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="405.0" y="64" font-size="14" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">יחידות</text><rect x="370" y="74" width="70" height="52" fill="#fff" stroke="#3a78c2" stroke-width="1.6" rx="0" /><text x="405.0" y="112" font-size="32" fill="#1d2733" text-anchor="middle" font-weight="700">5</text><line x1="230" y1="10" x2="230" y2="126" stroke="#1f3b5c" stroke-width="4" /><text x="125.0" y="152" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">קוראים: שבע מאות ושלושה אלף</text><text x="335.0" y="152" font-size="14" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">קוראים: מאתיים וחמש־עשרה</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>מכניסים את המספר לטבלת ערך המקום בשתי "קומות": אלפים ויחידות.</li><li>קוראים כל קבוצה של שלוש ספרות כמו מספר רגיל.</li><li>אחרי הקבוצה השמאלית אומרים "אלף".</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">703,215</span> – כתבו במילים. ומה קורה אם מחליפים את ספרת האלפים ב־<span class="m">1</span>?</b><div class="nbbody"><div class="nblines"><div>קבוצת האלפים: <span class="m">703</span> ← "שבע מאות ושלושה" + "אלף"</div><div>קבוצת היחידות: <span class="m">215</span> ← "מאתיים וחמש־עשרה"</div><div><b><span class="m">703,215</span> = "שבע מאות ושלושה אלף, מאתיים וחמש־עשרה"</b></div><div>ספרת האלפים היא <span class="m">3</span>. מחליפים ב־<span class="m">1</span> ← <span class="m">701,215</span></div><div>המספר קטן ב־<span class="m">2,000</span> – כי <span class="m">3</span> אלפים הפכו לאלף אחד.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מדלגים על האפס (כותבים "שבעים ושלושה אלף"), או עונים "קטן ב־<span class="m">2</span>" במקום "קטן ב־<span class="m">2,000</span>".<div class="why"><b>למה זו טעות?</b> האפס שומר על הבית של העשרות אלפים, והספרה <span class="m">3</span> יושבת בבית של האלפים – אז היא שווה <span class="m">3,000</span>, לא <span class="m">3</span>.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"כמה היא שווה?" – אומרים מספר ושואלים על ספרה אחת: "ב־<span class="m">703,215</span>, כמה שווה ה־<span class="m">7</span>?" (<span class="m">700,000</span>).</div>
+<button class="btn pri back big" data-back="pv">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-sq" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="sq">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>סדרות וקפיצות</h2>
+<div class="idea"><span class="lbl">הרעיון</span>בסדרה יש כלל קבוע – קפיצה שחוזרת על עצמה.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 460 135" xmlns="http://www.w3.org/2000/svg" style="max-height:40mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><line x1="20" y1="90" x2="440" y2="90" stroke="#1d2733" stroke-width="2" /><line x1="50" y1="82" x2="50" y2="98" stroke="#1d2733" stroke-width="2" /><text x="50" y="122" font-size="19" fill="#1d2733" text-anchor="middle" font-weight="600">840</text><line x1="170" y1="82" x2="170" y2="98" stroke="#1d2733" stroke-width="2" /><text x="170" y="122" font-size="19" fill="#1d2733" text-anchor="middle" font-weight="600">860</text><line x1="290" y1="82" x2="290" y2="98" stroke="#1d2733" stroke-width="2" /><text x="290" y="122" font-size="19" fill="#1d2733" text-anchor="middle" font-weight="600">880</text><line x1="410" y1="82" x2="410" y2="98" stroke="#1d2733" stroke-width="2" /><text x="410" y="122" font-size="19" fill="#1d2733" text-anchor="middle" font-weight="600">900</text><path d="M54,84 Q110.0,16 166,84" fill="none" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="110.0" y="42" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="700">+20</text><path d="M174,84 Q230.0,16 286,84" fill="none" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="230.0" y="42" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="700">+20</text><path d="M294,84 Q350.0,16 406,84" fill="none" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="350.0" y="42" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="700">+20</text><text x="400" y="122" font-size="19" fill="#7d8796" text-anchor="middle" font-weight="400">...</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>מציירים את המספרים על ציר.</li><li>מציירים את הקפיצות כקשתות, וכותבים מעל כל קשת כמה קפצנו.</li><li>ממשיכים רק אחרי שרואים שתי קפיצות זהות.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>השלימו: <span class="m">840, 860, 880, <span class="blank"></span>, <span class="blank"></span>, <span class="blank"></span></span></b><div class="nbbody"><div class="nblines"><div><span class="m">860 − 840 = 20</span> ; <span class="m">880 − 860 = 20</span> ← שתי קפיצות זהות של <span class="m">20</span></div><div>ממשיכים: <span class="m">880 + 20 = 900</span> ; <span class="m">900 + 20 = 920</span> ; <span class="m">920 + 20 = 940</span></div><div><b><span class="m">840, 860, 880, 900, 920, 940</span></b></div><div>הכלל: "כל פעם מוסיפים <span class="m">20</span>".</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מחליטים על הכלל לפי הזוג הראשון בלבד, או מסתבכים במעבר מאה (כותבים <span class="m">880 + 20 = 890</span>).<div class="why"><b>למה זו טעות?</b> רק כששתי קפיצות זהות אפשר לדעת שזה הכלל. ובמעבר מאה: <span class="m">80 + 20 = 100</span>, אז <span class="m">880 + 20 = 900</span>.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"קפיצות בקול": "מתחילים ב־<span class="m">350</span> וקופצים <span class="m">25</span>" – והוא ממשיך בקול חמישה צעדים. אחר כך מחליפים תפקידים.</div>
+<button class="btn pri back big" data-back="sq">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-as" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="as">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>חיבור וחיסור במאונך</h2>
+<div class="idea"><span class="lbl">הרעיון</span>מסדרים יחידות מתחת ליחידות, עשרות מתחת לעשרות – ומתחילים מימין.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 330 190" xmlns="http://www.w3.org/2000/svg" style="max-height:55mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="70" y="14" width="46" height="26" fill="#fff" stroke="#3a78c2" stroke-width="1" rx="0" /><text x="93.0" y="32" font-size="11" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">אלפים</text><rect x="116" y="14" width="46" height="26" fill="#dce8f6" stroke="#3a78c2" stroke-width="1" rx="0" /><text x="139.0" y="32" font-size="11" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">מאות</text><rect x="162" y="14" width="46" height="26" fill="#fff" stroke="#3a78c2" stroke-width="1" rx="0" /><text x="185.0" y="32" font-size="11" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">עשרות</text><rect x="208" y="14" width="46" height="26" fill="#dce8f6" stroke="#3a78c2" stroke-width="1" rx="0" /><text x="231.0" y="32" font-size="11" fill="#3a78c2" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">יחידות</text><rect x="70" y="40" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="116" y="40" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="162" y="40" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="208" y="40" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="70" y="86" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="116" y="86" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="162" y="86" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="208" y="86" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="70" y="132" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="116" y="132" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="162" y="132" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><rect x="208" y="132" width="46" height="46" fill="none" stroke="#c9d6e6" stroke-width="1" rx="0" /><text x="93.0" y="74.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">8</text><text x="139.0" y="74.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">6</text><text x="185.0" y="74.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">2</text><text x="231.0" y="74.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">4</text><text x="52" y="120.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="700">−</text><text x="93.0" y="120.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">1</text><text x="139.0" y="120.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><text x="185.0" y="120.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">5</text><text x="231.0" y="120.5" font-size="28" fill="#1d2733" text-anchor="middle" font-weight="600">6</text><line x1="40" y1="132" x2="254" y2="132" stroke="#1d2733" stroke-width="2.4" /><text x="93.0" y="166.5" font-size="28" fill="#2e8b57" text-anchor="middle" font-weight="700">6</text><text x="139.0" y="166.5" font-size="28" fill="#2e8b57" text-anchor="middle" font-weight="700">8</text><text x="185.0" y="166.5" font-size="28" fill="#2e8b57" text-anchor="middle" font-weight="700">6</text><text x="231.0" y="166.5" font-size="28" fill="#2e8b57" text-anchor="middle" font-weight="700">8</text><path d="M284,95.19999999999999 H262" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="288" y="86.0" font-size="13" fill="#e8862a" text-anchor="start" font-weight="700">מתחילים</text><text x="288" y="102.0" font-size="13" fill="#e8862a" text-anchor="start" font-weight="700">מימין</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>ספרה אחת בכל משבצת. יחידות מתחת ליחידות, ומתחילים מימין.</li><li>בחיבור – "עוברים": <span class="m">10</span> יחידות הופכות לעשרת אחת שעולה למעלה.</li><li>בחיסור – "פורטים": לוקחים עשרת ופורטים אותה ל־<span class="m">10</span> יחידות.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">8,624 − 1,756</span></b><div class="nbbody"><div class="nblines"><div>יחידות: אי אפשר <span class="m">4 − 6</span>, אז פורטים עשרת: <span class="m">14 − 6 = 8</span></div><div>עשרות: נשארה <span class="m">1</span>. אי אפשר <span class="m">1 − 5</span>, פורטים מאה: <span class="m">11 − 5 = 6</span></div><div>מאות: נשארו <span class="m">5</span>. אי אפשר <span class="m">5 − 7</span>, פורטים אלף: <span class="m">15 − 7 = 8</span></div><div>אלפים: נשארו <span class="m">7</span>: <span class="m">7 − 1 = 6</span></div><div><b><span class="m">8,624 − 1,756 = 6,868</span></b></div></div><table class="vert"><tr><td class="op"></td><td>8</td><td>6</td><td>2</td><td>4</td></tr><tr class="ul"><td class="op">−</td><td>1</td><td>7</td><td>5</td><td>6</td></tr><tr class="res"><td class="op"></td><td>6</td><td>8</td><td>6</td><td>8</td></tr></table></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מיישרים את המספרים לשמאל במקום לימין, או מחסירים "את הקטן מהגדול" בכל עמודה (<span class="m">6 − 4</span> במקום לפרוט).<div class="why"><b>למה זו טעות?</b> כשמיישרים לשמאל, יחידות נופלות מתחת לעשרות. ו־<span class="m">6 − 4</span> הופך את התרגיל – צריך לפרוט.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"כמה חסר למאה?" – אתם אומרים <span class="m">37</span>, הוא עונה <span class="m">63</span>. מחזק בדיוק את הפריטה בחיסור.</div>
+<button class="btn pri back big" data-back="as">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-op" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="op">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>סדר פעולות חשבון</h2>
+<div class="idea"><span class="lbl">הרעיון</span>כפל וחילוק קודמים לחיבור ולחיסור.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 300 185" xmlns="http://www.w3.org/2000/svg" style="max-height:52mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><text x="70" y="58" font-size="30" fill="#1d2733" text-anchor="middle" font-weight="600">80</text><text x="115" y="58" font-size="30" fill="#1d2733" text-anchor="middle" font-weight="400">−</text><ellipse cx="200" cy="48" rx="62" ry="28" fill="#fde3c8" stroke="#e8862a" stroke-width="2.6"/><text x="200" y="58" font-size="30" fill="#1d2733" text-anchor="middle" font-weight="600">20 : 5</text><path d="M200,80 V108" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="200" y="135" font-size="28" fill="#e8862a" text-anchor="middle" font-weight="700">4</text><text x="232" y="86" font-size="15" fill="#e8862a" text-anchor="middle" font-weight="700">1</text><text x="115" y="86" font-size="15" fill="#1f3b5c" text-anchor="middle" font-weight="700">2</text><text x="120" y="168" font-size="28" fill="#2e8b57" text-anchor="middle" font-weight="700">80 − 4 = 76</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>"מקיפים קודם": מקיפים בעיגול את הכפל או החילוק.</li><li>פותרים אותו.</li><li>רק אז ממשיכים.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">80 − 20 : 5</span></b><div class="nbbody"><div class="nblines"><div>מקיפים את <span class="m">20 : 5</span></div><div><span class="m">20 : 5 = 4</span></div><div><b><span class="m">80 − 4 = 76</span></b></div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>פותרים משמאל לימין: <span class="m">80 − 20 = 60</span>, ואז <span class="m">60 : 5 = 12</span>.<div class="why"><b>למה זו טעות?</b> החילוק צריך לבוא קודם, ולכן <span class="m">12</span> היא תשובה לא נכונה.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"מי קודם?" – אתם אומרים תרגיל כמו <span class="m">10 + 2 × 3</span>, והוא אומר איזו פעולה עושים קודם ואת התוצאה (<span class="m">16</span>).</div>
+<button class="btn pri back big" data-back="op">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-mr" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="mr">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>כפל בפירוק – מודל המלבן</h2>
+<div class="idea"><span class="lbl">הרעיון</span>מפרקים מספר לעשרות ויחידות, כופלים כל חלק לחוד ומחברים.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" style="max-height:44mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><text x="42" y="28" font-size="22" fill="#1f3b5c" text-anchor="middle" font-weight="700">×</text><text x="125.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">40</text><text x="210.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">2</text><text x="42" y="77.0" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">6</text><rect x="70" y="40" width="110" height="60" fill="#dce8f6" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="125.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">240</text><rect x="180" y="40" width="60" height="60" fill="#fde3c8" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="210.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">12</text><text x="155.0" y="136" font-size="22" fill="#2e8b57" text-anchor="middle" font-weight="700">240 + 12 = 252</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>מציירים מלבן ומחלקים אותו לשני חלקים: עשרות ויחידות (<span class="m">40</span> ו־<span class="m">2</span>).</li><li>כל חלק כופלים ב־<span class="m">6</span> וכותבים בתוך המלבן.</li><li>מחברים את שני החלקים.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">42 × 6</span></b><div class="nbbody"><div class="nblines"><div><span class="m">42 × 6 = 40 × 6 + 2 × 6</span></div><div><span class="m">= 240 + 12</span></div><div><b><span class="m">= 252</span></b></div><div>ובשאלה 5 ד: <span class="m">42 × 6 = 30 × 6 + 12 × 6</span> – אותו רעיון, פירוק אחר (<span class="m">42 = 30 + 12</span>).</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>כופלים רק את העשרות (<span class="m">40 × 6</span>) ושוכחים את <span class="m">2 × 6</span>.<div class="why"><b>למה זו טעות?</b> המלבן כולו הוא <span class="m">42 × 6</span> – אם חסר החלק הקטן, חסר חלק מהתשובה.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"מפרקים בראש": <span class="m">23 × 4</span>? "<span class="m">20</span> כפול <span class="m">4</span> זה <span class="m">80</span>, <span class="m">3</span> כפול <span class="m">4</span> זה <span class="m">12</span>, ביחד <span class="m">92</span>."</div>
+<button class="btn pri back big" data-back="mr">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-mult" hidden aria-label="הסבר">
 <div class="xbar"><button class="btn back" data-back="mult">→ חזור לדף העבודה</button></div>
 <div class="xin"><h2>כפל ארוך: דו־ספרתי בדו־ספרתי</h2><button class="btn vid" data-video="video/long_mult.mp4" data-ev="video_play_mult">▶ צפה בסרטון הסבר</button><div class="vwrap" hidden><video playsinline controls preload="none" src="video/long_mult.mp4"></video></div>
 <div class="idea"><span class="lbl">הרעיון</span>זה בדיוק מודל המלבן, רק עם ארבע משבצות.</div>
@@ -185,7 +271,25 @@ input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:
 <div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">72 × 36</span></b><div class="nbbody"><div class="nblines"><div>מפרקים: <span class="m">72 = 70 + 2</span> ; <span class="m">36 = 30 + 6</span></div><div>משבצות: <span class="m">70 × 30 = 2,100</span> ; <span class="m">70 × 6 = 420</span></div><div><span class="m">2 × 30 = 60</span> ; <span class="m">2 × 6 = 12</span></div><div>מחברים: <b><span class="m">2,100 + 420 + 60 + 12 = 2,592</span></b></div><div>הערכה: <span class="m">70 × 40 = 2,800</span> – קרוב ל־<span class="m">2,592</span>, אז התשובה הגיונית.</div></div></div></div>
 <div class="mis"><span class="lbl">טעות נפוצה</span>שוכחים משבצת (כופלים רק עשרות בעשרות ויחידות ביחידות), או שוכחים אפסים: כותבים <span class="m">70 × 30 = 210</span>.<div class="why"><b>למה זו טעות?</b> כל משבצת היא חלק מהמלבן – אם חסרה משבצת, חסר חלק מהתשובה. ו־<span class="m">70 × 30</span> זה <span class="m">7 × 3 = 21</span> ועוד שני אפסים: <span class="m">2,100</span>.</div></div>
 <div class="game"><span class="lbl">משחק של דקה</span>"בערך כמה?" – אתם אומרים <span class="m">48 × 21</span>, הוא מעגל ואומר הערכה (<span class="m">50 × 20 = 1,000</span>).</div>
-<button class="btn pri back big" data-back="mult">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-frac" hidden aria-label="הסבר">
+<button class="btn pri back big" data-back="mult">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-dv" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="dv">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>חילוק ובעיות מילוליות</h2>
+<div class="idea"><span class="lbl">הרעיון</span>חילוק הוא חלוקה לקבוצות שוות; בבעיה מילולית שואלים "מה אני יודע, ומה שואלים אותי?"</div>
+<div class="fig"><svg class="vis" viewBox="0 0 340 162" xmlns="http://www.w3.org/2000/svg" style="max-height:50mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="14" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="36" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><rect x="66" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="88" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><rect x="118" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="140" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><rect x="170" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="192" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><rect x="222" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="244" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><rect x="274" y="14" width="44" height="34" fill="#fde3c8" stroke="#e8862a" stroke-width="1.8" rx="6" /><text x="296" y="37" font-size="16" fill="#1d2733" text-anchor="middle" font-weight="600">14</text><text x="170" y="72" font-size="19" fill="#1f3b5c" text-anchor="middle" font-weight="700">6 × 14 = 84</text><path d="M170,80 V96" stroke="#1f3b5c" stroke-width="2" marker-end="url(#ahn)"/><circle cx="21.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="21.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="47.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="47.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="74.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="74.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="100.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="100.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="127.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="127.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="153.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="153.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="180.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="180.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="206.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="206.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="233.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="233.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="259.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="259.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="286.0" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="286.0" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><circle cx="312.5" cy="116" r="11" fill="#fff" stroke="#3a78c2" stroke-width="1.8" /><text x="312.5" y="121" font-size="13" fill="#1d2733" text-anchor="middle" font-weight="600">7</text><text x="170" y="152" font-size="19" fill="#2e8b57" text-anchor="middle" font-weight="700">84 : 12 = 7</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>בחילוק – מפרקים לחלקים נוחים: <span class="m">540 : 3 = 300 : 3 + 240 : 3 = 100 + 80 = 180</span></li><li>בבעיה – מסמנים את המספרים.</li><li>מציירים קבוצות.</li><li>כותבים משפט תשובה.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">6</span> חבילות, <span class="m">14</span> תותים בכל אחת. א׳ כמה תותים יש? ב׳ מחלקים ל־<span class="m">12</span> צלחות – כמה בכל צלחת?</b><div class="nbbody"><div class="nblines"><div>מה אני יודע? <span class="m">6</span> חבילות, <span class="m">14</span> בכל אחת. מה שואלים? כמה בסך הכול.</div><div>א׳: <span class="m">6 × 14 = 84</span> ← <b>יש <span class="m">84</span> תותים.</b></div><div>ב׳: מחלקים את כל התותים: <span class="m">84 : 12 = 7</span> ← <b>בכל צלחת <span class="m">7</span> תותים.</b></div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>בסעיף ב׳ מחלקים את <span class="m">14</span> (מה שבחבילה אחת) במקום את <span class="m">84</span> (כל התותים).<div class="why"><b>למה זו טעות?</b> מחלקים לצלחות את כל התותים, לא חבילה אחת.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"סיפור לתרגיל" – אתם נותנים תרגיל (<span class="m">5 × 12</span>), והוא ממציא סיפור קצר שמתאים לו. אחר כך הפוך.</div>
+<button class="btn pri back big" data-back="dv">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-ms" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="ms">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>מספר חסר והיעזרות בתרגיל פתור</h2>
+<div class="idea"><span class="lbl">הרעיון</span>תרגיל הוא כמו מאזניים – שני הצדדים שווים.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" style="max-height:48mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><text x="170" y="40" font-size="26" fill="#7d8796" text-anchor="middle" font-weight="600">550 + 325 = 875</text><text x="170" y="120" font-size="26" fill="#1d2733" text-anchor="middle" font-weight="600">___ + 325 = 775</text><path d="M80,50 V92" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="80" y="76" font-size="1" fill="#1d2733" text-anchor="middle" font-weight="400"></text><path d="M170,50 V92" stroke="#7d8796" stroke-width="2.4" marker-end="url(#ah)"/><text x="170" y="76" font-size="1" fill="#1d2733" text-anchor="middle" font-weight="400"></text><path d="M268,50 V92" stroke="#e8862a" stroke-width="2.4" marker-end="url(#ah)"/><text x="268" y="76" font-size="1" fill="#1d2733" text-anchor="middle" font-weight="400"></text><text x="52" y="76" font-size="15" fill="#e8862a" text-anchor="middle" font-weight="700">−100</text><text x="298" y="76" font-size="15" fill="#e8862a" text-anchor="middle" font-weight="700">−100</text><text x="205" y="76" font-size="18" fill="#7d8796" text-anchor="middle" font-weight="700">=</text><text x="170" y="158" font-size="22" fill="#2e8b57" text-anchor="middle" font-weight="700">550 − 100 = 450</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>"מה השתנה?" – משווים לתרגיל הפתור.</li><li>אם התוצאה ירדה ב־<span class="m">100</span> והמספר השני לא השתנה – גם המספר החסר יורד ב־<span class="m">100</span>.</li><li>בסעיף "הסבר" – כותבים משפט אחד במילים שלי.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>תרגיל פתור: <span class="m">550 + 325 = 875</span>. השלימו: <span class="m"><span class="blank"></span> + 325 = 775</span></b><div class="nbbody"><div class="nblines"><div><span class="m">775</span> קטן ב־<span class="m">100</span> מ־<span class="m">875</span>, ו־<span class="m">325</span> לא השתנה.</div><div>לכן גם המספר החסר קטן ב־<span class="m">100</span>: <b><span class="m">550 − 100 = 450</span></b></div><div>ובשאלה ג׳: <span class="m">2,400 − (<span class="blank"></span> × 2) = 2,000</span></div><div>הורדנו <span class="m">400</span>, ו־<b><span class="m">200 × 2 = 400</span></b> ← התשובה <span class="m">200</span>.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מחברים את כל המספרים שרואים בתרגיל, או בסעיף "הסבר" כותבים רק את התשובה.<div class="why"><b>למה זו טעות?</b> צריך לחפש מה השתנה. ובסעיף "הסבר" מבקשים משפט במילים – לא רק מספר.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"חשבתי על מספר": "הוספתי לו <span class="m">30</span> וקיבלתי <span class="m">100</span> – על איזה מספר חשבתי?" (<span class="m">70</span>).</div>
+<button class="btn pri back big" data-back="ms">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-frac" hidden aria-label="הסבר">
 <div class="xbar"><button class="btn back" data-back="frac">→ חזור לדף העבודה</button></div>
 <div class="xin"><h2>חיבור שברים עם אותו מכנה</h2>
 <div class="idea"><span class="lbl">הרעיון</span>המכנה אומר לכמה חלקים חתכנו, והמונה – כמה חלקים לקחנו; כשהחלקים באותו גודל, פשוט סופרים חלקים.</div>
@@ -194,7 +298,43 @@ input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:
 <div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>ביום א׳ הלכו <span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span></span> מהמסלול, וביום ב׳ <span class="m"><span class="fr"><span class="nu">3</span><span class="de">8</span></span></span>. כמה נשאר?</b><div class="nbbody"><div class="nblines"><div><span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span> + <span class="fr"><span class="nu">3</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">8</span></span></span> מהמסלול נעשו.</div><div>השלם הוא <span class="m"><span class="fr"><span class="nu">8</span><span class="de">8</span></span></span>, אז נשאר: <b><span class="m"><span class="fr"><span class="nu">8</span><span class="de">8</span></span> − <span class="fr"><span class="nu">4</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">8</span></span></span></b></div><div>ובשאלה: <span class="m">2 = <span class="fr"><span class="nu">1</span><span class="de">3</span></span> + <span class="fr"><span class="nu"><span class="blank sm"></span></span><span class="de">3</span></span></span> – שני שלמים הם <span class="m"><span class="fr"><span class="nu">6</span><span class="de">3</span></span></span>,</div><div>אז חסרים <b><span class="m"><span class="fr"><span class="nu">5</span><span class="de">3</span></span></span></b>.</div></div></div></div>
 <div class="mis"><span class="lbl">טעות נפוצה</span>מחברים גם את המכנים: <span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span> + <span class="fr"><span class="nu">3</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">16</span></span></span>.<div class="why"><b>למה זו טעות?</b> הפיצה לא נחתכת לחתיכות קטנות יותר רק כי חיברנו!</div></div>
 <div class="game"><span class="lbl">משחק של דקה</span>"כמה חסר לשלם?" – "יש לי <span class="m"><span class="fr"><span class="nu">3</span><span class="de">8</span></span></span> פיצה, כמה חסר לפיצה שלמה?" – תשובה: <span class="m"><span class="fr"><span class="nu">5</span><span class="de">8</span></span></span>.</div>
-<button class="btn pri back big" data-back="frac">→ חזור לדף העבודה</button></div></section>
+<button class="btn pri back big" data-back="frac">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-fq" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="fq">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>שבר מתוך כמות</h2>
+<div class="idea"><span class="lbl">הרעיון</span>כדי למצוא חלק מכמות – מחלקים אותה לקבוצות שוות ולוקחים חלק מהקבוצות.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 410 152" xmlns="http://www.w3.org/2000/svg" style="max-height:46mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="20" y="14" width="80" height="62" fill="none" stroke="#1f3b5c" stroke-width="1.8" rx="30" stroke-dasharray="6 4"/><circle cx="40" cy="45" r="9" fill="#fff" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="60" cy="45" r="9" fill="#fff" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="80" cy="45" r="9" fill="#fff" stroke="#1f3b5c" stroke-width="1.6" /><rect x="115" y="14" width="80" height="62" fill="none" stroke="#1f3b5c" stroke-width="1.8" rx="30" stroke-dasharray="6 4"/><circle cx="135" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="155" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="175" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><rect x="210" y="14" width="80" height="62" fill="none" stroke="#1f3b5c" stroke-width="1.8" rx="30" stroke-dasharray="6 4"/><circle cx="230" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="250" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="270" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><rect x="305" y="14" width="80" height="62" fill="none" stroke="#1f3b5c" stroke-width="1.8" rx="30" stroke-dasharray="6 4"/><circle cx="325" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="345" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><circle cx="365" cy="45" r="9" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.6" /><text x="205" y="110" font-size="17" fill="#1f3b5c" text-anchor="middle" font-weight="600" direction="rtl" unicode-bidi="embed">12 : 4 = 3 בכל קבוצה</text><text x="205" y="140" font-size="17" fill="#2e8b57" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">צובעים 3 קבוצות ← 9</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>"מחלקים במכנה, כופלים במונה".</li><li>מציירים עיגולים ומקיפים קבוצות שוות לפי המכנה.</li><li>צובעים כמה קבוצות שהמונה אומר.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m"><span class="fr"><span class="nu">3</span><span class="de">4</span></span></span> מ־<span class="m">12</span></b><div class="nbbody"><div class="nblines"><div>מחלקים במכנה: <span class="m">12 : 4 = 3</span> בכל קבוצה.</div><div>לוקחים <span class="m">3</span> קבוצות ← <b><span class="m">9</span></b></div><div>ו־<span class="m"><span class="fr"><span class="nu">3</span><span class="de">5</span></span></span> מ־<span class="m">20</span> פרחים: <span class="m">20 : 5 = 4</span></div><div><b><span class="m">4 × 3 = 12</span></b> פרחים.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מחלקים במונה במקום במכנה, או צובעים <span class="m">3</span> עיגולים במקום <span class="m">3</span> קבוצות.<div class="why"><b>למה זו טעות?</b> המכנה אומר לכמה קבוצות לחלק, והמונה – כמה קבוצות לקחת.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"חצי, רבע, שליש" – "כמה זה רבע מ־<span class="m">20</span>? ושלושה רבעים?" (<span class="m">5, 15</span>). אפשר עם ענבים או עם מטבעות על השולחן.</div>
+<button class="btn pri back big" data-back="fq">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-pa" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="pa">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>היקף ושטח של מלבן</h2>
+<div class="idea"><span class="lbl">הרעיון</span>היקף הוא הגדר מסביב (מחברים את הצלעות), ושטח הוא המרצפות בפנים (אורך × רוחב).</div>
+<div class="fig"><svg class="vis" viewBox="0 0 420 205" xmlns="http://www.w3.org/2000/svg" style="max-height:52mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="90" y="40" width="240" height="90" fill="#dce8f6" stroke="#1f3b5c" stroke-width="3" rx="0" /><line x1="120.0" y1="40" x2="120.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="150.0" y1="40" x2="150.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="180.0" y1="40" x2="180.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="210.0" y1="40" x2="210.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="240.0" y1="40" x2="240.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="270.0" y1="40" x2="270.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="300.0" y1="40" x2="300.0" y2="130" stroke="#b7cbe4" stroke-width="1" /><line x1="90" y1="70.0" x2="330" y2="70.0" stroke="#b7cbe4" stroke-width="1" /><line x1="90" y1="100.0" x2="330" y2="100.0" stroke="#b7cbe4" stroke-width="1" /><text x="210.0" y="28" font-size="17" fill="#1f3b5c" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">12 ס״מ</text><text x="210.0" y="156" font-size="17" fill="#1f3b5c" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">12 ס״מ</text><text x="72" y="92.0" font-size="22" fill="#e8862a" text-anchor="middle" font-weight="700">?</text><text x="348" y="92.0" font-size="22" fill="#e8862a" text-anchor="middle" font-weight="700">?</text><text x="210.0" y="186" font-size="14" fill="#7d8796" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">היקף: הגדר מסביב • שטח: המרצפות בפנים</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>תמיד מציירים מלבן ורושמים מספר ליד כל ארבע הצלעות.</li><li>חצי היקף = אורך + רוחב.</li><li>שטח = אורך × רוחב.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>צלע של מלבן <span class="m">12</span> ס״מ, היקף <span class="m">30</span> ס״מ. מה הצלע הסמוכה? מה השטח?</b><div class="nbbody"><div class="nblines"><div>היקף <span class="m">30</span> ← חצי היקף: <span class="m">30 : 2 = 15</span></div><div>הצלע הסמוכה: <b><span class="m">15 − 12 = 3</span> ס״מ</b></div><div>שטח: <b><span class="m">12 × 3 = 36</span> סמ״ר</b></div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מחלקים את ההיקף ב־<span class="m">4</span>, או מחסירים <span class="m">30 − 12 = 18</span> ושוכחים שיש שתי צלעות של <span class="m">12</span>. וגם מבלבלים יחידות.<div class="why"><b>למה זו טעות?</b> למלבן שתי צלעות של <span class="m">12</span> ושתיים של <span class="m">3</span>. היקף בס״מ, שטח בסמ״ר.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"גדר או מרצפות?" – אתם מתארים מצב (מסגרת לתמונה, שטיח לחדר, סרט סביב מתנה) והוא עונה "היקף" או "שטח".</div>
+<button class="btn pri back big" data-back="pa">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-pg" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="pg">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>מצולעים: שם, אלכסונים וצלעות סמוכות</h2>
+<div class="idea"><span class="lbl">הרעיון</span>שם המצולע נקבע לפי מספר הקודקודים (שהוא גם מספר הצלעות).</div>
+<div class="fig"><svg class="vis" viewBox="0 0 380 190" xmlns="http://www.w3.org/2000/svg" style="max-height:46mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><polygon points="212.0,95.0 176.0,157.4 104.0,157.4 68.0,95.0 104.0,32.6 176.0,32.6" fill="#f5f8fc" stroke="#1f3b5c" stroke-width="3" stroke-linejoin="round" /><line x1="176.0" y1="157.4" x2="104.0" y2="32.6" stroke="#3a78c2" stroke-width="3" stroke-dasharray="8 6"/><circle cx="212.0" cy="95.0" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><circle cx="176.0" cy="157.4" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><circle cx="104.0" cy="157.4" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><circle cx="68.0" cy="95.0" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><circle cx="104.0" cy="32.6" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><circle cx="176.0" cy="32.6" r="7" fill="#e8862a" stroke="none" stroke-width="1.6" /><text x="300" y="60" font-size="16" fill="#1f3b5c" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">6 נקודות ← משושה</text><line x1="232" y1="95" x2="262" y2="95" stroke="#3a78c2" stroke-width="3" stroke-dasharray="8 6"/><text x="300" y="101" font-size="16" fill="#3a78c2" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">אלכסון</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>סופרים קודקודים ומסמנים כל אחד בנקודה כדי לא לספור פעמיים.</li><li><span class="m">3</span> משולש, <span class="m">4</span> מרובע, <span class="m">5</span> מחומש, <span class="m">6</span> משושה, <span class="m">8</span> מתומן.</li><li>אלכסון = קו בין שני קודקודים <b>שאינם שכנים</b>.</li><li>צלעות סמוכות = הצלעות שנוגעות בצלע מסוימת בקצוות שלה.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>איך נקראת הצורה שבציור? מהו הקו הכחול?</b><div class="nbbody"><div class="nblines"><div>מסמנים נקודה בכל קודקוד: <span class="m">1, 2, 3, 4, 5, 6</span></div><div>יש <span class="m">6</span> נקודות ← <b>משושה</b>.</div><div>הקו הכחול מחבר קודקודים לא שכנים ← <b>אלכסון</b>.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מציירים "אלכסון" לקודקוד השכן (זו בעצם צלע), או מסמנים כצלע סמוכה את הצלע שממול.<div class="why"><b>למה זו טעות?</b> קו לקודקוד השכן הוא צלע של הצורה. והצלע שממול לא נוגעת בצלע – אז היא לא סמוכה.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"ציד מצולעים" בבית או ברחוב: תמרור עצור – מתומן, דף – מרובע, משולש אזהרה – משולש. כל צורה שמוצאים – אומרים את שמה.</div>
+<button class="btn pri back big" data-back="pg">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-ss" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="ss">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>אותם ריבועים – אותו שטח</h2>
+<div class="idea"><span class="lbl">הרעיון</span>אם משתמשים בדיוק באותם ריבועים, השטח לא משתנה – גם כשהצורה משתנה.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 370 145" xmlns="http://www.w3.org/2000/svg" style="max-height:44mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="20" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="40" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="60" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="80" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="100" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="120" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="140" y="60" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="20" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="40" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="60" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="80" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="100" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="120" y="40" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="20" y="20" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="40" y="20" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="60" y="20" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="80" y="20" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><rect x="100" y="20" width="20" height="20" fill="#fde3c8" stroke="#e8862a" stroke-width="1.2" rx="0" /><text x="90" y="104" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">18 ריבועים</text><path d="M175,50 H215" stroke="#1f3b5c" stroke-width="2.4" marker-end="url(#ahn)"/><rect x="232" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="252" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="272" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="292" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="312" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="332" y="60" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="232" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="252" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="272" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="292" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="312" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="332" y="40" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="232" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="252" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="272" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="292" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="312" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><rect x="332" y="20" width="20" height="20" fill="#dce8f6" stroke="#3a78c2" stroke-width="1.2" rx="0" /><text x="292" y="104" font-size="15" fill="#3a78c2" text-anchor="middle" font-weight="700">3 × 6 = 18</text><text x="180" y="132" font-size="16" fill="#2e8b57" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">אותם ריבועים ← אותו שטח</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>גוזרים ריבועים מנייר (או משתמשים בקוביות לגו).</li><li>מסדרים בפועל את צורת ה"מדרגות" מחדש למלבן.</li><li>את שם הצורה מוצאים שוב בספירת קודקודים.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">18</span> ריבועים בצורת מדרגות. סדרו למלבן. האם השטח השתנה?</b><div class="nbbody"><div class="nblines"><div>מסדרים מחדש ← מלבן של <span class="m">3 × 6</span> או של <span class="m">2 × 9</span></div><div><b>השטח זהה: <span class="m">18</span> ריבועים</b>,</div><div>כי לא הוספנו ולא הורדנו אף ריבוע.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>חושבים שצורה שנראית "גדולה יותר" היא בעלת שטח גדול יותר, או מבלבלים בין שטח להיקף.<div class="why"><b>למה זו טעות?</b> השטח הוא מספר הריבועים – והוא לא השתנה. ההיקף דווקא יכול להשתנות.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"בכמה דרכים?" – "באילו מלבנים אפשר לסדר <span class="m">12</span> ריבועים?" (<span class="m">1 × 12, 2 × 6, 3 × 4</span>).</div>
+<button class="btn pri back big" data-back="ss">→ חזור לדף העבודה</button></div></section>
 
 <script>
 /* ---------- Anonymous aggregate counts (optional) ----------
@@ -219,12 +359,12 @@ const FR=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
 const val=i=>i.value.replace(/\D/g,'');
 const rnd=n=>Math.floor(Math.random()*n);
 function prep(root){root.querySelectorAll('input.b').forEach(i=>{i.type='text';i.setAttribute('inputmode','numeric');i.setAttribute('pattern','[0-9]*');i.setAttribute('autocomplete','off');i.setAttribute('autocorrect','off');i.setAttribute('spellcheck','false')})}
-function hint(el,msg,good){const h=el.closest('.step').querySelector(':scope > .hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
+function hint(el,msg,good){const st=(el.dataset&&el.dataset.h&&document.getElementById(el.dataset.h))||el.closest('.step');if(!st)return;const h=st.querySelector(':scope > .hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
 function mark(i,st){i.classList.toggle('ok',st===true);i.classList.toggle('bad',st===false);if(st===false){i.classList.remove('bad');void i.offsetWidth;i.classList.add('bad')}}
 const vis=x=>!x.disabled&&x.offsetParent!==null;
 function next(i){checkAll();
- if('next' in i.dataset){const n=i.dataset.next&&document.getElementById(i.dataset.next);if(n&&vis(n)&&!n.classList.contains('ok'))n.focus();return}
- const all=[...i.closest('.card').querySelectorAll('input.b')].filter(x=>vis(x)&&!x.closest('.cr')&&!x.closest('.cadd'));
+ if('next' in i.dataset){const n=i.dataset.next&&document.getElementById(i.dataset.next);if(n&&vis(n)&&!n.classList.contains('ok')){n.focus();return}if(i.closest('.cadd'))return}
+ const all=[...i.closest('.card').querySelectorAll('input.b')].filter(x=>(x===i||vis(x))&&!x.classList.contains('given')&&!x.closest('.cr')&&(!x.closest('.cadd')||x===i));
  const n=all.slice(all.indexOf(i)+1).find(x=>!x.classList.contains('ok'));if(n)n.focus()}   // synchronous: keeps the iPhone keypad open
 /* a rule decides: null = still typing, true = right, or {ev,msg} = wrong */
 const RULES={};const rule=(id,fn)=>{RULES[id]=fn};
@@ -276,13 +416,13 @@ const HM={
  est:N=>({ev:'mult_estimate_wrong',msg:`מעגלים כל מספר לעשרת הקרובה. למשל ${L(N)} – לאיזו עשרת הוא הכי קרוב?`}),
  esum:{ev:'mult_estimate_wrong',msg:'כופלים את שני המספרים המעוגלים.'}};
 function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
- $('#m_title').textContent=`${p.A} × ${p.B}`;const c=p.c;
+ $('#m_title')&&($('#m_title').textContent=`${p.A} × ${p.B}`);const c=p.c;
  const nums=c.map(String),n=p.n;
  let col='<table class="cadd"><tr class="cr"><td class="op"></td>';
  for(let j=0;j<n;j++)col+=j<n-1?'<td class="cr"><input class="b" aria-label="מה שעבר"></td>':'<td></td>';
  col+='</tr>';nums.forEach((s,r)=>{col+=`<tr${r===3?' class="ul"':''}><td class="op">${r===3?'+':''}</td>`;const pad=' '.repeat(n-s.length)+s;for(const ch of pad)col+=`<td class="d">${ch.trim()}</td>`;col+='</tr>'});
  col+='<tr class="res"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;col+=`<td class="d"><input class="b dg" id="m_d${k}" data-next="${k<n-1?'m_d'+(k+1):''}" aria-label="ספרה"></td>`}col+='</tr></table>';
- $('#ex1body').innerHTML=`
+ $('#mult_body').innerHTML=`
  <div class="step" id="m_sSplit"><div class="st">א. מפרקים לעשרות ואחדות</div>
   <div class="eq"><span>${p.A} =</span><input class="b" id="m_sa1"><span>+</span><input class="b" id="m_sa2"></div>
   <div class="eq"><span>${p.B} =</span><input class="b" id="m_sb1"><span>+</span><input class="b" id="m_sb2"></div>
@@ -312,8 +452,8 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
   <div class="hint"></div></div>
  <div class="done" id="m_done">פתרת! ${L(`${p.A} × ${p.B} = ${c.map(fmt).join(' + ')} = ${fmt(p.T)}`)} – קרוב להערכה ${L(fmt(p.E))}, אז התשובה הגיונית.</div>
  <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div>`;
- prep($('#ex1body'));
- M.way='pairs';$$('#ex1 .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way==='pairs')));$('#m_pairs').hidden=false;  // default: pairs = rows of the rectangle
+ prep($('#mult_body'));
+ M.way='pairs';$$('#ex_mult .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way==='pairs')));$('#m_pairs').hidden=false;  // default: pairs = rows of the rectangle
  group(['m_sa1','m_sa2'],[p.a1*10,p.a0],()=>HM.split(p.A));group(['m_sb1','m_sb2'],[p.b1*10,p.b0],()=>HM.split(p.B));
  c.forEach((a,k)=>{a=String(a);rule('m_c'+k,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?HM.cellZero:HM.cell))});
  group(['m_p1a','m_p1b'],[c[0],c[1]],()=>HM.pair(c[0],c[1]));rule('m_p1s',exact(p.P1,()=>HM.pair(c[0],c[1])));
@@ -326,7 +466,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
 }
 function giv(id,v){const x=document.getElementById(id);x.value=v===''?'':String(v);x.readOnly=true;x.tabIndex=-1;x.classList.add('given');x.classList.toggle('ok',v!=='')}
 function auto(id,src,v){const x=document.getElementById(id);const k=okId(src);if(k&&x.value!==String(v)){x.value=String(v);x.classList.add('ok')}else if(!k&&x.value){x.value='';x.classList.remove('ok')}}
-function setWay(w){M.way=w;$$('#ex1 .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way===w)));
+function setWay(w){M.way=w;$$('#ex_mult .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way===w)));
  $('#m_pairs').hidden=w!=='pairs';$('#m_col').hidden=w!=='col';hint($('#m_pairs'),'');
  const f=w==='pairs'?['m_p1a','m_p1b','m_p1s','m_p2a','m_p2b','m_p2s','m_pta','m_ptb','m_pts'].map(x=>document.getElementById(x)).find(x=>!x.classList.contains('ok')):[...Array(M.n).keys()].map(k=>document.getElementById('m_d'+k)).find(x=>!x.classList.contains('ok'));
  if(f)f.focus();checkAll()}
@@ -341,8 +481,8 @@ function checkMult(){const p=M;if(!p)return;
  $('#m_sens').hidden=!(sumOk&&estOk);
  const fin=sumOk&&estOk&&p.sens;$('#m_done').classList.toggle('on',fin);$('#m_end').hidden=!fin}
 document.addEventListener('click',e=>{const b=e.target.closest('.segb');if(b&&M)setWay(b.dataset.way)});
-document.addEventListener('click',e=>{const b=e.target.closest('#ex1 .yn');if(!b)return;const h=$('#m_sEst > .hint');
- if(b.dataset.yn==='1'){M.sens=true;$$('#ex1 .yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML=`נכון – ${L(fmt(M.T))} קרוב ל־${L(fmt(M.E))}.`;h.className='hint on good'}
+document.addEventListener('click',e=>{const b=e.target.closest('#ex_mult .yn');if(!b)return;const h=$('#m_sEst > .hint');
+ if(b.dataset.yn==='1'){M.sens=true;$$('#ex_mult .yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML=`נכון – ${L(fmt(M.T))} קרוב ל־${L(fmt(M.E))}.`;h.className='hint on good'}
  else{h.innerHTML=`שווה לבדוק: ${L(fmt(M.T))} ו־${L(fmt(M.E))} – הם באותו סדר גודל, או רחוקים מאוד?`;h.className='hint on'}checkAll()});
 
 /* ================= Exercise 2: fractions with the same denominator ================= */
@@ -355,7 +495,7 @@ const HF={fden:{ev:'frac_added_denominators',msg:'המכנה לא משתנה! ה
  fo:{ev:'frac_other',msg:'סופרים את כל החלקים הצבועים ברצועה.'},
  fr:d=>({ev:'frac_rest_wrong',msg:`שלם = ${L(d+'/'+d)}. כמה חלקים נשארו לבנים?`})};
 function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
- $('#ex2body').innerHTML=`
+ $('#frac_body').innerHTML=`
  <div class="rem">לוחצים על החלקים כדי לצבוע: ${L(FR(p.a,d))} בכחול ועוד ${L(FR(p.b,d))} בכתום. לחיצה נוספת מחליפה צבע.</div>
  <div class="strip" id="strip"></div>
  <div class="legend"><span><i style="background:var(--blue)"></i>כחול: <b id="nB">0</b></span><span><i style="background:var(--org)"></i>כתום: <b id="nO">0</b></span><span><i style="background:#fff;border:1px solid #999"></i>לבן: <b id="nW">${d}</b></span></div>
@@ -367,9 +507,8 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
   <div class="eq">${FR(d,d)}<span>−</span><span class="fr"><input class="b" id="f_gn"><i class="bar"></i><input class="b" id="f_gd"></span><span>=</span><span class="fr"><input class="b" id="f_hn"><i class="bar"></i><input class="b" id="f_hd"></span></div>
   <div class="hint"></div></div>
  <div class="done" id="f_done">מעולה! ${L(`${p.a}/${d} + ${p.b}/${d} = ${p.s}/${d}`)}, וחסרים ${L(p.r+'/'+d)} לשלם.</div>
- <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div>
- <div class="endnote" id="f_note" hidden>זה הנושא האחרון כרגע – נושאים נוספים יגיעו בקרוב. <button class="btn" data-top="1">↑ חזרה להתחלה</button></div>`;
- prep($('#ex2body'));
+ <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div>`;
+ prep($('#frac_body'));
  const S=Array(d).fill(0),strip=$('#strip');
  for(let k=0;k<d;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;draw()});strip.appendChild(b)}
  function draw(){[...strip.children].forEach((b,k)=>b.className=['','B','O'][S[k]]);const nb=S.filter(x=>x==1).length,no=S.filter(x=>x==2).length;
@@ -383,30 +522,364 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
  rule('f_hn',exact(p.r,()=>HF.fr(d)));rule('f_hd',exact(d,v=>den(v)||HF.fr(d)));
 }
 function checkFracDone(){if(!F)return;auto('f_gn','f_n',F.s);if(okId('f_n'))auto('f_gd','f_d',F.d);else auto('f_gd','f_n',F.d);const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);$('#f_done').classList.toggle('on',fin);$('#f_end').hidden=!fin}
-function checkAll(){checkMult();checkFracDone()}
+/* ================= shared helpers for the remaining topics ================= */
+const H=(ev,msg)=>({ev,msg});
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[rnd(a.length)];
+const stp=(id,title,inner,need)=>`<div class="step" id="${id}"${need?` data-need="${need}"`:''}><div class="st">${title}</div>${inner}<div class="hint"></div></div>`;
+const I=(id,c='',x='')=>`<input class="b ${c}" id="${id}" ${x}>`;
+const G=(id,c='')=>`<input class="b given ${c}" id="${id}" readonly tabindex="-1">`;
+const EQ=(inner,lbl)=>`<div class="eq">${lbl?`<span class="lbl2">${lbl}</span>`:''}${inner}</div>`;
+const S=x=>`<span>${x}</span>`;
+function endB(k,doneHtml){return `<div class="done" id="${k}_done">${doneHtml}</div><div class="endbtns" id="${k}_end" hidden><button class="btn pri" data-more="${k}">עוד תרגיל</button><button class="btn" data-nexttopic="${k}">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button></div>`}
+function setFin(k,fin){const d=document.getElementById(k+'_done'),e=document.getElementById(k+'_end');if(!d)return;d.classList.toggle('on',fin);e.hidden=!fin}
+function autoIf(id,cond,v){const x=document.getElementById(id);if(!x)return;if(cond){if(x.value!==String(v))x.value=String(v);x.classList.add('ok')}else if(x.value||x.classList.contains('ok')){x.value='';x.classList.remove('ok')}}
+const setOk=(id,b)=>{const x=document.getElementById(id);if(x)x.classList.toggle('ok',!!b)};
+const txt=(id,t)=>{const x=document.getElementById(id);if(x&&x.innerHTML!==String(t))x.innerHTML=t};
+function advance(card){checkAll();const n=[...card.querySelectorAll('input.b')].filter(x=>vis(x)&&!x.classList.contains('ok')&&!x.classList.contains('given')&&!x.closest('.cr'))[0];if(n)n.focus()}
+// exact answer; values in `waits` (typical "stopped too early" mistakes that are the start of the answer) are judged after ~1.2s
+const exactW=(ans,waits,wrong)=>(v,final)=>{ans=String(ans);if(v===ans)return true;if(!final&&waits.map(String).includes(v))return 'wait';if(!final&&ans.startsWith(v)&&v.length<ans.length)return null;return wrong(v)};
+const OPT={};
+function choice(g,okv,wrong,goodMsg,onOk){OPT[g]=b=>{const st=b.closest('.step');if(st.classList.contains('ok'))return;
+ if(b.dataset.v===String(okv)){st.querySelectorAll('.opt').forEach(x=>{x.classList.toggle('ok',x===b);x.classList.remove('no')});st.classList.add('ok');hint(b,goodMsg||'',true);if(onOk)onOk();advance(b.closest('.card'))}
+ else{b.classList.remove('no');void b.offsetWidth;b.classList.add('no');const r=wrong(b.dataset.v);hint(b,r.msg);mistake(r.ev,g+':'+b.dataset.v)}}}
+document.addEventListener('click',e=>{const b=e.target.closest('main .opt');if(!b||b.disabled)return;const f=OPT[b.dataset.g];if(f)f(b)});
+function locks(){$$('main [data-need]').forEach(x=>{const ok=x.dataset.need.split(',').every(okId);
+ if(x.matches('input')){if(!x.classList.contains('given'))x.disabled=!ok;return}
+ x.classList.toggle('locked',!ok);x.querySelectorAll('input.b:not(.given)').forEach(i=>{if(!i.dataset.need)i.disabled=!ok});x.querySelectorAll('button').forEach(b=>b.disabled=!ok)})}
+
+/* ================= 1. place value ================= */
+const HEB={fu:['','אחת','שתיים','שלוש','ארבע','חמש','שש','שבע','שמונה','תשע'],
+ ft:['עשר','אחת־עשרה','שתים־עשרה','שלוש־עשרה','ארבע־עשרה','חמש־עשרה','שש־עשרה','שבע־עשרה','שמונה־עשרה','תשע־עשרה'],
+ mu:['','אחד','שניים','שלושה','ארבעה','חמישה','שישה','שבעה','שמונה','תשעה'],
+ mt:['עשרה','אחד־עשר','שנים־עשר','שלושה־עשר','ארבעה־עשר','חמישה־עשר','שישה־עשר','שבעה־עשר','שמונה־עשר','תשעה־עשר'],
+ t:['','','עשרים','שלושים','ארבעים','חמישים','שישים','שבעים','שמונים','תשעים'],
+ h:['','מאה','מאתיים','שלוש מאות','ארבע מאות','חמש מאות','שש מאות','שבע מאות','שמונה מאות','תשע מאות']};
+function w3(n,masc){const p=[],h=Math.floor(n/100),r=n%100;if(h)p.push(HEB.h[h]);if(r>=10&&r<20)p.push((masc?HEB.mt:HEB.ft)[r-10]);else{const t=Math.floor(r/10),u=r%10;if(t)p.push(HEB.t[t]);if(u)p.push((masc?HEB.mu:HEB.fu)[u])}
+ return p.length>1?p.slice(0,-1).join(' ')+' ו'+p[p.length-1]:(p[0]||'')}
+const words6=N=>w3(Math.floor(N/1000),true)+' אלף, '+w3(N%1000,false);
+let PV=null;
+function pvParams(h,c,u,k){const N=h*100000+c*1000+u;return {h,c,u,k,N,N2:N-(c-k)*1000,diff:(c-k)*1000,Nskip:h*10000+c*1000+u,Nmove:h*100000+c*10000+u}}
+function newPV(prev){for(;;){const c=3+rnd(7),p=pvParams(1+rnd(9),c,100+rnd(900),1+rnd(c-1));if(prev&&prev.N===p.N)continue;return p}}
+function testPV(p){const e=[],s=String(p.N),s2=String(p.N2);if(s.length!==6||s[1]!=='0'||s[2]!==String(p.c)||s2[2]!==String(p.k)||s2.length!==6)e.push('digits');
+ if(p.N-p.N2!==p.diff||p.diff<1000||p.k<1||p.k>=p.c)e.push('diff');if(new Set([p.N,p.Nskip,p.Nmove].map(words6)).size!==3)e.push('words');
+ if([p.N,p.Nskip,p.Nmove].some(x=>/undefined/.test(words6(x))||!/ אלף, /.test(words6(x))))e.push('w');return e}
+function renderPV(p){PV=p;clearSeen('pv');const ds=String(p.N).split('');
+ const opts=shuffle([['ok',p.N],['skip',p.Nskip],['move',p.Nmove]]);
+ $('#pv_body').innerHTML=`<div class="rem">המספר: <b>${L(fmt(p.N))}</b></div>`+
+ stp('pv_s1','א. מכניסים לטבלת ערך המקום – ספרה אחת בכל משבצת',`<table class="pvt"><tr><th colspan="3">אלפים</th><th colspan="3">יחידות</th></tr><tr class="sub">${['מאות','עשרות','יחידות','מאות','עשרות','יחידות'].map(x=>`<td>${x}</td>`).join('')}</tr><tr>${ds.map((d,k)=>`<td><input class="b dg" id="pv_d${k}" data-next="${k<5?'pv_d'+(k+1):''}" aria-label="ספרה"></td>`).join('')}</tr></table>`)+
+ stp('pv_s2','ב. קוראים כל קבוצה, ואחרי הקבוצה השמאלית אומרים "אלף". איזו קריאה נכונה?',`<div class="opts">${opts.map(([t,n])=>`<button class="btn opt" data-g="pv" data-v="${t}">${words6(n)}</button>`).join('')}</div>`,ds.map((d,k)=>'pv_d'+k).join(','))+
+ stp('pv_s3',`ג. מחליפים את ספרת האלפים ב־${L(p.k)}`,EQ(I('pv_n2','w6'),'המספר החדש:')+EQ(I('pv_df','w6'),'בכמה המספר קטן?'),'pv_s2')+
+ endB('pv',`${L(fmt(p.N))} = ${words6(p.N)}. אחרי ההחלפה: ${L(fmt(p.N2))} – קטן ב־${L(fmt(p.diff))}, כי ${L(p.c)} אלפים הפכו ל־${L(p.k)} אלפים.`);
+ prep($('#pv_body'));
+ ds.forEach((d,k)=>rule('pv_d'+k,exact(d,()=>H('pv_table_wrong','מעתיקים את הספרות לפי הסדר, משמאל לימין – ספרה אחת בכל משבצת.'))));
+ choice('pv','ok',v=>v==='skip'?H('pv_zero_skipped','שימו לב לאפס! הוא שומר על הבית של עשרות האלפים – אסור לדלג עליו.')
+  :H('pv_zero_moved',`בקבוצת האלפים יש ${L(p.h+' '+0+' '+p.c)}: ה־${L(p.c)} יושב בבית של האלפים, והאפס בבית של עשרות האלפים.`),'נכון!');
+ rule('pv_n2',exact(p.N2,()=>H('pv_new_wrong',`מחליפים רק את ספרת האלפים – הספרה הימנית בקומת האלפים – ב־${L(p.k)}. שאר הספרות נשארות.`)));
+ rule('pv_df',exactW(p.diff,[p.c-p.k],v=>v===String(p.c-p.k)?H('pv_diff_digit',`כמעט! ${L(p.c+' − '+p.k+' = '+(p.c-p.k))} – אבל אלה אלפים. כמה זה ${L(p.c-p.k)} אלפים?`)
+  :H('pv_diff_wrong',`מחסרים: ${L(fmt(p.N)+' − '+fmt(p.N2))}. רמז: רק ספרת האלפים השתנתה.`)))}
+function checkPV(){if(!PV)return;setFin('pv',['pv_s2','pv_n2','pv_df'].every(okId))}
+
+/* ================= 2. sequences ================= */
+let SQ=null;
+const sqParams=(s,d)=>({s,d,t:[0,1,2,3,4].map(i=>s+i*d)});
+function testSQ(p){const e=[],t=p.t;if(!(t[0]>=100&&t[4]<10000))e.push('range');if(![3,4].some(i=>Math.floor(t[i]/100)>Math.floor(t[i-1]/100)))e.push('nocross');
+ if(t.some((x,i)=>i&&x-t[i-1]!==p.d))e.push('step');if(t[0]%5)e.push('m5');return e}
+function newSQ(prev){for(;;){const p=sqParams((20+rnd(1900))*5,pick([15,20,25,30,40,50]));if(testSQ(p).length)continue;if(prev&&prev.s===p.s&&prev.d===p.d)continue;return p}}
+function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t;let g='<div class="seqv">';
+ for(let j=0;j<4;j++)g+=`<div class="al" style="grid-column:${2*j+2}/span 2">${j<2?`<span>+</span><input class="b" id="sq_j${j+1}" data-h="sq_s1" aria-label="כמה קפצנו">`:`<span id="sq_a${j}">?</span>`}</div>`;
+ for(let j=0;j<4;j++)g+=`<i class="arc" style="grid-column:${2*j+2}/span 2"></i>`;
+ for(let i=0;i<5;i++)g+=`<div class="nm" style="grid-column:${2*i+1}/span 2">${i<3?fmt(t[i]):`<input class="b w4" id="sq_t${i}" data-h="sq_s2" data-need="sq_j1,sq_j2">`}</div>`;
+ $('#sq_body').innerHTML=`<div class="rem">השלימו את הסדרה: ${L(t.slice(0,3).map(fmt).join(', ')+', __, __')}</div>`+g+'</div>'+
+ stp('sq_s1','א. כמה קפצנו? כותבים מעל שתי הקשתות הראשונות','')+
+ stp('sq_s2','ב. שתי קפיצות זהות – ממשיכים לקפוץ באותו מספר','','sq_j1,sq_j2')+
+ endB('sq',`הכלל: כל פעם מוסיפים ${L(p.d)}. ${L(t.map(fmt).join(', '))}`);
+ prep($('#sq_body'));
+ [1,2].forEach(j=>rule('sq_j'+j,exact(p.d,()=>H('sq_jump_wrong',`כמה קפצנו? מחסרים: ${L(fmt(t[j])+' − '+fmt(t[j-1]))}`))));
+ [3,4].forEach(i=>rule('sq_t'+i,exact(t[i],v=>(Math.floor(t[i]/100)>Math.floor(t[i-1]/100)&&v===String(t[i]-100))?
+  H('sq_cross_hundred',`שימו לב למעבר מאה: ${L((t[i-1]%100)+' + '+p.d+' = '+((t[i-1]%100)+p.d))}, אז עוברים למאה הבאה.`)
+  :H('sq_continue_wrong',`מוסיפים ${L(p.d)} למספר הקודם: ${L(fmt(t[i-1])+' + '+p.d)}`))))}
+function checkSQ(){if(!SQ)return;const j=okId('sq_j1')&&okId('sq_j2');[2,3].forEach(k=>txt('sq_a'+k,j?'+'+SQ.d:'?'));setFin('sq',okId('sq_t3')&&okId('sq_t4'))}
+
+/* ================= 3. column addition / subtraction ================= */
+let AS=null;
+function asParams(A,B,op){const R=op==='+'?A+B:A-B;const n=String(Math.max(A,R)).length;const cols=[];let c=0,nreg=0;
+ for(let k=0;k<n;k++){const a=Math.floor(A/10**k)%10,b=Math.floor(B/10**k)%10;
+  if(op==='+'){const s=a+b+c;cols.push({a,b,cin:c,d:s%10});if(s>=10)nreg++;c=Math.floor(s/10)}
+  else{const t=a-c,br=t<b;cols.push({a,b,cin:c,t,br,d:br?t+10-b:t-b});if(br)nreg++;c=br?1:0}}
+ return {A,B,op,R,n,cols,nreg,cout:c}}
+function testAS(p){const e=[];if(p.op==='+'){if(p.R>=10000||p.A<100)e.push('range')}else{if(/0/.test(String(p.A)))e.push('zeroTop');if(p.R<1000||p.B<1000)e.push('range')}
+ if(p.nreg<2)e.push('easy');if(p.cout)e.push('cout');if(p.cols.map(x=>x.d).reverse().join('')!==String(p.R))e.push('cols');if((p.op==='+'?p.A+p.B:p.A-p.B)!==p.R)e.push('R');return e}
+function newAS(prev){const op=prev?(prev.op==='+'?'−':'+'):(rnd(2)?'+':'−');for(;;){let A,B;
+ if(op==='+'){A=300+rnd(4700);B=1000+rnd(4000)}else{A=4000+rnd(6000);B=1000+rnd(Math.max(1,A-2000))}
+ const p=asParams(A,B,op);if(testAS(p).length)continue;if(prev&&prev.A===A&&prev.B===B)continue;return p}}
+const HA={carry:H('as_add_forgot_carry','כמעט! לא לשכוח את ה־1 שעבר מהעמודה הקודמת (במשבצת הקטנה למעלה).'),
+ add:H('as_add_digit_wrong','מחברים את שתי הספרות בעמודה, ועוד מה שעבר. אם יוצא 10 או יותר – כותבים רק את ספרת היחידות, וה־1 עובר לעמודה הבאה.'),
+ small:(t,b)=>H('as_sub_small_from_big',`אי אפשר ${L(t+' − '+b)} – פורטים: לוקחים 1 מהעמודה שמשמאל, ו־${L(t)} הופך ל־${L(t+10)}.`),
+ reduce:(a,t)=>H('as_sub_forgot_reduce',`כמעט! מהעמודה הזו כבר לקחנו 1 בפריטה, אז נשאר ${L(t)} ולא ${L(a)}.`),
+ sub:H('as_sub_digit_wrong','מחסרים בעמודה: הספרה למעלה פחות הספרה למטה. אם הספרה למעלה קטנה – פורטים מהשכן משמאל.')};
+function renderAS(p){AS=p;clearSeen('as');const n=p.n,A=String(p.A).padStart(n,' '),B=String(p.B).padStart(n,' ');
+ let tb='<table class="cadd"><tr class="cr"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;tb+=(p.op==='−'||k>0)?'<td class="cr"><input class="b" aria-label="עזר"></td>':'<td></td>'}tb+='</tr>';
+ tb+=`<tr><td class="op"></td>${[...A].map(ch=>`<td class="d">${ch.trim()}</td>`).join('')}</tr><tr class="ul"><td class="op">${p.op}</td>${[...B].map(ch=>`<td class="d">${ch.trim()}</td>`).join('')}</tr>`;
+ tb+='<tr class="res"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;tb+=`<td class="d"><input class="b dg" id="as_d${k}" data-next="${k<n-1?'as_d'+(k+1):''}" aria-label="ספרה"></td>`}tb+='</tr></table>';
+ $('#as_body').innerHTML=stp('as_s1',`${p.op==='+'?'מחברים':'מחסרים'} במאונך: ${L(fmt(p.A)+' '+p.op+' '+fmt(p.B))}`,tb+`<div class="colnote">מתחילים מימין – ביחידות. המשבצות הקטנות למעלה הן לעזר (${p.op==='+'?'מה שעובר':'פריטה'}), והן לא נבדקות.</div>`)+
+  endB('as',`פתרת! ${L(fmt(p.A)+' '+p.op+' '+fmt(p.B)+' = '+fmt(p.R))}`);
+ prep($('#as_body'));
+ p.cols.forEach((x,k)=>rule('as_d'+k,v=>{if(v===String(x.d))return true;
+  if(p.op==='+')return (x.cin&&v===String((x.a+x.b)%10))?HA.carry:HA.add;
+  if(x.br&&(v===String(x.b-x.t)||v===String(Math.abs(x.b-x.a))))return HA.small(x.t,x.b);
+  if(x.cin&&v===String(x.a>=x.b?x.a-x.b:x.a+10-x.b))return HA.reduce(x.a,x.t);return HA.sub}))}
+function checkAS(){if(!AS)return;setFin('as',[...Array(AS.n).keys()].every(k=>okId('as_d'+k)))}
+
+/* ================= 4. order of operations ================= */
+let OP=null;const OPS=[['+','×'],['−','×'],['−',':'],['+',':']];
+function opParams(f,a,b,c){const [o1,o2]=OPS[f];const inner=o2==='×'?b*c:b/c;const R=o1==='+'?a+inner:a-inner;const l=o1==='+'?a+b:a-b;const W=o2==='×'?l*c:l/c;return {f,a,b,c,o1,o2,inner,R,W}}
+function testOP(p){const e=[];if(!Number.isInteger(p.inner)||p.inner<2)e.push('inner');if(p.R<1||p.R>=200)e.push('R');if(p.W===p.R)e.push('same');if(p.a>140||p.a<5)e.push('a');return e}
+function newOP(prev){for(;;){const f=rnd(4);let a,b,c;
+ if(f<2){b=2+rnd(8);c=2+rnd(8);a=f===0?5+rnd(60):b*c+5+rnd(45)}else{c=2+rnd(8);b=c*(2+rnd(8));a=f===2?b+10+rnd(45):5+rnd(60)}
+ const p=opParams(f,a,b,c);if(testOP(p).length)continue;if(prev&&prev.f===f&&prev.a===a&&prev.b===b&&prev.c===c)continue;return p}}
+function renderOP(p){OP=p;clearSeen('op');
+ const expr=`<div class="expr"><span>${p.a}</span><button class="btn opt opb" data-g="op" data-v="1">${p.o1}</button><span class="grp" id="op_grp"><span>${p.b}</span><button class="btn opt opb" data-g="op" data-v="2">${p.o2}</button><span>${p.c}</span></span></div>`;
+ $('#op_body').innerHTML=stp('op_s1','א. מקיפים קודם: לוחצים על הפעולה שעושים ראשונה',expr)+
+  stp('op_s2','ב. פותרים אותו',EQ(S(p.b)+S(p.o2)+S(p.c)+S('=')+I('op_r1')),'op_s1')+
+  stp('op_s3','ג. רק עכשיו ממשיכים',EQ(S(p.a)+S(p.o1)+G('op_g')+S('=')+I('op_r2')),'op_r1')+
+  endB('op',`פתרת! ${L(`${p.a} ${p.o1} ${p.b} ${p.o2} ${p.c} = ${p.a} ${p.o1} ${p.inner} = ${p.R}`)}`);
+ prep($('#op_body'));giv('op_g','');
+ choice('op','2',()=>H('op_left_to_right_pick','כפל וחילוק קודמים לחיבור ולחיסור – גם כשהם בסוף התרגיל.'),'נכון – מקיפים אותו ופותרים קודם.',()=>$('#op_grp').classList.add('ring'));
+ rule('op_r1',exact(p.inner,()=>H('op_inner_wrong',p.o2==='×'?`כופלים: ${L(p.b+' × '+p.c)}`:`מחלקים: כמה פעמים ${L(p.c)} נכנס ב־${L(p.b)}?`)));
+ rule('op_r2',exact(p.R,v=>(Number.isInteger(p.W)&&v===String(p.W))?H('op_left_to_right','זו התוצאה של פתרון משמאל לימין. ממשיכים עם התוצאה של הכפל או החילוק.')
+  :H('op_outer_wrong',`עכשיו רק ${L(`${p.a} ${p.o1} ${p.inner}`)}`)))}
+function checkOP(){if(!OP)return;auto('op_g','op_r1',OP.inner);setFin('op',okId('op_r2'))}
+
+/* ================= 5. multiplication by splitting (2-cell rectangle) ================= */
+let MR=null;
+function mrParams(A,B){const a1=Math.floor(A/10)*10,a0=A%10;return {A,B,a1,a0,c0:a1*B,c1:a0*B,T:A*B}}
+function testMR(p){return (p.a1+p.a0!==p.A||p.c0+p.c1!==p.T||p.T!==p.A*p.B||p.a0===0||p.B<3||p.B>9||p.A<12||p.A>98)?['bad']:[]}
+function newMR(prev){for(;;){const A=12+rnd(87),B=3+rnd(7);if(A%10===0)continue;if(prev&&prev.A===A&&prev.B===B)continue;return mrParams(A,B)}}
+const bond=(top,a,b)=>`<div class="bond"><div class="bt">${top}</div><svg viewBox="0 0 120 24" aria-hidden="true"><line x1="60" y1="0" x2="22" y2="24"/><line x1="60" y1="0" x2="98" y2="24"/></svg><div class="bb">${a}${b}</div></div>`;
+function renderMR(p){MR=p;clearSeen('mr');
+ $('#mr_body').innerHTML=stp('mr_s1','א. מפרקים לעשרות ואחדות',bond(p.A,I('mr_b1','','aria-label="עשרות"'),I('mr_b2','','aria-label="אחדות"')))+
+  stp('mr_s2',`ב. ממלאים את המלבן – כופלים כל חלק ב־${L(p.B)}`,`<table class="rect"><tr><td class="hd">×</td><td class="hd q" id="mr_h1">?</td><td class="hd q" id="mr_h0">?</td></tr><tr><td class="hd">${p.B}</td><td class="c c00">${I('mr_c0','w4')}</td><td class="c c01">${I('mr_c1','w4')}</td></tr></table>`,'mr_b1,mr_b2')+
+  stp('mr_s3','ג. מחברים את שני החלקים',EQ(G('mr_g0','w4')+S('+')+G('mr_g1','w4')+S('=')+I('mr_t','w4')),'mr_c0,mr_c1')+
+  endB('mr',`פתרת! ${L(`${p.A} × ${p.B} = ${p.a1} × ${p.B} + ${p.a0} × ${p.B} = ${fmt(p.c0)} + ${p.c1} = ${fmt(p.T)}`)}`);
+ prep($('#mr_body'));giv('mr_g0','');giv('mr_g1','');
+ group(['mr_b1','mr_b2'],[p.a1,p.a0],()=>H('mr_split_wrong',`מפרקים לעשרות ואחדות: כמה עשרות יש ב־${L(p.A)}, וכמה אחדות נשארות?`));
+ const zero=H('mr_cell_missing_zero','כמעט! כשכופלים עשרות – לא לשכוח את האפס.'),cell=H('mr_cell_wrong','כופלים את המספר שמעל המשבצת במספר שבצד שלה.');
+ rule('mr_c0',exactW(p.c0,[p.c0/10],v=>v+'0'===String(p.c0)?zero:cell));rule('mr_c1',exact(p.c1,()=>cell));
+ rule('mr_t',exact(p.T,v=>v===String(p.c0)?H('mr_forgot_small_part','לא לשכוח את החלק הקטן!'):H('mr_sum_wrong','מחברים את שני החלקים של המלבן.')))}
+function checkMR(){const p=MR;if(!p)return;const s=okId('mr_b1')&&okId('mr_b2');txt('mr_h1',s?p.a1:'?');txt('mr_h0',s?p.a0:'?');['mr_h1','mr_h0'].forEach(i=>$('#'+i).classList.toggle('q',!s));
+ auto('mr_g0','mr_c0',p.c0);auto('mr_g1','mr_c1',p.c1);setFin('mr',okId('mr_t'))}
+
+/* ================= 7. division & word problems (alternating) ================= */
+let DV=null;
+const CTX=[['חבילות','חבילה','תותים','צלחות','צלחת'],['שקיות','שקית','גולות','ילדים','ילד'],['קופסאות','קופסה','עפרונות','שולחנות','שולחן'],['ארגזים','ארגז','תפוחים','סלים','סל'],['מגשים','מגש','עוגיות','צלחות','צלחת']];
+function testDV(p){const e=[];if(p.type==='split'){if(p.N!==p.d*p.q||p.q<100||p.N>999||p.P2<2*p.d||p.P1%(100*p.d)||p.P2%p.d||p.P1<=0)e.push('split')}
+ else{if(p.n*p.k!==p.tot||p.tot%p.m||p.each<3||p.m===p.n||p.m===p.k||p.each===p.k||p.m<2||p.m>12)e.push('word')}return e}
+function newDV(prev){const type=prev?(prev.type==='split'?'word':'split'):'split';for(;;){let p;
+ if(type==='split'){const d=2+rnd(5),q=101+rnd(198),N=d*q;if(N>999)continue;const P1=Math.floor(N/(100*d))*100*d;p={type,d,q,N,P1,P2:N-P1}}
+ else{const n=3+rnd(7),k=12+rnd(14),tot=n*k,ms=[];for(let m=2;m<=12;m++)if(tot%m===0&&m!==n&&m!==k&&tot/m!==k&&tot/m>=3)ms.push(m);if(!ms.length)continue;const m=pick(ms);p={type,n,k,tot,m,each:tot/m,ctx:rnd(CTX.length)}}
+ if(testDV(p).length)continue;if(prev&&JSON.stringify(prev)===JSON.stringify(p))continue;return p}}
+const segs=(n,lab)=>`<div class="barm">${Array.from({length:n},(_,i)=>`<span>${typeof lab==='function'?lab(i):lab}</span>`).join('')}</div>`;
+function renderDV(p){DV=p;clearSeen('dv');const b=$('#dv_body');
+ if(p.type==='split'){
+  b.innerHTML=`<div class="rem">${L(p.N+' : '+p.d)} – מפרקים לחלקים נוחים, מחלקים כל חלק ומחברים.</div><div class="barm" id="dv_bar"><span>${p.N}</span></div><div class="barlbl" id="dv_barl">מחלקים ל־${p.d} חלקים שווים</div>`+
+  stp('dv_s1',`א. מפרקים את ${L(p.N)} לשני חלקים ש־${L(p.d)} נכנס בהם בדיוק`,EQ(S(p.N)+S('=')+I('dv_p1','w4')+S('+')+I('dv_p2','w4')))+
+  stp('dv_s2',`ב. מחלקים כל חלק ב־${L(p.d)}`,EQ(G('dv_g1','w4')+S(':')+S(p.d)+S('=')+I('dv_q1','w4'))+EQ(G('dv_g2','w4')+S(':')+S(p.d)+S('=')+I('dv_q2','w4')),'dv_p1,dv_p2')+
+  stp('dv_s3','ג. מחברים את שתי התוצאות',EQ(G('dv_g3','w4')+S('+')+G('dv_g4','w4')+S('=')+I('dv_q','w4')),'dv_q1,dv_q2')+
+  endB('dv','<span id="dv_doneT"></span>');
+  prep(b);['dv_g1','dv_g2','dv_g3','dv_g4'].forEach(x=>giv(x,''));
+  const ok1=x=>x>0&&x<p.N&&x%p.d===0&&x%10===0;
+  rule('dv_p1',(v,final)=>{const x=+v;if(ok1(x))return(!final&&x*10<p.N)?'wait':true;if(!final&&x*10<p.N)return null;
+   return x>=p.N?H('dv_split_too_big',`כל חלק צריך להיות קטן מ־${L(p.N)}.`):H('dv_split_not_divisible',`${L(x)} לא מתחלק ב־${L(p.d)} בקלות. נסו מספר עגול ש־${L(p.d)} נכנס בו בדיוק, למשל ${L(100*p.d)}.`)});
+  rule('dv_p2',(v,final)=>{const a=+val($('#dv_p1'));return exact(p.N-a,()=>H('dv_split_rest',`כמה חסר מ־${L(a)} עד ${L(p.N)}? ${L(p.N+' − '+a)}`))(v,final)});
+  ['1','2'].forEach(j=>rule('dv_q'+j,(v,final)=>{const a=+val($('#dv_p'+j));return exact(a/p.d,()=>H('dv_part_wrong',`כמה פעמים ${L(p.d)} נכנס ב־${L(a)}? בודקים: ${L(p.d+' × ? = '+a)}`))(v,final)}));
+  rule('dv_q',exact(p.q,()=>H('dv_sum_wrong','מחברים את שתי התוצאות של החלקים.')));
+ }else{const [cP,cS,it,rP,rS]=CTX[p.ctx];p.w=CTX[p.ctx];
+  b.innerHTML=`<div class="rem">יש ${L(p.n)} ${cP}, ובכל ${cS} ${L(p.k)} ${it}. מחלקים את כל ה${it} שווה בשווה ל־${L(p.m)} ${rP}.</div>`+
+  stp('dv_s1',`א. כמה ${it} יש בסך הכול?`,segs(p.n,p.k)+`<div class="barlbl">סך הכול: <b id="dv_totl">?</b></div>`+EQ(S(p.n)+S('×')+S(p.k)+S('=')+I('dv_tot','w4')))+
+  stp('dv_s2',`ב. מחלקים את כל ה${it} ל־${L(p.m)} ${rP}. כמה ${it} לכל ${rS}?`,`<div class="barlbl">סך הכול: <b id="dv_totl2">?</b></div>`+segs(p.m,i=>`<b class="dv_e">?</b>`)+EQ(I('dv_w1','w4')+S(':')+S(p.m)+S('=')+I('dv_w2','w4')),'dv_tot')+
+  endB('dv',`לכל ${rS}: ${L(p.each)} ${it}. ${L(`${p.n} × ${p.k} = ${p.tot}`)} ; ${L(`${p.tot} : ${p.m} = ${p.each}`)}`);
+  prep(b);
+  rule('dv_tot',exact(p.tot,()=>H('dv_total_wrong',`כופלים: ${L(p.n+' × '+p.k)}. אפשר לפרק: ${L(`${p.n} × ${Math.floor(p.k/10)*10} + ${p.n} × ${p.k%10}`)}`)));
+  rule('dv_w1',exactW(p.tot,[p.k],v=>v===String(p.k)?H('dv_divided_one_package',`מחלקים את כל ה${it} – ${L(p.tot)} – ולא רק את מה שיש ב${cS}.`):H('dv_dividend_wrong',`מה מחלקים? את כל ה${it} – כמה יש בסך הכול?`)));
+  rule('dv_w2',exact(p.each,()=>H('dv_each_wrong',`בודקים בכפל: ${L(p.m+' × ? = '+p.tot)}`)))}}
+function checkDV(){const p=DV;if(!p)return;
+ if(p.type==='split'){const a=+val($('#dv_p1')),c=+val($('#dv_p2'));
+  if(okId('dv_p2')&&a+c!==p.N){$('#dv_p2').classList.remove('ok')}
+  ['1','2'].forEach(j=>{const x=$('#dv_q'+j);if(x.classList.contains('ok')&&+val(x)*p.d!==+val($('#dv_p'+j)))x.classList.remove('ok')});
+  autoIf('dv_g1',okId('dv_p1'),a);autoIf('dv_g2',okId('dv_p2'),c);autoIf('dv_g3',okId('dv_q1'),a/p.d);autoIf('dv_g4',okId('dv_q2'),c/p.d);
+  const sp=okId('dv_p1')&&okId('dv_p2');txt('dv_bar',sp?`<span style="flex:${a}">${a}</span><span style="flex:${c}" class="o">${c}</span>`:`<span>${p.N}</span>`);
+  const fin=okId('dv_q');if(fin)txt('dv_doneT',`פתרת! ${L(`${p.N} : ${p.d} = ${a} : ${p.d} + ${c} : ${p.d} = ${a/p.d} + ${c/p.d} = ${p.q}`)}`);setFin('dv',fin)}
+ else{const t=okId('dv_tot');txt('dv_totl',t?p.tot:'?');txt('dv_totl2',t?p.tot:'?');$$('#dv_s2 .dv_e').forEach(x=>{const s=okId('dv_w2')?String(p.each):'?';if(x.textContent!==s)x.textContent=s});setFin('dv',okId('dv_w2'))}}
+
+/* ================= 8. missing number (alternating) ================= */
+let MS=null;
+function testMS(p){const e=[];if(p.type==='solved'){if(p.x+p.b!==p.c2||p.a+p.b!==p.c||p.x<10||p.c2>=10000||Math.abs(p.c-p.c2)!==p.ch)e.push('s')}else{if(p.X-p.m*p.k!==p.Y||p.X>=10000||p.dd!==p.m*p.k)e.push('b')}return e}
+function newMS(prev){const type=prev?(prev.type==='solved'?'balance':'solved'):'solved';for(;;){let p;
+ if(type==='solved'){const a=120+rnd(770),b=110+rnd(680),ch=pick([10,20,100,200,300]),dn=rnd(2)===0;p={type,a,b,c:a+b,ch,dn,c2:a+b+(dn?-ch:ch),x:a+(dn?-ch:ch)}}
+ else{const k=2+rnd(4),m=pick([50,100,150,200,250,300,400,500]);if(m*k>1500)continue;const Y=(10+rnd(41))*100;p={type,k,m,Y,X:Y+m*k,dd:m*k}}
+ if(testMS(p).length)continue;if(prev&&JSON.stringify(prev)===JSON.stringify(p))continue;return p}}
+function renderMS(p){MS=p;clearSeen('ms');const b=$('#ms_body');
+ if(p.type==='solved'){const w=p.dn?'קטן':'גדל',o=p.dn?'−':'+';
+  b.innerHTML=`<div class="rem">תרגיל פתור: <b>${L(`${p.a} + ${p.b} = ${p.c}`)}</b><br>השלימו: <b>${L(`<span class="bx" id="ms_bx">?</span> + ${p.b} = ${p.c2}`)}</b></div>`+
+  stp('ms_s1','א. מה השתנה? משווים לתרגיל הפתור',EQ(I('ms_ch','w4'),`ה־${L(p.b)} לא השתנה. התוצאה ${p.dn?'קטנה':'גדלה'} מ־${L(p.c)} ל־${L(p.c2)} – בכמה?`))+
+  stp('ms_s2',`ב. לכן גם המספר החסר ${w} באותו מספר`,EQ(S(p.a)+S(o)+G('ms_g','w4')+S('=')+I('ms_x','w4')),'ms_ch')+
+  endB('ms',`${L(`${p.x} + ${p.b} = ${p.c2}`)} – כי התוצאה ${p.dn?'קטנה':'גדלה'} ב־${L(p.ch)}, וה־${L(p.b)} לא השתנה.`);
+  prep(b);giv('ms_g','');
+  rule('ms_ch',exact(p.ch,()=>H('ms_change_wrong',`מחסרים: ${L(p.dn?`${p.c} − ${p.c2}`:`${p.c2} − ${p.c}`)}`)));
+  rule('ms_x',exact(p.x,v=>v===String(p.dn?p.a+p.ch:p.a-p.ch)?H('ms_wrong_direction',`התוצאה ${p.dn?'קטנה':'גדלה'}, אז גם המספר החסר ${w} – לא להפך.`):H('ms_x_wrong',`${p.dn?'מחסרים':'מחברים'}: ${L(`${p.a} ${o} ${p.ch}`)}`)));
+ }else{
+  b.innerHTML=`<div class="rem">השלימו: <b>${L(`${fmt(p.X)} − (<span class="bx" id="ms_bx">?</span> × ${p.k}) = ${fmt(p.Y)}`)}</b><br>שני צדי התרגיל שווים – כמו מאזניים.</div>`+
+  stp('ms_s1','א. כמה הורדנו?',EQ(S(fmt(p.X))+S('−')+S(fmt(p.Y))+S('=')+I('ms_d','w4')))+
+  stp('ms_s2',`ב. איזה מספר כפול ${L(p.k)} נותן את מה שהורדנו?`,EQ(I('ms_y','w4')+S('×')+S(p.k)+S('=')+G('ms_g2','w4')),'ms_d')+
+  endB('ms',`${L(`${fmt(p.X)} − (${p.m} × ${p.k}) = ${fmt(p.X)} − ${fmt(p.dd)} = ${fmt(p.Y)}`)} – המספר החסר הוא ${L(p.m)}.`);
+  prep(b);giv('ms_g2','');
+  rule('ms_d',exact(p.dd,()=>H('ms_removed_wrong',`מחסרים: ${L(fmt(p.X)+' − '+fmt(p.Y))}`)));
+  rule('ms_y',exact(p.m,v=>v===String(p.dd)?H('ms_forgot_divide',`כמעט! ${L(fmt(p.dd))} זה מה שהורדנו – וזה המספר כפול ${L(p.k)}. איזה מספר כפול ${L(p.k)} נותן ${L(fmt(p.dd))}?`):H('ms_y_wrong',`בודקים: ${L('? × '+p.k+' = '+p.dd)}`)))}}
+function checkMS(){const p=MS;if(!p)return;if(p.type==='solved'){auto('ms_g','ms_ch',p.ch);txt('ms_bx',okId('ms_x')?p.x:'?');setFin('ms',okId('ms_x'))}
+ else{auto('ms_g2','ms_d',p.dd);txt('ms_bx',okId('ms_y')?p.m:'?');setFin('ms',okId('ms_y'))}}
+
+/* ================= 10. fraction of a quantity ================= */
+let FQ=null;const FN={3:['שליש','שלישים','אחד'],4:['רבע','רבעים','אחד'],5:['חמישית','חמישיות','אחת'],6:['שישית','שישיות','אחת'],8:['שמינית','שמיניות','אחת']};
+const FQU=['עיגולים','ש״ח','תפוחים','ילדים','פרחים','גולות'];
+function testFQ(p){return (p.N!==p.b*p.q||p.r!==p.a*p.q||p.a<2||p.a>=p.b||p.N>48||p.q<2||!FN[p.b])?['bad']:[]}
+function newFQ(prev){for(;;){const b=pick([3,4,5,6,8]),a=2+rnd(b-2),q=2+rnd(7),N=b*q;if(N>48)continue;const p={a,b,q,N,r:a*q,u:rnd(FQU.length)};if(prev&&prev.a===a&&prev.b===b&&prev.N===N)continue;return p}}
+function renderFQ(p){FQ=p;clearSeen('fq');const [s1,pl]=FN[p.b],u=FQU[p.u];
+ $('#fq_body').innerHTML=`<div class="rem">כמה זה ${L(FR(p.a,p.b))} מ־${L(p.N)} ${u}? <span class="mute">(${L(FR(p.a,p.b))} = ${p.a} ${pl})</span></div>`+
+  `<div class="barm fq" id="fq_bar" data-need="fq_q">${Array.from({length:p.b},(_,i)=>`<button data-i="${i}" data-h="fq_s2" aria-label="קבוצה ${i+1}">${'<i class="dot"></i>'.repeat(p.q)}</button>`).join('')}</div><div class="barlbl">${L(p.N)} ${u} ב־${L(p.b)} קבוצות שוות – כל קבוצה היא ${s1}</div>`+
+  stp('fq_s1',`א. מחלקים במכנה: כמה בכל ${s1}?`,EQ(S(p.N)+S(':')+S(p.b)+S('=')+I('fq_q')))+
+  stp('fq_s2',`ב. צובעים ${L(p.a)} קבוצות – כמו שהמונה אומר`,`<div class="lock">לוחצים על הקבוצות ברצועה למעלה.</div>`,'fq_q')+
+  stp('fq_s3','ג. כופלים במונה',EQ(G('fq_g')+S('×')+S(p.a)+S('=')+I('fq_r','w4')),'fq_s2')+
+  endB('fq',`פתרת! ${L(FR(p.a,p.b))} מ־${L(p.N)}: ${L(`${p.N} : ${p.b} = ${p.q}`)} ← ${L(`${p.q} × ${p.a} = ${p.r}`)} ${u}.`);
+ prep($('#fq_body'));giv('fq_g','');
+ const S2=new Set();
+ $$('#fq_bar button').forEach(bt=>bt.addEventListener('click',()=>{if(!okId('fq_q'))return;const i=+bt.dataset.i;S2.has(i)?S2.delete(i):S2.add(i);bt.classList.toggle('on',S2.has(i));
+  const n=S2.size,st=$('#fq_s2');if(n===p.a){st.classList.add('ok');hint(bt,`צבעת ${p.a} ${pl} ✓`,true);advance(bt.closest('.card'))}
+  else{st.classList.remove('ok');if(n>p.a){hint(bt,`המונה אומר ${L(p.a)} – צבעת יותר מדי קבוצות.`);mistake('fq_color_too_many','fq_c:'+n)}else hint(bt,'');checkAll()}}));
+ rule('fq_q',exact(p.q,v=>(p.N%p.a===0&&v===String(p.N/p.a))?H('fq_div_by_numerator',`מחלקים במכנה – המספר למטה (${L(p.b)}) – ולא במונה.`):H('fq_q_wrong',`כמה עיגולים יש בקבוצה אחת? ${L(p.N+' : '+p.b)}`)));
+ rule('fq_r',exact(p.r,v=>v===String(p.q)?H('fq_forgot_multiply',`זה רק ${s1} ${FN[p.b][2]}. לקחנו ${L(p.a)} קבוצות – כופלים ב־${L(p.a)}.`):H('fq_r_wrong',`${L(p.q)} בכל קבוצה, ${L(p.a)} קבוצות: ${L(p.q+' × '+p.a)}`)))}
+function checkFQ(){if(!FQ)return;auto('fq_g','fq_q',FQ.q);setFin('fq',okId('fq_r'))}
+
+/* ================= 11. perimeter & area ================= */
+let PA=null;
+function testPA(p){return (p.w>=p.s||p.P>60||p.A===p.P||p.w<2||p.P!==2*(p.s+p.w)||p.h*2!==p.P)?['bad']:[]}
+function newPA(prev){for(;;){const s=5+rnd(11),w=2+rnd(11),p={s,w,P:2*(s+w),h:s+w,A:s*w};if(testPA(p).length)continue;if(prev&&prev.s===s&&prev.w===w)continue;return p}}
+function renderPA(p){PA=p;clearSeen('pa');const W=170,Hh=Math.max(40,Math.min(120,Math.round(W*p.w/p.s)));
+ $('#pa_body').innerHTML=`<div class="rem">צלע של מלבן ${L(p.s)} ס״מ, וההיקף ${L(p.P)} ס״מ. מה הצלע הסמוכה? מה השטח?</div>`+
+  `<div class="prect" style="width:${W}px;height:${Hh}px"><span class="sd pt">${p.s} ס״מ</span><span class="sd pb"><input class="b" id="pa_b" data-h="pa_s1" aria-label="הצלע שממול"> ס״מ</span><span class="sd pl" id="pa_l">?</span><span class="sd pr" id="pa_r">?</span></div>`+
+  stp('pa_s1',`א. רושמים מספר ליד כל צלע – כמה הצלע שמול הצלע של ${L(p.s)}?`,'')+
+  stp('pa_s2','ב. חצי היקף = אורך + רוחב',EQ(S(p.P)+S(':')+S(2)+S('=')+I('pa_h')),'pa_b')+
+  stp('pa_s3','ג. הצלע הסמוכה = חצי היקף פחות הצלע שידועה',EQ(G('pa_g1')+S('−')+G('pa_g2')+S('=')+I('pa_w')),'pa_h')+
+  stp('pa_s4','ד. שטח = אורך × רוחב',EQ(G('pa_g3')+S('×')+G('pa_g4')+S('=')+I('pa_a','w4')),'pa_w')+
+  stp('pa_s5','ה. באיזו יחידה מודדים את השטח?',`<div class="row-opts"><button class="btn opt" data-g="pa_u" data-v="cm">ס״מ</button><button class="btn opt" data-g="pa_u" data-v="sqcm">סמ״ר</button></div>`,'pa_a')+
+  endB('pa',`צלע סמוכה: ${L(p.w)} ס״מ. היקף: ${L(`${p.s} + ${p.w} + ${p.s} + ${p.w} = ${p.P}`)} ס״מ. שטח: ${L(`${p.s} × ${p.w} = ${p.A}`)} סמ״ר.`);
+ prep($('#pa_body'));['pa_g1','pa_g2','pa_g3','pa_g4'].forEach(x=>giv(x,''));
+ rule('pa_b',exact(p.s,()=>H('pa_opposite_wrong','במלבן, צלעות שמול זו את זו שוות באורך.')));
+ rule('pa_h',exact(p.h,v=>(p.P%4===0&&v===String(p.P/4))?H('pa_divided_by_4','חצי היקף – מחלקים ב־2, לא ב־4.'):H('pa_half_wrong',`חצי מ־${L(p.P)}: ${L(p.P+' : 2')}`)));
+ rule('pa_w',exact(p.w,v=>v===String(p.P-p.s)?H('pa_forgot_two_sides','יש שתי צלעות של '+p.s+' – משתמשים בחצי ההיקף.'):H('pa_side_wrong',`${L(p.s+' + ? = '+p.h)}`)));
+ rule('pa_a',exact(p.A,v=>v===String(p.P)?H('pa_area_vs_perimeter','זה ההיקף! שטח = אורך × רוחב.'):v===String(p.s+p.w)?H('pa_area_added','בשטח כופלים, לא מחברים.'):H('pa_area_wrong',`כופלים: ${L(p.s+' × '+p.w)}`)));
+ choice('pa_u','sqcm',()=>H('pa_units','ס״מ מודד אורך של קו. שטח הוא כמה ריבועים של סנטימטר נכנסים בפנים – סמ״ר.'),'נכון – שטח בסמ״ר.')}
+function checkPA(){const p=PA;if(!p)return;const h=okId('pa_h'),w=okId('pa_w');autoIf('pa_g1',h,p.h);autoIf('pa_g2',h,p.s);autoIf('pa_g3',w,p.s);autoIf('pa_g4',w,p.w);
+ txt('pa_l',w?p.w+' ס״מ':'?');txt('pa_r',w?p.w+' ס״מ':'?');setFin('pa',okId('pa_a')&&okId('pa_s5'))}
+
+/* ================= 12. polygons ================= */
+let PG=null;const PGN={3:'משולש',4:'מרובע',5:'מחומש',6:'משושה',8:'מתומן'};
+function testPG(p){return (!PGN[p.n]||p.li>=p.n||p.ti>=p.n||(p.n===3&&p.line!=='side'))?['bad']:[]}
+function newPG(prev){for(;;){const n=pick([3,4,5,6,8]);if(prev&&prev.n===n)continue;return {n,line:n===3?'side':pick(['side','diag']),li:rnd(n),ti:rnd(n),rot:rnd(360)}}}
+const pgPts=p=>Array.from({length:p.n},(_,i)=>{const a=(p.rot+360*i/p.n-90)*Math.PI/180;return [Math.round(110+76*Math.cos(a)),Math.round(92+76*Math.sin(a))]});
+function renderPG(p){PG=p;clearSeen('pg');const P=pgPts(p),poly=`<polygon points="${P.map(x=>x.join(',')).join(' ')}"/>`;
+ const j=p.line==='side'?(p.li+1)%p.n:(p.li+2)%p.n;
+ const s1=`<svg class="pgsvg" id="pg_svg" viewBox="0 0 220 184">${poly}<line id="pg_line" class="blue" x1="${P[p.li][0]}" y1="${P[p.li][1]}" x2="${P[j][0]}" y2="${P[j][1]}" visibility="hidden"/>${P.map(([x,y],i)=>`<circle class="vd" id="pg_v${i}" cx="${x}" cy="${y}" r="7"/><text class="vt" id="pg_t${i}" x="${x+(x>=110?12:-12)}" y="${y+(y>=92?16:-8)}"></text><circle class="vx" data-i="${i}" cx="${x}" cy="${y}" r="17"/>`).join('')}</svg>`;
+ const s2=`<svg class="pgsvg" id="pg_svg2" viewBox="0 0 220 184">${poly}${P.map((a,i)=>{const b=P[(i+1)%p.n];return `<line class="edv${i===p.ti?' tgt':''}" id="pg_e${i}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`}).join('')}${P.map((a,i)=>{const b=P[(i+1)%p.n];return i===p.ti?'':`<line class="ed" data-i="${i}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`}).join('')}</svg>`;
+ $('#pg_body').innerHTML=stp('pg_s1','א. סופרים קודקודים: לוחצים על כל קודקוד כדי לסמן נקודה',s1+`<div class="cnt" id="pg_cnt">סימנת 0 קודקודים</div>`)+
+  stp('pg_s2','ב. איך נקראת הצורה?',`<div class="row-opts">${[3,4,5,6,8].map(n=>`<button class="btn opt" data-g="pg_name" data-v="${n}">${PGN[n]}</button>`).join('')}</div>`,'pg_s1')+
+  stp('pg_s3','ג. הקו הכחול בציור – צלע או אלכסון?',`<div class="row-opts"><button class="btn opt" data-g="pg_line" data-v="side">צלע</button><button class="btn opt" data-g="pg_line" data-v="diag">אלכסון</button></div>`,'pg_s2')+
+  stp('pg_s4','ד. צלעות סמוכות: לוחצים על שתי הצלעות שנוגעות בצלע האדומה',s2,'pg_s3')+
+  endB('pg',`${PGN[p.n]} – ${L(p.n)} קודקודים ו־${L(p.n)} צלעות. הקו הכחול הוא ${p.line==='diag'?'אלכסון':'צלע'}, ולצלע האדומה יש שתי צלעות סמוכות.`);
+ const mk=new Set(),fd=new Set();
+ $$('#pg_svg .vx').forEach(c=>c.addEventListener('click',()=>{if(okId('pg_s1'))return;const i=+c.dataset.i;mk.has(i)?mk.delete(i):mk.add(i);
+  [...Array(p.n).keys()].forEach(k=>{$('#pg_v'+k).classList.toggle('on',mk.has(k));$('#pg_t'+k).textContent=mk.has(k)?[...mk].indexOf(k)+1:''});
+  $('#pg_cnt').textContent=`סימנת ${mk.size} קודקודים`;if(mk.size===p.n){$('#pg_s1').classList.add('ok');hint($('#pg_cnt'),`סימנת את כל ${p.n} הקודקודים ✓`,true)}checkAll()}));
+ $$('#pg_svg2 .ed').forEach(l=>l.addEventListener('click',()=>{if(!okId('pg_s3')||okId('pg_s4'))return;const i=+l.dataset.i;
+  if(i===(p.ti+1)%p.n||i===(p.ti+p.n-1)%p.n){fd.add(i);$('#pg_e'+i).classList.add('ok');if(fd.size===2){$('#pg_s4').classList.add('ok');hint(l,'נכון – שתי הצלעות שנוגעות בקצוות של הצלע האדומה ✓',true)}else hint(l,'נכון! ועוד אחת.',true);checkAll()}
+  else{const e=$('#pg_e'+i);e.classList.remove('no');void e.getBBox();e.classList.add('no');hint(l,'צלע סמוכה נוגעת בצלע האדומה באחד הקצוות שלה – הצלע הזו לא נוגעת בה.');mistake('pg_adjacent_wrong','pg_e:'+i)}}));
+ choice('pg_name',p.n,()=>H('pg_name_wrong','סופרים את הנקודות שסימנת: 3 משולש, 4 מרובע, 5 מחומש, 6 משושה, 8 מתומן.'),'נכון!');
+ choice('pg_line',p.line,()=>H('pg_side_vs_diagonal',p.line==='diag'?'הקו הכחול מחבר שני קודקודים שאינם שכנים – הוא עובר בתוך הצורה.':'הקו הכחול הוא חלק מהגבול של הצורה – הוא מחבר שני קודקודים שכנים.'),'נכון!')}
+function checkPG(){if(!PG)return;const l=$('#pg_line');if(l)l.setAttribute('visibility',okId('pg_s2')?'visible':'hidden');setFin('pg',okId('pg_s4'))}
+
+/* ================= 13. same squares, same area ================= */
+let SS=null;
+const ssVerts=rows=>2*rows.length+2; // left-aligned stairs, each row shorter: 2 corners per row + 2 at the base
+function testSS(p){const e=[],t=p.rows.reduce((a,b)=>a+b,0);if(t!==p.total||p.k*p.c!==t||p.v!==2*p.k+2||p.rows.some((r,i)=>i&&r>=p.rows[i-1])||p.c<2)e.push('bad');return e}
+function newSS(prev){for(;;){const k=pick([2,3]),x=k===3?4+rnd(4):5+rnd(3),rows=k===3?[x,x-1,x-2]:[x,x-2],total=rows.reduce((a,b)=>a+b,0);
+ const p={k,rows,total,c:total/k,v:ssVerts(rows)};if(prev&&prev.total===total&&prev.k===k)continue;return p}}
+const sqGrid=(rows,u)=>{const k=rows.length,W=Math.max(...rows)*u;let r='';rows.forEach((n,i)=>{for(let j=0;j<n;j++)r+=`<rect x="${j*u+1}" y="${(k-1-i)*u+1}" width="${u}" height="${u}"/>`});return `<svg class="sqsvg" viewBox="0 0 ${W+2} ${k*u+2}" style="width:${W+2}px">${r}</svg>`};
+function renderSS(p){SS=p;clearSeen('ss');
+ $('#ss_body').innerHTML=`<div class="rem">הצורה בנויה מריבועים בצורת מדרגות. מסדרים אותם מחדש למלבן – האם השטח השתנה?</div>`+
+  stp('ss_s1','א. כמה ריבועים יש בצורה?',sqGrid(p.rows,24)+EQ(I('ss_n'),'מספר הריבועים:'))+
+  stp('ss_s2','ב. איך נקראת הצורה? סופרים קודקודים (פינות)',`<div class="row-opts">${[4,5,6,8].map(n=>`<button class="btn opt" data-g="ss_name" data-v="${n}">${PGN[n]}</button>`).join('')}</div>`,'ss_n')+
+  stp('ss_s3',`ג. מסדרים את אותם ${L(p.total)} ריבועים למלבן עם ${L(p.k)} שורות`,EQ(S(p.k)+S('×')+I('ss_c')+S('=')+S(p.total))+`<div id="ss_rect"></div>`,'ss_s2')+
+  stp('ss_s4','ד. האם השטח השתנה?',`<div class="row-opts"><button class="btn opt" data-g="ss_area" data-v="same">השטח לא השתנה</button><button class="btn opt" data-g="ss_area" data-v="chg">השטח השתנה</button></div>`,'ss_c')+
+  endB('ss',`אותם ${L(p.total)} ריבועים – אותו שטח: ${L(p.total)} ריבועים, גם במדרגות (${PGN[p.v]}) וגם במלבן ${L(p.k+' × '+p.c)}.`);
+ prep($('#ss_body'));
+ rule('ss_n',exact(p.total,()=>H('ss_count_wrong',`סופרים שורה שורה: ${L(p.rows.join(' + '))}`)));
+ choice('ss_name',p.v,()=>H('ss_name_wrong','סופרים את כל הפינות של הצורה – גם הפינות של המדרגות. כל פינה היא קודקוד.'),`נכון – ${p.v} קודקודים.`);
+ rule('ss_c',exact(p.c,()=>H('ss_rect_wrong',`${L(p.k)} שורות שוות, ובסך הכול ${L(p.total)} ריבועים: ${L(p.k+' × ? = '+p.total)}`)));
+ choice('ss_area','same',()=>H('ss_area_changed','לא הוספנו ולא הורדנו אף ריבוע – רק סידרנו מחדש. אז השטח לא השתנה.'),`נכון – עדיין ${p.total} ריבועים.`)}
+function checkSS(){const p=SS;if(!p)return;const r=$('#ss_rect');const want=okId('ss_c')?'1':'';if(r&&r.dataset.s!==want){r.dataset.s=want;r.innerHTML=want?sqGrid(Array(p.k).fill(p.c),24):''}setFin('ss',okId('ss_s4'))}
+
+/* ================= topic registry (teacher's order) ================= */
+const TOPICS=[
+ {k:'pv',t:'ערך המקום וכתיבת מספר במילים',rem:'מכניסים לטבלה ← קוראים כל קבוצה בנפרד, ואחרי השמאלית אומרים "אלף" ← אפס שומר מקום',gen:newPV,render:renderPV,check:checkPV,test:testPV},
+ {k:'sq',t:'סדרות וקפיצות',rem:'מוצאים כמה קופצים ← בודקים שהקפיצות זהות ← ממשיכים באותה קפיצה (זהירות במעבר מאה)',gen:newSQ,render:renderSQ,check:checkSQ,test:testSQ},
+ {k:'as',t:'חיבור וחיסור במאונך',rem:'יחידות מתחת ליחידות ← מתחילים מימין ← בחיבור: 10 ומעלה – 1 עובר; בחיסור: אם למעלה קטן – פורטים',gen:newAS,render:renderAS,check:checkAS,test:testAS},
+ {k:'op',t:'סדר פעולות חשבון',rem:'כפל וחילוק קודם – מקיפים ← פותרים אותם ← רק אחר כך חיבור וחיסור',gen:newOP,render:renderOP,check:checkOP,test:testOP},
+ {k:'mr',t:'כפל בפירוק – מודל המלבן',rem:'מפרקים לעשרות ואחדות ← כופלים כל חלק ← מחברים',gen:newMR,render:renderMR,check:checkMR,test:testMR},
+ {k:'mult',t:'כפל ארוך: <bdi dir="ltr" id="m_title"></bdi>',rem:'מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?',gen:p=>newMult(p),render:renderMult,check:checkMult,test:checkMult0,get:()=>M},
+ {k:'dv',t:'חילוק ובעיות מילוליות',rem:'מפרקים לחלקים נוחים ← מחלקים כל חלק ← מחברים. בבעיה: קודם מוצאים כמה יש בסך הכול',gen:newDV,render:renderDV,check:checkDV,test:testDV},
+ {k:'ms',t:'מספר חסר והיעזרות בתרגיל פתור',rem:'משווים לתרגיל הפתור: מה השתנה ובכמה? ← משנים את המספר החסר באותה כמות',gen:newMS,render:renderMS,check:checkMS,test:testMS},
+ {k:'frac',t:'חיבור שברים עם אותו מכנה',rem:'מחברים רק את המונים ← המכנה נשאר אותו דבר ← שלם = מונה ומכנה שווים',gen:p=>newFrac(p),render:renderFrac,check:checkFracDone,test:checkFrac,get:()=>F},
+ {k:'fq',t:'שבר מתוך כמות',rem:'מחלקים במכנה ← צובעים כמו המונה ← כופלים במונה',gen:newFQ,render:renderFQ,check:checkFQ,test:testFQ},
+ {k:'pa',t:'היקף ושטח של מלבן',rem:'צלעות שמול זו את זו שוות ← חצי היקף = אורך + רוחב ← שטח = אורך × רוחב (בסמ״ר)',gen:newPA,render:renderPA,check:checkPA,test:testPA},
+ {k:'pg',t:'מצולעים: שם, אלכסונים וצלעות סמוכות',rem:'סופרים קודקודים ← השם לפי המספר ← צלע על הגבול, אלכסון בפנים ← סמוכות נוגעות',gen:newPG,render:renderPG,check:checkPG,test:testPG},
+ {k:'ss',t:'אותם ריבועים – אותו שטח',rem:'סופרים ריבועים ← סופרים קודקודים ← מסדרים מחדש – השטח לא משתנה',gen:newSS,render:renderSS,check:checkSS,test:testSS}];
+const TK=Object.fromEntries(TOPICS.map((t,i)=>[t.k,Object.assign(t,{i})]));
+function isLast(k){return TK[k]&&TK[k].i===TOPICS.length-1}
+const ST={};
+const curState=k=>TK[k].get?TK[k].get():ST[k];
+function newTopic(k){const T=TK[k];ST[k]=T.gen(curState(k)||null);T.render(ST[k]);checkAll()}
+$('#topics').innerHTML=TOPICS.map((T,i)=>`<section class="card topic" id="ex_${T.k}" hidden>
+ <div class="ch"><span class="n">${i+1}</span><h2 tabindex="-1">${T.t}</h2><button class="info" data-open="${T.k}" aria-label="עזרה"><span class="ic">?</span>עזרה</button></div>
+ <div class="rem"><b>תזכורת:</b> ${T.rem}</div><div id="${T.k}_body"></div></section>`).join('');
+$('#pick').innerHTML=TOPICS.map((T,i)=>`<option value="${T.k}">${i+1}. ${T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</option>`).join('');
+let CUR=0;
+function showTopic(i,focus){CUR=i;$$('section.topic').forEach(s=>s.hidden=true);$('#allDone').hidden=true;const s=$('#ex_'+TOPICS[i].k);s.hidden=false;$('#pick').value=TOPICS[i].k;
+ window.scrollTo(0,0);if(focus!==false)s.querySelector('h2').focus({preventScroll:true});checkAll()}
+function checkAll(){for(let r=0;r<2;r++){TOPICS.forEach(T=>T.check());locks()}}
+
 
 /* ================= end-of-exercise buttons ================= */
 function ev(n){LOG.push(n);Stats.ev(n)}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-more],[data-nexttopic],[data-top]');if(!t)return;
- if(t.dataset.more==='mult'){ev('more_practice_mult');renderMult(newMult(M));$('#ex1').scrollIntoView({block:'start'})}
- else if(t.dataset.more==='frac'){ev('more_practice_frac');renderFrac(newFrac(F));$('#ex2').scrollIntoView({block:'start'})}
- else if(t.dataset.nexttopic==='mult'){ev('next_topic');$('#ex1').hidden=true;$('#ex2').hidden=false;window.scrollTo(0,$('#ex2').getBoundingClientRect().top+scrollY-8);$('#ex2 h2').focus({preventScroll:true})}
- else if(t.dataset.nexttopic==='frac'){ev('next_topic');$('#f_note').hidden=false;$('#f_note').scrollIntoView({block:'nearest'})}
- else if(t.dataset.top){$('#ex2').hidden=true;$('#ex1').hidden=false;$('#f_note').hidden=true;window.scrollTo(0,0);$('#ex1 h2').focus({preventScroll:true})}});
+ if(t.dataset.more){const k=t.dataset.more;ev('more_practice_'+k);newTopic(k);$('#ex_'+k).scrollIntoView({block:'start'})}
+ else if(t.dataset.nexttopic){ev('next_topic');const i=TK[t.dataset.nexttopic].i;if(i<TOPICS.length-1)showTopic(i+1);else{$$('section.topic').forEach(x=>x.hidden=true);$('#allDone').hidden=false;window.scrollTo(0,0);$('#allDone h2').focus({preventScroll:true});ev('all_topics_done')}}
+ else if(t.dataset.top)showTopic(0)});
+$('#pick').addEventListener('change',e=>{ev('pick_topic');showTopic(TK[e.target.value].i)});
 // for testing only: verify the generators on many random trials (no data leaves the page)
-window.__selfTest=n=>{const bad=[];let m=null,f=null;for(let i=0;i<n;i++){const m2=newMult(m);const e=checkMult2(m2);
-  if(!multOk(m2.A,m2.B))e.push('range');if(m&&m2.A===m.A&&m2.B===m.B)e.push('repeat');if(e.length)bad.push([m2.A,m2.B,e]);m=m2;
-  const f2=newFrac(f);const g=checkFrac(f2);if(f&&f2.a===f.a&&f2.b===f.b&&f2.d===f.d)g.push('repeat');if(g.length)bad.push([f2,g]);f=f2}return bad};
-const checkMult2=checkMult0;
-renderMult(newMult());renderFrac(newFrac());
-window.__state=()=>({M,F});
+window.__selfTest=n=>{const bad=[];TOPICS.forEach(T=>{let prev=null;for(let r=0;r<n;r++){const q=T.gen(prev);const e=T.test(q)||[];
+  if(T.k==='mult'&&!multOk(q.A,q.B))e.push('range');if(prev&&JSON.stringify(prev)===JSON.stringify(q))e.push('repeat');if(e.length){bad.push([T.k,q,e]);if(bad.length>40)return}prev=q}});
+ const w=[[703215,'שבע מאות ושלושה אלף, מאתיים וחמש־עשרה'],[405128,'ארבע מאות וחמישה אלף, מאה עשרים ושמונה'],[910011,'תשע מאות ועשרה אלף, אחת־עשרה'],[260350,'מאתיים ושישים אלף, שלוש מאות וחמישים']];
+ w.forEach(([n,t])=>{if(words6(n)!==t)bad.push(['words',n,words6(n)])});return bad};
+TOPICS.forEach(T=>{ST[T.k]=T.gen(null);T.render(ST[T.k])});
+window.__state=()=>Object.fromEntries(TOPICS.map(T=>[T.k,curState(T.k)]));window.__cur=()=>TOPICS[CUR].k;window.__show=i=>showTopic(i,false);
+showTopic(0,false);
 // explanation screens (hash based, so the phone's back gesture also returns)
 let lastEx=null;
 function openX(key,push){$$('.explain').forEach(x=>x.hidden=true);const x=$('#explain-'+key);if(!x)return;x.hidden=false;x.scrollTop=0;document.body.classList.add('xopen');
- lastEx=key==='mult'?'ex1':'ex2';if(push)history.pushState({x:key},'','#explain-'+key);Stats.ev('open_explain_'+key);LOG.push('open_explain_'+key)}
+ lastEx='ex_'+key;if(push)history.pushState({x:key},'','#explain-'+key);Stats.ev('open_explain_'+key);LOG.push('open_explain_'+key)}
 function closeX(fromPop){const open=$$('.explain').find(x=>!x.hidden);if(!open)return;open.hidden=true;open.querySelectorAll('video').forEach(v=>v.pause());document.body.classList.remove('xopen');
- if(!fromPop&&location.hash.startsWith('#explain'))history.back();const ex=$('#'+(lastEx||'ex1'));ex.scrollIntoView({block:'start'});}
-$$('[data-open]').forEach(b=>b.addEventListener('click',()=>openX(b.dataset.open,true)));
+ if(!fromPop&&location.hash.startsWith('#explain'))history.back();const ex=$('#'+(lastEx||'ex_pv'));if(ex&&!ex.hidden)ex.scrollIntoView({block:'start'});}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-open]');if(b)openX(b.dataset.open,true)});
 $$('[data-back]').forEach(b=>b.addEventListener('click',()=>closeX(false)));
 window.addEventListener('popstate',()=>{if(location.hash.startsWith('#explain-'))openX(location.hash.slice(9),false);else closeX(true)});
 $$('.vid').forEach(b=>b.addEventListener('click',()=>{const w=b.nextElementSibling;w.hidden=false;const v=w.querySelector('video');v.play().catch(()=>{});b.hidden=true;Stats.ev(b.dataset.ev);LOG.push(b.dataset.ev)}));
