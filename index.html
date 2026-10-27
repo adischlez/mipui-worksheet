@@ -379,9 +379,10 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
  draw();
  const den=v=>v===String(2*d)?HF.fden:null;
  rule('f_n',exact(p.s,()=>HF.fo));rule('f_d',exact(d,v=>den(v)||HF.fo));
- rule('f_gn',exact(p.s,()=>HF.fr(d)));rule('f_gd',exact(d,v=>den(v)||HF.fr(d)));rule('f_hn',exact(p.r,()=>HF.fr(d)));rule('f_hd',exact(d,v=>den(v)||HF.fr(d)));
+ giv('f_gn','');giv('f_gd','');  // carried from 'כמה צבעתם?'
+ rule('f_hn',exact(p.r,()=>HF.fr(d)));rule('f_hd',exact(d,v=>den(v)||HF.fr(d)));
 }
-function checkFracDone(){if(!F)return;const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);$('#f_done').classList.toggle('on',fin);$('#f_end').hidden=!fin}
+function checkFracDone(){if(!F)return;auto('f_gn','f_n',F.s);if(okId('f_n'))auto('f_gd','f_d',F.d);else auto('f_gd','f_n',F.d);const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);$('#f_done').classList.toggle('on',fin);$('#f_end').hidden=!fin}
 function checkAll(){checkMult();checkFracDone()}
 
 /* ================= end-of-exercise buttons ================= */
