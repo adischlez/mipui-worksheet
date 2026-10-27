@@ -204,7 +204,7 @@ input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:
 #ss_rect .sqsvg rect{fill:#dce8f6}
 .bx{display:inline-block;min-width:26px;border:1.5px solid var(--blue);border-radius:5px;padding:0 4px;text-align:center}
 .mute{color:var(--mute);font-size:.92em}
-#allDone h2{font-size:17px;color:var(--good);margin:2px 0 6px}
+#allDone h2,#endChoice h2{font-size:17px;color:var(--good);margin:2px 0 6px}
 
 /* compact 3 (Adi, iPhone: the exercise line must stay on screen) – sticky task line, slim header, tighter steps & visuals. Inputs stay 16px. */
 :root{--vvt:0px;--tkh:40px}
@@ -230,14 +230,59 @@ section.topic input,section.topic button{scroll-margin-top:calc(var(--tkh) + 8px
 .expr{font-size:18px}.btn.opb{min-height:34px}
 .endbtns{margin-top:5px}.endbtns .btn{min-height:36px}.done{margin-top:5px;padding:5px 8px}
 .priv{font-size:11px;margin:4px 0 0;line-height:1.35}
+.car{display:flex;justify-content:center;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.car .ci{text-align:center;border-radius:12px;padding:2px 4px;transition:opacity .25s}
+.car .ci .cl{font-size:12px;color:#5b6b7d;font-weight:700}
+.car .ci .cadd{margin:2px auto}
+@media(min-width:601px){.car .ci.cur{background:#f3f8ff}}
+@media(max-width:600px){.car{flex-wrap:nowrap;gap:4px;align-items:center}
+ .car .ci:not(.cur){zoom:.5;opacity:.5;cursor:pointer;background:#f1f4f8}
+ .car .ci.cur{animation:ciIn .3s ease-out}}
+@keyframes ciIn{from{opacity:.4;transform:translateX(-24px) scale(.9)}to{opacity:1;transform:none}}
+.endbtns.pre{align-items:center}.endbtns.pre .btn{flex:0 0 auto;min-width:0;opacity:.45;cursor:not-allowed}.pren{font-size:12px;color:#667}
+.endbtns.pre[hidden]{display:none}
+.endsc p{margin:4px 0 8px;line-height:1.5}.ecq{font-weight:700}
+.echo{display:grid;grid-template-columns:1fr 1fr;gap:8px}.echo .btn{min-height:46px;font-size:16px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}.tgrid[hidden]{display:none}.tgrid .btn{min-height:40px;font-size:14px;text-align:right;padding:6px 8px}
+.lnk{background:none;border:0;color:var(--pri,#1f5fbf);text-decoration:underline;font-size:15px;padding:6px 0;cursor:pointer}
+#allDone{position:relative;overflow:hidden}
+.conf{position:absolute;inset:0;pointer-events:none}
+.conf i{position:absolute;top:-12px;width:7px;height:11px;border-radius:2px;opacity:0}
+.play .conf i{animation:conf 1.9s ease-in 1 forwards}
+.conf i:nth-child(1){left:4%;background:#f5b301;animation-delay:0.0s!important}.conf i:nth-child(2){left:12%;background:#2e9b5f;animation-delay:0.037s!important}.conf i:nth-child(3){left:20%;background:#e0475b;animation-delay:0.074s!important}.conf i:nth-child(4){left:28%;background:#2f6fd6;animation-delay:0.111s!important}.conf i:nth-child(5){left:36%;background:#f5b301;animation-delay:0.148s!important}.conf i:nth-child(6){left:44%;background:#2e9b5f;animation-delay:0.185s!important}.conf i:nth-child(7){left:52%;background:#e0475b;animation-delay:0.222s!important}.conf i:nth-child(8){left:60%;background:#2f6fd6;animation-delay:0.259s!important}.conf i:nth-child(9){left:68%;background:#f5b301;animation-delay:0.296s!important}.conf i:nth-child(10){left:76%;background:#2e9b5f;animation-delay:0.333s!important}.conf i:nth-child(11){left:84%;background:#e0475b;animation-delay:0.37s!important}.conf i:nth-child(12){left:92%;background:#2f6fd6;animation-delay:0.407s!important}
+@keyframes conf{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(190px) rotate(320deg)}}
+@media(prefers-reduced-motion:reduce){.play .conf i{animation:none}}
+.pgsvg .vx{pointer-events:all}.pgsvg .ed{pointer-events:stroke}.pgsvg{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.finb{flex:0 0 auto;font:600 13px system-ui,sans-serif;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:3px 9px;opacity:.85;cursor:pointer;min-height:28px}
+body.scr .finb{visibility:hidden}
+@media(max-width:600px){.pk select{max-width:46vw}.pk>span{display:none}}
+.qk{display:flex;flex-direction:column;align-items:center;width:100%;min-height:64px;gap:2px;font-size:18px}.qk small{font-size:13px;font-weight:400;opacity:.9}
+#start h2{font-size:18px;margin:2px 0 8px}#start .ecq{margin:12px 0 6px}
+.sumh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--good,#2e9b5f);padding-bottom:4px;margin-bottom:6px;font-size:13px}.sumt{font-weight:700}.sumd{opacity:.75}
+#allDone h2{text-align:center;font-size:19px;margin:4px 0 6px}
+.suml{list-style:none;margin:0;padding:0}.suml li{display:flex;align-items:center;gap:6px;padding:3px 2px;border-bottom:1px solid #e6eaf0;font-size:14px;line-height:1.3}
+.suml .ck{color:var(--good,#2e9b5f);font-weight:700;width:14px;text-align:center}.suml .n .ck{color:#99a}.suml .tn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.suml .tc{font-size:13px;white-space:nowrap;color:#445}.suml .n .tc{color:#889}
+.sumtot{font-weight:700;text-align:center;margin:8px 0 4px!important}.sumc{text-align:center;margin:4px 0 6px!important;line-height:1.5}
+.shot{font-size:12px;text-align:center;color:#667;margin:2px 0 8px!important}
 </style>
 </head>
 <body>
-<header><div class="hw"><div class="hrow"><h1><span class="h1x">דף עבודה · </span>מיפוי כיתה ה׳</h1><label class="pk"><span>נושא:</span><select id="pick" aria-label="בחירת נושא"></select></label></div><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
+<header><div class="hw"><div class="hrow"><h1><span class="h1x">דף עבודה · </span>מיפוי כיתה ה׳</h1><label class="pk"><span>נושא:</span><select id="pick" aria-label="בחירת נושא"></select></label><button class="finb" id="finBtn" type="button" data-end="finish">סיום</button></div><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
 <main>
 
 <div id="topics"></div>
-<section class="card" id="allDone" hidden><h2 tabindex="-1">🎉 סיימת את כל הנושאים!</h2><p>עברת על כל 13 הנושאים של ההכנה למיפוי. אפשר לחזור לכל נושא ולתרגל עוד – בכל פעם יש מספרים חדשים.</p><button class="btn pri big" data-top="1">↑ חזרה לנושא הראשון</button></section>
+<section class="card endsc" id="endChoice" hidden><h2 tabindex="-1" id="ecT">✓ הגעת לסוף הנושא האחרון</h2><p class="ecq">מה עכשיו?</p>
+<div class="echo"><button class="btn pri" data-end="finish">לסיים</button><button class="btn" data-end="more">עוד תרגיל בנושא הזה</button><button class="btn" data-end="restart">להתחיל הכל מההתחלה</button><button class="btn" data-end="pick" aria-expanded="false">לתרגל נושא מסוים</button></div>
+<div class="tgrid" id="tgrid" hidden></div></section>
+<section class="card endsc" id="allDone" hidden><div class="conf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="sumh"><span class="sumt">מיפוי כיתה ה׳ · דף עבודה</span><span class="sumd" id="sumDate"></span></div>
+<h2 tabindex="-1">כל הכבוד על התרגול! 💪</h2>
+<ul class="suml" id="sumList"></ul><p class="sumtot" id="sumTot"></p><p class="sumc" id="sumClose"></p>
+<p class="shot">📸 רוצה תמונה? אפשר לצלם מסך</p>
+<div class="echo"><button class="btn pri" data-end="back">חזרה לתרגול</button><button class="btn" data-end="home">מסך הפתיחה</button></div></section>
+<section class="card endsc" id="start" hidden><h2 tabindex="-1">איך מתרגלים היום?</h2>
+<button class="btn pri qk" data-start="quick"><b>תרגול זריז ←</b><small>כל 13 הנושאים לפי הסדר · מומלץ</small></button>
+<p class="ecq">או לבחור נושא אחד לתרגול:</p><div class="tgrid sgrid" id="sgrid"></div></section>
 
 <p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
 </main>
@@ -476,7 +521,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
    <button class="btn yn" data-yn="1">כן</button><button class="btn yn" data-yn="0">לא</button></div>
   <div class="hint"></div></div>
  <div class="done" id="m_done">פתרת! ${L(`${p.A} × ${p.B} = ${c.map(fmt).join(' + ')} = ${fmt(p.T)}`)} – קרוב להערכה ${L(fmt(p.E))}, אז התשובה הגיונית.</div>
- <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div>`;
+ <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div><div class="endbtns pre" id="m_pre"><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
  prep($('#mult_body'));
  M.way='pairs';$$('#ex_mult .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way==='pairs')));$('#m_pairs').hidden=false;  // default: pairs = rows of the rectangle
  group(['m_sa1','m_sa2'],[p.a1*10,p.a0],()=>HM.split(p.A));group(['m_sb1','m_sb2'],[p.b1*10,p.b0],()=>HM.split(p.B));
@@ -504,7 +549,7 @@ function checkMult(){const p=M;if(!p)return;
  const cellsOk=[0,1,2,3].every(k=>okId('m_c'+k));if(cellsOk&&$('#m_sumBody').hidden){$('#m_sumBody').hidden=false;$('#m_sumLock').hidden=true}
  const sumOk=cellsOk&&sumIds().every(okId),estOk=['m_e1','m_e2','m_es'].every(okId);
  $('#m_sens').hidden=!(sumOk&&estOk);
- const fin=sumOk&&estOk&&p.sens;$('#m_done').classList.toggle('on',fin);$('#m_end').hidden=!fin}
+ const fin=sumOk&&estOk&&p.sens;finUpd('m',fin)}
 document.addEventListener('click',e=>{const b=e.target.closest('.segb');if(b&&M)setWay(b.dataset.way)});
 document.addEventListener('click',e=>{const b=e.target.closest('#ex_mult .yn');if(!b)return;const h=$('#m_sEst > .hint');
  if(b.dataset.yn==='1'){M.sens=true;$$('#ex_mult .yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML=`נכון – ${L(fmt(M.T))} קרוב ל-⁠${L(fmt(M.E))}.`;h.className='hint on good'}
@@ -532,7 +577,7 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
   <div class="eq">${FR(d,d)}<span>−</span><span class="fr"><input class="b" id="f_gn"><i class="bar"></i><input class="b" id="f_gd"></span><span>=</span><span class="fr"><input class="b" id="f_hn"><i class="bar"></i><input class="b" id="f_hd"></span></div>
   <div class="hint"></div></div>
  <div class="done" id="f_done">מעולה! ${L(`${p.a}/${d} + ${p.b}/${d} = ${p.s}/${d}`)}, וחסרים ${L(p.r+'/'+d)} לשלם.</div>
- <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div>`;
+ <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div><div class="endbtns pre" id="f_pre"><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
  prep($('#frac_body'));
  const S=Array(d).fill(0),strip=$('#strip');
  for(let k=0;k<d;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;draw()});strip.appendChild(b)}
@@ -546,7 +591,7 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
  giv('f_gn','');giv('f_gd','');  // carried from 'כמה צבעתם?'
  rule('f_hn',exact(p.r,()=>HF.fr(d)));rule('f_hd',exact(d,v=>den(v)||HF.fr(d)));
 }
-function checkFracDone(){if(!F)return;auto('f_gn','f_n',F.s);if(okId('f_n'))auto('f_gd','f_d',F.d);else auto('f_gd','f_n',F.d);const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);$('#f_done').classList.toggle('on',fin);$('#f_end').hidden=!fin}
+function checkFracDone(){if(!F)return;auto('f_gn','f_n',F.s);if(okId('f_n'))auto('f_gd','f_d',F.d);else auto('f_gd','f_n',F.d);const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);finUpd('f',fin)}
 /* ================= shared helpers for the remaining topics ================= */
 const H=(ev,msg)=>({ev,msg});
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -556,8 +601,20 @@ const I=(id,c='',x='')=>`<input class="b ${c}" id="${id}" ${x}>`;
 const G=(id,c='')=>`<input class="b given ${c}" id="${id}" readonly tabindex="-1">`;
 const EQ=(inner,lbl)=>`<div class="eq">${lbl?`<span class="lbl2">${lbl}</span>`:''}${inner}</div>`;
 const S=x=>`<span>${x}</span>`;
-function endB(k,doneHtml){return `<div class="done" id="${k}_done">${doneHtml}</div><div class="endbtns" id="${k}_end" hidden><button class="btn pri" data-more="${k}">עוד תרגיל</button><button class="btn" data-nexttopic="${k}">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button></div>`}
-function setFin(k,fin){const d=document.getElementById(k+'_done'),e=document.getElementById(k+'_end');if(!d)return;d.classList.toggle('on',fin);e.hidden=!fin}
+function endB(k,doneHtml){return `<div class="done" id="${k}_done">${doneHtml}</div><div class="endbtns" id="${k}_end" hidden><button class="btn pri" data-more="${k}">עוד תרגיל</button><button class="btn" data-nexttopic="${k}">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button></div><div class="endbtns pre" id="${k}_pre"><button class="btn" type="button" disabled tabindex="-1">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button><span class="pren">ייפתח בסוף התרגיל</span></div>`}
+function setFin(k,fin){finUpd(k,fin)}
+// end buttons: a disabled 'next' is always shown; when the exercise is done the real buttons appear and are scrolled into view
+const FIN={};
+function finUpd(id,fin){const d=document.getElementById(id+'_done'),e=document.getElementById(id+'_end'),pr=document.getElementById(id+'_pre');if(!d||!e)return;
+ d.classList.toggle('on',fin);e.hidden=!fin;if(pr)pr.hidden=fin;const was=FIN[id];FIN[id]=fin;
+ const nb=e.querySelector('[data-nexttopic]');if(nb){const k=nb.dataset.nexttopic,lab=MODE==='single'?'נושא אחר או סיום ←':(isLast(k)?'סיום ←':'לנושא הבא ←');if(nb.textContent!==lab)nb.textContent=lab;const pb=pr&&pr.querySelector('.btn');if(pb&&pb.textContent!==lab)pb.textContent=lab}
+ if(fin&&was===false){const k={m:'mult',f:'frac'}[id]||id;TALLY[k]=(TALLY[k]||0)+1;finShow(e)}}
+// this session only, in page memory: which topics were opened and how many exercises were finished (gone on reload; never stored or sent)
+let MODE='quick';const TALLY={},VIS=new Set();
+function finShow(e){const s=e.closest('section');if(!s||s.hidden)return;const b=e.querySelector('[data-nexttopic]'),a=document.activeElement;
+ if(b&&(!a||a===document.body||s.contains(a)))b.focus({preventScroll:true});
+ const go=()=>{if(s.hidden||e.hidden)return;if(s.querySelector('.tk'))keepVisible(e);else{const r=e.getBoundingClientRect();if(r.bottom>innerHeight-6)e.scrollIntoView({block:'end'})}};
+ requestAnimationFrame(go);setTimeout(go,450)}
 function autoIf(id,cond,v){const x=document.getElementById(id);if(!x)return;if(cond){if(x.value!==String(v))x.value=String(v);x.classList.add('ok')}else if(x.value||x.classList.contains('ok')){x.value='';x.classList.remove('ok')}}
 const setOk=(id,b)=>{const x=document.getElementById(id);if(x)x.classList.toggle('ok',!!b)};
 const txt=(id,t)=>{const x=document.getElementById(id);if(x&&x.innerHTML!==String(t))x.innerHTML=t};
@@ -621,27 +678,47 @@ function testSQ(p){const e=[],t=p.t;if(!(Math.min(...t)>=100&&Math.max(...t)<100
  if(t.some((x,i)=>i&&x-t[i-1]!==p.d))e.push('step');if(t[0]%5)e.push('m5');if(p.D!==Math.abs(p.d)||p.up!==(p.d>0))e.push('dir');return e}
 function newSQ(prev){for(;;){const p=sqParams((20+rnd(1900))*5,pick([15,20,25,30,40,50])*(rnd(5)<2?-1:1));if(testSQ(p).length)continue;if(prev&&prev.s===p.s&&prev.d===p.d)continue;return p}}
 const sqSign=p=>(p.up?'+':'−')+p.D;
-function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t;let g='<div class="seqv">';
+// one column exercise (same look as topic 3): top/bottom numbers given (cells marked data-w are filled once those boxes are done),
+// one box per result digit, typed from the right (ones first). nres = how many result digits are asked.
+function sqCol(id,A,B,op,nres,nextId,wA,wB,need){const c=asParams(A,B,op),n=c.n;nres=Math.min(nres,n);const a=String(A).padStart(n,' '),b=String(B).padStart(n,' ');const nd=need?` data-need="${need}"`:'';
+ const cell=(ch,k,w,r)=>`<td class="d${w?' dy':''}" id="${id}_${r}${k}"${w?` data-v="${ch.trim()}" data-w="${w}"`:''}>${w?(ch.trim()?'?':''):ch.trim()}</td>`;
+ let tb='<table class="cadd"><tr class="cr"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;tb+=(op==='−'||k>0)?`<td class="cr"><input class="b" aria-label="עזר"${nd}></td>`:'<td></td>'}tb+='</tr>';
+ tb+=`<tr><td class="op"></td>${[...a].map((ch,j)=>cell(ch,n-1-j,wA,'a')).join('')}</tr><tr class="ul"><td class="op">${op}</td>${[...b].map((ch,j)=>cell(ch,n-1-j,wB,'b')).join('')}</tr>`;
+ tb+='<tr class="res"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;tb+=k<nres?`<td class="d"><input class="b dg" id="${id}_d${k}" data-next="${k<nres-1?id+'_d'+(k+1):nextId}" data-h="${id.slice(0,4)==='sq_c'&&+id[4]<3?'sq_s1':'sq_s2'}"${nd} aria-label="ספרה"></td>`:'<td class="d"></td>'}tb+='</tr></table>';
+ return {html:tb,c,nres}}
+const sqColOk=j=>{const e=document.getElementById('sq_c'+j);return !!e&&+e.dataset.n>0&&[...Array(+e.dataset.n).keys()].every(k=>okId('sq_c'+j+'_d'+k))};
+// digit rules: right digit → true; forgot the carry/borrow at the hundreds → "מעבר מאה"; the other direction → "הסדרה עולה/יורדת"; else the topic-3 hints
+function sqRules(id,o,kind,p,R2){o.c.cols.forEach((x,k)=>{if(k>=o.nres)return;rule(id+'_d'+k,v=>{if(v===String(x.d))return true;const ev=kind==='jump'?'sq_jump_wrong':'sq_continue_wrong';
+ if(o.c.op==='+'){if(x.cin&&v===String((x.a+x.b)%10))return k===2?H('sq_cross_hundred','שימו לב למעבר מאה: בעשרות יצא 10 או יותר – ה-⁠1 עובר למאות (במשבצת הקטנה למעלה).'):H(ev,HA.carry.msg)}
+ else{if(x.br&&(v===String(x.b-x.t)||v===String(Math.abs(x.b-x.a))))return k===1?H(kind==='jump'?'sq_diff_hundred':'sq_cross_hundred',`שימו לב למעבר מאה: אי אפשר ${L(x.t+' − '+x.b)} בעשרות – פורטים 1 מהמאות, ו-⁠${L(x.t)} הופך ל-⁠${L(x.t+10)}.`):H(ev,HA.small(x.t,x.b).msg);
+  if(x.cin&&v===String(x.a>=x.b?x.a-x.b:x.a+10-x.b))return k===2?H('sq_cross_hundred',`שימו לב למעבר מאה: מהמאות כבר לקחנו 1 בפריטה, אז נשאר ${L(x.t)} ולא ${L(x.a)}.`):H(ev,HA.reduce(x.a,x.t).msg)}
+ if(R2!=null&&v===String(Math.floor(R2/10**k)%10))return H('sq_wrong_direction',p.up?`הסדרה עולה – מוסיפים ${L(p.D)}, לא מחסרים.`:`הסדרה יורדת – מחסרים ${L(p.D)}, לא מוסיפים.`);
+ return H(ev,o.c.op==='+'?HA.add.msg:HA.sub.msg)})})}
+function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t,op=p.up?'+':'−';let g='<div class="seqv">';
  for(let j=0;j<4;j++)g+=`<div class="al" style="grid-column:${2*j+2}/span 2">${j<2?`<span>${p.up?'+':'−'}</span>`+G('sq_a'+j):`<span id="sq_a${j}">?</span>`}</div>`;
  for(let j=0;j<4;j++)g+=`<i class="arc" style="grid-column:${2*j+2}/span 2"></i>`;
- for(let i=0;i<5;i++)g+=`<div class="nm" style="grid-column:${2*i+1}/span 2">${i<3?fmt(t[i]):`<input class="b w4" id="sq_t${i}" data-h="sq_s2" data-need="sq_j1,sq_j2"${i===3?' data-next="sq_t4"':''}>`}</div>`;
- // step א: a place to work out each jump – bigger minus smaller, numbers given from the sequence
- const calc=[1,2].map(j=>{const big=Math.max(t[j],t[j-1]),sm=Math.min(t[j],t[j-1]);
-  return EQ(S(L(fmt(big)))+S('−')+S(L(fmt(sm)))+S('=')+I('sq_j'+j,'w4',`data-next="${j===1?'sq_j2':'sq_t3'}"${j===2?' data-need="sq_j1"':''} aria-label="כמה קפצנו"`))}).join('');
+ for(let i=0;i<5;i++)g+=`<div class="nm" style="grid-column:${2*i+1}/span 2">${i<3?fmt(t[i]):G('sq_t'+i,'w4')}</div>`;
+ const nD=String(p.D).length;
+ // step א: bigger − smaller in a column, both numbers given from the sequence; the difference goes up into the arc
+ const c1=sqCol('sq_c1',Math.max(t[1],t[0]),Math.min(t[1],t[0]),'−',nD,'sq_c2_d0'),c2=sqCol('sq_c2',Math.max(t[2],t[1]),Math.min(t[2],t[1]),'−',nD,'sq_c3_d0','','','');
+ // step ב: last number ± the jump in a column; the jump comes from step א, the result goes into the empty box on the line, then on to the next one
+ const c3=sqCol('sq_c3',t[2],p.D,op,4,'sq_c4_d0','','sq_a0,sq_a1'),c4=sqCol('sq_c4',t[3],p.D,op,4,'','sq_t3','sq_a0,sq_a1','sq_t3');
+ const ci=(j,lbl,o)=>`<div class="ci" id="sq_ci${j}"><div class="cl">${lbl}</div><div id="sq_c${j}" data-n="${o.nres}">${o.html}</div></div>`;
  $('#sq_body').innerHTML=`<div class="rem">השלימו את הסדרה: ${L(t.slice(0,3).map(fmt).join(', ')+', __, __')}</div>`+g+'</div>'+
- stp('sq_s1','א. כמה קפצנו? מחסרים: המספר הגדול פחות הקטן',calc)+
- stp('sq_s2','ב. שתי קפיצות זהות – ממשיכים לקפוץ באותו מספר','','sq_j1,sq_j2')+
+ stp('sq_s1','א. כמה קפצנו? מחסרים במאונך: הגדול פחות הקטן',`<div class="car">${ci(1,'קפיצה 1',c1)+ci(2,'קפיצה 2',c2)}</div>`)+
+ stp('sq_s2',`ב. ממשיכים לקפוץ: ${p.up?'מוסיפים':'מחסרים'} ${p.up?'ל':'מ'}מספר האחרון`,`<div class="car">${ci(3,'המספר הרביעי',c3)+ci(4,'המספר החמישי',c4)}</div>`,'sq_a0,sq_a1')+
  endB('sq',`הכלל: כל פעם ${p.up?'מוסיפים':'מחסרים'} ${L(p.D)}. ${L(t.map(fmt).join(', '))}`);
- prep($('#sq_body'));
- [1,2].forEach(j=>{const big=Math.max(t[j],t[j-1]),sm=Math.min(t[j],t[j-1]),h=Math.ceil(sm/100)*100;
-  rule('sq_j'+j,exact(p.D,v=>Math.abs(+v-p.D)===100?H('sq_diff_hundred',`שימו לב למעבר מאה – ההפרש קטן ממאה. סופרים מ-⁠${L(fmt(sm))} עד ${L(fmt(h))}, ומשם עד ${L(fmt(big))}.`)
-   :H('sq_jump_wrong',sqCross(big,sm)&&h<big?`סופרים קדימה מהקטן לגדול: מ-⁠${L(fmt(sm))} עד ${L(fmt(h))} זה ${L(h-sm)}, ועוד עד ${L(fmt(big))} זה ${L(big-h)}. כמה ביחד?`:`מחסרים: ${L(fmt(big)+' − '+fmt(sm))}. רק העשרות והיחידות משתנות.`)))});
- [3,4].forEach(i=>rule('sq_t'+i,exact(t[i],v=>(sqCross(t[i],t[i-1])&&v===String(t[i]+(p.up?-100:100)))?
-  H('sq_cross_hundred',p.up?`שימו לב למעבר מאה: ${L((t[i-1]%100)+' + '+p.D+' = '+((t[i-1]%100)+p.D))}, אז עוברים למאה הבאה.`
-   :`שימו לב למעבר מאה: ב-⁠${L(fmt(t[i-1]))} יש רק ${L(t[i-1]%100)} מעל המאה, ומחסרים ${L(p.D)} – אז יורדים למאה הקודמת.`)
-  :v===String(t[i-1]-p.d)?H('sq_wrong_direction',p.up?`הסדרה עולה – מוסיפים ${L(p.D)}, לא מחסרים.`:`הסדרה יורדת – מחסרים ${L(p.D)}, לא מוסיפים.`)
-  :H('sq_continue_wrong',`${p.up?'מוסיפים':'מחסרים'} ${L(p.D)} ${p.up?'למספר':'מהמספר'} הקודם: ${L(fmt(t[i-1])+(p.up?' + ':' − ')+p.D)}`))))}
-function checkSQ(){if(!SQ)return;const j=okId('sq_j1')&&okId('sq_j2'),v=sqSign(SQ);[0,1].forEach(k=>autoIf('sq_a'+k,okId('sq_j'+(k+1)),SQ.D));[2,3].forEach(k=>txt('sq_a'+k,j?v:'?'));setFin('sq',okId('sq_t3')&&okId('sq_t4'))}
+ prep($('#sq_body'));$$('#sq_body .car').forEach(c=>carCur(c.firstElementChild));
+ sqRules('sq_c1',c1,'jump',p,null);sqRules('sq_c2',c2,'jump',p,null);sqRules('sq_c3',c3,'cont',p,p.up?t[2]-p.D:t[2]+p.D);sqRules('sq_c4',c4,'cont',p,p.up?t[3]-p.D:t[3]+p.D)}
+function checkSQ(){if(!SQ)return;const j=sqColOk(1)&&sqColOk(2),v=sqSign(SQ);autoIf('sq_a0',sqColOk(1),SQ.D);autoIf('sq_a1',sqColOk(2),SQ.D);[2,3].forEach(k=>txt('sq_a'+k,j?v:'?'));
+ autoIf('sq_t3',sqColOk(3),fmt(SQ.t[3]));autoIf('sq_t4',sqColOk(4),fmt(SQ.t[4]));
+ $$('#sq_body td.dy').forEach(c=>{const s=c.dataset.w.split(',').every(okId),t=s?c.dataset.v:(c.dataset.v?'?':'');if(c.textContent!==t)c.textContent=t});
+ setFin('sq',sqColOk(3)&&sqColOk(4))}
+/* small carousel (phone): the exercise being worked on is full size, the done one sits small to the right, the next one small to the left */
+function carCur(ci){if(!ci)return;const it=[...ci.parentElement.children],i=it.indexOf(ci);it.forEach((x,j)=>{x.classList.toggle('cur',j===i);x.classList.toggle('pv',j<i);x.classList.toggle('nx',j>i)})}
+document.addEventListener('focusin',e=>{const ci=e.target.closest&&e.target.closest('.car > .ci');if(ci&&!ci.classList.contains('cur'))carCur(ci)});
+document.addEventListener('click',e=>{const ci=e.target.closest&&e.target.closest('.car > .ci');if(!ci||ci.classList.contains('cur')||e.target.matches('input'))return;
+ const d=[...ci.querySelectorAll('input.dg')].reverse().find(x=>!x.disabled&&!x.classList.contains('ok'));if(d)d.focus();else if(![...ci.querySelectorAll('input.dg')].some(x=>x.disabled))carCur(ci)});
 
 /* ================= 3. column addition / subtraction ================= */
 let AS=null;
@@ -895,7 +972,7 @@ $('#topics').innerHTML=TOPICS.map((T,i)=>`<section class="card topic" id="ex_${T
  <div class="rem"><b>תזכורת:</b> ${T.rem}</div><div id="${T.k}_body"></div></section>`).join('');
 $('#pick').innerHTML=TOPICS.map((T,i)=>`<option value="${T.k}">${i+1}. ${T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</option>`).join('');
 let CUR=0;
-function showTopic(i,focus){CUR=i;document.body.classList.toggle('t0',i===0);$$('section.topic').forEach(s=>s.hidden=true);$('#allDone').hidden=true;const s=$('#ex_'+TOPICS[i].k);s.hidden=false;$('#pick').value=TOPICS[i].k;
+function showTopic(i,focus){CUR=i;document.body.classList.toggle('t0',i===0);$$('section.topic').forEach(s=>s.hidden=true);$$('.endsc').forEach(x=>x.hidden=true);document.body.classList.remove('scr');VIS.add(TOPICS[i].k);const s=$('#ex_'+TOPICS[i].k);s.hidden=false;$('#pick').value=TOPICS[i].k;
  window.scrollTo(0,0);if(focus!==false)s.querySelector('h2').focus({preventScroll:true});checkAll();tkSize()}
 function checkAll(){for(let r=0;r<2;r++){TOPICS.forEach(T=>T.check());locks()}}
 
@@ -904,8 +981,29 @@ function checkAll(){for(let r=0;r<2;r++){TOPICS.forEach(T=>T.check());locks()}}
 function ev(n){LOG.push(n);Stats.ev(n)}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-more],[data-nexttopic],[data-top]');if(!t)return;
  if(t.dataset.more){const k=t.dataset.more;ev('more_practice_'+k);newTopic(k);$('#ex_'+k).scrollIntoView({block:'start'})}
- else if(t.dataset.nexttopic){ev('next_topic');const i=TK[t.dataset.nexttopic].i;if(i<TOPICS.length-1)showTopic(i+1);else{$$('section.topic').forEach(x=>x.hidden=true);$('#allDone').hidden=false;window.scrollTo(0,0);$('#allDone h2').focus({preventScroll:true});ev('all_topics_done')}}
+ else if(t.dataset.nexttopic){ev('next_topic');const i=TK[t.dataset.nexttopic].i;if(MODE==='single'){$('#ecT').textContent='✓ סיימת תרגיל בנושא הזה';endScr('endChoice')}else if(i<TOPICS.length-1)showTopic(i+1);else{$('#ecT').textContent='✓ הגעת לסוף הנושא האחרון';endScr('endChoice');ev('all_topics_done')}}
  else if(t.dataset.top)showTopic(0)});
+function endScr(id,focus){$$('section.topic,.endsc').forEach(x=>x.hidden=true);$('#tgrid').hidden=true;$('[data-end=pick]').setAttribute('aria-expanded','false');
+ document.body.classList.add('scr');document.body.classList.toggle('t0',id==='start');const s=$('#'+id);s.hidden=false;s.classList.remove('play');void s.offsetWidth;s.classList.add('play');window.scrollTo(0,0);if(focus!==false)$('#'+id+' h2').focus({preventScroll:true})}
+const tName=T=>T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'');
+$('#sgrid').innerHTML=$('#tgrid').innerHTML=TOPICS.map((T,i)=>`<button class="btn" data-goto="${i}">${i+1}. ${T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</button>`).join('');
+const fresh=k=>{if(FIN[{mult:'m',frac:'f'}[k]||k])newTopic(k)};
+function summary(){const L2=[...VIS].length?TOPICS.filter(T=>VIS.has(T.k)||TALLY[T.k]):[];let tot=0;
+ $('#sumList').innerHTML=L2.map(T=>{const n=TALLY[T.k]||0;tot+=n;return `<li class="${n?'y':'n'}"><span class="ck">${n?'✓':'◦'}</span><span class="tn">${TK[T.k].i+1}. ${tName(T)}</span><span class="tc">${n?(n===1?'תרגיל אחד':n+' תרגילים'):'בתרגול'}</span></li>`}).join('')||'<li class="n"><span class="tn">עוד לא תרגלת היום – אפשר להתחיל עכשיו</span></li>';
+ const nt=L2.filter(T=>TALLY[T.k]).length;$('#sumTot').textContent=tot?`סה״כ: ${tot===1?'תרגיל אחד':tot+' תרגילים'} ${nt===1?'בנושא אחד':'ב-\u2060'+nt+' נושאים'}`:'';
+ $('#sumDate').textContent=new Date().toLocaleDateString('he-IL');
+ $('#sumClose').textContent=(L2.length===TOPICS.length?'עברת על כל נושאי המיפוי. ':'')+'השקעת והתמדת – וזה מה שעושה את ההבדל. בהצלחה במיפוי ביום חמישי! 🍀'}
+function setMode(m){MODE=m;checkAll()}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-end],[data-goto],[data-start]');if(!t)return;
+ if(t.dataset.start){ev('quick_practice');setMode('quick');fresh(TOPICS[0].k);showTopic(0);return}
+ if(t.dataset.goto){const i=+t.dataset.goto;ev(t.closest('#sgrid')?'start_pick_topic':'end_pick_topic');setMode('single');fresh(TOPICS[i].k);showTopic(i);return}
+ const a=t.dataset.end;
+ if(a==='finish'){ev(t.id==='finBtn'?'finish_header':'end_finish');summary();endScr('allDone')}
+ else if(a==='more'){ev('end_more');const i=MODE==='single'?CUR:TOPICS.length-1;newTopic(TOPICS[i].k);showTopic(i)}
+ else if(a==='restart'){ev('end_restart');setMode('quick');TOPICS.forEach(T=>newTopic(T.k));showTopic(0)}
+ else if(a==='pick'){const g=$('#tgrid');g.hidden=!g.hidden;t.setAttribute('aria-expanded',String(!g.hidden));if(!g.hidden)g.scrollIntoView({block:'nearest'})}
+ else if(a==='back'){ev('summary_back');showTopic(CUR)}
+ else if(a==='home'){ev('summary_home');endScr('start')}});
 $('#pick').addEventListener('change',e=>{ev('pick_topic');showTopic(TK[e.target.value].i)});
 // for testing only: verify the generators on many random trials (no data leaves the page)
 window.__selfTest=n=>{const bad=[];TOPICS.forEach(T=>{let prev=null;for(let r=0;r<n;r++){const q=T.gen(prev);const e=T.test(q)||[];
@@ -932,7 +1030,7 @@ if(window.visualViewport){const vu=()=>{document.documentElement.style.setProper
 addEventListener('resize',tkSize);
 TOPICS.forEach(T=>{ST[T.k]=T.gen(null);T.render(ST[T.k])});
 window.__state=()=>Object.fromEntries(TOPICS.map(T=>[T.k,curState(T.k)]));window.__cur=()=>TOPICS[CUR].k;window.__show=i=>showTopic(i,false);
-showTopic(0,false);
+showTopic(0,false);VIS.clear();endScr('start',false);   // the page opens on the start screen
 // explanation screens (hash based, so the phone's back gesture also returns)
 let lastEx=null;
 function openX(key,push){$$('.explain').forEach(x=>x.hidden=true);const x=$('#explain-'+key);if(!x)return;x.hidden=false;x.scrollTop=0;document.body.classList.add('xopen');
