@@ -116,6 +116,28 @@ input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
 .vwrap{margin:0 0 12px;background:#000;border-radius:12px;overflow:hidden;padding:0!important}
 .vwrap video{display:block;width:100%;height:auto;aspect-ratio:16/9}
 body.xopen{overflow:hidden}
+
+/* compact worksheet (Adi: smaller, more on screen without scrolling). Inputs stay >=16px so iPhone won't zoom. */
+html,body{font-size:14.5px}
+.hw{padding:8px 12px}header h1{font-size:17px}header p{font-size:12.5px}
+main{padding:8px}.card{padding:10px;margin:0 0 10px}
+.ch{gap:8px;margin-bottom:2px}.ch .n{font-size:20px}.ch h2{font-size:16px}
+.info{min-height:38px;font-size:13px;padding:3px 10px 3px 5px}.info .ic{width:26px;height:26px;font-size:16px}
+.rem{font-size:13px;padding:6px 10px;margin:0 0 6px}
+.step{padding:7px 0 4px}.st{margin:0 0 4px;font-size:14.5px}.lock{font-size:12.5px}
+input.b{width:54px;height:38px;font-size:17px}
+.eq{font-size:17px;gap:6px;margin:3px 0}.eq .lbl2{font-size:13px}
+.hint{font-size:13px}.hint.on{padding:5px 9px;margin-top:4px}
+.rect td.hd{height:32px;font-size:16px;min-width:40px}.rect td.c{width:104px;height:64px}
+.sens{gap:8px;margin-top:6px}.seg{gap:8px;margin:0 0 6px}
+.btn{min-height:42px;font-size:14.5px;padding:7px 14px}.btn.segb{min-height:42px;font-size:15px;min-width:120px}
+.cadd td.op{font-size:18px}.cadd td.d{width:40px;height:34px;font-size:19px}.cadd tr.res td.d{height:44px}
+.cadd td.d input.dg{width:38px;height:40px;font-size:19px}.cadd td.cr input{width:30px;height:26px;font-size:16px}
+.colnote{font-size:12px}.endbtns{gap:8px;margin-top:8px}.endbtns .btn{min-height:44px;font-size:15px}
+.strip{height:52px}.legend{font-size:12.5px}.fr{font-size:17px}.fr input.b{width:46px;height:36px}
+.done{padding:8px 10px;margin-top:8px;font-size:14px}.priv{font-size:12px}
+input.b.w4{width:72px}
+@media(max-width:430px){.eq.sum{font-size:16px}.eq.sum input.b.w4{width:58px;font-size:16px}}
 </style>
 </head>
 <body>
@@ -228,7 +250,7 @@ function checkMult0(p){const e=[];const t=(c,m)=>{if(!c)e.push(m)};
  t(new Set([p.c[0],p.c[1]]).size===2&&new Set([p.c[2],p.c[3]]).size===2,'distinct');return e}
 let M=null;
 const HM={
- split:N=>({ev:'mult_split_wrong',msg:`מפרקים לעשרות ויחידות: כמה עשרות יש ב־${L(N)}, וכמה יחידות נשארות?`}),
+ split:N=>({ev:'mult_split_wrong',msg:`מפרקים לעשרות ואחדות: כמה עשרות יש ב־${L(N)}, וכמה אחדות נשארות?`}),
  cellZero:{ev:'mult_cell_missing_zero',msg:'כמעט! כשכופלים עשרות – לא לשכוח את האפסים.'},
  cell:{ev:'mult_cell_wrong',msg:'בודקים שוב: כופלים את המספר שמעל המשבצת במספר שבצד שלה.'},
  pair:(x,y)=>({ev:'mult_pair_wrong',msg:`בזוג הזה מחברים את שתי המשבצות של אותה שורה במלבן: ${L(fmt(x)+' + '+fmt(y))}.`}),
@@ -245,7 +267,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
  col+='</tr>';nums.forEach((s,r)=>{col+=`<tr${r===3?' class="ul"':''}><td class="op">${r===3?'+':''}</td>`;const pad=' '.repeat(n-s.length)+s;for(const ch of pad)col+=`<td class="d">${ch.trim()}</td>`;col+='</tr>'});
  col+='<tr class="res"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;col+=`<td class="d"><input class="b dg" id="m_d${k}" data-next="${k<n-1?'m_d'+(k+1):''}" aria-label="ספרה"></td>`}col+='</tr></table>';
  $('#ex1body').innerHTML=`
- <div class="step" id="m_sSplit"><div class="st">א. מפרקים</div>
+ <div class="step" id="m_sSplit"><div class="st">א. מפרקים לעשרות ואחדות</div>
   <div class="eq"><span>${p.A} =</span><input class="b" id="m_sa1"><span>+</span><input class="b" id="m_sa2"></div>
   <div class="eq"><span>${p.B} =</span><input class="b" id="m_sb1"><span>+</span><input class="b" id="m_sb2"></div>
   <div class="hint"></div></div>
