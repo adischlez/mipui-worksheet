@@ -38,8 +38,6 @@ input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
 .hint{min-height:0;font-size:14.5px;color:#8a5200;background:#fff6e8;border-radius:8px;padding:0 10px;max-height:0;overflow:hidden;transition:max-height .25s,padding .25s}
 .hint.on{max-height:120px;padding:7px 10px;margin-top:6px}
 .hint.good{color:var(--good);background:#eef8f1}
-.grid2{display:grid;gap:14px}
-@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr}}
 /* rectangle */
 .rect{direction:ltr;border-collapse:collapse;margin:4px auto}
 .rect td{text-align:center;padding:0}
@@ -48,17 +46,14 @@ input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
 .rect td.c input{width:88px}
 .c00{background:#dce8f6}.c01{background:#fde3c8}.c10{background:#e3f1e8}.c11{background:#f1e6f7}
 .rect .q{color:#a7afbd}
-/* column grid */
-.col{direction:ltr;border-collapse:collapse;margin:4px auto}
-.col td{padding:2px;text-align:center}
-.col td.op{font-size:22px;font-weight:800;color:var(--navy);width:30px}
-.col td.d{width:52px;height:52px;font-size:24px;font-weight:800}
-.col td.d input{width:46px;height:46px;font-size:22px;border-width:1.5px;border-color:#9fb6d3}
-.col tr.ul td.d{border-bottom:3px solid var(--ink)}
-.col td.cr input{width:34px;height:30px;font-size:15px;border:1.5px dashed #b9c8da;border-radius:6px}
-.col tr.cr td{padding-bottom:0}
-.col .rl{font-size:13px;color:var(--mute);white-space:nowrap;padding-left:6px;text-align:left;direction:rtl}
-.colnote{font-size:13px;color:var(--mute);text-align:center}
+.eq.sum{gap:6px}
+.eq .nw{display:inline-flex;align-items:center;gap:6px}
+.eq.sum input.b.w4{width:76px}
+@media(max-width:430px){.eq.sum{gap:4px;font-size:18px}.eq.sum input.b.w4{width:62px;font-size:18px}}
+.sens{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px;font-weight:600}
+.sens span{flex-basis:100%}
+.sens[hidden]{display:none}
+.btn.yn{min-width:84px}.btn.yn.ok{background:var(--good);border-color:var(--good);color:#fff}
 /* strip */
 .strip{direction:ltr;display:flex;height:64px;border:2.5px solid var(--navy);border-radius:10px;overflow:hidden;max-width:560px;margin:6px auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 .strip button{flex:1;border:0;border-left:2px solid var(--navy);background:#fff;cursor:pointer;padding:0;min-width:0}
@@ -112,14 +107,13 @@ body.xopen{overflow:hidden}
 <section class="card" id="ex1">
  <div class="ch"><span class="n">1</span><h2>כפל ארוך: <bdi dir="ltr">64 × 37</bdi></h2>
   <button class="info" data-open="mult" aria-label="הסבר על כפל ארוך"><span class="ic">i</span>הסבר</button></div>
- <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות ← שורה ראשונה כפול היחידות, שורה שנייה כפול העשרות (מתחילה ב־<bdi>0</bdi>) ← הערכה.</div>
+ <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?</div>
 
  <div class="step" id="sSplit"><div class="st">א. מפרקים</div>
   <div class="eq"><span>64 =</span><input class="b" id="sa1" data-g="splitA"><span>+</span><input class="b" id="sa2" data-g="splitA"></div>
   <div class="eq"><span>37 =</span><input class="b" id="sb1" data-g="splitB"><span>+</span><input class="b" id="sb2" data-g="splitB"></div>
   <div class="hint"></div></div>
 
- <div class="grid2">
  <div class="step" id="sRect"><div class="st">ב. ממלאים את המלבן</div>
   <table class="rect"><tr><td class="hd">×</td><td class="hd q" id="hA1">?</td><td class="hd q" id="hA0">?</td></tr>
   <tr><td class="hd q" id="hB1">?</td><td class="c c00"><input class="b w4" id="c00" disabled></td><td class="c c01"><input class="b w4" id="c01" disabled></td></tr>
@@ -127,35 +121,23 @@ body.xopen{overflow:hidden}
   <div class="lock" id="rectLock">קודם מפרקים בשלב א׳ – אז המלבן נפתח.</div>
   <div class="hint"></div></div>
 
- <div class="step" id="sCol"><div class="st">ג. פותרים במאונך</div>
-  <table class="col">
-   <tr class="cr"><td class="op"></td><td class="cr"></td><td class="cr"></td><td class="cr"><input class="b" inputmode="numeric" maxlength="1" aria-label="זוכרים"></td><td class="cr"><input class="b" inputmode="numeric" maxlength="1" aria-label="זוכרים"></td><td></td></tr>
-   <tr><td class="op"></td><td class="d"></td><td class="d"></td><td class="d">6</td><td class="d">4</td><td></td></tr>
-   <tr class="ul"><td class="op">×</td><td class="d"></td><td class="d"></td><td class="d">3</td><td class="d">7</td><td></td></tr>
-   <tr data-row="r1"><td class="op"></td><td class="d"></td><td class="d"><input class="b" data-r="r1" data-c="1"></td><td class="d"><input class="b" data-r="r1" data-c="2"></td><td class="d"><input class="b" data-r="r1" data-c="3"></td><td class="rl">כפול 7</td></tr>
-   <tr class="ul" data-row="r2"><td class="op">+</td><td class="d"><input class="b" data-r="r2" data-c="0"></td><td class="d"><input class="b" data-r="r2" data-c="1"></td><td class="d"><input class="b" data-r="r2" data-c="2"></td><td class="d"><input class="b" data-r="r2" data-c="3"></td><td class="rl">כפול 30</td></tr>
-   <tr data-row="tot"><td class="op"></td><td class="d"><input class="b" data-r="tot" data-c="0"></td><td class="d"><input class="b" data-r="tot" data-c="1"></td><td class="d"><input class="b" data-r="tot" data-c="2"></td><td class="d"><input class="b" data-r="tot" data-c="3"></td><td class="rl">ביחד</td></tr>
-  </table>
-  <div class="colnote">ספרה אחת בכל משבצת, מתחילים מימין (היחידות). המשבצות המקווקוות – ל"זוכרים", לא נבדקות.</div>
-  <div class="hint"></div></div>
- </div>
 
- <div class="step" id="sRows"><div class="st">ד. מחברים את המשבצות לשורות</div>
-  <div class="eq"><span class="lbl2">שורה ראשונה (כפול היחידות)</span><input class="b w4" id="r1a" data-g="r1"><span>+</span><input class="b w4" id="r1b" data-g="r1"><span>=</span><input class="b w4" id="r1s"></div>
-  <div class="eq"><span class="lbl2">שורה שנייה (כפול העשרות)</span><input class="b w4" id="r2a" data-g="r2"><span>+</span><input class="b w4" id="r2b" data-g="r2"><span>=</span><input class="b w4" id="r2s"></div>
-  <div class="eq"><span class="lbl2">ביחד</span><input class="b w4" id="tta" data-g="tt"><span>+</span><input class="b w4" id="ttb" data-g="tt"><span>=</span><input class="b w4" id="tts"></div>
+ <div class="step" id="sSum"><div class="st">ג. מחברים את 4 המשבצות</div>
+  <div class="eq sum"><input class="b w4" id="m1" data-g="sum"><span>+</span><input class="b w4" id="m2" data-g="sum"><span>+</span><input class="b w4" id="m3" data-g="sum"><span>+</span><input class="b w4" id="m4" data-g="sum"><span class="nw"><span>=</span><input class="b w4" id="ms"></span></div>
   <div class="hint"></div></div>
 
- <div class="step" id="sEst"><div class="st">ה. הערכה – מעגלים כל מספר לעשרת הקרובה</div>
+ <div class="step" id="sEst"><div class="st">ד. הערכה – מעגלים כל מספר לעשרת הקרובה</div>
   <div class="eq"><input class="b" id="e1" data-g="est"><span>×</span><input class="b" id="e2" data-g="est"><span>=</span><input class="b w4" id="es"></div>
+  <div class="sens" id="sens" hidden><span>יצא <bdi dir="ltr">2,368</bdi> וההערכה <bdi dir="ltr">2,400</bdi>. הגיוני?</span>
+   <button class="btn yn" data-yn="1">כן</button><button class="btn yn" data-yn="0">לא</button></div>
   <div class="hint"></div></div>
- <div class="done" id="done1">פתרת! <bdi>64 × 37 = 2,368</bdi> – וזה קרוב להערכה <bdi>2,400</bdi>, אז התשובה הגיונית.</div>
+ <div class="done" id="done1">פתרת! <bdi dir="ltr">64 × 37 = 1,800 + 120 + 420 + 28 = 2,368</bdi> – קרוב להערכה <bdi dir="ltr">2,400</bdi>, אז התשובה הגיונית.</div>
 </section>
 
 <section class="card" id="ex2">
  <div class="ch"><span class="n">2</span><h2>חיבור שברים עם אותו מכנה</h2>
   <button class="info" data-open="frac" aria-label="הסבר על חיבור שברים"><span class="ic">i</span>הסבר</button></div>
- <div class="rem">לחצו על החלקים כדי לצבוע: <bdi><span class="fr"><span>3</span><span>8</span></span></bdi> בכחול ועוד <bdi><span class="fr"><span>2</span><span>8</span></span></bdi> בכתום. לחיצה נוספת מחליפה צבע.</div>
+ <div class="rem">לחצו על החלקים כדי לצבוע: <bdi dir="ltr"><span class="fr"><span>3</span><span>8</span></span></bdi> בכחול ועוד <bdi dir="ltr"><span class="fr"><span>2</span><span>8</span></span></bdi> בכתום. לחיצה נוספת מחליפה צבע.</div>
  <div class="strip" id="strip"></div>
  <div class="legend"><span><i style="background:var(--blue)"></i>כחול: <b id="nB">0</b></span><span><i style="background:var(--org)"></i>כתום: <b id="nO">0</b></span><span><i style="background:#fff;border:1px solid #999"></i>לבן: <b id="nW">8</b></span></div>
  <div class="hint" id="stripHint"></div>
@@ -165,7 +147,7 @@ body.xopen{overflow:hidden}
  <div class="step"><div class="st">כמה חסר לשלם?</div>
   <div class="eq"><span class="fr"><span>8</span><span>8</span></span><span>−</span><span class="fr"><input class="b" id="gn"><i class="bar"></i><input class="b" id="gd"></span><span>=</span><span class="fr"><input class="b" id="hn"><i class="bar"></i><input class="b" id="hd"></span></div>
   <div class="hint"></div></div>
- <div class="done" id="done2">מעולה! <bdi>3/8 + 2/8 = 5/8</bdi>, וחסרים <bdi>3/8</bdi> לשלם.</div>
+ <div class="done" id="done2">מעולה! <bdi dir="ltr">3/8 + 2/8 = 5/8</bdi>, וחסרים <bdi dir="ltr">3/8</bdi> לשלם.</div>
 </section>
 
 <p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
@@ -176,9 +158,9 @@ body.xopen{overflow:hidden}
 <div class="xin"><h2>כפל ארוך: דו־ספרתי בדו־ספרתי</h2><button class="btn vid" data-video="video/long_mult.mp4" data-ev="video_play_mult">▶ צפה בסרטון הסבר</button><div class="vwrap" hidden><video playsinline controls preload="none" src="video/long_mult.mp4"></video></div>
 <div class="idea"><span class="lbl">הרעיון</span>זה בדיוק מודל המלבן, רק עם ארבע משבצות.</div>
 <div class="fig"><svg class="vis" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" style="max-height:54mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><text x="42" y="28" font-size="22" fill="#1f3b5c" text-anchor="middle" font-weight="700">×</text><text x="125.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">70</text><text x="210.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">2</text><text x="42" y="77.0" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">30</text><rect x="70" y="40" width="110" height="60" fill="#dce8f6" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="125.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">2,100</text><rect x="180" y="40" width="60" height="60" fill="#fde3c8" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="210.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">60</text><text x="42" y="130.0" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">6</text><rect x="70" y="100" width="110" height="46" fill="#e3f1e8" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="125.0" y="130.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">420</text><rect x="180" y="100" width="60" height="46" fill="#f1e6f7" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="210.0" y="130.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">12</text><text x="145.0" y="180" font-size="19" fill="#2e8b57" text-anchor="middle" font-weight="700">2,100 + 60 + 420 + 12 = 2,592</text></svg></div>
-<div class="trick"><span class="lbl">הטריק</span><ol><li>קודם מלבן <span class="m">2 × 2</span> כדי להבין. מפרקים את שני המספרים:<br><span class="m">72 = 70 + 2</span> ; <span class="m">36 = 30 + 6</span></li><li>אחר כך במאונך: שורה ראשונה – כפול היחידות (<span class="m">6</span>).</li><li>שורה שנייה – כפול העשרות (<span class="m">30</span>), ולכן היא מתחילה ב־<span class="m">0</span>.</li><li>בסוף – הערכה: האם התוצאה הגיונית?</li></ol></div>
-<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">72 × 36</span></b><div class="nbbody"><div class="nblines"><div>מלבן: <span class="m">70 × 30 = 2,100</span> ; <span class="m">2 × 30 = 60</span></div><div><span class="m">70 × 6 = 420</span> ; <span class="m">2 × 6 = 12</span></div><div>שורה ראשונה (כפול <span class="m">6</span>): <span class="m">420 + 12 = 432</span></div><div>שורה שנייה (כפול <span class="m">30</span>): <span class="m">2,100 + 60 = 2,160</span> (מתחילה ב־<span class="m">0</span>)</div><div>ביחד: <b><span class="m">432 + 2,160 = 2,592</span></b></div><div>הערכה: <span class="m">70 × 40 = 2,800</span> – אז <span class="m">242</span> קטן הרבה יותר מדי.</div></div><table class="vert"><tr><td class="op"></td><td></td><td></td><td>7</td><td>2</td></tr><tr class="ul"><td class="op">×</td><td></td><td></td><td>3</td><td>6</td></tr><tr><td class="op"></td><td></td><td>4</td><td>3</td><td>2</td></tr><tr class="ul"><td class="op">+</td><td>2</td><td>1</td><td>6</td><td>0</td></tr><tr class="res"><td class="op"></td><td>2</td><td>5</td><td>9</td><td>2</td></tr></table></div></div>
-<div class="mis"><span class="lbl">טעות נפוצה</span>שוכחים את ה־<span class="m">0</span> בשורה השנייה, או כופלים רק יחידות ביחידות ועשרות בעשרות.<div class="why"><b>למה זו טעות?</b> תשובה כמו <span class="m">242</span> היא סימן ששורה שלמה חסרה.</div></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>מפרקים את שני המספרים לעשרות ויחידות:<br><span class="m">72 = 70 + 2</span> ; <span class="m">36 = 30 + 6</span></li><li>מציירים מלבן עם <span class="m">4</span> משבצות. בכל משבצת כופלים את המספר שמעליה במספר שבצד שלה.</li><li>מחברים את <span class="m">4</span> המשבצות – זו התשובה.</li><li>בסוף – הערכה: מעגלים כל מספר לעשרת הקרובה ובודקים שהתשובה הגיונית.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">72 × 36</span></b><div class="nbbody"><div class="nblines"><div>מפרקים: <span class="m">72 = 70 + 2</span> ; <span class="m">36 = 30 + 6</span></div><div>משבצות: <span class="m">70 × 30 = 2,100</span> ; <span class="m">70 × 6 = 420</span></div><div><span class="m">2 × 30 = 60</span> ; <span class="m">2 × 6 = 12</span></div><div>מחברים: <b><span class="m">2,100 + 420 + 60 + 12 = 2,592</span></b></div><div>הערכה: <span class="m">70 × 40 = 2,800</span> – קרוב ל־<span class="m">2,592</span>, אז התשובה הגיונית.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>שוכחים משבצת (כופלים רק עשרות בעשרות ויחידות ביחידות), או שוכחים אפסים: כותבים <span class="m">70 × 30 = 210</span>.<div class="why"><b>למה זו טעות?</b> כל משבצת היא חלק מהמלבן – אם חסרה משבצת, חסר חלק מהתשובה. ו־<span class="m">70 × 30</span> זה <span class="m">7 × 3 = 21</span> ועוד שני אפסים: <span class="m">2,100</span>.</div></div>
 <div class="game"><span class="lbl">משחק של דקה</span>"בערך כמה?" – אתם אומרים <span class="m">48 × 21</span>, הוא מעגל ואומר הערכה (<span class="m">50 × 20 = 1,000</span>).</div>
 <button class="btn pri back big" data-back="mult">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-frac" hidden aria-label="הסבר">
 <div class="xbar"><button class="btn back" data-back="frac">→ חזור לדף העבודה</button></div>
@@ -211,7 +193,7 @@ const seen=new Set();
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 $$('input.b').forEach(i=>{i.setAttribute('inputmode','numeric');i.setAttribute('pattern','[0-9]*');i.setAttribute('autocomplete','off');i.type='text'});
 const val=i=>i.value.replace(/\D/g,'');
-function hint(el,msg,good){const h=el.closest('.step').querySelector('.hint');if(!h)return;h.textContent=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
+function hint(el,msg,good){const h=el.closest('.step').querySelector('.hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
 function mark(i,st){i.classList.toggle('ok',st===true);i.classList.toggle('bad',st===false);if(st===false){i.classList.remove('bad');void i.offsetWidth;i.classList.add('bad')}}
 function next(i){const all=$$('main input.b:not([disabled])');const k=all.indexOf(i);const n=all.slice(k+1).find(x=>!x.classList.contains('ok'));if(n&&!n.closest('.cr'))setTimeout(()=>n.focus({preventScroll:false}),120)}
 /* a "rule" decides: null = still typing, true = right, or {ev,msg} = wrong */
@@ -231,36 +213,30 @@ const exact=(ans,wrong)=>(v,final)=>{if(v===ans)return true;if(!final&&ans.start
 // pair group (order free): both boxes must be the two values
 function pair(ids,vals,wrong){ids.forEach((id,k)=>rule(id,(v,final)=>{const o=val($('#'+ids[1-k]));
   if(vals.includes(v)&&v!==o)return true;if(!final&&vals.some(x=>x.startsWith(v)&&x!==o&&v.length<x.length))return null;return wrong(v)}))}
+function group(ids,vals,wrong){ids.forEach(id=>rule(id,(v,final)=>{const left=[...vals];
+  ids.filter(x=>x!==id).map(x=>$('#'+x)).filter(x=>x.classList.contains('ok')).map(val).forEach(o=>{const k=left.indexOf(o);if(k>=0)left.splice(k,1)});
+  if(left.includes(v))return true;if(!final&&left.some(x=>x.startsWith(v)&&v.length<x.length))return null;return wrong(v)}))}
 const H={
- split:{ev:'mult_split_wrong',msg:'מפרקים לעשרות ויחידות. למשל 72 = 70 + 2.'},
+ split:{ev:'mult_split_wrong',msg:'מפרקים לעשרות ויחידות. למשל <bdi dir="ltr">72 = 70 + 2</bdi>.'},
  cellZero:{ev:'mult_cell_missing_zero',msg:'כמעט! כשכופלים עשרות בעשרות – לא לשכוח את האפסים.'},
  cell:{ev:'mult_cell_wrong',msg:'בודקים שוב: כופלים את המספר שמעל המשבצת במספר שבצד שלה.'},
- row1:{ev:'mult_row1_wrong',msg:'שורה ראשונה = שתי המשבצות של השורה התחתונה (כפול 7).'},
- row2zero:{ev:'mult_row2_missing_zero',msg:'שורה שנייה כופלת בעשרות (30), ולכן היא מתחילה ב־0.'},
- row2:{ev:'mult_row2_wrong',msg:'שורה שנייה = שתי המשבצות של השורה העליונה (כפול 30).'},
- tot:{ev:'mult_total_wrong',msg:'ביחד = שורה ראשונה ועוד שורה שנייה.'},
- c1:{ev:'mult_col_row1_wrong',msg:'שורה ראשונה במאונך היא 64 כפול 7 – אפשר להעתיק מהשורה שמצאת בשלב ד׳.'},
- c2:{ev:'mult_col_row2_wrong',msg:'שורה שנייה היא 64 כפול 30. מתחילים ב־0 ביחידות.'},
- ct:{ev:'mult_col_total_wrong',msg:'מחברים את שתי השורות, ספרה ספרה מימין.'},
- est:{ev:'mult_estimate_wrong',msg:'מעגלים לעשרת הקרובה: 64 קרוב ל־60. ו־37?'},
+ add:{ev:'mult_sum_wrong',msg:'מעתיקים לכאן את 4 המספרים מהמשבצות שבמלבן – בכל סדר.'},
+ sum:{ev:'mult_sum_wrong',msg:'בודקים את החיבור. אפשר בזוגות: <bdi dir="ltr">1,800 + 120</bdi>, ואז <bdi dir="ltr">420 + 28</bdi>, ובסוף מחברים את שתי התוצאות.'},
+ est:{ev:'mult_estimate_wrong',msg:'מעגלים לעשרת הקרובה: <bdi dir="ltr">64</bdi> קרוב ל־<bdi dir="ltr">60</bdi>. ו־<bdi dir="ltr">37</bdi>?'},
  esum:{ev:'mult_estimate_wrong',msg:'כופלים את שני המספרים המעוגלים.'},
  fden:{ev:'frac_added_denominators',msg:'המכנה לא משתנה! החלקים באותו גודל – סופרים רק חלקים.'},
  fo:{ev:'frac_other',msg:'סופרים את כל החלקים הצבועים ברצועה.'},
- fr:{ev:'frac_rest_wrong',msg:'שלם = 8/8. כמה חלקים נשארו לבנים?'}};
+ fr:{ev:'frac_rest_wrong',msg:'שלם = <bdi dir="ltr">8/8</bdi>. כמה חלקים נשארו לבנים?'}};
 pair(['sa1','sa2'],['60','4'],()=>H.split); pair(['sb1','sb2'],['30','7'],()=>H.split);
 const CELL={c00:'1800',c01:'120',c10:'420',c11:'28'};
 Object.entries(CELL).forEach(([id,a])=>rule(id,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?H.cellZero:H.cell)));
-pair(['r1a','r1b'],['420','28'],()=>H.row1); rule('r1s',exact('448',()=>H.row1));
-pair(['r2a','r2b'],['1800','120'],v=>v==='180'||v==='12'?H.row2zero:H.row2); rule('r2s',exact('1920',v=>v==='192'?H.row2zero:H.row2));
-pair(['tta','ttb'],['448','1920'],v=>v==='192'?H.row2zero:H.tot); rule('tts',exact('2368',v=>v==='640'?H.row2zero:H.tot));
+group(['m1','m2','m3','m4'],['1800','120','420','28'],()=>H.add); rule('ms',exact('2368',()=>H.sum));
 pair(['e1','e2'],['60','40'],()=>H.est); rule('es',exact('2400',()=>H.esum));
-// column digits
-const COL={r1:' 448',r2:'1920',tot:'2368'};
-$$('#sCol input[data-r]').forEach(i=>{i.dataset.rk='col_'+i.dataset.r;i.maxLength=1});
-['r1','r2','tot'].forEach(r=>rule('col_'+r,(v,f,i)=>{const c=+i.dataset.c,a=COL[r][c];if(v===a)return true;
- if(r==='r2'&&c===3)return H.row2zero; if(r==='r2'&&COL.r2[c+1]===v)return H.row2zero; return r==='r1'?H.c1:r==='r2'?H.c2:H.ct}));
-// column: type right-to-left (units first)
-$$('#sCol input[data-r]').forEach(i=>i.addEventListener('input',()=>{if(i.classList.contains('ok')){const p=i.closest('td').previousElementSibling?.querySelector('input');if(p&&!p.classList.contains('ok'))setTimeout(()=>p.focus(),120)}}));
+// "is it sensible?"
+let sensOk=false;
+$$('.yn').forEach(b=>b.addEventListener('click',()=>{const h=$('#sEst .hint');
+ if(b.dataset.yn==='1'){sensOk=true;$$('.yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML='נכון – <bdi dir="ltr">2,368</bdi> קרוב מאוד ל־<bdi dir="ltr">2,400</bdi>.';h.className='hint on good'}
+ else{h.innerHTML='שווה לבדוק: בין <bdi dir="ltr">2,368</bdi> ל־<bdi dir="ltr">2,400</bdi> יש רק קצת – זה קרוב או רחוק?';h.className='hint on'}check()}));
 // fractions
 const S=Array(8).fill(0);const strip=$('#strip');
 for(let k=0;k<8;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;drawStrip()});strip.appendChild(b)}
@@ -277,7 +253,8 @@ function check(){
   const A=[val($('#sa1')),val($('#sa2'))].sort((x,y)=>y-x),B=[val($('#sb1')),val($('#sb2'))].sort((x,y)=>y-x);
   $('#hA1').textContent=A[0];$('#hA0').textContent=A[1];$('#hB1').textContent=B[0];$('#hB0').textContent=B[1];
   $$('#sRect .hd').forEach(x=>x.classList.remove('q'));$$('#sRect input').forEach(x=>x.disabled=false);$('#rectLock').hidden=true}
- const all1=$$('#ex1 input.b').filter(i=>!i.closest('.cr'));$('#done1').classList.toggle('on',all1.every(i=>i.classList.contains('ok')));
+ const all1=$$('#ex1 input.b');$('#sens').hidden=!['e1','e2','es','ms'].every(ok);
+ $('#done1').classList.toggle('on',sensOk&&all1.every(i=>i.classList.contains('ok')));
  $('#done2').classList.toggle('on',$$('#ex2 input.b').every(i=>i.classList.contains('ok')));
 }
 // explanation screens (hash based, so the phone's back gesture also returns)
