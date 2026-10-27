@@ -138,6 +138,21 @@ input.b{width:54px;height:38px;font-size:17px}
 .done{padding:8px 10px;margin-top:8px;font-size:14px}.priv{font-size:12px}
 input.b.w4{width:72px}
 @media(max-width:430px){.eq.sum{font-size:16px}.eq.sum input.b.w4{width:58px;font-size:16px}}
+
+/* compact 2 (Adi: smaller still) */
+html,body{font-size:13.5px}header h1{font-size:15.5px}header p{font-size:12px}.hw{padding:6px 10px}
+main{padding:6px}.card{padding:8px 9px}.ch .n{font-size:17px}.ch h2{font-size:14.5px}
+.info{min-height:32px;font-size:12px}.info .ic{width:22px;height:22px;font-size:14px}
+.rem{font-size:12px;padding:5px 8px}.step{padding:5px 0 3px}.st{font-size:13.5px;margin:0 0 3px}
+input.b{width:48px;height:32px;font-size:16px;border-width:1.5px;border-radius:7px}input.b.w4{width:64px}
+.eq{font-size:16px;gap:5px;margin:2px 0}.eq .lbl2{font-size:12px;margin-bottom:-3px}
+.hint{font-size:12px}.rect td.hd{height:26px;font-size:14.5px;min-width:34px}.rect td.c{width:88px;height:50px}
+.seg span{font-size:12.5px}.btn{min-height:36px;font-size:13.5px;padding:5px 12px}.btn.segb{min-height:36px;font-size:13.5px}
+.cadd td.d{width:34px;height:28px;font-size:16px}.cadd tr.res td.d{height:38px}.cadd td.d input.dg{width:34px;height:34px;font-size:16px}
+.cadd td.cr input{width:26px;height:22px}.endbtns .btn{min-height:38px;font-size:14px}
+.strip{height:44px}.fr{font-size:16px}.fr input.b{width:42px;height:32px}.done{font-size:13px;padding:6px 9px}
+@media(max-width:430px){.eq.sum{font-size:15px}.eq.sum input.b.w4{width:56px;font-size:16px}}
+.info .ic{font:900 15px system-ui,-apple-system,sans-serif;font-style:normal}
 </style>
 </head>
 <body>
@@ -146,14 +161,14 @@ input.b.w4{width:72px}
 
 <section class="card" id="ex1">
  <div class="ch"><span class="n">1</span><h2 tabindex="-1">כפל ארוך: <bdi dir="ltr" id="m_title">64 × 37</bdi></h2>
-  <button class="info" data-open="mult" aria-label="הסבר על כפל ארוך"><span class="ic">i</span>הסבר</button></div>
+  <button class="info" data-open="mult" aria-label="עזרה בכפל ארוך"><span class="ic">?</span>עזרה</button></div>
  <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?</div>
  <div id="ex1body"></div>
 </section>
 
 <section class="card" id="ex2" hidden>
  <div class="ch"><span class="n">2</span><h2 tabindex="-1">חיבור שברים עם אותו מכנה</h2>
-  <button class="info" data-open="frac" aria-label="הסבר על חיבור שברים"><span class="ic">i</span>הסבר</button></div>
+  <button class="info" data-open="frac" aria-label="עזרה בחיבור שברים"><span class="ic">?</span>עזרה</button></div>
  <div id="ex2body"></div>
 </section>
 
@@ -206,7 +221,7 @@ function prep(root){root.querySelectorAll('input.b').forEach(i=>{i.type='text';i
 function hint(el,msg,good){const h=el.closest('.step').querySelector(':scope > .hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
 function mark(i,st){i.classList.toggle('ok',st===true);i.classList.toggle('bad',st===false);if(st===false){i.classList.remove('bad');void i.offsetWidth;i.classList.add('bad')}}
 const vis=x=>!x.disabled&&x.offsetParent!==null;
-function next(i){
+function next(i){checkAll();
  if('next' in i.dataset){const n=i.dataset.next&&document.getElementById(i.dataset.next);if(n&&vis(n)&&!n.classList.contains('ok'))n.focus();return}
  const all=[...i.closest('.card').querySelectorAll('input.b')].filter(x=>vis(x)&&!x.closest('.cr')&&!x.closest('.cadd'));
  const n=all.slice(all.indexOf(i)+1).find(x=>!x.classList.contains('ok'));if(n)n.focus()}   // synchronous: keeps the iPhone keypad open
@@ -280,7 +295,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
  <div class="step" id="m_sSum"><div class="st">ג. מחברים את 4 המשבצות</div>
   <div class="lock" id="m_sumLock">קודם ממלאים את 4 המשבצות במלבן.</div>
   <div id="m_sumBody" hidden>
-   <div class="seg"><span>איך נוח לך לחבר?</span><button class="btn segb" data-way="pairs" aria-pressed="false">בזוגות</button><button class="btn segb" data-way="col" aria-pressed="false">אחד מתחת לשני</button></div>
+   <div class="seg"><span>איך נוח לך לחבר? (מומלץ: בזוגות – שורה אחרי שורה של המלבן)</span><button class="btn segb" data-way="pairs" aria-pressed="false">בזוגות</button><button class="btn segb" data-way="col" aria-pressed="false">אחד מתחת לשני</button></div>
    <div class="way" id="m_pairs" hidden>
     <div class="eq"><span class="lbl2">זוג 1 – השורה העליונה במלבן</span><input class="b w4" id="m_p1a"><span>+</span><input class="b w4" id="m_p1b"><span>=</span><input class="b w4" id="m_p1s"></div>
     <div class="eq"><span class="lbl2">זוג 2 – השורה התחתונה במלבן</span><input class="b w4" id="m_p2a"><span>+</span><input class="b w4" id="m_p2b"><span>=</span><input class="b w4" id="m_p2s"></div>
@@ -297,6 +312,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
  <div class="done" id="m_done">פתרת! ${L(`${p.A} × ${p.B} = ${c.map(fmt).join(' + ')} = ${fmt(p.T)}`)} – קרוב להערכה ${L(fmt(p.E))}, אז התשובה הגיונית.</div>
  <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div>`;
  prep($('#ex1body'));
+ M.way='pairs';$$('#ex1 .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way==='pairs')));$('#m_pairs').hidden=false;  // default: pairs = rows of the rectangle
  group(['m_sa1','m_sa2'],[p.a1*10,p.a0],()=>HM.split(p.A));group(['m_sb1','m_sb2'],[p.b1*10,p.b0],()=>HM.split(p.B));
  c.forEach((a,k)=>{a=String(a);rule('m_c'+k,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?HM.cellZero:HM.cell))});
  group(['m_p1a','m_p1b'],[c[0],c[1]],()=>HM.pair(c[0],c[1]));rule('m_p1s',exact(p.P1,()=>HM.pair(c[0],c[1])));
