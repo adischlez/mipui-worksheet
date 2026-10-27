@@ -353,7 +353,7 @@ window.__selfTest=n=>{const bad=[];let m=null,f=null;for(let i=0;i<n;i++){const 
   if(!multOk(m2.A,m2.B))e.push('range');if(m&&m2.A===m.A&&m2.B===m.B)e.push('repeat');if(e.length)bad.push([m2.A,m2.B,e]);m=m2;
   const f2=newFrac(f);const g=checkFrac(f2);if(f&&f2.a===f.a&&f2.b===f.b&&f2.d===f.d)g.push('repeat');if(g.length)bad.push([f2,g]);f=f2}return bad};
 const checkMult2=checkMult0;
-renderMult(multParams(64,37));renderFrac(fracParams(3,2,8));
+renderMult(newMult());renderFrac(newFrac());
 window.__state=()=>({M,F});
 // explanation screens (hash based, so the phone's back gesture also returns)
 let lastEx=null;
