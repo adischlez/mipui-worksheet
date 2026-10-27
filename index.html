@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>דף עבודה · מיפוי כיתה ה׳</title>
+<style>
+:root{--bg:#f5f4f0;--card:#fff;--ink:#1c2230;--navy:#1f3b5c;--mute:#667085;--line:#d9d6cc;--blue:#3a78c2;--org:#e8862a;--good:#2f8f4e;--warn:#d98a1c;--r:14px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-text-size-adjust:100%}
+body{padding-bottom:40px}
+header{background:var(--navy);color:#fff}
+.hw{max-width:980px;margin:0 auto;padding:14px 16px}
+header h1{margin:0;font-size:21px;font-weight:750}
+header p{margin:2px 0 0;font-size:14px;opacity:.85}
+main{max-width:980px;margin:0 auto;padding:12px}
+bdi,.m{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin:0 0 14px;scroll-margin-top:10px}
+.ch{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.ch .n{font-size:26px;font-weight:800;color:var(--org);line-height:1}
+.ch h2{margin:0;font-size:19px;flex:1}
+.info{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px 6px 8px;min-height:48px;font:700 15px system-ui,-apple-system,sans-serif;cursor:pointer}
+.info .ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--navy);font:italic 800 19px Georgia,serif}
+.rem{background:#fff7ee;border-radius:10px;padding:8px 12px;font-size:14.5px;margin:0 0 10px}
+.step{border-top:1px dashed var(--line);padding:12px 0 8px}
+.st{font-weight:750;color:var(--good);margin:0 0 8px}
+.lock{color:var(--mute);font-size:14px}
+input.b{width:64px;height:48px;font:700 20px system-ui,-apple-system,sans-serif;text-align:center;border:2px solid var(--blue);border-radius:9px;background:#fff;color:var(--ink);padding:0;-moz-appearance:textfield;direction:ltr}
+input.b.w4{width:84px}
+input.b:focus{outline:3px solid rgba(58,120,194,.35);outline-offset:1px}
+input.b.ok{border-color:var(--good);background:#eef8f1;color:var(--good)}
+input.b.bad{border-color:var(--warn);background:#fff6e8;animation:nudge .35s}
+input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
+@keyframes nudge{0%,100%{transform:none}30%{transform:translateX(-4px)}70%{transform:translateX(4px)}}
+.eq{display:flex;align-items:center;gap:8px;flex-wrap:wrap;direction:ltr;justify-content:flex-end;font-size:21px;font-weight:700;margin:6px 0}
+.eq .lbl2{direction:rtl;font-size:15px;font-weight:600;color:var(--mute);flex-basis:100%;text-align:right;order:-1;margin-bottom:-4px}
+.hint{min-height:0;font-size:14.5px;color:#8a5200;background:#fff6e8;border-radius:8px;padding:0 10px;max-height:0;overflow:hidden;transition:max-height .25s,padding .25s}
+.hint.on{max-height:120px;padding:7px 10px;margin-top:6px}
+.hint.good{color:var(--good);background:#eef8f1}
+.grid2{display:grid;gap:14px}
+@media(min-width:900px){.grid2{grid-template-columns:1fr 1fr}}
+/* rectangle */
+.rect{direction:ltr;border-collapse:collapse;margin:4px auto}
+.rect td{text-align:center;padding:0}
+.rect td.hd{height:44px;font-size:20px;font-weight:800;color:var(--navy);min-width:48px}
+.rect td.c{width:130px;height:92px;border:2px solid var(--navy)}
+.rect td.c input{width:88px}
+.c00{background:#dce8f6}.c01{background:#fde3c8}.c10{background:#e3f1e8}.c11{background:#f1e6f7}
+.rect .q{color:#a7afbd}
+/* column grid */
+.col{direction:ltr;border-collapse:collapse;margin:4px auto}
+.col td{padding:2px;text-align:center}
+.col td.op{font-size:22px;font-weight:800;color:var(--navy);width:30px}
+.col td.d{width:52px;height:52px;font-size:24px;font-weight:800}
+.col td.d input{width:46px;height:46px;font-size:22px;border-width:1.5px;border-color:#9fb6d3}
+.col tr.ul td.d{border-bottom:3px solid var(--ink)}
+.col td.cr input{width:34px;height:30px;font-size:15px;border:1.5px dashed #b9c8da;border-radius:6px}
+.col tr.cr td{padding-bottom:0}
+.col .rl{font-size:13px;color:var(--mute);white-space:nowrap;padding-left:6px;text-align:left;direction:rtl}
+.colnote{font-size:13px;color:var(--mute);text-align:center}
+/* strip */
+.strip{direction:ltr;display:flex;height:64px;border:2.5px solid var(--navy);border-radius:10px;overflow:hidden;max-width:560px;margin:6px auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.strip button{flex:1;border:0;border-left:2px solid var(--navy);background:#fff;cursor:pointer;padding:0;min-width:0}
+.strip button:first-child{border-left:0}
+.strip button.B{background:var(--blue)}.strip button.O{background:var(--org)}
+.legend{display:flex;gap:14px;justify-content:center;font-size:14px;color:var(--mute)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-left:4px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;font-weight:800;font-size:20px}
+.fr>span:first-child{border-bottom:2.5px solid currentColor;padding:0 4px 2px}
+.fr>span:last-child{padding:2px 4px 0}
+.fr .bar{display:block;width:100%;height:2.5px;background:currentColor;margin:1px 0}
+.fr input.b{width:52px;height:42px;margin:2px 0}
+.done{display:none;margin-top:10px;background:#eef8f1;border:1.5px solid #9fd4b2;color:#1f6b3a;border-radius:10px;padding:10px 12px;font-weight:700}
+.done.on{display:block}
+.priv{font-size:13px;color:var(--mute);text-align:center;margin:10px 0 0}
+.btn{border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:12px;padding:10px 18px;min-height:48px;font:700 16px system-ui,-apple-system,sans-serif;cursor:pointer}
+.btn.pri{background:var(--good);border-color:var(--good);color:#fff}
+.btn.big{display:block;width:100%;max-width:420px;margin:18px auto 0;font-size:18px;min-height:56px}
+.btn.vid{background:#c0392b;border-color:#c0392b;color:#fff;font-size:17px;min-height:52px;margin:4px 0 10px}
+/* explanation screen */
+.explain{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.xbar{position:sticky;top:0;background:rgba(245,244,240,.96);border-bottom:1px solid var(--line);padding:8px 12px;z-index:2}
+.xin{max-width:820px;margin:0 auto;padding:12px 14px 30px}
+.xin h2{font-size:22px;color:var(--navy);margin:4px 0 10px}
+.xin>div{border-radius:12px;padding:10px 14px;margin:0 0 10px}
+.xin .lbl{display:inline-block;font-weight:700;font-size:13px;border-radius:6px;padding:1px 9px;margin-left:8px;color:#fff;vertical-align:1px}
+.idea{background:#eef4fb;font-size:17px;font-weight:600;color:var(--navy)}.idea .lbl{background:var(--navy)}
+.fig{background:#fff;border:1px solid var(--line);text-align:center}
+.fig .vis{max-height:none!important;width:100%;max-width:420px;height:auto}
+.trick{background:#fff7ee}.trick .lbl{background:var(--org)}.trick ol{margin:6px 0 0;padding-right:22px}.trick li{margin:4px 0}
+.nb{background:#fff;border:1px solid #c9d6e6}.nb .lbl{background:var(--good)}
+.nbbody{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;margin-top:6px}.nblines{flex:1;min-width:230px;line-height:1.9}
+.vert{direction:ltr;border-collapse:collapse;font-size:20px;font-weight:700;margin:0 auto}
+.vert td{width:32px;height:32px;text-align:center;border:1px solid #d3deeb}.vert td.op{border:none}
+.vert tr.ul td{border-bottom:2.5px solid var(--ink)}.vert tr.res td{color:var(--good)}
+.mis{background:#fdeeee;border-right:5px solid #c0392b}.mis .lbl{background:#c0392b}.why{color:#8e2a20;font-size:15px;margin-top:4px}
+.game{background:#f2f0f8}.game .lbl{background:#6a55a8}
+.blank{display:inline-block;width:26px;height:20px;border:1.5px solid var(--blue);border-radius:4px;vertical-align:middle}
+.blank.sm{width:18px;height:15px}
+.fr .nu{border-bottom:1.5px solid currentColor;padding:0 3px}.fr .de{padding:0 3px}
+.xin .fr{font-size:.85em;font-weight:600}
+.vwrap{margin:0 0 12px;background:#000;border-radius:12px;overflow:hidden;padding:0!important}
+.vwrap video{display:block;width:100%;height:auto;aspect-ratio:16/9}
+body.xopen{overflow:hidden}
+</style>
+</head>
+<body>
+<header><div class="hw"><h1>דף עבודה · מיפוי כיתה ה׳</h1><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים.</p></div></header>
+<main>
+
+<section class="card" id="ex1">
+ <div class="ch"><span class="n">1</span><h2>כפל ארוך: <bdi dir="ltr">64 × 37</bdi></h2>
+  <button class="info" data-open="mult" aria-label="הסבר על כפל ארוך"><span class="ic">i</span>הסבר</button></div>
+ <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות ← שורה ראשונה כפול היחידות, שורה שנייה כפול העשרות (מתחילה ב־<bdi>0</bdi>) ← הערכה.</div>
+
+ <div class="step" id="sSplit"><div class="st">א. מפרקים</div>
+  <div class="eq"><span>64 =</span><input class="b" id="sa1" data-g="splitA"><span>+</span><input class="b" id="sa2" data-g="splitA"></div>
+  <div class="eq"><span>37 =</span><input class="b" id="sb1" data-g="splitB"><span>+</span><input class="b" id="sb2" data-g="splitB"></div>
+  <div class="hint"></div></div>
+
+ <div class="grid2">
+ <div class="step" id="sRect"><div class="st">ב. ממלאים את המלבן</div>
+  <table class="rect"><tr><td class="hd">×</td><td class="hd q" id="hA1">?</td><td class="hd q" id="hA0">?</td></tr>
+  <tr><td class="hd q" id="hB1">?</td><td class="c c00"><input class="b w4" id="c00" disabled></td><td class="c c01"><input class="b w4" id="c01" disabled></td></tr>
+  <tr><td class="hd q" id="hB0">?</td><td class="c c10"><input class="b w4" id="c10" disabled></td><td class="c c11"><input class="b w4" id="c11" disabled></td></tr></table>
+  <div class="lock" id="rectLock">קודם מפרקים בשלב א׳ – אז המלבן נפתח.</div>
+  <div class="hint"></div></div>
+
+ <div class="step" id="sCol"><div class="st">ג. פותרים במאונך</div>
+  <table class="col">
+   <tr class="cr"><td class="op"></td><td class="cr"></td><td class="cr"></td><td class="cr"><input class="b" inputmode="numeric" maxlength="1" aria-label="זוכרים"></td><td class="cr"><input class="b" inputmode="numeric" maxlength="1" aria-label="זוכרים"></td><td></td></tr>
+   <tr><td class="op"></td><td class="d"></td><td class="d"></td><td class="d">6</td><td class="d">4</td><td></td></tr>
+   <tr class="ul"><td class="op">×</td><td class="d"></td><td class="d"></td><td class="d">3</td><td class="d">7</td><td></td></tr>
+   <tr data-row="r1"><td class="op"></td><td class="d"></td><td class="d"><input class="b" data-r="r1" data-c="1"></td><td class="d"><input class="b" data-r="r1" data-c="2"></td><td class="d"><input class="b" data-r="r1" data-c="3"></td><td class="rl">כפול 7</td></tr>
+   <tr class="ul" data-row="r2"><td class="op">+</td><td class="d"><input class="b" data-r="r2" data-c="0"></td><td class="d"><input class="b" data-r="r2" data-c="1"></td><td class="d"><input class="b" data-r="r2" data-c="2"></td><td class="d"><input class="b" data-r="r2" data-c="3"></td><td class="rl">כפול 30</td></tr>
+   <tr data-row="tot"><td class="op"></td><td class="d"><input class="b" data-r="tot" data-c="0"></td><td class="d"><input class="b" data-r="tot" data-c="1"></td><td class="d"><input class="b" data-r="tot" data-c="2"></td><td class="d"><input class="b" data-r="tot" data-c="3"></td><td class="rl">ביחד</td></tr>
+  </table>
+  <div class="colnote">ספרה אחת בכל משבצת, מתחילים מימין (היחידות). המשבצות המקווקוות – ל"זוכרים", לא נבדקות.</div>
+  <div class="hint"></div></div>
+ </div>
+
+ <div class="step" id="sRows"><div class="st">ד. מחברים את המשבצות לשורות</div>
+  <div class="eq"><span class="lbl2">שורה ראשונה (כפול היחידות)</span><input class="b w4" id="r1a" data-g="r1"><span>+</span><input class="b w4" id="r1b" data-g="r1"><span>=</span><input class="b w4" id="r1s"></div>
+  <div class="eq"><span class="lbl2">שורה שנייה (כפול העשרות)</span><input class="b w4" id="r2a" data-g="r2"><span>+</span><input class="b w4" id="r2b" data-g="r2"><span>=</span><input class="b w4" id="r2s"></div>
+  <div class="eq"><span class="lbl2">ביחד</span><input class="b w4" id="tta" data-g="tt"><span>+</span><input class="b w4" id="ttb" data-g="tt"><span>=</span><input class="b w4" id="tts"></div>
+  <div class="hint"></div></div>
+
+ <div class="step" id="sEst"><div class="st">ה. הערכה – מעגלים כל מספר לעשרת הקרובה</div>
+  <div class="eq"><input class="b" id="e1" data-g="est"><span>×</span><input class="b" id="e2" data-g="est"><span>=</span><input class="b w4" id="es"></div>
+  <div class="hint"></div></div>
+ <div class="done" id="done1">פתרת! <bdi>64 × 37 = 2,368</bdi> – וזה קרוב להערכה <bdi>2,400</bdi>, אז התשובה הגיונית.</div>
+</section>
+
+<section class="card" id="ex2">
+ <div class="ch"><span class="n">2</span><h2>חיבור שברים עם אותו מכנה</h2>
+  <button class="info" data-open="frac" aria-label="הסבר על חיבור שברים"><span class="ic">i</span>הסבר</button></div>
+ <div class="rem">לחצו על החלקים כדי לצבוע: <bdi><span class="fr"><span>3</span><span>8</span></span></bdi> בכחול ועוד <bdi><span class="fr"><span>2</span><span>8</span></span></bdi> בכתום. לחיצה נוספת מחליפה צבע.</div>
+ <div class="strip" id="strip"></div>
+ <div class="legend"><span><i style="background:var(--blue)"></i>כחול: <b id="nB">0</b></span><span><i style="background:var(--org)"></i>כתום: <b id="nO">0</b></span><span><i style="background:#fff;border:1px solid #999"></i>לבן: <b id="nW">8</b></span></div>
+ <div class="hint" id="stripHint"></div>
+ <div class="step"><div class="st">כמה צבעתם?</div>
+  <div class="eq"><span class="fr"><span>3</span><span>8</span></span><span>+</span><span class="fr"><span>2</span><span>8</span></span><span>=</span><span class="fr"><input class="b" id="fn"><i class="bar"></i><input class="b" id="fd"></span></div>
+  <div class="hint"></div></div>
+ <div class="step"><div class="st">כמה חסר לשלם?</div>
+  <div class="eq"><span class="fr"><span>8</span><span>8</span></span><span>−</span><span class="fr"><input class="b" id="gn"><i class="bar"></i><input class="b" id="gd"></span><span>=</span><span class="fr"><input class="b" id="hn"><i class="bar"></i><input class="b" id="hd"></span></div>
+  <div class="hint"></div></div>
+ <div class="done" id="done2">מעולה! <bdi>3/8 + 2/8 = 5/8</bdi>, וחסרים <bdi>3/8</bdi> לשלם.</div>
+</section>
+
+<p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
+</main>
+
+<section class="explain" id="explain-mult" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="mult">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>כפל ארוך: דו־ספרתי בדו־ספרתי</h2><button class="btn vid" data-video="video/long_mult.mp4" data-ev="video_play_mult">▶ צפה בסרטון הסבר</button><div class="vwrap" hidden><video playsinline controls preload="none" src="video/long_mult.mp4"></video></div>
+<div class="idea"><span class="lbl">הרעיון</span>זה בדיוק מודל המלבן, רק עם ארבע משבצות.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 320 190" xmlns="http://www.w3.org/2000/svg" style="max-height:54mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><text x="42" y="28" font-size="22" fill="#1f3b5c" text-anchor="middle" font-weight="700">×</text><text x="125.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">70</text><text x="210.0" y="28" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">2</text><text x="42" y="77.0" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">30</text><rect x="70" y="40" width="110" height="60" fill="#dce8f6" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="125.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">2,100</text><rect x="180" y="40" width="60" height="60" fill="#fde3c8" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="210.0" y="77.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">60</text><text x="42" y="130.0" font-size="20" fill="#1f3b5c" text-anchor="middle" font-weight="700">6</text><rect x="70" y="100" width="110" height="46" fill="#e3f1e8" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="125.0" y="130.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">420</text><rect x="180" y="100" width="60" height="46" fill="#f1e6f7" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="210.0" y="130.0" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="600">12</text><text x="145.0" y="180" font-size="19" fill="#2e8b57" text-anchor="middle" font-weight="700">2,100 + 60 + 420 + 12 = 2,592</text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>קודם מלבן <span class="m">2 × 2</span> כדי להבין. מפרקים את שני המספרים:<br><span class="m">72 = 70 + 2</span> ; <span class="m">36 = 30 + 6</span></li><li>אחר כך במאונך: שורה ראשונה – כפול היחידות (<span class="m">6</span>).</li><li>שורה שנייה – כפול העשרות (<span class="m">30</span>), ולכן היא מתחילה ב־<span class="m">0</span>.</li><li>בסוף – הערכה: האם התוצאה הגיונית?</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b><span class="m">72 × 36</span></b><div class="nbbody"><div class="nblines"><div>מלבן: <span class="m">70 × 30 = 2,100</span> ; <span class="m">2 × 30 = 60</span></div><div><span class="m">70 × 6 = 420</span> ; <span class="m">2 × 6 = 12</span></div><div>שורה ראשונה (כפול <span class="m">6</span>): <span class="m">420 + 12 = 432</span></div><div>שורה שנייה (כפול <span class="m">30</span>): <span class="m">2,100 + 60 = 2,160</span> (מתחילה ב־<span class="m">0</span>)</div><div>ביחד: <b><span class="m">432 + 2,160 = 2,592</span></b></div><div>הערכה: <span class="m">70 × 40 = 2,800</span> – אז <span class="m">242</span> קטן הרבה יותר מדי.</div></div><table class="vert"><tr><td class="op"></td><td></td><td></td><td>7</td><td>2</td></tr><tr class="ul"><td class="op">×</td><td></td><td></td><td>3</td><td>6</td></tr><tr><td class="op"></td><td></td><td>4</td><td>3</td><td>2</td></tr><tr class="ul"><td class="op">+</td><td>2</td><td>1</td><td>6</td><td>0</td></tr><tr class="res"><td class="op"></td><td>2</td><td>5</td><td>9</td><td>2</td></tr></table></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>שוכחים את ה־<span class="m">0</span> בשורה השנייה, או כופלים רק יחידות ביחידות ועשרות בעשרות.<div class="why"><b>למה זו טעות?</b> תשובה כמו <span class="m">242</span> היא סימן ששורה שלמה חסרה.</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"בערך כמה?" – אתם אומרים <span class="m">48 × 21</span>, הוא מעגל ואומר הערכה (<span class="m">50 × 20 = 1,000</span>).</div>
+<button class="btn pri back big" data-back="mult">→ חזור לדף העבודה</button></div></section><section class="explain" id="explain-frac" hidden aria-label="הסבר">
+<div class="xbar"><button class="btn back" data-back="frac">→ חזור לדף העבודה</button></div>
+<div class="xin"><h2>חיבור שברים עם אותו מכנה</h2>
+<div class="idea"><span class="lbl">הרעיון</span>המכנה אומר לכמה חלקים חתכנו, והמונה – כמה חלקים לקחנו; כשהחלקים באותו גודל, פשוט סופרים חלקים.</div>
+<div class="fig"><svg class="vis" viewBox="0 0 440 200" xmlns="http://www.w3.org/2000/svg" style="max-height:52mm" direction="ltr" font-family="Rubik, Heebo, Arial, sans-serif"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8862a"/></marker><marker id="ahn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f3b5c"/></marker></defs><rect x="40.0" y="20" width="45.0" height="46" fill="#fff" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="85.0" y="20" width="45.0" height="46" fill="#fff" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="130.0" y="20" width="45.0" height="46" fill="#fff" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="175.0" y="20" width="45.0" height="46" fill="#fff" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="220.0" y="20" width="45.0" height="46" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="265.0" y="20" width="45.0" height="46" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="310.0" y="20" width="45.0" height="46" fill="#e8862a" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><rect x="355.0" y="20" width="45.0" height="46" fill="#3a78c2" stroke="#1f3b5c" stroke-width="1.8" rx="0" /><text x="377.5" y="90" font-size="14" fill="#3a78c2" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">יום א׳</text><text x="265.0" y="90" font-size="14" fill="#e8862a" text-anchor="middle" font-weight="700" direction="rtl" unicode-bidi="embed">יום ב׳</text><text x="120" y="123" font-size="17" fill="#3a78c2" text-anchor="middle" font-weight="600">1</text><line x1="111.9" y1="128" x2="128.1" y2="128" stroke="#3a78c2" stroke-width="1.5" /><text x="120" y="146" font-size="17" fill="#3a78c2" text-anchor="middle" font-weight="600">8</text><text x="150" y="134" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="400">+</text><text x="180" y="123" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="600">3</text><line x1="171.9" y1="128" x2="188.1" y2="128" stroke="#e8862a" stroke-width="1.5" /><text x="180" y="146" font-size="17" fill="#e8862a" text-anchor="middle" font-weight="600">8</text><text x="210" y="134" font-size="20" fill="#1d2733" text-anchor="middle" font-weight="400">=</text><text x="240" y="123" font-size="17" fill="#2e8b57" text-anchor="middle" font-weight="600">4</text><line x1="231.9" y1="128" x2="248.1" y2="128" stroke="#2e8b57" stroke-width="1.5" /><text x="240" y="146" font-size="17" fill="#2e8b57" text-anchor="middle" font-weight="600">8</text><text x="220" y="184" font-size="15" fill="#7d8796" text-anchor="middle" font-weight="400" direction="rtl" unicode-bidi="embed">שלם = כל 8 החלקים</text><text x="330" y="173" font-size="15" fill="#7d8796" text-anchor="middle" font-weight="600">8</text><line x1="322.5" y1="178" x2="337.5" y2="178" stroke="#7d8796" stroke-width="1.5" /><text x="330" y="194" font-size="15" fill="#7d8796" text-anchor="middle" font-weight="600">8</text><text x="312" y="184" font-size="1" fill="#1d2733" text-anchor="middle" font-weight="400"></text></svg></div>
+<div class="trick"><span class="lbl">הטריק</span><ol><li>מציירים רצועת נייר מחולקת ל־<span class="m">8</span> חלקים.</li><li>צובעים חלק אחד בכחול ושלושה בכתום – ורואים <span class="m"><span class="fr"><span class="nu">4</span><span class="de">8</span></span></span>.</li><li>שלם הוא כל החלקים: <span class="m"><span class="fr"><span class="nu">8</span><span class="de">8</span></span></span>. ושני שלמים הם שתי רצועות.</li></ol></div>
+<div class="nb"><span class="lbl">דוגמה – כמו במחברת</span> <b>ביום א׳ הלכו <span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span></span> מהמסלול, וביום ב׳ <span class="m"><span class="fr"><span class="nu">3</span><span class="de">8</span></span></span>. כמה נשאר?</b><div class="nbbody"><div class="nblines"><div><span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span> + <span class="fr"><span class="nu">3</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">8</span></span></span> מהמסלול נעשו.</div><div>השלם הוא <span class="m"><span class="fr"><span class="nu">8</span><span class="de">8</span></span></span>, אז נשאר: <b><span class="m"><span class="fr"><span class="nu">8</span><span class="de">8</span></span> − <span class="fr"><span class="nu">4</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">8</span></span></span></b></div><div>ובשאלה: <span class="m">2 = <span class="fr"><span class="nu">1</span><span class="de">3</span></span> + <span class="fr"><span class="nu"><span class="blank sm"></span></span><span class="de">3</span></span></span> – שני שלמים הם <span class="m"><span class="fr"><span class="nu">6</span><span class="de">3</span></span></span>,</div><div>אז חסרים <b><span class="m"><span class="fr"><span class="nu">5</span><span class="de">3</span></span></span></b>.</div></div></div></div>
+<div class="mis"><span class="lbl">טעות נפוצה</span>מחברים גם את המכנים: <span class="m"><span class="fr"><span class="nu">1</span><span class="de">8</span></span> + <span class="fr"><span class="nu">3</span><span class="de">8</span></span> = <span class="fr"><span class="nu">4</span><span class="de">16</span></span></span>.<div class="why"><b>למה זו טעות?</b> הפיצה לא נחתכת לחתיכות קטנות יותר רק כי חיברנו!</div></div>
+<div class="game"><span class="lbl">משחק של דקה</span>"כמה חסר לשלם?" – "יש לי <span class="m"><span class="fr"><span class="nu">3</span><span class="de">8</span></span></span> פיצה, כמה חסר לפיצה שלמה?" – תשובה: <span class="m"><span class="fr"><span class="nu">5</span><span class="de">8</span></span></span>.</div>
+<button class="btn pri back big" data-back="frac">→ חזור לדף העבודה</button></div></section>
+
+<script>
+/* ---------- Anonymous aggregate counts (optional) ----------
+   Empty string = disabled: no script is loaded and nothing is sent.
+   When set (e.g. 'https://NAME.goatcounter.com/count'), GoatCounter (cookieless) receives a pageview
+   and ONLY event names: mistake types and opens of explanation/video. No answers, names, IDs, timing or storage. */
+const GOATCOUNTER_URL = '';
+const Stats=(()=>{const q=[];let ready=false;
+ function init(){if(!GOATCOUNTER_URL)return;const s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';
+  s.setAttribute('data-goatcounter',GOATCOUNTER_URL);s.onload=()=>{ready=true;q.splice(0).forEach(send)};document.head.appendChild(s)}
+ function send(n){try{window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:n,title:n,event:true})}catch(e){}}
+ function ev(n){if(!GOATCOUNTER_URL)return;ready?send(n):q.push(n)}
+ return {init,ev}})();
+Stats.init();
+const LOG=[]; // in-page only (for testing); never stored or sent
+function mistake(name,key){if(key){if(seen.has(key))return;seen.add(key)}LOG.push(name);Stats.ev(name)}
+const seen=new Set();
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+$$('input.b').forEach(i=>{i.setAttribute('inputmode','numeric');i.setAttribute('pattern','[0-9]*');i.setAttribute('autocomplete','off');i.type='text'});
+const val=i=>i.value.replace(/\D/g,'');
+function hint(el,msg,good){const h=el.closest('.step').querySelector('.hint');if(!h)return;h.textContent=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
+function mark(i,st){i.classList.toggle('ok',st===true);i.classList.toggle('bad',st===false);if(st===false){i.classList.remove('bad');void i.offsetWidth;i.classList.add('bad')}}
+function next(i){const all=$$('main input.b:not([disabled])');const k=all.indexOf(i);const n=all.slice(k+1).find(x=>!x.classList.contains('ok'));if(n&&!n.closest('.cr'))setTimeout(()=>n.focus({preventScroll:false}),120)}
+/* a "rule" decides: null = still typing, true = right, or {ev,msg} = wrong */
+const RULES={};
+function rule(id,fn){RULES[id]=fn}
+function onInput(i,final){
+ const f=RULES[i.id]||RULES[i.dataset.rk];if(!f)return;clearTimeout(i._t);const v=val(i);if(!v){mark(i,null);hint(i,'');return}
+ const r=f(v,final,i);if(r===null){mark(i,null);return}
+ if(r===true){mark(i,true);hint(i,'');next(i);check()}
+ else{mark(i,false);hint(i,r.msg);const key=(i.id||i.dataset.rk+i.dataset.c)+':'+v;clearTimeout(i._t);
+  if(final)mistake(r.ev,key);else i._t=setTimeout(()=>{if(val(i)===v)mistake(r.ev,key)},1500)}
+}
+$$('main input.b').forEach(i=>{i.addEventListener('input',()=>onInput(i,false));i.addEventListener('change',()=>onInput(i,true));
+ i.addEventListener('keydown',e=>{if(e.key==='Enter'){onInput(i,true);}})});
+// helper: exact number; wait while the typed text could still become the answer
+const exact=(ans,wrong)=>(v,final)=>{if(v===ans)return true;if(!final&&ans.startsWith(v)&&v.length<ans.length)return null;return wrong(v)};
+// pair group (order free): both boxes must be the two values
+function pair(ids,vals,wrong){ids.forEach((id,k)=>rule(id,(v,final)=>{const o=val($('#'+ids[1-k]));
+  if(vals.includes(v)&&v!==o)return true;if(!final&&vals.some(x=>x.startsWith(v)&&x!==o&&v.length<x.length))return null;return wrong(v)}))}
+const H={
+ split:{ev:'mult_split_wrong',msg:'מפרקים לעשרות ויחידות. למשל 72 = 70 + 2.'},
+ cellZero:{ev:'mult_cell_missing_zero',msg:'כמעט! כשכופלים עשרות בעשרות – לא לשכוח את האפסים.'},
+ cell:{ev:'mult_cell_wrong',msg:'בודקים שוב: כופלים את המספר שמעל המשבצת במספר שבצד שלה.'},
+ row1:{ev:'mult_row1_wrong',msg:'שורה ראשונה = שתי המשבצות של השורה התחתונה (כפול 7).'},
+ row2zero:{ev:'mult_row2_missing_zero',msg:'שורה שנייה כופלת בעשרות (30), ולכן היא מתחילה ב־0.'},
+ row2:{ev:'mult_row2_wrong',msg:'שורה שנייה = שתי המשבצות של השורה העליונה (כפול 30).'},
+ tot:{ev:'mult_total_wrong',msg:'ביחד = שורה ראשונה ועוד שורה שנייה.'},
+ c1:{ev:'mult_col_row1_wrong',msg:'שורה ראשונה במאונך היא 64 כפול 7 – אפשר להעתיק מהשורה שמצאת בשלב ד׳.'},
+ c2:{ev:'mult_col_row2_wrong',msg:'שורה שנייה היא 64 כפול 30. מתחילים ב־0 ביחידות.'},
+ ct:{ev:'mult_col_total_wrong',msg:'מחברים את שתי השורות, ספרה ספרה מימין.'},
+ est:{ev:'mult_estimate_wrong',msg:'מעגלים לעשרת הקרובה: 64 קרוב ל־60. ו־37?'},
+ esum:{ev:'mult_estimate_wrong',msg:'כופלים את שני המספרים המעוגלים.'},
+ fden:{ev:'frac_added_denominators',msg:'המכנה לא משתנה! החלקים באותו גודל – סופרים רק חלקים.'},
+ fo:{ev:'frac_other',msg:'סופרים את כל החלקים הצבועים ברצועה.'},
+ fr:{ev:'frac_rest_wrong',msg:'שלם = 8/8. כמה חלקים נשארו לבנים?'}};
+pair(['sa1','sa2'],['60','4'],()=>H.split); pair(['sb1','sb2'],['30','7'],()=>H.split);
+const CELL={c00:'1800',c01:'120',c10:'420',c11:'28'};
+Object.entries(CELL).forEach(([id,a])=>rule(id,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?H.cellZero:H.cell)));
+pair(['r1a','r1b'],['420','28'],()=>H.row1); rule('r1s',exact('448',()=>H.row1));
+pair(['r2a','r2b'],['1800','120'],v=>v==='180'||v==='12'?H.row2zero:H.row2); rule('r2s',exact('1920',v=>v==='192'?H.row2zero:H.row2));
+pair(['tta','ttb'],['448','1920'],v=>v==='192'?H.row2zero:H.tot); rule('tts',exact('2368',v=>v==='640'?H.row2zero:H.tot));
+pair(['e1','e2'],['60','40'],()=>H.est); rule('es',exact('2400',()=>H.esum));
+// column digits
+const COL={r1:' 448',r2:'1920',tot:'2368'};
+$$('#sCol input[data-r]').forEach(i=>{i.dataset.rk='col_'+i.dataset.r;i.maxLength=1});
+['r1','r2','tot'].forEach(r=>rule('col_'+r,(v,f,i)=>{const c=+i.dataset.c,a=COL[r][c];if(v===a)return true;
+ if(r==='r2'&&c===3)return H.row2zero; if(r==='r2'&&COL.r2[c+1]===v)return H.row2zero; return r==='r1'?H.c1:r==='r2'?H.c2:H.ct}));
+// column: type right-to-left (units first)
+$$('#sCol input[data-r]').forEach(i=>i.addEventListener('input',()=>{if(i.classList.contains('ok')){const p=i.closest('td').previousElementSibling?.querySelector('input');if(p&&!p.classList.contains('ok'))setTimeout(()=>p.focus(),120)}}));
+// fractions
+const S=Array(8).fill(0);const strip=$('#strip');
+for(let k=0;k<8;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;drawStrip()});strip.appendChild(b)}
+function drawStrip(){[...strip.children].forEach((b,k)=>b.className=['','B','O'][S[k]]);const nb=S.filter(x=>x==1).length,no=S.filter(x=>x==2).length;
+ $('#nB').textContent=nb;$('#nO').textContent=no;$('#nW').textContent=8-nb-no;const h=$('#stripHint');
+ if(nb===3&&no===2){h.textContent='צבעת 5 חלקים מתוך 8 – ונשארו 3 לבנים.';h.className='hint on good'}else if(nb>3||no>2){h.textContent=nb>3?'יש יותר מ־3 כחולים':'יש יותר מ־2 כתומים';h.className='hint on'}else{h.className='hint'}}
+drawStrip();
+rule('fn',exact('5',()=>H.fo)); rule('fd',exact('8',v=>v==='16'?H.fden:H.fo));
+rule('gn',exact('5',()=>H.fr)); rule('gd',exact('8',v=>v==='16'?H.fden:H.fr)); rule('hn',exact('3',()=>H.fr)); rule('hd',exact('8',v=>v==='16'?H.fden:H.fr));
+// unlock rectangle once split is right; finish messages
+function check(){
+ const ok=id=>$('#'+id).classList.contains('ok');
+ if(ok('sa1')&&ok('sa2')&&ok('sb1')&&ok('sb2')&&$('#c00').disabled){
+  const A=[val($('#sa1')),val($('#sa2'))].sort((x,y)=>y-x),B=[val($('#sb1')),val($('#sb2'))].sort((x,y)=>y-x);
+  $('#hA1').textContent=A[0];$('#hA0').textContent=A[1];$('#hB1').textContent=B[0];$('#hB0').textContent=B[1];
+  $$('#sRect .hd').forEach(x=>x.classList.remove('q'));$$('#sRect input').forEach(x=>x.disabled=false);$('#rectLock').hidden=true}
+ const all1=$$('#ex1 input.b').filter(i=>!i.closest('.cr'));$('#done1').classList.toggle('on',all1.every(i=>i.classList.contains('ok')));
+ $('#done2').classList.toggle('on',$$('#ex2 input.b').every(i=>i.classList.contains('ok')));
+}
+// explanation screens (hash based, so the phone's back gesture also returns)
+let lastEx=null;
+function openX(key,push){$$('.explain').forEach(x=>x.hidden=true);const x=$('#explain-'+key);if(!x)return;x.hidden=false;x.scrollTop=0;document.body.classList.add('xopen');
+ lastEx=key==='mult'?'ex1':'ex2';if(push)history.pushState({x:key},'','#explain-'+key);Stats.ev('open_explain_'+key);LOG.push('open_explain_'+key)}
+function closeX(fromPop){const open=$$('.explain').find(x=>!x.hidden);if(!open)return;open.hidden=true;open.querySelectorAll('video').forEach(v=>v.pause());document.body.classList.remove('xopen');
+ if(!fromPop&&location.hash.startsWith('#explain'))history.back();const ex=$('#'+(lastEx||'ex1'));ex.scrollIntoView({block:'start'});}
+$$('[data-open]').forEach(b=>b.addEventListener('click',()=>openX(b.dataset.open,true)));
+$$('[data-back]').forEach(b=>b.addEventListener('click',()=>closeX(false)));
+window.addEventListener('popstate',()=>{if(location.hash.startsWith('#explain-'))openX(location.hash.slice(9),false);else closeX(true)});
+$$('.vid').forEach(b=>b.addEventListener('click',()=>{const w=b.nextElementSibling;w.hidden=false;const v=w.querySelector('video');v.play().catch(()=>{});b.hidden=true;Stats.ev(b.dataset.ev);LOG.push(b.dataset.ev)}));
+if(location.hash.startsWith('#explain-'))openX(location.hash.slice(9),false);
+</script>
+</body>
+</html>
