@@ -170,10 +170,10 @@ input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:
 .pvt td{border:1px solid var(--line);padding:3px}.pvt tr>td:nth-child(3){border-right:2.5px solid var(--navy)}
 .pvt input.dg{width:38px}input.b.w6{width:84px}.pvlbl{font-size:13px;color:var(--mute);margin:2px 0 0}
 .seqv{direction:ltr;display:grid;grid-template-columns:repeat(10,1fr);align-items:end;max-width:520px;margin:4px auto 2px;row-gap:0}
-.seqv .al{display:flex;align-items:center;justify-content:center;height:30px}
-.seqv .al input.b.ja{width:54px;height:28px;font-size:16px;direction:ltr}.seqv .al input.b.ja::placeholder{color:#9fb6cf}
-.seqv .arc{display:block;height:12px;border:2px solid var(--org);border-bottom:0;border-radius:50% 50% 0 0/100% 100% 0 0;margin:1px 18% 0}
-.seqv .nm{display:flex;align-items:center;justify-content:center;height:40px;font-weight:800;font-size:14px;border-top:2px solid var(--navy)}
+.seqv .al{text-align:center;font-weight:700;color:var(--org);font-size:13px;display:flex;align-items:center;justify-content:center;gap:1px}
+.seqv .al input.b{width:44px}
+.seqv .arc{display:block;height:14px;border:2px solid var(--org);border-bottom:0;border-radius:50% 50% 0 0/100% 100% 0 0;margin:0 18%}
+.seqv .nm{text-align:center;font-weight:800;font-size:14px;border-top:2px solid var(--navy);padding-top:3px}
 .seqv .nm input.b{width:58px}
 .barm{direction:ltr;display:flex;border:2px solid var(--navy);border-radius:8px;overflow:hidden;max-width:520px;margin:4px auto;min-height:30px}
 .barm>span{flex:1;display:flex;align-items:center;justify-content:center;font-weight:700;border-left:1.5px solid var(--navy);background:#dce8f6;font-size:13.5px}
@@ -597,7 +597,7 @@ function testSQ(p){const e=[],t=p.t;if(!(Math.min(...t)>=100&&Math.max(...t)<100
 function newSQ(prev){for(;;){const p=sqParams((20+rnd(1900))*5,pick([15,20,25,30,40,50])*(rnd(5)<2?-1:1));if(testSQ(p).length)continue;if(prev&&prev.s===p.s&&prev.d===p.d)continue;return p}}
 const sqSign=p=>(p.up?'+':'−')+p.D;
 function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t;let g='<div class="seqv">';
- for(let j=0;j<4;j++)g+=`<div class="al" style="grid-column:${2*j+2}/span 2">${G('sq_a'+j,'ja')}</div>`;
+ for(let j=0;j<4;j++)g+=`<div class="al" style="grid-column:${2*j+2}/span 2">${j<2?`<span>${p.up?'+':'−'}</span>`+G('sq_a'+j):`<span id="sq_a${j}">?</span>`}</div>`;
  for(let j=0;j<4;j++)g+=`<i class="arc" style="grid-column:${2*j+2}/span 2"></i>`;
  for(let i=0;i<5;i++)g+=`<div class="nm" style="grid-column:${2*i+1}/span 2">${i<3?fmt(t[i]):`<input class="b w4" id="sq_t${i}" data-h="sq_s2" data-need="sq_j1,sq_j2"${i===3?' data-next="sq_t4"':''}>`}</div>`;
  // step א: a place to work out each jump – bigger minus smaller, numbers given from the sequence
@@ -607,7 +607,7 @@ function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t;let g='<div class="seqv">'
  stp('sq_s1','א. כמה קפצנו? מחסרים: המספר הגדול פחות הקטן',calc)+
  stp('sq_s2','ב. שתי קפיצות זהות – ממשיכים לקפוץ באותו מספר','','sq_j1,sq_j2')+
  endB('sq',`הכלל: כל פעם ${p.up?'מוסיפים':'מחסרים'} ${L(p.D)}. ${L(t.map(fmt).join(', '))}`);
- prep($('#sq_body'));$$('#sq_body .ja').forEach(x=>x.placeholder='?');
+ prep($('#sq_body'));
  [1,2].forEach(j=>{const big=Math.max(t[j],t[j-1]),sm=Math.min(t[j],t[j-1]),h=Math.ceil(sm/100)*100;
   rule('sq_j'+j,exact(p.D,v=>Math.abs(+v-p.D)===100?H('sq_diff_hundred',`שימו לב למעבר מאה – ההפרש קטן ממאה. סופרים מ-⁠${L(fmt(sm))} עד ${L(fmt(h))}, ומשם עד ${L(fmt(big))}.`)
    :H('sq_jump_wrong',sqCross(big,sm)&&h<big?`סופרים קדימה מהקטן לגדול: מ-⁠${L(fmt(sm))} עד ${L(fmt(h))} זה ${L(h-sm)}, ועוד עד ${L(fmt(big))} זה ${L(big-h)}. כמה ביחד?`:`מחסרים: ${L(fmt(big)+' − '+fmt(sm))}. רק העשרות והיחידות משתנות.`)))});
@@ -616,7 +616,7 @@ function renderSQ(p){SQ=p;clearSeen('sq');const t=p.t;let g='<div class="seqv">'
    :`שימו לב למעבר מאה: ב-⁠${L(fmt(t[i-1]))} יש רק ${L(t[i-1]%100)} מעל המאה, ומחסרים ${L(p.D)} – אז יורדים למאה הקודמת.`)
   :v===String(t[i-1]-p.d)?H('sq_wrong_direction',p.up?`הסדרה עולה – מוסיפים ${L(p.D)}, לא מחסרים.`:`הסדרה יורדת – מחסרים ${L(p.D)}, לא מוסיפים.`)
   :H('sq_continue_wrong',`${p.up?'מוסיפים':'מחסרים'} ${L(p.D)} ${p.up?'למספר':'מהמספר'} הקודם: ${L(fmt(t[i-1])+(p.up?' + ':' − ')+p.D)}`))))}
-function checkSQ(){if(!SQ)return;const j=okId('sq_j1')&&okId('sq_j2'),v=sqSign(SQ);[0,1].forEach(k=>autoIf('sq_a'+k,okId('sq_j'+(k+1)),v));[2,3].forEach(k=>autoIf('sq_a'+k,j,v));setFin('sq',okId('sq_t3')&&okId('sq_t4'))}
+function checkSQ(){if(!SQ)return;const j=okId('sq_j1')&&okId('sq_j2'),v=sqSign(SQ);[0,1].forEach(k=>autoIf('sq_a'+k,okId('sq_j'+(k+1)),SQ.D));[2,3].forEach(k=>txt('sq_a'+k,j?v:'?'));setFin('sq',okId('sq_t3')&&okId('sq_t4'))}
 
 /* ================= 3. column addition / subtraction ================= */
 let AS=null;
