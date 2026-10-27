@@ -153,6 +153,7 @@ input.b{width:48px;height:32px;font-size:16px;border-width:1.5px;border-radius:7
 .strip{height:44px}.fr{font-size:16px}.fr input.b{width:42px;height:32px}.done{font-size:13px;padding:6px 9px}
 @media(max-width:430px){.eq.sum{font-size:15px}.eq.sum input.b.w4{width:56px;font-size:16px}}
 .info .ic{font:900 15px system-ui,-apple-system,sans-serif;font-style:normal}
+input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:var(--navy);pointer-events:none}input.b.given.ok{border-style:solid}
 </style>
 </head>
 <body>
@@ -319,14 +320,19 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
  group(['m_p2a','m_p2b'],[c[2],c[3]],()=>HM.pair(c[2],c[3]));rule('m_p2s',exact(p.P2,()=>HM.pair(c[2],c[3])));
  group(['m_pta','m_ptb'],[p.P1,p.P2],()=>HM.pairsum);rule('m_pts',exact(p.T,()=>HM.pairsum));
  p.cols.forEach((x,k)=>rule('m_d'+k,v=>{if(v===String(x.d))return true;if(x.cin>0&&v===String((x.s-x.cin)%10))return HM.carry(x.cin);return HM.digit}));
+ // pairs: the two numbers of each pair come straight from the rectangle; the kid only adds
+ [['m_p1a',c[0]],['m_p1b',c[1]],['m_p2a',c[2]],['m_p2b',c[3]]].forEach(([id,v])=>giv(id,v));['m_pta','m_ptb'].forEach(id=>giv(id,''));
  group(['m_e1','m_e2'],[p.eA,p.eB],()=>HM.est(Math.abs(p.A-p.eA)>=Math.abs(p.B-p.eB)?p.A:p.B));rule('m_es',exact(p.E,()=>HM.esum));
 }
+function giv(id,v){const x=document.getElementById(id);x.value=v===''?'':String(v);x.readOnly=true;x.tabIndex=-1;x.classList.add('given');x.classList.toggle('ok',v!=='')}
+function auto(id,src,v){const x=document.getElementById(id);const k=okId(src);if(k&&x.value!==String(v)){x.value=String(v);x.classList.add('ok')}else if(!k&&x.value){x.value='';x.classList.remove('ok')}}
 function setWay(w){M.way=w;$$('#ex1 .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way===w)));
  $('#m_pairs').hidden=w!=='pairs';$('#m_col').hidden=w!=='col';hint($('#m_pairs'),'');
  const f=w==='pairs'?['m_p1a','m_p1b','m_p1s','m_p2a','m_p2b','m_p2s','m_pta','m_ptb','m_pts'].map(x=>document.getElementById(x)).find(x=>!x.classList.contains('ok')):[...Array(M.n).keys()].map(k=>document.getElementById('m_d'+k)).find(x=>!x.classList.contains('ok'));
  if(f)f.focus();checkAll()}
 const sumIds=()=>M.way==='pairs'?['m_p1a','m_p1b','m_p1s','m_p2a','m_p2b','m_p2s','m_pta','m_ptb','m_pts']:M.way==='col'?[...Array(M.n).keys()].map(k=>'m_d'+k):['x'];
 function checkMult(){const p=M;if(!p)return;
+ auto('m_pta','m_p1s',p.P1);auto('m_ptb','m_p2s',p.P2);
  if(['m_sa1','m_sa2','m_sb1','m_sb2'].every(okId)&&$('#m_c0').disabled){
   $('#m_hA1').textContent=p.a1*10;$('#m_hA0').textContent=p.a0;$('#m_hB1').textContent=p.b1*10;$('#m_hB0').textContent=p.b0;
   $$('#m_sRect .hd').forEach(x=>x.classList.remove('q'));$$('#m_sRect input').forEach(x=>x.disabled=false);$('#m_rectLock').hidden=true}
