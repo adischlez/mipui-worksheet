@@ -129,7 +129,7 @@ body.xopen{overflow:hidden}
  <div id="ex1body"></div>
 </section>
 
-<section class="card" id="ex2">
+<section class="card" id="ex2" hidden>
  <div class="ch"><span class="n">2</span><h2 tabindex="-1">חיבור שברים עם אותו מכנה</h2>
   <button class="info" data-open="frac" aria-label="הסבר על חיבור שברים"><span class="ic">i</span>הסבר</button></div>
  <div id="ex2body"></div>
@@ -345,9 +345,9 @@ function ev(n){LOG.push(n);Stats.ev(n)}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-more],[data-nexttopic],[data-top]');if(!t)return;
  if(t.dataset.more==='mult'){ev('more_practice_mult');renderMult(newMult(M));$('#ex1').scrollIntoView({block:'start'})}
  else if(t.dataset.more==='frac'){ev('more_practice_frac');renderFrac(newFrac(F));$('#ex2').scrollIntoView({block:'start'})}
- else if(t.dataset.nexttopic==='mult'){ev('next_topic');const x2=$('#ex2'),de=document.documentElement,need=x2.getBoundingClientRect().top+scrollY+innerHeight-de.scrollHeight;if(need>0)document.body.style.paddingBottom=(parseFloat(getComputedStyle(document.body).paddingBottom)+need+8)+'px';x2.scrollIntoView({block:'start'});$('#ex2 h2').focus({preventScroll:true})}
+ else if(t.dataset.nexttopic==='mult'){ev('next_topic');$('#ex1').hidden=true;$('#ex2').hidden=false;window.scrollTo(0,$('#ex2').getBoundingClientRect().top+scrollY-8);$('#ex2 h2').focus({preventScroll:true})}
  else if(t.dataset.nexttopic==='frac'){ev('next_topic');$('#f_note').hidden=false;$('#f_note').scrollIntoView({block:'nearest'})}
- else if(t.dataset.top){window.scrollTo(0,0);$('#ex1 h2').focus({preventScroll:true})}});
+ else if(t.dataset.top){$('#ex2').hidden=true;$('#ex1').hidden=false;$('#f_note').hidden=true;window.scrollTo(0,0);$('#ex1 h2').focus({preventScroll:true})}});
 // for testing only: verify the generators on many random trials (no data leaves the page)
 window.__selfTest=n=>{const bad=[];let m=null,f=null;for(let i=0;i<n;i++){const m2=newMult(m);const e=checkMult2(m2);
   if(!multOk(m2.A,m2.B))e.push('range');if(m&&m2.A===m.A&&m2.B===m.B)e.push('repeat');if(e.length)bad.push([m2.A,m2.B,e]);m=m2;
