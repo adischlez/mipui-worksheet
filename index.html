@@ -54,6 +54,24 @@ input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
 .sens span{flex-basis:100%}
 .sens[hidden]{display:none}
 .btn.yn{min-width:84px}.btn.yn.ok{background:var(--good);border-color:var(--good);color:#fff}
+.seg{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 10px}
+.seg span{flex-basis:100%;font-weight:600}
+.btn.segb{min-height:52px;min-width:140px;flex:1;max-width:220px;font-size:17px}
+.btn.segb[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.cadd{direction:ltr;border-collapse:collapse;margin:6px auto}
+.cadd td{padding:2px;text-align:center}
+.cadd td.op{font-size:22px;font-weight:800;color:var(--navy);width:30px}
+.cadd td.d{width:50px;height:44px;font-size:24px;font-weight:800}
+.cadd tr.ul td.d{border-bottom:3px solid var(--ink)}
+.cadd tr.res td.d{height:56px}
+.cadd td.d input.dg{width:46px;height:50px;font-size:24px}
+.cadd td.cr input{width:34px;height:30px;font-size:15px;border:1.5px dashed #b9c8da;border-radius:6px}
+.colnote{font-size:13px;color:var(--mute);text-align:center}
+.endbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.endbtns .btn{flex:1;min-width:140px;min-height:52px;font-size:17px}
+.endnote{margin-top:10px;background:#eef4fb;border-radius:10px;padding:10px 12px;font-weight:600;color:var(--navy)}
+.endnote .btn{margin-top:8px;display:block}
+.way[hidden],.endbtns[hidden],.endnote[hidden]{display:none}
 /* strip */
 .strip{direction:ltr;display:flex;height:64px;border:2.5px solid var(--navy);border-radius:10px;overflow:hidden;max-width:560px;margin:6px auto;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 .strip button{flex:1;border:0;border-left:2px solid var(--navy);background:#fff;cursor:pointer;padding:0;min-width:0}
@@ -101,53 +119,20 @@ body.xopen{overflow:hidden}
 </style>
 </head>
 <body>
-<header><div class="hw"><h1>דף עבודה · מיפוי כיתה ה׳</h1><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים.</p></div></header>
+<header><div class="hw"><h1>דף עבודה · מיפוי כיתה ה׳</h1><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
 <main>
 
 <section class="card" id="ex1">
- <div class="ch"><span class="n">1</span><h2>כפל ארוך: <bdi dir="ltr">64 × 37</bdi></h2>
+ <div class="ch"><span class="n">1</span><h2 tabindex="-1">כפל ארוך: <bdi dir="ltr" id="m_title">64 × 37</bdi></h2>
   <button class="info" data-open="mult" aria-label="הסבר על כפל ארוך"><span class="ic">i</span>הסבר</button></div>
  <div class="rem"><b>תזכורת:</b> מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?</div>
-
- <div class="step" id="sSplit"><div class="st">א. מפרקים</div>
-  <div class="eq"><span>64 =</span><input class="b" id="sa1" data-g="splitA"><span>+</span><input class="b" id="sa2" data-g="splitA"></div>
-  <div class="eq"><span>37 =</span><input class="b" id="sb1" data-g="splitB"><span>+</span><input class="b" id="sb2" data-g="splitB"></div>
-  <div class="hint"></div></div>
-
- <div class="step" id="sRect"><div class="st">ב. ממלאים את המלבן</div>
-  <table class="rect"><tr><td class="hd">×</td><td class="hd q" id="hA1">?</td><td class="hd q" id="hA0">?</td></tr>
-  <tr><td class="hd q" id="hB1">?</td><td class="c c00"><input class="b w4" id="c00" disabled></td><td class="c c01"><input class="b w4" id="c01" disabled></td></tr>
-  <tr><td class="hd q" id="hB0">?</td><td class="c c10"><input class="b w4" id="c10" disabled></td><td class="c c11"><input class="b w4" id="c11" disabled></td></tr></table>
-  <div class="lock" id="rectLock">קודם מפרקים בשלב א׳ – אז המלבן נפתח.</div>
-  <div class="hint"></div></div>
-
-
- <div class="step" id="sSum"><div class="st">ג. מחברים את 4 המשבצות</div>
-  <div class="eq sum"><input class="b w4" id="m1" data-g="sum"><span>+</span><input class="b w4" id="m2" data-g="sum"><span>+</span><input class="b w4" id="m3" data-g="sum"><span>+</span><input class="b w4" id="m4" data-g="sum"><span class="nw"><span>=</span><input class="b w4" id="ms"></span></div>
-  <div class="hint"></div></div>
-
- <div class="step" id="sEst"><div class="st">ד. הערכה – מעגלים כל מספר לעשרת הקרובה</div>
-  <div class="eq"><input class="b" id="e1" data-g="est"><span>×</span><input class="b" id="e2" data-g="est"><span>=</span><input class="b w4" id="es"></div>
-  <div class="sens" id="sens" hidden><span>יצא <bdi dir="ltr">2,368</bdi> וההערכה <bdi dir="ltr">2,400</bdi>. הגיוני?</span>
-   <button class="btn yn" data-yn="1">כן</button><button class="btn yn" data-yn="0">לא</button></div>
-  <div class="hint"></div></div>
- <div class="done" id="done1">פתרת! <bdi dir="ltr">64 × 37 = 1,800 + 120 + 420 + 28 = 2,368</bdi> – קרוב להערכה <bdi dir="ltr">2,400</bdi>, אז התשובה הגיונית.</div>
+ <div id="ex1body"></div>
 </section>
 
 <section class="card" id="ex2">
- <div class="ch"><span class="n">2</span><h2>חיבור שברים עם אותו מכנה</h2>
+ <div class="ch"><span class="n">2</span><h2 tabindex="-1">חיבור שברים עם אותו מכנה</h2>
   <button class="info" data-open="frac" aria-label="הסבר על חיבור שברים"><span class="ic">i</span>הסבר</button></div>
- <div class="rem">לחצו על החלקים כדי לצבוע: <bdi dir="ltr"><span class="fr"><span>3</span><span>8</span></span></bdi> בכחול ועוד <bdi dir="ltr"><span class="fr"><span>2</span><span>8</span></span></bdi> בכתום. לחיצה נוספת מחליפה צבע.</div>
- <div class="strip" id="strip"></div>
- <div class="legend"><span><i style="background:var(--blue)"></i>כחול: <b id="nB">0</b></span><span><i style="background:var(--org)"></i>כתום: <b id="nO">0</b></span><span><i style="background:#fff;border:1px solid #999"></i>לבן: <b id="nW">8</b></span></div>
- <div class="hint" id="stripHint"></div>
- <div class="step"><div class="st">כמה צבעתם?</div>
-  <div class="eq"><span class="fr"><span>3</span><span>8</span></span><span>+</span><span class="fr"><span>2</span><span>8</span></span><span>=</span><span class="fr"><input class="b" id="fn"><i class="bar"></i><input class="b" id="fd"></span></div>
-  <div class="hint"></div></div>
- <div class="step"><div class="st">כמה חסר לשלם?</div>
-  <div class="eq"><span class="fr"><span>8</span><span>8</span></span><span>−</span><span class="fr"><input class="b" id="gn"><i class="bar"></i><input class="b" id="gd"></span><span>=</span><span class="fr"><input class="b" id="hn"><i class="bar"></i><input class="b" id="hd"></span></div>
-  <div class="hint"></div></div>
- <div class="done" id="done2">מעולה! <bdi dir="ltr">3/8 + 2/8 = 5/8</bdi>, וחסרים <bdi dir="ltr">3/8</bdi> לשלם.</div>
+ <div id="ex2body"></div>
 </section>
 
 <p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
@@ -191,72 +176,185 @@ function mistake(name,key){if(key){if(seen.has(key))return;seen.add(key)}LOG.pus
 const seen=new Set();
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-$$('input.b').forEach(i=>{i.setAttribute('inputmode','numeric');i.setAttribute('pattern','[0-9]*');i.setAttribute('autocomplete','off');i.type='text'});
+const fmt=n=>n.toLocaleString('en-US'), L=x=>'<bdi dir="ltr">'+x+'</bdi>';
+const FR=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
 const val=i=>i.value.replace(/\D/g,'');
-function hint(el,msg,good){const h=el.closest('.step').querySelector('.hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
+const rnd=n=>Math.floor(Math.random()*n);
+function prep(root){root.querySelectorAll('input.b').forEach(i=>{i.type='text';i.setAttribute('inputmode','numeric');i.setAttribute('pattern','[0-9]*');i.setAttribute('autocomplete','off');i.setAttribute('autocorrect','off');i.setAttribute('spellcheck','false')})}
+function hint(el,msg,good){const h=el.closest('.step').querySelector(':scope > .hint');if(!h)return;h.innerHTML=msg||'';h.classList.toggle('on',!!msg);h.classList.toggle('good',!!good)}
 function mark(i,st){i.classList.toggle('ok',st===true);i.classList.toggle('bad',st===false);if(st===false){i.classList.remove('bad');void i.offsetWidth;i.classList.add('bad')}}
-function next(i){const all=$$('main input.b:not([disabled])');const k=all.indexOf(i);const n=all.slice(k+1).find(x=>!x.classList.contains('ok'));if(n&&!n.closest('.cr'))setTimeout(()=>n.focus({preventScroll:false}),120)}
-/* a "rule" decides: null = still typing, true = right, or {ev,msg} = wrong */
-const RULES={};
-function rule(id,fn){RULES[id]=fn}
+const vis=x=>!x.disabled&&x.offsetParent!==null;
+function next(i){
+ if('next' in i.dataset){const n=i.dataset.next&&document.getElementById(i.dataset.next);if(n&&vis(n)&&!n.classList.contains('ok'))n.focus();return}
+ const all=[...i.closest('.card').querySelectorAll('input.b')].filter(x=>vis(x)&&!x.closest('.cr')&&!x.closest('.cadd'));
+ const n=all.slice(all.indexOf(i)+1).find(x=>!x.classList.contains('ok'));if(n)n.focus()}   // synchronous: keeps the iPhone keypad open
+/* a rule decides: null = still typing, true = right, or {ev,msg} = wrong */
+const RULES={};const rule=(id,fn)=>{RULES[id]=fn};
 function onInput(i,final){
- const f=RULES[i.id]||RULES[i.dataset.rk];if(!f)return;clearTimeout(i._t);const v=val(i);if(!v){mark(i,null);hint(i,'');return}
+ if(i.classList.contains('dg')){const v=val(i);if(v.length>1)i.value=v.slice(-1)}
+ const f=RULES[i.id];if(!f)return;clearTimeout(i._t);const v=val(i);if(!v){mark(i,null);hint(i,'');return}
  const r=f(v,final,i);if(r===null){mark(i,null);return}
- if(r===true){mark(i,true);hint(i,'');next(i);check()}
- else{mark(i,false);hint(i,r.msg);const key=(i.id||i.dataset.rk+i.dataset.c)+':'+v;clearTimeout(i._t);
-  if(final)mistake(r.ev,key);else i._t=setTimeout(()=>{if(val(i)===v)mistake(r.ev,key)},1500)}
-}
-$$('main input.b').forEach(i=>{i.addEventListener('input',()=>onInput(i,false));i.addEventListener('change',()=>onInput(i,true));
- i.addEventListener('keydown',e=>{if(e.key==='Enter'){onInput(i,true);}})});
-// helper: exact number; wait while the typed text could still become the answer
-const exact=(ans,wrong)=>(v,final)=>{if(v===ans)return true;if(!final&&ans.startsWith(v)&&v.length<ans.length)return null;return wrong(v)};
-// pair group (order free): both boxes must be the two values
-function pair(ids,vals,wrong){ids.forEach((id,k)=>rule(id,(v,final)=>{const o=val($('#'+ids[1-k]));
-  if(vals.includes(v)&&v!==o)return true;if(!final&&vals.some(x=>x.startsWith(v)&&x!==o&&v.length<x.length))return null;return wrong(v)}))}
-function group(ids,vals,wrong){ids.forEach(id=>rule(id,(v,final)=>{const left=[...vals];
-  ids.filter(x=>x!==id).map(x=>$('#'+x)).filter(x=>x.classList.contains('ok')).map(val).forEach(o=>{const k=left.indexOf(o);if(k>=0)left.splice(k,1)});
-  if(left.includes(v))return true;if(!final&&left.some(x=>x.startsWith(v)&&v.length<x.length))return null;return wrong(v)}))}
-const H={
- split:{ev:'mult_split_wrong',msg:'מפרקים לעשרות ויחידות. למשל <bdi dir="ltr">72 = 70 + 2</bdi>.'},
- cellZero:{ev:'mult_cell_missing_zero',msg:'כמעט! כשכופלים עשרות בעשרות – לא לשכוח את האפסים.'},
+ if(r==='wait'){mark(i,null);i._t=setTimeout(()=>{if(val(i)===v)onInput(i,true)},1200);return}  // e.g. 22 = 20 + 2: "2" could still become "20"
+ if(r===true){mark(i,true);hint(i,'');next(i);checkAll()}
+ else{mark(i,false);hint(i,r.msg);const key=i.id+':'+v;
+  if(final)mistake(r.ev,key);else i._t=setTimeout(()=>{if(val(i)===v)mistake(r.ev,key)},1500)}}
+const isB=t=>t&&t.matches&&t.matches('main input.b');
+document.addEventListener('input',e=>{if(isB(e.target))onInput(e.target,false)});
+document.addEventListener('change',e=>{if(isB(e.target))onInput(e.target,true)});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&isB(e.target))onInput(e.target,true)});
+const exact=(ans,wrong)=>(v,final)=>{ans=String(ans);if(v===ans)return true;if(!final&&ans.startsWith(v)&&v.length<ans.length)return null;return wrong(v)};
+// order-free group of boxes (multiset of answers)
+function group(ids,vals,wrong){vals=vals.map(String);ids.forEach(id=>rule(id,(v,final)=>{const left=[...vals];
+  ids.filter(x=>x!==id).map(x=>document.getElementById(x)).filter(x=>x.classList.contains('ok')).map(val).forEach(o=>{const k=left.indexOf(o);if(k>=0)left.splice(k,1)});
+  if(left.includes(v))return (!final&&left.some(x=>x.startsWith(v)&&v.length<x.length))?'wait':true;if(!final&&left.some(x=>x.startsWith(v)&&v.length<x.length))return null;return wrong(v)}))}
+function clearSeen(pre){[...seen].forEach(k=>{if(k.startsWith(pre))seen.delete(k)})}
+const okId=id=>{const e=document.getElementById(id);return !!e&&e.classList.contains('ok')};
+
+/* ================= Exercise 1: long multiplication, rectangle only ================= */
+const r10=x=>Math.round(x/10)*10;
+function multParams(A,B){const a1=Math.floor(A/10),a0=A%10,b1=Math.floor(B/10),b0=B%10;
+ const c=[b1*10*a1*10,b1*10*a0,b0*a1*10,b0*a0];const P1=c[0]+c[1],P2=c[2]+c[3],T=P1+P2,eA=r10(A),eB=r10(B);
+ // column addition of the 4 cells, digit by digit from the units
+ const n=String(T).length,cols=[];let carry=0;
+ for(let k=0;k<n;k++){const dig=c.filter(x=>x>=10**k||k===0).map(x=>Math.floor(x/10**k)%10);const s=dig.reduce((a,b)=>a+b,0)+carry;cols.push({dig,cin:carry,s,d:s%10});carry=Math.floor(s/10)}
+ return {A,B,a1,a0,b1,b0,c,P1,P2,T,eA,eB,E:eA*eB,n,cols,carryOut:carry}}
+function multOk(A,B){if(A<12||A>98||B<12||B>98||A%10===0||B%10===0)return false;const p=multParams(A,B);return Math.abs(p.E-p.T)/p.T<=0.25}  // estimate must be a fair check
+function newMult(prev){for(;;){const A=12+rnd(87),B=12+rnd(87);if(!multOk(A,B))continue;
+  if(prev&&((A===prev.A&&B===prev.B)||(A===prev.B&&B===prev.A)))continue;return multParams(A,B)}}
+function checkMult0(p){const e=[];const t=(c,m)=>{if(!c)e.push(m)};
+ t(p.a1*10+p.a0===p.A&&p.b1*10+p.b0===p.B,'split');t(p.c[0]===p.b1*10*p.a1*10&&p.c[3]===p.b0*p.a0,'cells');
+ t(p.P1===p.b1*10*p.A&&p.P2===p.b0*p.A&&p.T===p.A*p.B&&p.c.reduce((a,b)=>a+b,0)===p.T,'sums');
+ t(p.carryOut===0&&p.cols.map(x=>x.d).reverse().join('')===String(p.T),'column');t(p.T<10000&&p.E===r10(p.A)*r10(p.B),'est');
+ t(new Set([p.c[0],p.c[1]]).size===2&&new Set([p.c[2],p.c[3]]).size===2,'distinct');return e}
+let M=null;
+const HM={
+ split:N=>({ev:'mult_split_wrong',msg:`מפרקים לעשרות ויחידות: כמה עשרות יש ב־${L(N)}, וכמה יחידות נשארות?`}),
+ cellZero:{ev:'mult_cell_missing_zero',msg:'כמעט! כשכופלים עשרות – לא לשכוח את האפסים.'},
  cell:{ev:'mult_cell_wrong',msg:'בודקים שוב: כופלים את המספר שמעל המשבצת במספר שבצד שלה.'},
- add:{ev:'mult_sum_wrong',msg:'מעתיקים לכאן את 4 המספרים מהמשבצות שבמלבן – בכל סדר.'},
- sum:{ev:'mult_sum_wrong',msg:'בודקים את החיבור. אפשר בזוגות: <bdi dir="ltr">1,800 + 120</bdi>, ואז <bdi dir="ltr">420 + 28</bdi>, ובסוף מחברים את שתי התוצאות.'},
- est:{ev:'mult_estimate_wrong',msg:'מעגלים לעשרת הקרובה: <bdi dir="ltr">64</bdi> קרוב ל־<bdi dir="ltr">60</bdi>. ו־<bdi dir="ltr">37</bdi>?'},
- esum:{ev:'mult_estimate_wrong',msg:'כופלים את שני המספרים המעוגלים.'},
- fden:{ev:'frac_added_denominators',msg:'המכנה לא משתנה! החלקים באותו גודל – סופרים רק חלקים.'},
- fo:{ev:'frac_other',msg:'סופרים את כל החלקים הצבועים ברצועה.'},
- fr:{ev:'frac_rest_wrong',msg:'שלם = <bdi dir="ltr">8/8</bdi>. כמה חלקים נשארו לבנים?'}};
-pair(['sa1','sa2'],['60','4'],()=>H.split); pair(['sb1','sb2'],['30','7'],()=>H.split);
-const CELL={c00:'1800',c01:'120',c10:'420',c11:'28'};
-Object.entries(CELL).forEach(([id,a])=>rule(id,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?H.cellZero:H.cell)));
-group(['m1','m2','m3','m4'],['1800','120','420','28'],()=>H.add); rule('ms',exact('2368',()=>H.sum));
-pair(['e1','e2'],['60','40'],()=>H.est); rule('es',exact('2400',()=>H.esum));
-// "is it sensible?"
-let sensOk=false;
-$$('.yn').forEach(b=>b.addEventListener('click',()=>{const h=$('#sEst .hint');
- if(b.dataset.yn==='1'){sensOk=true;$$('.yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML='נכון – <bdi dir="ltr">2,368</bdi> קרוב מאוד ל־<bdi dir="ltr">2,400</bdi>.';h.className='hint on good'}
- else{h.innerHTML='שווה לבדוק: בין <bdi dir="ltr">2,368</bdi> ל־<bdi dir="ltr">2,400</bdi> יש רק קצת – זה קרוב או רחוק?';h.className='hint on'}check()}));
-// fractions
-const S=Array(8).fill(0);const strip=$('#strip');
-for(let k=0;k<8;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;drawStrip()});strip.appendChild(b)}
-function drawStrip(){[...strip.children].forEach((b,k)=>b.className=['','B','O'][S[k]]);const nb=S.filter(x=>x==1).length,no=S.filter(x=>x==2).length;
- $('#nB').textContent=nb;$('#nO').textContent=no;$('#nW').textContent=8-nb-no;const h=$('#stripHint');
- if(nb===3&&no===2){h.textContent='צבעת 5 חלקים מתוך 8 – ונשארו 3 לבנים.';h.className='hint on good'}else if(nb>3||no>2){h.textContent=nb>3?'יש יותר מ־3 כחולים':'יש יותר מ־2 כתומים';h.className='hint on'}else{h.className='hint'}}
-drawStrip();
-rule('fn',exact('5',()=>H.fo)); rule('fd',exact('8',v=>v==='16'?H.fden:H.fo));
-rule('gn',exact('5',()=>H.fr)); rule('gd',exact('8',v=>v==='16'?H.fden:H.fr)); rule('hn',exact('3',()=>H.fr)); rule('hd',exact('8',v=>v==='16'?H.fden:H.fr));
-// unlock rectangle once split is right; finish messages
-function check(){
- const ok=id=>$('#'+id).classList.contains('ok');
- if(ok('sa1')&&ok('sa2')&&ok('sb1')&&ok('sb2')&&$('#c00').disabled){
-  const A=[val($('#sa1')),val($('#sa2'))].sort((x,y)=>y-x),B=[val($('#sb1')),val($('#sb2'))].sort((x,y)=>y-x);
-  $('#hA1').textContent=A[0];$('#hA0').textContent=A[1];$('#hB1').textContent=B[0];$('#hB0').textContent=B[1];
-  $$('#sRect .hd').forEach(x=>x.classList.remove('q'));$$('#sRect input').forEach(x=>x.disabled=false);$('#rectLock').hidden=true}
- const all1=$$('#ex1 input.b');$('#sens').hidden=!['e1','e2','es','ms'].every(ok);
- $('#done1').classList.toggle('on',sensOk&&all1.every(i=>i.classList.contains('ok')));
- $('#done2').classList.toggle('on',$$('#ex2 input.b').every(i=>i.classList.contains('ok')));
+ pair:(x,y)=>({ev:'mult_pair_wrong',msg:`בזוג הזה מחברים את שתי המשבצות של אותה שורה במלבן: ${L(fmt(x)+' + '+fmt(y))}.`}),
+ pairsum:{ev:'mult_pairsum_wrong',msg:'מחברים את שתי התוצאות של הזוגות שמעל.'},
+ carry:c=>({ev:'mult_colsum_digit_wrong',msg:`כמעט! לא לשכוח להוסיף את מה שעבר מהעמודה הקודמת (${L(c)}, במשבצת הקטנה למעלה).`}),
+ digit:{ev:'mult_colsum_digit_wrong',msg:'מחברים את כל הספרות בעמודה הזו, ועוד מה שעבר במשבצת הקטנה. אם יוצא 10 או יותר – כותבים רק את ספרת היחידות, ואת העשרות כותבים במשבצת הקטנה מעל העמודה הבאה.'},
+ est:N=>({ev:'mult_estimate_wrong',msg:`מעגלים כל מספר לעשרת הקרובה. למשל ${L(N)} – לאיזו עשרת הוא הכי קרוב?`}),
+ esum:{ev:'mult_estimate_wrong',msg:'כופלים את שני המספרים המעוגלים.'}};
+function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
+ $('#m_title').textContent=`${p.A} × ${p.B}`;const c=p.c;
+ const nums=c.map(String),n=p.n;
+ let col='<table class="cadd"><tr class="cr"><td class="op"></td>';
+ for(let j=0;j<n;j++)col+=j<n-1?'<td class="cr"><input class="b" aria-label="מה שעבר"></td>':'<td></td>';
+ col+='</tr>';nums.forEach((s,r)=>{col+=`<tr${r===3?' class="ul"':''}><td class="op">${r===3?'+':''}</td>`;const pad=' '.repeat(n-s.length)+s;for(const ch of pad)col+=`<td class="d">${ch.trim()}</td>`;col+='</tr>'});
+ col+='<tr class="res"><td class="op"></td>';for(let j=0;j<n;j++){const k=n-1-j;col+=`<td class="d"><input class="b dg" id="m_d${k}" data-next="${k<n-1?'m_d'+(k+1):''}" aria-label="ספרה"></td>`}col+='</tr></table>';
+ $('#ex1body').innerHTML=`
+ <div class="step" id="m_sSplit"><div class="st">א. מפרקים</div>
+  <div class="eq"><span>${p.A} =</span><input class="b" id="m_sa1"><span>+</span><input class="b" id="m_sa2"></div>
+  <div class="eq"><span>${p.B} =</span><input class="b" id="m_sb1"><span>+</span><input class="b" id="m_sb2"></div>
+  <div class="hint"></div></div>
+ <div class="step" id="m_sRect"><div class="st">ב. ממלאים את המלבן</div>
+  <table class="rect"><tr><td class="hd">×</td><td class="hd q" id="m_hA1">?</td><td class="hd q" id="m_hA0">?</td></tr>
+  <tr><td class="hd q" id="m_hB1">?</td><td class="c c00"><input class="b w4" id="m_c0" disabled></td><td class="c c01"><input class="b w4" id="m_c1" disabled></td></tr>
+  <tr><td class="hd q" id="m_hB0">?</td><td class="c c10"><input class="b w4" id="m_c2" disabled></td><td class="c c11"><input class="b w4" id="m_c3" disabled></td></tr></table>
+  <div class="lock" id="m_rectLock">קודם מפרקים בשלב א׳ – אז המלבן נפתח.</div>
+  <div class="hint"></div></div>
+ <div class="step" id="m_sSum"><div class="st">ג. מחברים את 4 המשבצות</div>
+  <div class="lock" id="m_sumLock">קודם ממלאים את 4 המשבצות במלבן.</div>
+  <div id="m_sumBody" hidden>
+   <div class="seg"><span>איך נוח לך לחבר?</span><button class="btn segb" data-way="pairs" aria-pressed="false">בזוגות</button><button class="btn segb" data-way="col" aria-pressed="false">אחד מתחת לשני</button></div>
+   <div class="way" id="m_pairs" hidden>
+    <div class="eq"><span class="lbl2">זוג 1 – השורה העליונה במלבן</span><input class="b w4" id="m_p1a"><span>+</span><input class="b w4" id="m_p1b"><span>=</span><input class="b w4" id="m_p1s"></div>
+    <div class="eq"><span class="lbl2">זוג 2 – השורה התחתונה במלבן</span><input class="b w4" id="m_p2a"><span>+</span><input class="b w4" id="m_p2b"><span>=</span><input class="b w4" id="m_p2s"></div>
+    <div class="eq"><span class="lbl2">מחברים את שני הזוגות</span><input class="b w4" id="m_pta"><span>+</span><input class="b w4" id="m_ptb"><span>=</span><input class="b w4" id="m_pts"></div>
+   </div>
+   <div class="way" id="m_col" hidden>${col}<div class="colnote">כותבים את התוצאה מימין לשמאל – מתחילים ביחידות. המשבצות הקטנות למעלה הן למה שעובר, והן לא נבדקות.</div></div>
+  </div>
+  <div class="hint"></div></div>
+ <div class="step" id="m_sEst"><div class="st">ד. הערכה – מעגלים כל מספר לעשרת הקרובה</div>
+  <div class="eq"><input class="b" id="m_e1"><span>×</span><input class="b" id="m_e2"><span>=</span><input class="b w4" id="m_es"></div>
+  <div class="sens" id="m_sens" hidden><span>יצא ${L(fmt(p.T))} וההערכה ${L(fmt(p.E))}. הגיוני?</span>
+   <button class="btn yn" data-yn="1">כן</button><button class="btn yn" data-yn="0">לא</button></div>
+  <div class="hint"></div></div>
+ <div class="done" id="m_done">פתרת! ${L(`${p.A} × ${p.B} = ${c.map(fmt).join(' + ')} = ${fmt(p.T)}`)} – קרוב להערכה ${L(fmt(p.E))}, אז התשובה הגיונית.</div>
+ <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div>`;
+ prep($('#ex1body'));
+ group(['m_sa1','m_sa2'],[p.a1*10,p.a0],()=>HM.split(p.A));group(['m_sb1','m_sb2'],[p.b1*10,p.b0],()=>HM.split(p.B));
+ c.forEach((a,k)=>{a=String(a);rule('m_c'+k,exact(a,v=>(v+'0'===a||v===a+'0'||v+'00'===a)?HM.cellZero:HM.cell))});
+ group(['m_p1a','m_p1b'],[c[0],c[1]],()=>HM.pair(c[0],c[1]));rule('m_p1s',exact(p.P1,()=>HM.pair(c[0],c[1])));
+ group(['m_p2a','m_p2b'],[c[2],c[3]],()=>HM.pair(c[2],c[3]));rule('m_p2s',exact(p.P2,()=>HM.pair(c[2],c[3])));
+ group(['m_pta','m_ptb'],[p.P1,p.P2],()=>HM.pairsum);rule('m_pts',exact(p.T,()=>HM.pairsum));
+ p.cols.forEach((x,k)=>rule('m_d'+k,v=>{if(v===String(x.d))return true;if(x.cin>0&&v===String((x.s-x.cin)%10))return HM.carry(x.cin);return HM.digit}));
+ group(['m_e1','m_e2'],[p.eA,p.eB],()=>HM.est(Math.abs(p.A-p.eA)>=Math.abs(p.B-p.eB)?p.A:p.B));rule('m_es',exact(p.E,()=>HM.esum));
 }
+function setWay(w){M.way=w;$$('#ex1 .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way===w)));
+ $('#m_pairs').hidden=w!=='pairs';$('#m_col').hidden=w!=='col';hint($('#m_pairs'),'');
+ const f=w==='pairs'?['m_p1a','m_p1b','m_p1s','m_p2a','m_p2b','m_p2s','m_pta','m_ptb','m_pts'].map(x=>document.getElementById(x)).find(x=>!x.classList.contains('ok')):[...Array(M.n).keys()].map(k=>document.getElementById('m_d'+k)).find(x=>!x.classList.contains('ok'));
+ if(f)f.focus();checkAll()}
+const sumIds=()=>M.way==='pairs'?['m_p1a','m_p1b','m_p1s','m_p2a','m_p2b','m_p2s','m_pta','m_ptb','m_pts']:M.way==='col'?[...Array(M.n).keys()].map(k=>'m_d'+k):['x'];
+function checkMult(){const p=M;if(!p)return;
+ if(['m_sa1','m_sa2','m_sb1','m_sb2'].every(okId)&&$('#m_c0').disabled){
+  $('#m_hA1').textContent=p.a1*10;$('#m_hA0').textContent=p.a0;$('#m_hB1').textContent=p.b1*10;$('#m_hB0').textContent=p.b0;
+  $$('#m_sRect .hd').forEach(x=>x.classList.remove('q'));$$('#m_sRect input').forEach(x=>x.disabled=false);$('#m_rectLock').hidden=true}
+ const cellsOk=[0,1,2,3].every(k=>okId('m_c'+k));if(cellsOk&&$('#m_sumBody').hidden){$('#m_sumBody').hidden=false;$('#m_sumLock').hidden=true}
+ const sumOk=cellsOk&&sumIds().every(okId),estOk=['m_e1','m_e2','m_es'].every(okId);
+ $('#m_sens').hidden=!(sumOk&&estOk);
+ const fin=sumOk&&estOk&&p.sens;$('#m_done').classList.toggle('on',fin);$('#m_end').hidden=!fin}
+document.addEventListener('click',e=>{const b=e.target.closest('.segb');if(b&&M)setWay(b.dataset.way)});
+document.addEventListener('click',e=>{const b=e.target.closest('#ex1 .yn');if(!b)return;const h=$('#m_sEst > .hint');
+ if(b.dataset.yn==='1'){M.sens=true;$$('#ex1 .yn').forEach(x=>x.classList.toggle('ok',x===b));h.innerHTML=`נכון – ${L(fmt(M.T))} קרוב ל־${L(fmt(M.E))}.`;h.className='hint on good'}
+ else{h.innerHTML=`שווה לבדוק: ${L(fmt(M.T))} ו־${L(fmt(M.E))} – הם באותו סדר גודל, או רחוקים מאוד?`;h.className='hint on'}checkAll()});
+
+/* ================= Exercise 2: fractions with the same denominator ================= */
+let F=null;
+function newFrac(prev){const Ds=[4,5,6,8,10];for(;;){const d=Ds[rnd(Ds.length)],a=1+rnd(d-2),b=1+rnd(d-1-a);
+  if(prev&&prev.a===a&&prev.b===b&&prev.d===d)continue;return fracParams(a,b,d)}}
+const fracParams=(a,b,d)=>({a,b,d,s:a+b,r:d-a-b});
+function checkFrac(p){const e=[];if(!(p.a>=1&&p.b>=1&&p.s<p.d&&[4,5,6,8,10].includes(p.d)&&p.s+p.r===p.d&&p.r>=1))e.push('frac');return e}
+const HF={fden:{ev:'frac_added_denominators',msg:'המכנה לא משתנה! החלקים באותו גודל – סופרים רק חלקים.'},
+ fo:{ev:'frac_other',msg:'סופרים את כל החלקים הצבועים ברצועה.'},
+ fr:d=>({ev:'frac_rest_wrong',msg:`שלם = ${L(d+'/'+d)}. כמה חלקים נשארו לבנים?`})};
+function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
+ $('#ex2body').innerHTML=`
+ <div class="rem">לוחצים על החלקים כדי לצבוע: ${L(FR(p.a,d))} בכחול ועוד ${L(FR(p.b,d))} בכתום. לחיצה נוספת מחליפה צבע.</div>
+ <div class="strip" id="strip"></div>
+ <div class="legend"><span><i style="background:var(--blue)"></i>כחול: <b id="nB">0</b></span><span><i style="background:var(--org)"></i>כתום: <b id="nO">0</b></span><span><i style="background:#fff;border:1px solid #999"></i>לבן: <b id="nW">${d}</b></span></div>
+ <div class="hint" id="stripHint"></div>
+ <div class="step"><div class="st">כמה צבעתם?</div>
+  <div class="eq">${FR(p.a,d)}<span>+</span>${FR(p.b,d)}<span>=</span><span class="fr"><input class="b" id="f_n"><i class="bar"></i><input class="b" id="f_d"></span></div>
+  <div class="hint"></div></div>
+ <div class="step"><div class="st">כמה חסר לשלם?</div>
+  <div class="eq">${FR(d,d)}<span>−</span><span class="fr"><input class="b" id="f_gn"><i class="bar"></i><input class="b" id="f_gd"></span><span>=</span><span class="fr"><input class="b" id="f_hn"><i class="bar"></i><input class="b" id="f_hd"></span></div>
+  <div class="hint"></div></div>
+ <div class="done" id="f_done">מעולה! ${L(`${p.a}/${d} + ${p.b}/${d} = ${p.s}/${d}`)}, וחסרים ${L(p.r+'/'+d)} לשלם.</div>
+ <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div>
+ <div class="endnote" id="f_note" hidden>זה הנושא האחרון כרגע – נושאים נוספים יגיעו בקרוב. <button class="btn" data-top="1">↑ חזרה להתחלה</button></div>`;
+ prep($('#ex2body'));
+ const S=Array(d).fill(0),strip=$('#strip');
+ for(let k=0;k<d;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;draw()});strip.appendChild(b)}
+ function draw(){[...strip.children].forEach((b,k)=>b.className=['','B','O'][S[k]]);const nb=S.filter(x=>x==1).length,no=S.filter(x=>x==2).length;
+  $('#nB').textContent=nb;$('#nO').textContent=no;$('#nW').textContent=d-nb-no;const h=$('#stripHint');
+  if(nb===p.a&&no===p.b){h.textContent=`צבעת ${p.s} חלקים מתוך ${d} – ונשארו ${p.r} לבנים.`;h.className='hint on good'}
+  else if(nb>p.a||no>p.b){h.textContent=nb>p.a?`יש יותר מ־${p.a} כחולים`:`יש יותר מ־${p.b} כתומים`;h.className='hint on'}else h.className='hint'}
+ draw();
+ const den=v=>v===String(2*d)?HF.fden:null;
+ rule('f_n',exact(p.s,()=>HF.fo));rule('f_d',exact(d,v=>den(v)||HF.fo));
+ rule('f_gn',exact(p.s,()=>HF.fr(d)));rule('f_gd',exact(d,v=>den(v)||HF.fr(d)));rule('f_hn',exact(p.r,()=>HF.fr(d)));rule('f_hd',exact(d,v=>den(v)||HF.fr(d)));
+}
+function checkFracDone(){if(!F)return;const fin=['f_n','f_d','f_gn','f_gd','f_hn','f_hd'].every(okId);$('#f_done').classList.toggle('on',fin);$('#f_end').hidden=!fin}
+function checkAll(){checkMult();checkFracDone()}
+
+/* ================= end-of-exercise buttons ================= */
+function ev(n){LOG.push(n);Stats.ev(n)}
+document.addEventListener('click',e=>{const t=e.target.closest('[data-more],[data-nexttopic],[data-top]');if(!t)return;
+ if(t.dataset.more==='mult'){ev('more_practice_mult');renderMult(newMult(M));$('#ex1').scrollIntoView({block:'start'})}
+ else if(t.dataset.more==='frac'){ev('more_practice_frac');renderFrac(newFrac(F));$('#ex2').scrollIntoView({block:'start'})}
+ else if(t.dataset.nexttopic==='mult'){ev('next_topic');const x2=$('#ex2'),de=document.documentElement,need=x2.getBoundingClientRect().top+scrollY+innerHeight-de.scrollHeight;if(need>0)document.body.style.paddingBottom=(parseFloat(getComputedStyle(document.body).paddingBottom)+need+8)+'px';x2.scrollIntoView({block:'start'});$('#ex2 h2').focus({preventScroll:true})}
+ else if(t.dataset.nexttopic==='frac'){ev('next_topic');$('#f_note').hidden=false;$('#f_note').scrollIntoView({block:'nearest'})}
+ else if(t.dataset.top){window.scrollTo(0,0);$('#ex1 h2').focus({preventScroll:true})}});
+// for testing only: verify the generators on many random trials (no data leaves the page)
+window.__selfTest=n=>{const bad=[];let m=null,f=null;for(let i=0;i<n;i++){const m2=newMult(m);const e=checkMult2(m2);
+  if(!multOk(m2.A,m2.B))e.push('range');if(m&&m2.A===m.A&&m2.B===m.B)e.push('repeat');if(e.length)bad.push([m2.A,m2.B,e]);m=m2;
+  const f2=newFrac(f);const g=checkFrac(f2);if(f&&f2.a===f.a&&f2.b===f.b&&f2.d===f.d)g.push('repeat');if(g.length)bad.push([f2,g]);f=f2}return bad};
+const checkMult2=checkMult0;
+renderMult(multParams(64,37));renderFrac(fracParams(3,2,8));
+window.__state=()=>({M,F});
 // explanation screens (hash based, so the phone's back gesture also returns)
 let lastEx=null;
 function openX(key,push){$$('.explain').forEach(x=>x.hidden=true);const x=$('#explain-'+key);if(!x)return;x.hidden=false;x.scrollTop=0;document.body.classList.add('xopen');
