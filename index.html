@@ -411,7 +411,7 @@ body.scr .finb{visibility:hidden}
    Empty string = disabled: no script is loaded and nothing is sent.
    When set (e.g. 'https://NAME.goatcounter.com/count'), GoatCounter (cookieless) receives a pageview
    and ONLY event names: mistake types and opens of explanation/video. No answers, names, IDs, timing or storage. */
-const GOATCOUNTER_URL = '';
+const GOATCOUNTER_URL = 'https://mipui-eshkol.goatcounter.com/count';
 const Stats=(()=>{const q=[];let ready=false;
  function init(){if(!GOATCOUNTER_URL)return;const s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';
   s.setAttribute('data-goatcounter',GOATCOUNTER_URL);s.onload=()=>{ready=true;q.splice(0).forEach(send)};document.head.appendChild(s)}
