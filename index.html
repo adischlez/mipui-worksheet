@@ -61,10 +61,10 @@ input.b:disabled{border-color:#c9ccd3;background:#f2f2f2}
 .cadd{direction:ltr;border-collapse:collapse;margin:6px auto}
 .cadd td{padding:2px;text-align:center}
 .cadd td.op{font-size:22px;font-weight:800;color:var(--navy);width:30px}
-.cadd td.d{width:50px;height:44px;font-size:24px;font-weight:800}
-.cadd tr.ul td.d{border-bottom:3px solid var(--ink)}
-.cadd tr.res td.d{height:56px}
-.cadd td.d input.dg{width:46px;height:50px;font-size:24px}
+.cadd td.d{width:50px;height:36px;font-size:24px;font-weight:800;vertical-align:bottom}
+.cadd tr.ul td.d{border-bottom:3px solid var(--ink);height:auto;padding:0 2px 1px;vertical-align:bottom}
+.cadd tr.res td.d{height:auto;padding-top:3px;vertical-align:top}
+.cadd td.d input.dg{width:46px;height:44px;font-size:24px}
 .cadd td.cr input{width:34px;height:30px;font-size:15px;border:1.5px dashed #b9c8da;border-radius:6px}
 .colnote{font-size:13px;color:var(--mute);text-align:center}
 .endbtns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
@@ -221,7 +221,7 @@ input.b{height:30px}.cadd td.d input.dg{height:30px}.fr input.b{height:30px}
 section.topic input,section.topic button{scroll-margin-top:calc(var(--tkh) + 8px);scroll-margin-bottom:10px}
 .eq{margin:1px 0}.hint.on{padding:4px 8px;margin-top:3px}
 .rect td.hd{height:22px}.rect td.c{width:80px;height:40px}
-.cadd td.d{height:24px}.cadd tr.res td.d{height:34px}.cadd td.cr input{height:20px}
+.cadd td.d{height:22px;vertical-align:bottom}.cadd tr.ul td.d{height:auto;padding:0 2px 1px}.cadd tr.res td.d{height:auto;padding-top:2px;vertical-align:top}.cadd td.cr input{height:20px}
 .strip{height:36px}.barm{min-height:24px}.barm.fq{min-height:34px}.legend{font-size:12px}
 .seqv{margin:2px auto 0}.seqv .arc{height:10px}
 .pvt th{padding:1px}.pvt td{padding:2px}.pvt tr.sub td{padding:0 2px}
