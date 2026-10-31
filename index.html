@@ -417,13 +417,37 @@ body.scr .finb{visibility:hidden}
 /* ---------- Anonymous aggregate counts (optional) ----------
    Empty string = disabled: no script is loaded and nothing is sent.
    When set (e.g. 'https://NAME.goatcounter.com/count'), GoatCounter (cookieless) receives a pageview
-   and ONLY event names: mistake types and opens of explanation/video. No answers, names, IDs, timing or storage. */
+   and ONLY event names: mistake types, opens of explanation/video, and returning-visit buckets.
+   No answers, names, or personal data are sent. A random anonymous device id + visit count may be
+   kept in localStorage (Adi 2026-10-31) so we can tell new devices from returning ones; the id
+   itself is never sent — only counts: new-device | returning-device and visit-n/<bucket>. */
 const GOATCOUNTER_URL = 'https://mipui-eshkol.goatcounter.com/count';
 const Stats=(()=>{const q=[];let ready=false;
  function init(){if(!GOATCOUNTER_URL)return;const s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';
-  s.setAttribute('data-goatcounter',GOATCOUNTER_URL);s.onload=()=>{ready=true;q.splice(0).forEach(send)};document.head.appendChild(s)}
+  s.setAttribute('data-goatcounter',GOATCOUNTER_URL);s.onload=()=>{ready=true;q.splice(0).forEach(send)};document.head.appendChild(s);
+  try{trackReturn()}catch(e){}}
  function send(n){try{window.goatcounter&&window.goatcounter.count&&window.goatcounter.count({path:n,title:n,event:true})}catch(e){}}
  function ev(n){if(!GOATCOUNTER_URL)return;ready?send(n):q.push(n)}
+ function bucket(n){return n<=3?String(n):n<=5?'4-5':n<=10?'6-10':'11+'}
+ function trackReturn(){
+  const KEY='mipui_anon_v1';
+  let raw=null;try{raw=localStorage.getItem(KEY)}catch(e){return}
+  let data=null;
+  try{data=raw?JSON.parse(raw):null}catch(e){data=null}
+  const now=new Date().toISOString().slice(0,10);
+  const isNew=!data||typeof data!=='object'||!data.id;
+  if(isNew){
+   const id=(crypto.randomUUID?crypto.randomUUID():('x'+Math.random().toString(36).slice(2)+Date.now()));
+   data={id,n:1,first:now};
+   ev('new-device');
+  }else{
+   data.n=(Number(data.n)||0)+1;
+   if(!data.first)data.first=now;
+   ev('returning-device');
+  }
+  try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}
+  ev('visit-n/'+bucket(data.n));
+ }
  return {init,ev}})();
 Stats.init();
 const LOG=[]; // in-page only (for testing); never stored or sent
