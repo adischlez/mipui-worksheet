@@ -20,8 +20,8 @@ bdi,.m{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
 .ch{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .ch .n{font-size:26px;font-weight:800;color:var(--org);line-height:1}
 .ch h2{margin:0;font-size:19px;flex:1}
-.info{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px 6px 8px;min-height:48px;font:700 15px system-ui,-apple-system,sans-serif;cursor:pointer}
-.info .ic{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--navy);font:italic 800 19px Georgia,serif}
+.info{display:inline-flex;align-items:center;gap:6px;border:0;background:var(--navy);color:#fff;border-radius:999px;padding:6px 12px 6px 8px;min-height:48px;font:700 15px system-ui,-apple-system,sans-serif;cursor:pointer}
+.info .ic{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#fff;color:var(--navy);font:700 16px system-ui,-apple-system,sans-serif;font-style:normal}
 .rem{background:#fff7ee;border-radius:10px;padding:8px 12px;font-size:14.5px;margin:0 0 10px}
 .step{border-top:1px dashed var(--line);padding:12px 0 8px}
 .st{font-weight:750;color:var(--good);margin:0 0 8px}
@@ -209,11 +209,16 @@ input.b.given{border-style:dashed;border-color:#9fb6cf;background:#f4f7fb;color:
 /* compact 3 (Adi, iPhone: the exercise line must stay on screen) – sticky task line, slim header, tighter steps & visuals. Inputs stay 16px. */
 :root{--vvt:0px;--tkh:40px}
 body{padding-bottom:12px}
-.hw{padding:5px 10px}header h1{font-size:14.5px}header p{font-size:11.5px;margin:1px 0 0}
-.hrow{flex-wrap:nowrap;gap:6px}.pk select{font-size:16px;padding:2px 4px;max-width:58vw}
-@media(max-width:600px){header .h1x{display:none}body:not(.t0) header p{display:none}}
-main{padding:5px}.card{padding:6px 8px;margin:0 0 6px}.ch{margin-bottom:1px}.ch h2{font-size:14px}
-.info{min-height:30px;padding:2px 9px 2px 4px}
+.hw{padding:4px 8px}header h1{font-size:14px}header p{font-size:11px;margin:0}
+.hrow{flex-wrap:nowrap;gap:6px;align-items:center}.pk select{font-size:16px;padding:2px 4px;max-width:52vw}
+@media(max-width:600px){header .h1x{display:none}
+ /* tip only on start screen — frees space before first input during exercises */
+ body:not(.scr) header p{display:none}
+ section.topic>.rem:not(.tk){font-size:11.5px;line-height:1.3;padding:2px 6px;margin:0 0 2px}
+ .ch .n{font-size:16px}.ch h2{font-size:13.5px}
+ .prog{margin:0 0 4px;padding:3px 8px;font-size:12px}}
+main{padding:4px}.card{padding:5px 7px;margin:0 0 5px}.ch{margin-bottom:1px}.ch h2{font-size:14px}
+.info{min-height:44px;padding:6px 12px 6px 8px;font-size:14px;gap:5px}.info .ic{width:26px;height:26px;font-size:15px}
 .rem{font-size:12px;line-height:1.4;padding:3px 8px;margin:0 0 4px;border-radius:8px}
 .rem.tk{position:sticky;top:var(--vvt);z-index:6;font-size:13px;font-weight:600;background:#fff3e2;margin:0 -4px 4px;padding:4px 8px;box-shadow:0 2px 5px rgba(31,59,92,.16)}
 .step{padding:3px 0 2px}.st{font-size:13px;line-height:1.35;margin:0 0 2px}.lock{font-size:12px}
@@ -253,11 +258,15 @@ section.topic input,section.topic button{scroll-margin-top:calc(var(--tkh) + 8px
 @keyframes conf{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(190px) rotate(320deg)}}
 @media(prefers-reduced-motion:reduce){.play .conf i{animation:none}}
 .pgsvg .vx{pointer-events:all}.pgsvg .ed{pointer-events:stroke}.pgsvg{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
-.finb{flex:0 0 auto;font:600 13px system-ui,sans-serif;background:transparent;color:inherit;border:1px solid currentColor;border-radius:8px;padding:3px 9px;opacity:.85;cursor:pointer;min-height:28px}
+.finb{flex:0 0 auto;font:700 15px system-ui,sans-serif;background:transparent;color:inherit;border:1.5px solid currentColor;border-radius:10px;padding:8px 14px;opacity:.95;cursor:pointer;min-height:44px;min-width:64px;line-height:1.1}
 body.scr .finb{visibility:hidden}
 @media(max-width:600px){.pk select{max-width:46vw}.pk>span{display:none}}
 .qk{display:flex;flex-direction:column;align-items:center;width:100%;min-height:64px;gap:2px;font-size:18px}.qk small{font-size:13px;font-weight:400;opacity:.9}
 #start h2{font-size:18px;margin:2px 0 8px}#start .ecq{margin:12px 0 6px}
+.prog{display:none;text-align:center;font:700 12.5px system-ui,-apple-system,sans-serif;color:var(--navy);background:#eef4fb;border-radius:8px;padding:4px 10px;margin:0 0 6px}
+.prog.on{display:block}
+.start-art{display:flex;justify-content:center;margin:0 0 8px}
+.start-art svg{width:120px;height:56px;display:block}
 .sumh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--good,#2e9b5f);padding-bottom:4px;margin-bottom:6px;font-size:13px}.sumt{font-weight:700}.sumd{opacity:.75}
 #allDone h2{text-align:center;font-size:19px;margin:4px 0 6px}
 .suml{list-style:none;margin:0;padding:0}.suml li{display:flex;align-items:center;gap:6px;padding:3px 2px;border-bottom:1px solid #e6eaf0;font-size:14px;line-height:1.3}
@@ -265,18 +274,12 @@ body.scr .finb{visibility:hidden}
 .sumtot{font-weight:700;text-align:center;margin:8px 0 4px!important}.sumc{text-align:center;margin:4px 0 6px!important;line-height:1.5}
 .shot{font-size:12px;text-align:center;color:#667;margin:2px 0 8px!important}
 
-/* expired-test notice (Adi, 2026-10-29) */
-.expn{background:#fff8ef;border-bottom:3px solid var(--navy);color:var(--navy)}
-.expn .inn{max-width:980px;margin:0 auto;padding:12px 16px;text-align:center;font:700 16px/1.45 system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-.expn .inn span{display:inline-block}
-@media(max-width:430px){.expn .inn{padding:10px 12px;font-size:14.5px;line-height:1.4}}
 </style>
 </head>
 <body>
 <header><div class="hw"><div class="hrow"><h1><span class="h1x">דף עבודה · </span>מיפוי כיתה ה׳</h1><label class="pk"><span>נושא:</span><select id="pick" aria-label="בחירת נושא"></select></label><button class="finb" id="finBtn" type="button" data-end="finish">סיום</button></div><p>כותבים מספר בכל משבצת – היא בודקת לבד. אפשר לנסות שוב כמה שרוצים, ובסוף לבקש עוד תרגיל.</p></div></header>
-<aside class="expn" role="status" aria-live="polite"><div class="inn"><span>מועד מבחן המיפוי עבר, והלומדה כבר אינה רלוונטית. תודה לכל מי שתרגל! 🌟</span></div></aside>
 <main>
-
+<p class="prog" id="prog" aria-live="polite"></p>
 <div id="topics"></div>
 <section class="card endsc" id="endChoice" hidden><h2 tabindex="-1" id="ecT">✓ הגעת לסוף הנושא האחרון</h2><p class="ecq">מה עכשיו?</p>
 <div class="echo"><button class="btn pri" data-end="finish">לסיים</button><button class="btn" data-end="more">עוד תרגיל בנושא הזה</button><button class="btn" data-end="restart">להתחיל הכל מההתחלה</button><button class="btn" data-end="pick" aria-expanded="false">לתרגל נושא מסוים</button></div>
@@ -288,10 +291,21 @@ body.scr .finb{visibility:hidden}
 <p class="shot">📸 רוצה תמונה? אפשר לצלם מסך</p>
 <div class="echo"><button class="btn pri" data-end="back">חזרה לתרגול</button><button class="btn" data-end="home">מסך הפתיחה</button></div></section>
 <section class="card endsc" id="start" hidden><h2 tabindex="-1">איך מתרגלים היום?</h2>
+<div class="start-art" aria-hidden="true"><svg viewBox="0 0 120 56" xmlns="http://www.w3.org/2000/svg" role="presentation">
+ <rect x="8" y="10" width="40" height="36" rx="4" fill="#dce8f6" stroke="#1f3b5c" stroke-width="2"/>
+ <line x1="16" y1="20" x2="40" y2="20" stroke="#3a78c2" stroke-width="2" stroke-linecap="round"/>
+ <line x1="16" y1="28" x2="36" y2="28" stroke="#3a78c2" stroke-width="2" stroke-linecap="round"/>
+ <line x1="16" y1="36" x2="32" y2="36" stroke="#3a78c2" stroke-width="2" stroke-linecap="round"/>
+ <path d="M58 38 L78 12 L86 16 L66 42 Z" fill="#fde3c8" stroke="#e8862a" stroke-width="2" stroke-linejoin="round"/>
+ <path d="M58 38 L62 42 L66 42" fill="none" stroke="#e8862a" stroke-width="2" stroke-linejoin="round"/>
+ <rect x="76" y="10" width="4" height="8" rx="1" transform="rotate(55 78 14)" fill="#1f3b5c"/>
+ <circle cx="100" cy="22" r="10" fill="#fff3e2" stroke="#e8862a" stroke-width="2"/>
+ <path d="M100 15 L102.2 19.8 L107.5 20.4 L103.5 23.8 L104.6 29 L100 26.2 L95.4 29 L96.5 23.8 L92.5 20.4 L97.8 19.8 Z" fill="#e8862a"/>
+</svg></div>
 <button class="btn pri qk" data-start="quick"><b>תרגול זריז ←</b><small>כל 13 הנושאים לפי הסדר · מומלץ</small></button>
 <p class="ecq">או לבחור נושא אחד לתרגול:</p><div class="tgrid sgrid" id="sgrid"></div></section>
 
-<p class="priv">🔒 פרטיות: לא נשמרים שמות, ציונים או תשובות, ואין עוגיות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
+<p class="priv">🔒 פרטיות: בלי שמות ובלי פרטים מזהים. לא נשמרים ציונים או תשובות. נספרים רק מספרים כלליים ואנונימיים – כמה פעמים נפתח הסבר, וכמה פעמים נעשתה כל סוג טעות – כדי לדעת מה קשה.</p>
 </main>
 
 <section class="explain" id="explain-pv" hidden aria-label="הסבר">
@@ -552,7 +566,7 @@ function renderMult(p){M=Object.assign(p,{way:null,sens:false});clearSeen('m_');
    <button class="btn yn" data-yn="1">כן</button><button class="btn yn" data-yn="0">לא</button></div>
   <div class="hint"></div></div>
  <div class="done" id="m_done">פתרת! ${L(`${p.A} × ${p.B} = ${c.map(fmt).join(' + ')} = ${fmt(p.T)}`)} – קרוב להערכה ${L(fmt(p.E))}, אז התשובה הגיונית.</div>
- <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div><div class="endbtns pre" id="m_pre"><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
+ <div class="endbtns" id="m_end" hidden><button class="btn pri" data-more="mult">עוד תרגיל</button><button class="btn" data-nexttopic="mult">לנושא הבא ←</button></div><div class="endbtns pre" id="m_pre" hidden><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
  prep($('#mult_body'));
  M.way='pairs';$$('#ex_mult .segb').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.way==='pairs')));$('#m_pairs').hidden=false;  // default: pairs = rows of the rectangle
  group(['m_sa1','m_sa2'],[p.a1*10,p.a0],()=>HM.split(p.A));group(['m_sb1','m_sb2'],[p.b1*10,p.b0],()=>HM.split(p.B));
@@ -608,7 +622,7 @@ function renderFrac(p){F=p;clearSeen('f_');const d=p.d;
   <div class="eq">${FR(d,d)}<span>−</span><span class="fr"><input class="b" id="f_gn"><i class="bar"></i><input class="b" id="f_gd"></span><span>=</span><span class="fr"><input class="b" id="f_hn"><i class="bar"></i><input class="b" id="f_hd"></span></div>
   <div class="hint"></div></div>
  <div class="done" id="f_done">מעולה! ${L(`${p.a}/${d} + ${p.b}/${d} = ${p.s}/${d}`)}, וחסרים ${L(p.r+'/'+d)} לשלם.</div>
- <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div><div class="endbtns pre" id="f_pre"><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
+ <div class="endbtns" id="f_end" hidden><button class="btn pri" data-more="frac">עוד תרגיל</button><button class="btn" data-nexttopic="frac">לנושא הבא ←</button></div><div class="endbtns pre" id="f_pre" hidden><button class="btn" type="button" disabled tabindex="-1">לנושא הבא ←</button><span class="pren">ייפתח בסוף התרגיל</span></div>`;
  prep($('#frac_body'));
  const S=Array(d).fill(0),strip=$('#strip');
  for(let k=0;k<d;k++){const b=document.createElement('button');b.setAttribute('aria-label','חלק '+(k+1));b.addEventListener('click',()=>{S[k]=(S[k]+1)%3;draw()});strip.appendChild(b)}
@@ -632,12 +646,12 @@ const I=(id,c='',x='')=>`<input class="b ${c}" id="${id}" ${x}>`;
 const G=(id,c='')=>`<input class="b given ${c}" id="${id}" readonly tabindex="-1">`;
 const EQ=(inner,lbl)=>`<div class="eq">${lbl?`<span class="lbl2">${lbl}</span>`:''}${inner}</div>`;
 const S=x=>`<span>${x}</span>`;
-function endB(k,doneHtml){return `<div class="done" id="${k}_done">${doneHtml}</div><div class="endbtns" id="${k}_end" hidden><button class="btn pri" data-more="${k}">עוד תרגיל</button><button class="btn" data-nexttopic="${k}">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button></div><div class="endbtns pre" id="${k}_pre"><button class="btn" type="button" disabled tabindex="-1">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button><span class="pren">ייפתח בסוף התרגיל</span></div>`}
+function endB(k,doneHtml){return `<div class="done" id="${k}_done">${doneHtml}</div><div class="endbtns" id="${k}_end" hidden><button class="btn pri" data-more="${k}">עוד תרגיל</button><button class="btn" data-nexttopic="${k}">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button></div><div class="endbtns pre" id="${k}_pre" hidden><button class="btn" type="button" disabled tabindex="-1">${isLast(k)?'סיום ←':'לנושא הבא ←'}</button><span class="pren">ייפתח בסוף התרגיל</span></div>`}
 function setFin(k,fin){finUpd(k,fin)}
-// end buttons: a disabled 'next' is always shown; when the exercise is done the real buttons appear and are scrolled into view
+// end buttons: hidden until the exercise is done; then the real buttons appear and are scrolled into view
 const FIN={};
 function finUpd(id,fin){const d=document.getElementById(id+'_done'),e=document.getElementById(id+'_end'),pr=document.getElementById(id+'_pre');if(!d||!e)return;
- d.classList.toggle('on',fin);e.hidden=!fin;if(pr)pr.hidden=fin;const was=FIN[id];FIN[id]=fin;
+ d.classList.toggle('on',fin);e.hidden=!fin;if(pr)pr.hidden=true;const was=FIN[id];FIN[id]=fin;
  const nb=e.querySelector('[data-nexttopic]');if(nb){const k=nb.dataset.nexttopic,lab=MODE==='single'?'נושא אחר או סיום ←':(isLast(k)?'סיום ←':'לנושא הבא ←');if(nb.textContent!==lab)nb.textContent=lab;const pb=pr&&pr.querySelector('.btn');if(pb&&pb.textContent!==lab)pb.textContent=lab}
  if(fin&&was===false){const k={m:'mult',f:'frac'}[id]||id;TALLY[k]=(TALLY[k]||0)+1;finShow(e)}}
 // this session only, in page memory: which topics were opened and how many exercises were finished (gone on reload; never stored or sent)
@@ -980,30 +994,31 @@ function checkSS(){const p=SS;if(!p)return;const r=$('#ss_rect');const want=okId
 
 /* ================= topic registry (teacher's order) ================= */
 const TOPICS=[
- {k:'pv',t:'ערך המקום וכתיבת מספר במילים',rem:'מכניסים לטבלה ← קוראים כל קבוצה בנפרד, ואחרי השמאלית אומרים "אלף" ← אפס שומר מקום',gen:newPV,render:renderPV,check:checkPV,test:testPV},
- {k:'sq',t:'סדרות וקפיצות',rem:'מוצאים כמה קופצים ← בודקים שהקפיצות זהות ← ממשיכים באותה קפיצה (זהירות במעבר מאה)',gen:newSQ,render:renderSQ,check:checkSQ,test:testSQ},
- {k:'as',t:'חיבור וחיסור במאונך',rem:'יחידות מתחת ליחידות ← מתחילים מימין ← בחיבור: 10 ומעלה – 1 עובר; בחיסור: אם למעלה קטן – פורטים',gen:newAS,render:renderAS,check:checkAS,test:testAS},
- {k:'op',t:'סדר פעולות חשבון',rem:'כפל וחילוק קודם – מקיפים ← פותרים אותם ← רק אחר כך חיבור וחיסור',gen:newOP,render:renderOP,check:checkOP,test:testOP},
- {k:'mr',t:'כפל בפירוק – מודל המלבן',rem:'מפרקים לעשרות ואחדות ← כופלים כל חלק ← מחברים',gen:newMR,render:renderMR,check:checkMR,test:testMR},
- {k:'mult',t:'כפל ארוך: <bdi dir="ltr" id="m_title"></bdi>',rem:'מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?',gen:p=>newMult(p),render:renderMult,check:checkMult,test:checkMult0,get:()=>M},
- {k:'dv',t:'חילוק ובעיות מילוליות',rem:'מפרקים לחלקים נוחים ← מחלקים כל חלק ← מחברים. בבעיה: קודם מוצאים כמה יש בסך הכול',gen:newDV,render:renderDV,check:checkDV,test:testDV},
- {k:'ms',t:'מספר חסר והיעזרות בתרגיל פתור',rem:'משווים לתרגיל הפתור: מה השתנה ובכמה? ← משנים את המספר החסר באותה כמות',gen:newMS,render:renderMS,check:checkMS,test:testMS},
- {k:'frac',t:'חיבור שברים עם אותו מכנה',rem:'מחברים רק את המונים ← המכנה נשאר אותו דבר ← שלם = מונה ומכנה שווים',gen:p=>newFrac(p),render:renderFrac,check:checkFracDone,test:checkFrac,get:()=>F},
- {k:'fq',t:'שבר מתוך כמות',rem:'מחלקים במכנה ← צובעים כמו המונה ← כופלים במונה',gen:newFQ,render:renderFQ,check:checkFQ,test:testFQ},
- {k:'pa',t:'היקף ושטח של מלבן',rem:'צלעות שמול זו את זו שוות ← חצי היקף = אורך + רוחב ← שטח = אורך × רוחב (בסמ״ר)',gen:newPA,render:renderPA,check:checkPA,test:testPA},
- {k:'pg',t:'מצולעים: שם, אלכסונים וצלעות סמוכות',rem:'סופרים קודקודים ← השם לפי המספר ← צלע על הגבול, אלכסון בפנים ← סמוכות נוגעות',gen:newPG,render:renderPG,check:checkPG,test:testPG},
- {k:'ss',t:'אותם ריבועים – אותו שטח',rem:'סופרים ריבועים ← סופרים קודקודים ← מסדרים מחדש – השטח לא משתנה',gen:newSS,render:renderSS,check:checkSS,test:testSS}];
+ {k:'pv',t:'ערך המקום וכתיבת מספר במילים',ts:'ערך המקום',rem:'מכניסים לטבלה ← קוראים כל קבוצה בנפרד, ואחרי השמאלית אומרים "אלף" ← אפס שומר מקום',gen:newPV,render:renderPV,check:checkPV,test:testPV},
+ {k:'sq',t:'סדרות וקפיצות',ts:'סדרות וקפיצות',rem:'מוצאים כמה קופצים ← בודקים שהקפיצות זהות ← ממשיכים באותה קפיצה (זהירות במעבר מאה)',gen:newSQ,render:renderSQ,check:checkSQ,test:testSQ},
+ {k:'as',t:'חיבור וחיסור במאונך',ts:'חיבור וחיסור',rem:'יחידות מתחת ליחידות ← מתחילים מימין ← בחיבור: 10 ומעלה – 1 עובר; בחיסור: אם למעלה קטן – פורטים',gen:newAS,render:renderAS,check:checkAS,test:testAS},
+ {k:'op',t:'סדר פעולות חשבון',ts:'סדר פעולות',rem:'כפל וחילוק קודם – מקיפים ← פותרים אותם ← רק אחר כך חיבור וחיסור',gen:newOP,render:renderOP,check:checkOP,test:testOP},
+ {k:'mr',t:'כפל בפירוק – מודל המלבן',ts:'כפל בפירוק',rem:'מפרקים לעשרות ואחדות ← כופלים כל חלק ← מחברים',gen:newMR,render:renderMR,check:checkMR,test:testMR},
+ {k:'mult',t:'כפל ארוך: <bdi dir="ltr" id="m_title"></bdi>',ts:'כפל ארוך',rem:'מפרקים את שני המספרים ← ממלאים 4 משבצות במלבן ← מחברים את 4 המשבצות ← הערכה: האם זה הגיוני?',gen:p=>newMult(p),render:renderMult,check:checkMult,test:checkMult0,get:()=>M},
+ {k:'dv',t:'חילוק ובעיות מילוליות',ts:'חילוק ובעיות',rem:'מפרקים לחלקים נוחים ← מחלקים כל חלק ← מחברים. בבעיה: קודם מוצאים כמה יש בסך הכול',gen:newDV,render:renderDV,check:checkDV,test:testDV},
+ {k:'ms',t:'מספר חסר והיעזרות בתרגיל פתור',ts:'מספר חסר',rem:'משווים לתרגיל הפתור: מה השתנה ובכמה? ← משנים את המספר החסר באותה כמות',gen:newMS,render:renderMS,check:checkMS,test:testMS},
+ {k:'frac',t:'חיבור שברים עם אותו מכנה',ts:'חיבור שברים',rem:'מחברים רק את המונים ← המכנה נשאר אותו דבר ← שלם = מונה ומכנה שווים',gen:p=>newFrac(p),render:renderFrac,check:checkFracDone,test:checkFrac,get:()=>F},
+ {k:'fq',t:'שבר מתוך כמות',ts:'שבר מתוך כמות',rem:'מחלקים במכנה ← צובעים כמו המונה ← כופלים במונה',gen:newFQ,render:renderFQ,check:checkFQ,test:testFQ},
+ {k:'pa',t:'היקף ושטח של מלבן',ts:'היקף ושטח',rem:'צלעות שמול זו את זו שוות ← חצי היקף = אורך + רוחב ← שטח = אורך × רוחב (בסמ״ר)',gen:newPA,render:renderPA,check:checkPA,test:testPA},
+ {k:'pg',t:'מצולעים: שם, אלכסונים וצלעות סמוכות',ts:'מצולעים',rem:'סופרים קודקודים ← השם לפי המספר ← צלע על הגבול, אלכסון בפנים ← סמוכות נוגעות',gen:newPG,render:renderPG,check:checkPG,test:testPG},
+ {k:'ss',t:'אותם ריבועים – אותו שטח',ts:'אותו שטח',rem:'סופרים ריבועים ← סופרים קודקודים ← מסדרים מחדש – השטח לא משתנה',gen:newSS,render:renderSS,check:checkSS,test:testSS}];
 const TK=Object.fromEntries(TOPICS.map((t,i)=>[t.k,Object.assign(t,{i})]));
 function isLast(k){return TK[k]&&TK[k].i===TOPICS.length-1}
 const ST={};
 const curState=k=>TK[k].get?TK[k].get():ST[k];
 function newTopic(k){const T=TK[k];ST[k]=T.gen(curState(k)||null);T.render(ST[k]);checkAll()}
 $('#topics').innerHTML=TOPICS.map((T,i)=>`<section class="card topic" id="ex_${T.k}" hidden>
- <div class="ch"><span class="n">${i+1}</span><h2 tabindex="-1">${T.t}</h2><button class="info" data-open="${T.k}" aria-label="עזרה"><span class="ic">?</span>עזרה</button></div>
+ <div class="ch"><span class="n">${i+1}</span><h2 tabindex="-1">${T.t}</h2><button class="info" data-open="${T.k}" aria-label="עזרה">עזרה<span class="ic" aria-hidden="true">?</span></button></div>
  <div class="rem"><b>תזכורת:</b> ${T.rem}</div><div id="${T.k}_body"></div></section>`).join('');
-$('#pick').innerHTML=TOPICS.map((T,i)=>`<option value="${T.k}">${i+1}. ${T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</option>`).join('');
+$('#pick').innerHTML=TOPICS.map((T,i)=>`<option value="${T.k}">${i+1}. ${T.ts||T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</option>`).join('');
 let CUR=0;
 function showTopic(i,focus){CUR=i;document.body.classList.toggle('t0',i===0);$$('section.topic').forEach(s=>s.hidden=true);$$('.endsc').forEach(x=>x.hidden=true);document.body.classList.remove('scr');VIS.add(TOPICS[i].k);const s=$('#ex_'+TOPICS[i].k);s.hidden=false;$('#pick').value=TOPICS[i].k;
+ const pg=$('#prog');if(pg){if(MODE==='quick'){pg.textContent='נושא '+(i+1)+' מתוך '+TOPICS.length;pg.classList.add('on')}else{pg.textContent='';pg.classList.remove('on')}}
  window.scrollTo(0,0);if(focus!==false)s.querySelector('h2').focus({preventScroll:true});checkAll();tkSize()}
 function checkAll(){for(let r=0;r<2;r++){TOPICS.forEach(T=>T.check());locks()}}
 
@@ -1015,15 +1030,17 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-more],[dat
  else if(t.dataset.nexttopic){ev('next_topic');const i=TK[t.dataset.nexttopic].i;if(MODE==='single'){$('#ecT').textContent='✓ סיימת תרגיל בנושא הזה';endScr('endChoice')}else if(i<TOPICS.length-1)showTopic(i+1);else{$('#ecT').textContent='✓ הגעת לסוף הנושא האחרון';endScr('endChoice');ev('all_topics_done')}}
  else if(t.dataset.top)showTopic(0)});
 function endScr(id,focus){$$('section.topic,.endsc').forEach(x=>x.hidden=true);$('#tgrid').hidden=true;$('[data-end=pick]').setAttribute('aria-expanded','false');
- document.body.classList.add('scr');document.body.classList.toggle('t0',id==='start');const s=$('#'+id);s.hidden=false;s.classList.remove('play');void s.offsetWidth;s.classList.add('play');window.scrollTo(0,0);if(focus!==false)$('#'+id+' h2').focus({preventScroll:true})}
+ document.body.classList.add('scr');document.body.classList.toggle('t0',id==='start');const pg=$('#prog');if(pg){pg.textContent='';pg.classList.remove('on')}
+ const s=$('#'+id);s.hidden=false;s.classList.remove('play');void s.offsetWidth;s.classList.add('play');window.scrollTo(0,0);if(focus!==false)$('#'+id+' h2').focus({preventScroll:true})}
 const tName=T=>T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'');
-$('#sgrid').innerHTML=$('#tgrid').innerHTML=TOPICS.map((T,i)=>`<button class="btn" data-goto="${i}">${i+1}. ${T.t.replace(/<[^>]+>.*$/,'').replace(/:\s*$/,'')}</button>`).join('');
+$('#sgrid').innerHTML=$('#tgrid').innerHTML=TOPICS.map((T,i)=>`<button class="btn" data-goto="${i}">${i+1}. ${T.ts||tName(T)}</button>`).join('');
 const fresh=k=>{if(FIN[{mult:'m',frac:'f'}[k]||k])newTopic(k)};
 function summary(){const L2=[...VIS].length?TOPICS.filter(T=>VIS.has(T.k)||TALLY[T.k]):[];let tot=0;
  $('#sumList').innerHTML=L2.map(T=>{const n=TALLY[T.k]||0;tot+=n;return `<li class="${n?'y':'n'}"><span class="ck">${n?'✓':'◦'}</span><span class="tn">${TK[T.k].i+1}. ${tName(T)}</span><span class="tc">${n?(n===1?'תרגיל אחד':n+' תרגילים'):'בתרגול'}</span></li>`}).join('')||'<li class="n"><span class="tn">עוד לא תרגלת היום – אפשר להתחיל עכשיו</span></li>';
  const nt=L2.filter(T=>TALLY[T.k]).length;$('#sumTot').textContent=tot?`סה״כ: ${tot===1?'תרגיל אחד':tot+' תרגילים'} ${nt===1?'בנושא אחד':'ב-\u2060'+nt+' נושאים'}`:'';
  $('#sumDate').textContent=new Date().toLocaleDateString('he-IL');
- $('#sumClose').textContent=(L2.length===TOPICS.length?'עברת על כל נושאי המיפוי. ':'')+'השקעת והתמדת – וזה מה שעושה את ההבדל. בהצלחה במיפוי ביום חמישי! 🍀'}
+ const doneN=TOPICS.filter(T=>TALLY[T.k]).length;
+ $('#sumClose').textContent=(doneN===TOPICS.length?'עברת על כל נושאי המיפוי. ':'')+'השקעת והתמדת – וזה מה שעושה את ההבדל. כל הכבוד! 🍀'}
 function setMode(m){MODE=m;checkAll()}
 document.addEventListener('click',e=>{const t=e.target.closest('[data-end],[data-goto],[data-start]');if(!t)return;
  if(t.dataset.start){ev('quick_practice');setMode('quick');fresh(TOPICS[0].k);showTopic(0);return}
