@@ -1,0 +1,36 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>בחירת קול · מילה במילה</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#F4F7FF;color:#203b5c;font:17px/1.45 Arial,sans-serif}main{max-width:640px;margin:auto;padding:14px max(12px,env(safe-area-inset-right)) 40px max(12px,env(safe-area-inset-left))}
+h1{font-size:23px;margin:4px 0}p{margin:4px 0 12px;color:#4a5d75;font-size:15px}
+.w{background:#fff;border:1px solid #d5dfec;border-radius:14px;padding:10px 12px;margin:10px 0}
+.hd{display:flex;justify-content:space-between;align-items:baseline}.en{font-size:24px;font-weight:700;direction:ltr}.he{color:#4a5d75}
+.g{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.c{display:flex;flex-direction:column;gap:4px}
+button{font:700 15px Arial,sans-serif;min-height:44px;border-radius:12px;border:1.5px solid #b9cadc;background:#fff;color:#203b5c;touch-action:manipulation}
+.pick[aria-pressed=true]{background:#1F8A8A;border-color:#1F8A8A;color:#fff}
+.play.on{background:#e7eef8}
+#sum{background:#fff;border:2px solid #1F8A8A;border-radius:14px;padding:12px;margin-top:16px;direction:ltr;text-align:left;white-space:pre-line;font-size:16px}
+.legend{font-size:14px;color:#4a5d75}
+</style></head><body><main>
+<h1>הקשיבו ל־4 הקראות לכל מילה ובחרו את הברורה ביותר</h1>
+<p>▶ משמיע · ✓ בוחר. בסוף יש רשימה לצילום או להעתקה.</p>
+<p class="legend">קול 1: אמריקאית · קול 2: אמריקאי · קול 3: בריטית · קול 4: אמריקאית, איטית יותר</p>
+<div id="list"></div>
+<h2 style="font-size:19px">ההעתקה שלי</h2><div id="sum"></div>
+<button id="copy" style="width:100%;margin-top:8px">העתקת הרשימה</button>
+</main><script>
+const W=[['age','גיל'],['bathroom','חדר אמבטיה'],['building','בניין'],['flat','דירה'],['guitar','גיטרה'],['her','שלה'],['like','כמו'],['same','אותו הדבר'],['sofa','ספה'],['soon','בקרוב'],['teach','ללמד'],['toilet','אסלה']];
+let picks={};try{picks=JSON.parse(localStorage.getItem('voicepick')||'{}')}catch(e){}
+const audio=new Audio();let cur=null;
+const list=document.getElementById('list');
+W.forEach(([w,h])=>{const d=document.createElement('div');d.className='w';
+ d.innerHTML=`<div class="hd"><span class="en" lang="en">${w}</span><span class="he">${h}</span></div><div class="g">`+[1,2,3,4].map(n=>`<div class="c"><button class="play" data-f="audio/${w}-${n}.mp3">▶ קול ${n}</button><button class="pick" data-w="${w}" data-n="${n}" aria-pressed="false">✓</button></div>`).join('')+'</div>';
+ list.append(d)});
+document.querySelectorAll('.play').forEach(b=>b.onclick=()=>{if(cur)cur.classList.remove('on');cur=b;b.classList.add('on');audio.pause();audio.src=b.dataset.f;audio.currentTime=0;audio.play().catch(()=>{})});
+audio.onended=()=>{if(cur)cur.classList.remove('on')};
+document.querySelectorAll('.pick').forEach(b=>b.onclick=()=>{picks[b.dataset.w]=+b.dataset.n;try{localStorage.setItem('voicepick',JSON.stringify(picks))}catch(e){}draw()});
+function draw(){document.querySelectorAll('.pick').forEach(b=>b.setAttribute('aria-pressed',picks[b.dataset.w]===+b.dataset.n));
+ document.getElementById('sum').textContent=W.map(([w])=>`${w}: ${picks[w]?'קול '+picks[w]:'—'}`).join('\n')}
+document.getElementById('copy').onclick=()=>{const t=document.getElementById('sum').textContent;navigator.clipboard?.writeText(t).then(()=>{copy.textContent='הועתק ✓'},()=>{})};
+draw();
+</script></body></html>
