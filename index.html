@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; media-src 'self'; form-action https://formsubmit.co; frame-src https://formsubmit.co; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; media-src 'self'; form-action https://api.web3forms.com; frame-src https://api.web3forms.com; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
 <style>
 *{box-sizing:border-box}
 :root{--navy:#203b5c;--mc:#1F8A8A;--mt:#17706F;--md:#146565}
@@ -343,8 +343,8 @@ $('report').onclick=()=>openFb('תרגול');
 document.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{fbFrom=$('end').hidden?'תפריט':'סוף סבב';$('fbmsg').textContent='';$('fbsheet').hidden=false;$('fbtext').focus()});
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{fbType=c.dataset.t;document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c))});
 $('fbclose').onclick=()=>{$('fbsheet').hidden=true};
-// FEEDBACK HOOKUP: paste the Google Form "formResponse" URL and its entry ids here,
-const FORM_ACTION='https://formsubmit.co/eshkol+feedback@mail.grokbot.com';   // e.g. https://docs.google.com/forms/d/e/<ID>/formResponse
+// Feedback endpoint (hidden POST into the fbsink iframe)
+const FORM_ACTION='https://api.web3forms.com/submit';   // e.g. https://docs.google.com/forms/d/e/<ID>/formResponse
 const FORM_FIELDS={type:'type',text:'text',mode:'mode',screen:'screen',iphone:'iphone'}; // e.g. 'entry.123456'
 $('fbform').onsubmit=e=>{
   e.preventDefault();
@@ -354,7 +354,8 @@ $('fbform').onsubmit=e=>{
   const data={type:fbType||'לא נבחר',text,mode:mode?titles[mode]:'—',screen:fbFrom,iphone:/iPhone|iPad/.test(navigator.userAgent)?'כן':'לא'};
   const f=document.createElement('form');f.method='POST';f.action=FORM_ACTION;f.target='fbsink';f.hidden=true;
   for(const k in data){if(!FORM_FIELDS[k])continue;const x=document.createElement('input');x.type='hidden';x.name=FORM_FIELDS[k];x.value=data[k];f.append(x)}
-  for(const [k,v] of [['_captcha','false'],['_subject','דיווח מילה במילה']]){const x=document.createElement('input');x.type='hidden';x.name=k;x.value=v;f.append(x)}
+  for(const [k,v] of [['access_key','445cabfd-7c6f-4743-8149-992818386210'],['subject','דיווח מילה במילה'],['from_name','מילה במילה']]){const x=document.createElement('input');x.type='hidden';x.name=k;x.value=v;f.append(x)}
+  {const hp=document.createElement('input');hp.type='checkbox';hp.name='botcheck';hp.hidden=true;hp.tabIndex=-1;f.append(hp)}
   document.body.append(f);f.submit();f.remove();
   msg.textContent='✓ תודה, הדיווח נשמר.';$('fbtext').value='';fbType='';
   document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
