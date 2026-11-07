@@ -1,30 +1,100 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f1f5fa;color:#203b5c;font:18px/1.5 Arial,sans-serif}main{max-width:600px;margin:auto;padding:20px 16px 30px}header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.brand{font-weight:700}.tag{font-size:13px;background:#e3eaf3;padding:3px 10px;border-radius:20px}h1{font-size:30px;margin:5px 0 8px;line-height:1.25}h2{font-size:25px;margin:8px 0}p{margin:8px 0 16px}.muted{color:#50627a;font-size:16px}.card{background:white;border:1px solid #d5dfec;border-radius:18px;padding:20px;margin-bottom:14px}.mode{display:block;text-align:right;width:100%;background:white;border:1px solid #b9cadc;border-radius:14px;padding:15px 17px;margin:10px 0;color:inherit}.mode strong{display:block;font-size:21px}.mode span{display:block;font-size:16px;font-weight:400;margin-top:2px}.mode.recommended{border:2px solid #216d71;background:#f1faf8}.badge{font-size:13px!important;display:inline!important;background:#d9eee7;padding:2px 8px;border-radius:12px;margin-right:6px}button,a{touch-action:manipulation}button{font:700 17px Arial,sans-serif;cursor:pointer;min-height:46px}button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3px}button:disabled{cursor:default;opacity:.6}.primary{background:#203b5c;color:white;border:0;border-radius:11px;padding:12px 20px}.secondary{background:#edf3f8;color:#203b5c;border:1px solid #bacbdb;border-radius:11px;padding:10px 14px}.link{border:0;background:transparent;color:#203b5c;text-decoration:underline;padding:8px 0;text-align:right;font-size:16px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.prompt{position:sticky;top:0;z-index:2;background:#fff;border-radius:14px;padding:12px 15px;box-shadow:0 2px 10px #203b5c12;margin-bottom:12px}.progress{font-size:14px;color:#50627a}.prompt h2{font-size:21px;margin:4px 0}.word{font-size:34px;font-weight:700;letter-spacing:1px;text-align:center;direction:ltr;min-height:52px}.meaning{font-size:24px;text-align:center;min-height:45px;margin:8px 0}.boxes{display:flex;direction:ltr;justify-content:center;gap:4px;margin:18px -5px 12px}.letter{width:calc((100vw - 80px)/8);max-width:48px;min-width:25px;height:54px;font:27px Arial,sans-serif;border:1.5px solid #9aacbf;border-radius:7px;text-align:center;direction:ltr;color:#203b5c;background:#fff;padding:0}.letter:focus{outline:3px solid #a7d6d0;border-color:#216d71}.letter.correct{background:#ecf7f1;border-color:#4f896b}.letter.revealed{background:#eef2ff;border-color:#5a6fb5;color:#3a4f9a}.letter.flash{background:#fff8d6;border-color:#d4a514;color:#7a5a00}.letter.wrong-hint{background:#fff6e8;border-color:#c17017}#feedback{min-height:30px;margin:8px 0;font-size:17px}.success{color:#236345}.hint{font-size:16px;color:#6c4b1f;background:#fff6e8;border-radius:8px;padding:8px;margin-bottom:10px}.tiny{font-size:14px;color:#50627a}.footer{margin-top:18px;font-size:14px;color:#50627a}a{color:#203b5c}[hidden]{display:none!important}label.option{display:flex;align-items:center;gap:8px;font-size:15px;margin:10px 0}input[type=checkbox]{width:20px;height:20px}#soundnote{font-size:14px;color:#6c4b1f;margin:6px 0}#end{text-align:center}.bigcheck{font-size:38px;color:#216d71}.endactions{display:grid;gap:10px;margin-top:22px}@media(max-width:360px){main{padding:14px 12px}.card{padding:16px}.letter{height:48px;font-size:24px}.boxes{gap:3px}h1{font-size:27px}}@media(max-width:360px){#game .prompt{padding:8px 12px}#game .prompt h2{margin:1px 0}#game .card{padding:12px}#game .boxes{margin-top:12px}#game~.tiny{font-size:13px}header{margin-bottom:6px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+*{box-sizing:border-box}
+:root{--navy:#203b5c;--mc:#1F8A8A;--mt:#17706F;--md:#146565}
+body{margin:0;background:#F4F7FF;color:var(--navy);font:18px/1.5 Arial,sans-serif;min-height:100vh;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body[data-mode=copy]{--mc:#F08A24;--mt:#A85300;--md:#B9630F}
+body[data-mode=meaning]{--mc:#6C5CE7;--mt:#5546D6;--md:#4B3CC4}
+main{max-width:600px;margin:auto;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+header.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.brand{font-weight:700}.tag{font-size:14px;background:#e3eaf3;padding:3px 10px;border-radius:20px}
+h1{font-size:28px;margin:4px 0 6px;line-height:1.25}p{margin:6px 0 12px}.muted{color:#4a5d75;font-size:17px}
+.card{background:#fff;border:1px solid #d5dfec;border-radius:16px;padding:16px;margin-bottom:12px}
+button,a{touch-action:manipulation}button{font:700 18px Arial,sans-serif;cursor:pointer;min-height:52px;border-radius:14px}
+button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3px}button:disabled{cursor:default;opacity:.55}
+.primary{background:var(--navy);color:#fff;border:0;padding:12px 20px;box-shadow:0 4px 0 #0f2238}
+.secondary{background:#fff;color:var(--navy);border:2px solid #b9cadc;padding:10px 12px;box-shadow:0 4px 0 #b9cadc}
+.primary:active,.secondary:active,.mode:active,.pill:active{transform:translateY(3px);box-shadow:0 1px 0 #0f2238}
+.mode{display:block;text-align:right;width:100%;background:#fff;border:2px solid #c9d6e6;border-right:8px solid var(--c);border-radius:16px;padding:12px 15px;margin:9px 0;color:inherit;box-shadow:0 4px 0 #c9d6e6}
+.mode strong{display:block;font-size:21px;color:var(--ct)}.mode span{display:block;font-size:17px;font-weight:400}
+.mode[data-mode=dictation]{--c:#1F8A8A;--ct:#17706F}.mode[data-mode=copy]{--c:#F08A24;--ct:#A85300}.mode[data-mode=meaning]{--c:#6C5CE7;--ct:#5546D6}
+.badge{font-size:14px!important;display:inline!important;background:#d9eee7;color:#17595a;padding:2px 8px;border-radius:12px;margin-right:6px}
+.pdf{display:flex;align-items:center;justify-content:center;gap:6px;min-height:52px;border:2px solid #b9cadc;border-radius:14px;background:#fff;color:var(--navy);font-weight:700;text-decoration:none;margin-top:12px}
+.tiny{font-size:14px;color:#4a5d75}.footer{margin-top:14px;font-size:14px;color:#4a5d75}
+.textlink{background:none;border:0;box-shadow:none;color:var(--navy);text-decoration:underline;font:400 15px Arial,sans-serif;min-height:44px;padding:0}
+.mini{min-height:40px;font-size:15px;padding:5px 10px;white-space:nowrap;border-radius:12px;border-width:1.5px;box-shadow:0 2px 0 #b9cadc}.mini:active{transform:translateY(2px);box-shadow:none}.report{border-color:var(--mc);color:var(--mt)}.row.tools{flex-wrap:nowrap;gap:6px}.row.tools>*{flex:0 1 auto}.row.tools .report{margin-inline-start:auto}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}
+/* game header: normal flow (no sticky/fixed) */
+.ghead{padding:2px 2px 10px}
+.l1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.gtitle{font-size:19px;font-weight:700;color:var(--mt);white-space:nowrap}
+.pill{min-height:44px;font-size:15px;padding:6px 12px;border-radius:22px;background:#fff;color:var(--navy);border:2px solid #b9cadc;box-shadow:0 3px 0 #b9cadc;white-space:nowrap}
+.l2{display:flex;align-items:center;gap:10px;margin-top:6px}.ptext{font-size:16px;white-space:nowrap;color:#4a5d75}
+.segs{flex:1;display:flex;gap:3px}.seg{flex:1;height:12px;border-radius:6px;border:2px solid #c9d6e6;background:#fff;transition:background .3s,border-color .3s}
+.seg.done{background:var(--mc);border-color:var(--mc)}.seg.cur{border-color:var(--md)}
+.l3{font-size:18px;margin-top:4px}
+.word{font-size:34px;font-weight:700;letter-spacing:1px;text-align:center;min-height:50px}
+.meaning{font-size:25px;text-align:center;min-height:42px;margin:4px 0;font-weight:700}
+.boxes{display:flex;direction:ltr;justify-content:center;gap:4px;margin:14px -6px 12px}
+.letter{width:clamp(26px,calc((100vw - 76px)/10),46px);height:54px;font:700 28px Arial,sans-serif;border:2px solid #9aacbf;border-radius:9px;text-align:center;color:var(--navy);background:#fff;padding:0}
+.letter:focus{outline:3px solid var(--mc);outline-offset:1px}
+.letter.correct{background:#ecf7f1;border-color:#3f7d5d}.letter.revealed{background:#eef2ff;border-color:#5a6fb5;color:#3a4f9a}.letter.flash{background:#fff8d6;border-color:#d4a514;color:#7a5a00}.letter.wrong-hint{background:#fff6e8;border-color:#c17017}
+.boxes.shake{animation:shake .3s}@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+#feedback{min-height:28px;margin:8px 0 4px;font-size:18px;text-align:center}.success{color:#236345;font-weight:700}.tryagain{color:#8a4b0c}
+.hint{font-size:17px;color:#6c4b1f;background:#fff6e8;border-radius:8px;padding:8px;margin-bottom:6px}
+label.option{display:flex;align-items:center;gap:8px;font-size:16px;margin:6px 0}input[type=checkbox]{width:22px;height:22px}
+#soundnote{font-size:15px;color:#6c4b1f;margin:6px 0 0;min-height:0}
+#end{text-align:center}.bigcheck{font-size:40px;color:#236345}.endactions{display:grid;gap:12px;margin-top:18px}
+[hidden]{display:none!important}
+.overlay{position:fixed;inset:0;background:#0f223866;display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.overlay.center{align-items:center}
+.sheet{background:#fff;width:100%;max-width:600px;border-radius:20px 20px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom))}
+.center .sheet{border-radius:20px;width:calc(100% - 32px);text-align:center}
+.sheet h2{font-size:22px;margin:0 0 10px}
+.chips{display:flex;gap:8px}.chip{flex:1}.chip[aria-pressed=true]{border-color:var(--navy);background:#e7eef8}
+textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-radius:12px;padding:10px;margin:10px 0 4px;min-height:96px}
+@media(max-width:380px){.mini{font-size:14px;padding:5px 8px}}@media(max-width:360px){main{padding-left:10px;padding-right:10px}.gtitle{font-size:17px}.pill{font-size:14px;padding:6px 10px}h1{font-size:25px}.mode{padding:10px 13px;margin:7px 0}.letter{height:50px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><main>
-<header><div class="brand">מילה במילה</div><span class="tag">ה׳ רימון</span></header>
-<section id="hub"><h1>מתכוננים להכתבה</h1><p class="muted">12 מילים · יום חמישי, 12.11.2026<br><span dir="ltr">Fantastic Five · p. 34</span></p><div class="card"><p>קצת בכל פעם, בקצב שלך.<br>אפשר להתחיל בהעתקה, ואז לנסות בלי לראות.</p>
-<button class="mode recommended" data-mode="dictation"><strong>הכתבה <span class="badge">מומלץ</span></strong><span>שומעים מילה באנגלית וכותבים אותה.</span></button>
-<button class="mode" data-mode="copy"><strong>מעתיקים</strong><span>רואים את המילה וכותבים לפי הדוגמה.</span></button>
-<button class="mode" data-mode="meaning"><strong>מהפירוש</strong><span>רואים פירוש בעברית וכותבים באנגלית.</span></button>
-<p class="tiny">בכל סיבוב כל המילים, בסדר חדש. אפשר להיעזר ולנסות שוב. אין שעון ואין ציונים.</p></div>
-<div class="card"><strong>גם על הדף</strong><p class="muted">העתקה, השלמת אותיות, משפטים, כתיבה מהפירוש ודף להכתבה עם הורה.</p><a href="pages/english-p34-practice.pdf">פתיחת דפי התרגול (PDF)</a></div><p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.<br>הקול תלוי בקולות האנגלית שבמכשיר.</p></section>
-<section id="game" hidden><button id="back" class="link">חזור לדף העבודה</button><div class="prompt"><div class="progress" id="progress"></div><h2 id="modeTitle"></h2><div id="instruction" class="muted"></div></div><div class="card">
-<div id="model" class="word" lang="en" dir="ltr"></div><label class="option" id="hideoption"><input id="hideword" type="checkbox">להסתיר את הדוגמה אחרי רגע</label>
-<div id="meaning" class="meaning"></div><div class="row"><button id="speak" type="button" class="secondary" aria-label="השמע שוב את המילה באנגלית">🔊 שוב</button><button id="reveal" class="secondary" type="button">💡 רמז</button><button id="help" class="secondary" type="button">? עזרה</button></div><p id="soundnote" role="status"></p>
-<form id="answer" autocomplete="off"><div class="boxes" id="boxes" role="group" aria-label="אות אחת בכל משבצת, משמאל לימין"></div><div class="tiny" style="text-align:center">מקלדת באנגלית · אות אחת בכל משבצת</div><div id="feedback" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div><button id="check" class="primary" style="width:100%" type="submit">בדיקה</button></form><button id="next" class="primary" style="width:100%" hidden>עוד מילה</button></div><p class="tiny">לא בטוח? אפשר לבקש עזרה או לחזור לתפריט בכל רגע.</p></section>
-<section id="end" class="card" hidden><div class="bigcheck">✓</div><h1>סיימת סיבוב!</h1><p>תרגלת את כל 12 המילים.<br>גם ניסיון נוסף הוא חלק מהלמידה.</p><p class="muted">אפשר לנוח רגע, או להמשיך לעוד סיבוב בסדר חדש.</p><div class="endactions"><button id="again" class="primary">סיבוב נוסף</button><button id="menu" class="secondary">חזור לתפריט</button></div></section>
-</main><script>
+<section id="hub"><header class="top"><div class="brand">מילה במילה</div><span class="tag">ה׳ רימון</span></header>
+<h1>מתכוננים להכתבה</h1><p class="muted">12 מילים · יום חמישי, 12.11.2026<br><bdi dir="ltr" lang="en">Fantastic Five</bdi>, עמ׳ 34</p>
+<button class="mode recommended" data-mode="dictation"><strong>🎧 הכתבה <span class="badge">מומלץ</span></strong><span>שומעים מילה באנגלית וכותבים אותה.</span></button>
+<button class="mode" data-mode="copy"><strong>✏️ מעתיקים</strong><span>רואים את המילה וכותבים לפי הדוגמה.</span></button>
+<button class="mode" data-mode="meaning"><strong>🔤 מהפירוש</strong><span>רואים פירוש בעברית וכותבים באנגלית.</span></button>
+<a class="pdf" href="pages/english-p34-practice.pdf?v=2026-11-07" target="_blank" rel="noopener">🖨️ דפי תרגול להדפסה · PDF</a>
+<p class="tiny" style="margin-top:4px">6 עמודים: העתקה · השלמת אותיות · משפטים · כתיבה מהפירוש · הכתבה עם הורה · פתרונות להורה</p>
+<p class="tiny">בכל סיבוב כל המילים, בסדר חדש. אין שעון ואין ציונים.</p>
+<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב. הקול תלוי בקולות האנגלית שבמכשיר.<br><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+<section id="game" hidden><div class="ghead"><div class="l1"><span class="gtitle" id="modeTitle"></span><button id="back" class="pill">חזרה לתפריט ראשי</button></div>
+<div class="l2"><span class="ptext" id="ptext"></span><div class="segs" id="segs" role="progressbar" aria-valuemin="0" aria-valuemax="12"></div></div>
+<div class="l3" id="instruction"></div><p id="soundnote" role="status" hidden></p></div>
+<div class="card"><div id="model" class="word" lang="en" dir="ltr"></div><label class="option" id="hideoption"><input id="hideword" type="checkbox">להסתיר את הדוגמה אחרי רגע</label>
+<div id="meaning" class="meaning"></div>
+<div class="row tools"><button id="speak" type="button" class="secondary mini" aria-label="השמע שוב את המילה באנגלית">🔊 שוב</button><button id="reveal" class="secondary mini" type="button">💡 רמז</button><button id="report" class="secondary mini report" type="button">📝 דווח תקלה / שיפור</button></div>
+<form id="answer" autocomplete="off"><div class="boxes" id="boxes" dir="ltr" role="group" aria-label="אות אחת בכל משבצת, משמאל לימין"></div>
+<button id="check" class="primary" style="width:100%" type="submit">בדיקה</button>
+<div id="feedback" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
+<div class="tiny" style="text-align:center">מקלדת אנגלית (🌐 גלובוס) · אות אחת בכל משבצת</div></form></div></section>
+<section id="end" class="card" hidden><div class="bigcheck">✓</div><h1>סיימתם סבב!</h1><p>תרגלתם את כל 12 המילים.<br>גם ניסיון נוסף הוא חלק מהלמידה.</p><div class="endactions"><button id="again" class="primary">סיבוב נוסף</button><button id="menu" class="secondary">חזרה לתפריט ראשי</button></div><p class="footer"><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+</main>
+<div id="confirm" class="overlay center" hidden role="dialog" aria-modal="true" aria-labelledby="cfq"><div class="sheet"><h2 id="cfq">לצאת? הסבב יתחיל מחדש</h2><div class="endactions"><button id="stay" class="primary">להמשיך לשחק</button><button id="leave" class="secondary">לצאת</button></div></div></div>
+<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דווח על בעיה או רעיון</h2>
+<div class="chips"><button type="button" class="secondary chip" data-t="משהו לא עובד" aria-pressed="false">משהו לא עובד</button><button type="button" class="secondary chip" data-t="יש לי רעיון" aria-pressed="false">יש לי רעיון</button></div>
+<textarea id="fbtext" maxlength="500" aria-label="מה תרצו לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
+<p style="margin:2px 0 10px"><b>לא לכתוב שם או פרטים אישיים.</b></p>
+<div class="row"><button type="submit" id="fbsend" class="primary">שליחה</button><button type="button" id="fbclose" class="secondary">ביטול</button></div>
+<p class="tiny" style="margin:8px 0 0">הדיווח נשלח דרך טופס מקוון, בלי שם ובלי פרטים.</p><p id="fbmsg" role="status" aria-live="polite" style="margin:8px 0 0;font-weight:700"></p></form></div>
+<iframe name="fbsink" id="fbsink" title="" hidden></iframe>
+<script>
 'use strict';
 const WORDS=[['age','גיל'],['bathroom','חדר אמבטיה'],['building','בניין'],['flat','דירה'],['guitar','גיטרה'],['her','שלה'],['like','כמו'],['same','אותו הדבר'],['sofa','ספה'],['soon','בקרוב'],['teach','ללמד'],['toilet','אסלה']];
 const ORD=['הראשונה','השנייה','השלישית','הרביעית','החמישית','השישית','השביעית','השמינית'];
 const PREFERRED=['Samantha','Daniel','Karen','Moira','Rishi','Martha','Arthur','Nicky','Aaron'];
 const NOVELTY=/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|pipe organ|superstar|trinoids|whisper|zarvox|wobble|organ|jester|reed|flo|eddy|rocko|shelley/i;
 const $=id=>document.getElementById(id);
-let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null;
+let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null,doneCount=0,fbType='';
 const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה'};
-const instructions={copy:'העתק את המילה באנגלית.',meaning:'כתוב באנגלית את המילה שמתאימה לפירוש.',dictation:'הקשב למילה וכתוב אותה באנגלית.'};
+const instructions={copy:'העתיקו את המילה באנגלית.',meaning:'כתבו באנגלית לפי הפירוש.',dictation:'הקשיבו וכתבו באנגלית.'};
 let resumeTimer=null;
 function stopResume(){if(resumeTimer){clearInterval(resumeTimer);resumeTimer=null}}
 function startResume(){
@@ -44,9 +114,9 @@ function cancelSpeech(){
   }
   return false;
 }
-function show(screen){['hub','game','end'].forEach(x=>$(x).hidden=x!==screen)}
+function show(screen){['hub','game','end'].forEach(x=>$(x).hidden=x!==screen);document.title=screen==='game'?'מילה במילה · '+titles[mode]:'מילה במילה · תרגול להכתבה'}
 function shuffle(){let d=WORDS.map(w=>[...w]);for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
-function start(m){mode=m;deck=shuffle();pos=0;show('game');render();window.scrollTo(0,0)}
+function start(m){mode=m;document.body.dataset.mode=m;deck=shuffle();pos=0;doneCount=0;show('game');render();window.scrollTo(0,0)}
 function meaningText(){return deck[pos][0]==='like'?'כמו (דומה ל־)':deck[pos][1]}
 function pickVoice(){
   const voices=speechSynthesis.getVoices();
@@ -57,13 +127,8 @@ function pickVoice(){
   }
   return en.find(v=>!NOVELTY.test(v.name))||null;
 }
-function dictationNote(){
-  if(mode)$('soundnote').textContent=mode==='dictation'?'לא שומעים? בדקו את עוצמת הקול, או לחצו על שוב.':'';
-  else $('soundnote').textContent='';
-}
 function speak(){
   const didCancel=cancelSpeech();
-  dictationNote();
   if(!('speechSynthesis'in window)){soundError();return}
   const token=speechToken;
   const word=deck[pos][0];
@@ -100,7 +165,16 @@ function speak(){
   };
   setTimeout(go, didCancel?320:80);
 }
-function soundError(){$('soundnote').textContent='לא נשמע קול? לחצו על שוב, או על עזרה לפירוש.'}
+function soundNote(on){const n=$('soundnote');if(on&&mode==='dictation'){n.textContent='לא שומעים? בדקו את עוצמת הקול ואת מתג השקט.';n.hidden=false}else n.hidden=true}
+function soundError(){$('soundnote').textContent='לא נשמע קול? לחצו על שוב, או על רמז.';$('soundnote').hidden=false}
+function progress(){
+  const s=$('segs');
+  if(!s.children.length)for(let i=0;i<12;i++){const d=document.createElement('div');d.className='seg';s.append(d)}
+  [...s.children].forEach((d,i)=>{d.classList.toggle('done',i<doneCount);d.classList.toggle('cur',i===doneCount&&i===pos)});
+  s.setAttribute('aria-valuenow',doneCount);
+  s.setAttribute('aria-valuetext',`מילה ${pos+1} מתוך 12`);
+  $('ptext').textContent=`מילה ${pos+1} מתוך 12`;
+}
 function firstWrong(){
   const w=deck[pos][0];
   const typed=fields().map(x=>x.value);
@@ -117,26 +191,26 @@ function showLetterHint(){
   fields()[i].classList.add('wrong-hint');
   fields()[i].focus();
 }
-function focusFirst(){const f=fields()[0];if(f)f.focus()}
+function focusFirst(){const f=fields().find(x=>!x.readOnly&&!x.value)||fields()[0];if(f)f.focus()}
 function render(){
   clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;hintStage=0;wrong=0;solved=false;
-  $('progress').textContent=`מילה ${pos+1} מתוך 12`;
-  $('modeTitle').textContent=titles[mode];
+  progress();
+  $('modeTitle').textContent='מילה במילה · '+titles[mode];
   $('instruction').textContent=instructions[mode];
   $('model').hidden=mode!=='copy';
   $('model').textContent=deck[pos][0];
   $('hideoption').hidden=mode!=='copy';
   $('hideword').checked=hideChoice;
-  $('reveal').hidden=mode!=='dictation';$('reveal').disabled=false;
+  $('reveal').disabled=false;
   $('meaning').hidden=mode!=='meaning';
   $('meaning').textContent=meaningText();
   $('feedback').textContent='';$('feedback').className='';
   $('hint').hidden=true;
-  dictationNote();
-  $('check').hidden=false;$('next').hidden=true;
-  $('next').textContent=pos===11?'סיום הסיבוב':'עוד מילה';
+  soundNote(pos===0);
+  $('check').hidden=false;
   $('boxes').replaceChildren();
-  for(let i=0;i<deck[pos][0].length;i++){
+  const n=deck[pos][0].length;
+  for(let i=0;i<n;i++){
     const input=document.createElement('input');
     input.className='letter';
     input.type='text';
@@ -144,9 +218,12 @@ function render(){
     input.autocomplete='off';
     input.autocapitalize='none';
     input.spellcheck=false;
+    input.maxLength=1;
     input.setAttribute('autocorrect','off');
+    input.setAttribute('enterkeyhint','next');
     input.setAttribute('lang','en');
-    input.setAttribute('aria-label',`אות ${i+1} מתוך ${deck[pos][0].length}`);
+    input.setAttribute('dir','ltr');
+    input.setAttribute('aria-label',`אות ${i+1} מתוך ${n}, באנגלית`);
     input.addEventListener('focus',()=>{
       if(solved)return;
       const first=fields().findIndex(e=>!e.value);
@@ -155,8 +232,8 @@ function render(){
     });
     input.addEventListener('input',e=>{
       let raw=input.value;
+      if(/[\u0590-\u05FF]/.test(raw)){input.value='';$('feedback').className='tryagain';$('feedback').textContent='המקלדת בעברית 🙂 לחצו על 🌐 כדי לעבור לאנגלית';return}
       let text=raw.toLowerCase().replace(/[^a-z]/g,'');
-      if(raw&&!text)$('feedback').textContent='כדאי לעבור למקלדת באנגלית.';
       if(text.length>1){
         const d=(e.data||'').toLowerCase().replace(/[^a-z]/g,'');
         text=d||text.slice(-1);
@@ -187,17 +264,18 @@ function autoCheck(){if(!solved&&!flashing&&isComplete())markSolved()}
 function markSolved(){
   solved=true;
   const a=fields();
-  $('feedback').textContent='נכון, המילה כתובה היטב!';
+  $('feedback').textContent='✓ נכון, המילה כתובה היטב!';
   $('feedback').className='success';
   $('hint').hidden=true;
   a.forEach(x=>{x.readOnly=true;x.classList.add('correct');x.classList.remove('wrong-hint')});
   $('check').hidden=true;$('reveal').disabled=true;
+  doneCount=pos+1;progress();
   clearTimeout(advanceTimer);
   advanceTimer=setTimeout(nextWord,850);
 }
 function nextWord(){advanceTimer=null;if(!solved||$('game').hidden)return;pos++;if(pos>=deck.length){clearTimeout(hideTimer);cancelSpeech();show('end');window.scrollTo(0,0)}else{render();window.scrollTo(0,0)}}
 function revealOne(){
-  if(solved||flashing||mode!=='dictation')return;
+  if(solved||flashing)return;
   const w=deck[pos][0],a=fields();
   if(hintStage===0){
     hintStage=1;flashing=true;
@@ -224,23 +302,49 @@ $('answer').addEventListener('submit',e=>{
   e.preventDefault();
   if(solved||flashing)return;
   const a=fields();
-  if(a.some(x=>!x.value)){$('feedback').textContent='נשארו משבצות ריקות. נמשיך מהראשונה.';a.find(x=>!x.value).focus();return}
-  if(a.map(x=>x.value).join('')===deck[pos][0]){
-    markSolved();
-  }else{
+  if(a.some(x=>!x.value)){$('feedback').className='tryagain';$('feedback').textContent='נשארו משבצות ריקות. נמשיך מהראשונה.';a.find(x=>!x.value).focus();return}
+  if(isComplete()){markSolved()}
+  else{
     wrong++;
-    $('feedback').textContent=wrong===1?'עוד ניסיון קטן. אפשר להיעזר ולתקן.':'ננסה שוב. הרמז מצביע על האות שצריך לתקן.';
+    $('feedback').className='tryagain';
+    $('feedback').textContent=wrong===1?'↺ עוד ניסיון קטן. אפשר להיעזר ולתקן.':'↺ ננסה שוב. הרמז מצביע על האות שצריך לתקן.';
+    const b=$('boxes');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');
     if(wrong>=2)showLetterHint();
     else a[0].focus();
   }
 });
-$('help').onclick=()=>{$('meaning').textContent=meaningText();$('meaning').hidden=false;if(mode==='copy'){$('model').textContent=deck[pos][0];clearTimeout(hideTimer)}speak()};
 $('hideword').onchange=()=>{hideChoice=$('hideword').checked;clearTimeout(hideTimer);$('model').textContent=deck[pos][0];if(hideChoice)applyHide()};
 $('reveal').onclick=revealOne;
-$('speak').onclick=speak;
-function menu(){clearTimeout(hideTimer);clearTimeout(flashTimer);flashTimer=null;flashing=false;clearTimeout(advanceTimer);advanceTimer=null;cancelSpeech();show('hub');window.scrollTo(0,0)}
-$('back').onclick=menu;$('menu').onclick=menu;$('again').onclick=()=>start(mode);
-document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>start(b.dataset.mode));
+$('speak').onclick=()=>{soundNote(true);speak()};
+function menu(){clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;cancelSpeech();$('confirm').hidden=true;delete document.body.dataset.mode;show('hub');window.scrollTo(0,0)}
+$('back').onclick=()=>{if(doneCount>0){$('confirm').hidden=false;$('stay').focus()}else menu()};
+$('stay').onclick=()=>{$('confirm').hidden=true;focusFirst()};
+$('leave').onclick=menu;
+$('menu').onclick=menu;$('again').onclick=()=>start(mode);
+document.querySelectorAll('[data-mode]').forEach(b=>{if(b.tagName==='BUTTON')b.onclick=()=>start(b.dataset.mode)});
+let fbFrom='hub';
+function openFb(from){fbFrom=from;$('fbmsg').textContent='';$('fbsheet').hidden=false;$('fbtext').focus()}
+$('report').onclick=()=>openFb('תרגול');
+document.querySelectorAll('.fb').forEach(b=>b.onclick=()=>{fbFrom=$('end').hidden?'תפריט':'סוף סבב';$('fbmsg').textContent='';$('fbsheet').hidden=false;$('fbtext').focus()});
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{fbType=c.dataset.t;document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c))});
+$('fbclose').onclick=()=>{$('fbsheet').hidden=true};
+// FEEDBACK HOOKUP: paste the Google Form "formResponse" URL and its entry ids here,
+// and add to the CSP: form-action https://docs.google.com; frame-src https://docs.google.com
+const FORM_ACTION='';   // e.g. https://docs.google.com/forms/d/e/<ID>/formResponse
+const FORM_FIELDS={type:'',text:'',mode:'',screen:'',iphone:''}; // e.g. 'entry.123456'
+$('fbform').onsubmit=e=>{
+  e.preventDefault();
+  const msg=$('fbmsg'),text=$('fbtext').value.trim().slice(0,500);
+  if(!fbType&&!text){msg.textContent='בחרו סוג, או כתבו כמה מילים.';return}
+  if(!FORM_ACTION){msg.textContent='השליחה מהדף עוד לא פעילה. תודה שרציתם לעזור!';return}
+  const data={type:fbType||'לא נבחר',text,mode:mode?titles[mode]:'—',screen:fbFrom,iphone:/iPhone|iPad/.test(navigator.userAgent)?'כן':'לא'};
+  const f=document.createElement('form');f.method='POST';f.action=FORM_ACTION;f.target='fbsink';f.hidden=true;
+  for(const k in data){if(!FORM_FIELDS[k])continue;const x=document.createElement('input');x.type='hidden';x.name=FORM_FIELDS[k];x.value=data[k];f.append(x)}
+  document.body.append(f);f.submit();f.remove();
+  msg.textContent='✓ תודה, הדיווח נשמר.';$('fbtext').value='';fbType='';
+  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+  setTimeout(()=>{$('fbsheet').hidden=true;msg.textContent=''},1500);
+};
 window.addEventListener('pagehide',cancelSpeech);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelSpeech()});
 if('speechSynthesis'in window){
