@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'none'; media-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'"><title>מילה במילה · תרגול להכתבה</title>
 <style>
 *{box-sizing:border-box}
 :root{--navy:#203b5c;--mc:#1F8A8A;--mt:#17706F;--md:#146565}
@@ -104,8 +104,11 @@ function startResume(){
     speechSynthesis.resume();
   },250);
 }
+const player=new Audio();player.preload='auto';
+function stopAudio(){try{player.pause();player.currentTime=0}catch(e){}}
 function cancelSpeech(){
   speechToken++;
+  stopAudio();
   stopResume();
   if(!('speechSynthesis'in window))return false;
   if(speechSynthesis.speaking||speechSynthesis.pending){
@@ -128,6 +131,18 @@ function pickVoice(){
   return en.find(v=>!NOVELTY.test(v.name))||null;
 }
 function speak(){
+  cancelSpeech();
+  const token=speechToken,word=deck[pos][0];
+  let fell=false;
+  const fallback=()=>{if(fell||token!==speechToken)return;fell=true;player.onerror=null;speakTTS()};
+  player.onerror=fallback;
+  player.src='audio/'+word+'.mp3';
+  try{
+    const pr=player.play();
+    if(pr&&pr.catch)pr.catch(e=>{if(token!==speechToken)return;if(e&&e.name==='NotAllowedError')soundError();else if(e&&e.name!=='AbortError')fallback()});
+  }catch(e){fallback()}
+}
+function speakTTS(){
   const didCancel=cancelSpeech();
   if(!('speechSynthesis'in window)){soundError();return}
   const token=speechToken;
