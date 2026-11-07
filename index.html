@@ -25,7 +25,25 @@ const $=id=>document.getElementById(id);
 let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0;
 const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה'};
 const instructions={copy:'העתק את המילה באנגלית.',meaning:'כתוב באנגלית את המילה שמתאימה לפירוש.',dictation:'הקשב למילה וכתוב אותה באנגלית.'};
-function cancelSpeech(){speechToken++;if('speechSynthesis'in window)speechSynthesis.cancel()}
+let resumeTimer=null;
+function stopResume(){if(resumeTimer){clearInterval(resumeTimer);resumeTimer=null}}
+function startResume(){
+  stopResume();
+  resumeTimer=setInterval(()=>{
+    if(!('speechSynthesis'in window)||!speechSynthesis.speaking){stopResume();return}
+    speechSynthesis.resume();
+  },250);
+}
+function cancelSpeech(){
+  speechToken++;
+  stopResume();
+  if(!('speechSynthesis'in window))return false;
+  if(speechSynthesis.speaking||speechSynthesis.pending){
+    speechSynthesis.cancel();
+    return true;
+  }
+  return false;
+}
 function show(screen){['hub','game','end'].forEach(x=>$(x).hidden=x!==screen)}
 function shuffle(){let d=WORDS.map(w=>[...w]);for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
 function start(m){mode=m;deck=shuffle();pos=0;show('game');render();window.scrollTo(0,0)}
@@ -44,43 +62,43 @@ function dictationNote(){
   else $('soundnote').textContent='';
 }
 function speak(){
-  cancelSpeech();
+  const didCancel=cancelSpeech();
   dictationNote();
   if(!('speechSynthesis'in window)){soundError();return}
   const token=speechToken;
   const word=deck[pos][0];
   let begun=false;
-  const startTalk=()=>{
+  const go=()=>{
     if(token!==speechToken||begun)return;
+    if(!speechSynthesis.getVoices().length){
+      const ready=()=>{speechSynthesis.removeEventListener('voiceschanged',ready);go()};
+      speechSynthesis.addEventListener('voiceschanged',ready);
+      setTimeout(go,400);
+      return;
+    }
     begun=true;
     const voice=pickVoice();
-    const voices=speechSynthesis.getVoices();
-    if(voices.length&&!voice){soundError();return}
-    const utter=onEnd=>{
+    const u=new SpeechSynthesisUtterance(word);
+    u.lang=voice?voice.lang:'en-US';
+    if(voice)u.voice=voice;
+    u.rate=.7;
+    u.pitch=1;
+    u.volume=1;
+    u.onstart=()=>{if(token===speechToken)startResume()};
+    u.onend=()=>{if(token===speechToken)stopResume()};
+    u.onerror=e=>{
       if(token!==speechToken)return;
-      const u=new SpeechSynthesisUtterance(word);
-      u.lang=voice?voice.lang:'en-US';
-      if(voice)u.voice=voice;
-      u.rate=.58;
-      u.onerror=e=>{
-        if(token!==speechToken)return;
-        if(e.error==='interrupted'||e.error==='canceled')return;
-        soundError();
-      };
-      u.onend=()=>{if(token===speechToken&&onEnd)onEnd()};
-      speechSynthesis.speak(u);
+      if(e.error==='interrupted'||e.error==='canceled')return;
+      stopResume();
+      soundError();
     };
-    setTimeout(()=>{
-      utter(()=>setTimeout(()=>utter(null),500));
-    },80);
+    try{
+      if(speechSynthesis.paused)speechSynthesis.resume();
+      speechSynthesis.speak(u);
+      startResume();
+    }catch(err){soundError()}
   };
-  if(!speechSynthesis.getVoices().length){
-    const ready=()=>{speechSynthesis.removeEventListener('voiceschanged',ready);startTalk()};
-    speechSynthesis.addEventListener('voiceschanged',ready);
-    setTimeout(startTalk,350);
-    return;
-  }
-  startTalk();
+  setTimeout(go, didCancel?320:80);
 }
 function soundError(){$('soundnote').textContent='לא נשמע קול? לחצו על שוב, או על עזרה לפירוש.'}
 function firstWrong(){
@@ -101,7 +119,7 @@ function showLetterHint(){
 }
 function focusFirst(){const f=fields()[0];if(f)f.focus()}
 function render(){
-  clearTimeout(hideTimer);cancelSpeech();wrong=0;solved=false;
+  clearTimeout(hideTimer);if(mode!=='dictation')cancelSpeech();wrong=0;solved=false;
   $('progress').textContent=`מילה ${pos+1} מתוך 12`;
   $('modeTitle').textContent=titles[mode];
   $('instruction').textContent=instructions[mode];
