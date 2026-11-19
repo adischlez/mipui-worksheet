@@ -6,6 +6,7 @@
 body{margin:0;background:#F4F7FF;color:var(--navy);font:18px/1.5 Arial,sans-serif;min-height:100vh;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body[data-mode=copy]{--mc:#F08A24;--mt:#A85300;--md:#B9630F}
 body[data-mode=meaning]{--mc:#6C5CE7;--mt:#5546D6;--md:#4B3CC4}
+body[data-mode=join]{--mc:#2A9D8F;--mt:#1F7A70;--md:#19665E}
 main{max-width:600px;margin:auto;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
 header.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.brand{font-weight:700}.tag{font-size:14px;background:#e3eaf3;padding:3px 10px;border-radius:20px}
 h1{font-size:28px;margin:4px 0 6px;line-height:1.25}p{margin:6px 0 12px}.muted{color:#4a5d75;font-size:17px}
@@ -17,7 +18,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 .primary:active,.secondary:active,.mode:active,.pill:active{transform:translateY(3px);box-shadow:0 1px 0 #0f2238}
 .mode{display:block;text-align:right;width:100%;background:#fff;border:2px solid #c9d6e6;border-right:8px solid var(--c);border-radius:16px;padding:12px 15px;margin:9px 0;color:inherit;box-shadow:0 4px 0 #c9d6e6}
 .mode strong{display:block;font-size:21px;color:var(--ct)}.mode span{display:block;font-size:17px;font-weight:400}
-.mode[data-mode=dictation]{--c:#1F8A8A;--ct:#17706F}.mode[data-mode=copy]{--c:#F08A24;--ct:#A85300}.mode[data-mode=meaning]{--c:#6C5CE7;--ct:#5546D6}
+.mode[data-mode=dictation]{--c:#1F8A8A;--ct:#17706F}.mode[data-mode=copy]{--c:#F08A24;--ct:#A85300}.mode[data-mode=meaning]{--c:#6C5CE7;--ct:#5546D6}.mode[data-mode=join]{--c:#2A9D8F;--ct:#1F7A70}
 .badge{font-size:14px!important;display:inline!important;background:#d9eee7;color:#17595a;padding:2px 8px;border-radius:12px;margin-right:6px}
 .pdf{display:flex;align-items:center;justify-content:center;gap:6px;min-height:52px;border:2px solid #b9cadc;border-radius:14px;background:#fff;color:var(--navy);font-weight:700;text-decoration:none;margin-top:12px}
 .tiny{font-size:14px;color:#4a5d75}.footer{margin-top:14px;font-size:14px;color:#4a5d75}
@@ -58,7 +59,19 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 .unit strong{display:block;font-size:16px}.unit span{display:block;font-weight:400;font-size:14px;margin-top:2px}
 .unit[aria-selected=true]{background:#203b5c;color:#fff;border-color:#203b5c;box-shadow:0 4px 0 #0f2238}
 .unit:active{transform:translateY(3px);box-shadow:0 1px 0 #0f2238}
-@media(max-width:380px){.mini{font-size:14px;padding:5px 8px}}@media(max-width:360px){.unit strong{font-size:15px}.unit span{font-size:13px}main{padding-left:10px;padding-right:10px}.gtitle{font-size:17px}.pill{font-size:14px;padding:6px 10px}h1{font-size:25px}.mode{padding:10px 13px;margin:7px 0}.letter{height:50px}}
+
+.split{margin:2px 0 8px}
+.parts{display:flex;direction:ltr;justify-content:center;align-items:flex-start;gap:2px;flex-wrap:wrap}
+.part{text-align:center;min-width:0}
+.part .en{display:block;font:700 30px/1.1 Arial,sans-serif;letter-spacing:.4px}
+.part-a .en{color:#1B6B86}
+.part-b .en{color:#C45C16}
+.part .he{display:block;font:700 15px/1.25 Arial,sans-serif;color:#4a5d75;margin-top:2px}
+.dotcol .en{color:#5a6b7d;font-size:30px;line-height:1.1;padding:0 2px}
+.wholesum{text-align:center;font:700 18px/1.35 Arial,sans-serif;color:var(--navy);margin:6px 0 4px}
+.letter.part-a{border-bottom-width:3px;border-bottom-color:#1B6B86}
+.letter.part-b{border-bottom-width:3px;border-bottom-color:#C45C16}
+@media(max-width:380px){.mini{font-size:14px;padding:5px 8px}}@media(max-width:360px){.part .en{font-size:26px}.wholesum{font-size:16px}.unit strong{font-size:15px}.unit span{font-size:13px}main{padding-left:10px;padding-right:10px}.gtitle{font-size:17px}.pill{font-size:14px;padding:6px 10px}h1{font-size:25px}.mode{padding:10px 13px;margin:7px 0}.letter{height:50px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><main>
 <section id="hub"><header class="top"><div class="brand">מילה במילה</div><span class="tag">ה׳ רימון</span></header>
@@ -72,6 +85,7 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <button class="mode recommended" data-mode="dictation"><strong>🎧 הכתבה <span class="badge">מומלץ</span></strong><span>שומעים מילה באנגלית וכותבים אותה.</span></button>
 <button class="mode" data-mode="copy"><strong>✏️ מעתיקים</strong><span>רואים את המילה וכותבים לפי הדוגמה.</span></button>
 <button class="mode" data-mode="meaning"><strong>🔤 מהפירוש</strong><span>רואים פירוש בעברית וכותבים באנגלית.</span></button>
+<button class="mode" data-mode="join"><strong>🧩 תרכיב את המילה</strong><span>מחברים שני חלקים למילה אחת.</span></button>
 <a class="pdf" id="pdflink" href="pages/english-p34-practice.pdf?v=2026-11-07-2" target="_blank" rel="noopener" hidden>🖨️ דפי תרגול להדפסה · PDF</a>
 <p class="tiny" id="pdfnote" style="margin-top:4px" hidden>5 עמודים: העתקה · משפטים · כתיבה מהפירוש · הכתבה עם הורה · פתרונות להורה</p>
 </div>
@@ -80,14 +94,16 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <section id="game" hidden><div class="ghead"><div class="l1"><span class="gtitle" id="modeTitle"></span><button id="back" class="pill">חזרה לתפריט ראשי</button></div>
 <div class="l2"><span class="ptext" id="ptext"></span><div class="segs" id="segs" role="progressbar" aria-valuemin="0" aria-valuemax="12"></div></div>
 <div class="l3" id="instruction"></div><p id="soundnote" role="status" hidden></p></div>
-<div class="card"><div id="model" class="word" lang="en" dir="ltr"></div><label class="option" id="hideoption"><input id="hideword" type="checkbox">להסתיר את הדוגמה אחרי רגע</label>
+<div class="card"><div id="model" class="word" lang="en" dir="ltr"></div>
+<div id="split" class="split" hidden></div>
+<label class="option" id="hideoption"><input id="hideword" type="checkbox">להסתיר את הדוגמה אחרי רגע</label>
 <div id="meaning" class="meaning"></div>
 <div class="row tools"><button id="speak" type="button" class="secondary mini" aria-label="השמע שוב את המילה באנגלית">🔊 שוב</button><button id="reveal" class="secondary mini" type="button">💡 רמז</button><button id="report" class="secondary mini report" type="button">📝 דווח תקלה / שיפור</button></div>
 <form id="answer" autocomplete="off"><div class="boxes" id="boxes" dir="ltr" role="group" aria-label="אות אחת בכל משבצת, משמאל לימין"></div>
 <button id="check" class="primary" style="width:100%" type="submit">בדיקה</button>
 <div id="feedback" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
 <div class="tiny" style="text-align:center">מקלדת אנגלית (🌐 גלובוס) · אות אחת בכל משבצת</div></form></div></section>
-<section id="end" class="card" hidden><div class="bigcheck">✓</div><h1>סיימתם סבב!</h1><p>תרגלתם את כל 12 המילים.<br>גם ניסיון נוסף הוא חלק מהלמידה.</p><div class="endactions"><button id="again" class="primary">סיבוב נוסף</button><button id="menu" class="secondary">חזרה לתפריט ראשי</button></div><p class="footer"><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+<section id="end" class="card" hidden><div class="bigcheck">✓</div><h1 id="endtitle">סיימתם סבב!</h1><p id="endblurb">תרגלתם את כל 12 המילים.<br>גם ניסיון נוסף הוא חלק מהלמידה.</p><div class="endactions"><button id="again" class="primary">סיבוב נוסף</button><button id="menu" class="secondary">חזרה לתפריט ראשי</button></div><p class="footer"><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
 </main>
 <div id="confirm" class="overlay center" hidden role="dialog" aria-modal="true" aria-labelledby="cfq"><div class="sheet"><h2 id="cfq">לצאת? הסבב יתחיל מחדש</h2><div class="endactions"><button id="stay" class="primary">להמשיך לשחק</button><button id="leave" class="secondary">לצאת</button></div></div></div>
 <div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דווח על בעיה או רעיון</h2>
@@ -121,8 +137,13 @@ const PREFERRED=['Samantha','Daniel','Karen','Moira','Rishi','Martha','Arthur','
 const NOVELTY=/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|pipe organ|superstar|trinoids|whisper|zarvox|wobble|organ|jester|reed|flo|eddy|rocko|shelley/i;
 const $=id=>document.getElementById(id);
 let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null,doneCount=0,fbType='';
-const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה'};
-const instructions={copy:'העתיקו את המילה באנגלית.',meaning:'כתבו באנגלית לפי הפירוש.',dictation:'הקשיבו וכתבו באנגלית.'};
+const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה',join:'תרכיב את המילה'};
+const instructions={copy:'העתיקו את המילה באנגלית.',meaning:'כתבו באנגלית לפי הפירוש.',dictation:'הקשיבו וכתבו באנגלית.',join:'חברו את שני החלקים למילה אחת.'};
+const COMPOUNDS={
+  everyone:{a:'every',b:'one',ha:'כל',hb:'אחד',whole:'כולם'},
+  outside:{a:'out',b:'side',ha:'החוצה',hb:'צד',whole:'בחוץ, החוצה'},
+  bathroom:{a:'bath',b:'room',ha:'אמבטיה',hb:'חדר',whole:'חדר אמבטיה'}
+};
 let resumeTimer=null;
 function stopResume(){if(resumeTimer){clearInterval(resumeTimer);resumeTimer=null}}
 function startResume(){
@@ -145,9 +166,22 @@ function cancelSpeech(){
   }
   return false;
 }
-function show(screen){['hub','game','end'].forEach(x=>$(x).hidden=x!==screen);document.title=screen==='game'?'מילה במילה · '+titles[mode]:'מילה במילה · תרגול להכתבה'}
-function shuffle(){let d=WORDS.map(w=>[...w]);for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
-function start(m){mode=m;document.body.dataset.mode=m;deck=shuffle();pos=0;doneCount=0;show('game');render();window.scrollTo(0,0)}
+function show(screen){
+  ['hub','game','end'].forEach(x=>$(x).hidden=x!==screen);
+  document.title=screen==='game'?'מילה במילה · '+titles[mode]:'מילה במילה · תרגול להכתבה';
+  if(screen==='end'){
+    const n=deck.length;
+    $('endtitle').textContent=mode==='join'?'סיימתם את התרגיל!':'סיימתם סבב!';
+    $('endblurb').innerHTML=mode==='join'?('חיברתם '+n+' מילים מורכבות.<br>גם ניסיון נוסף הוא חלק מהלמידה.'):('תרגלתם את כל '+n+' המילים.<br>גם ניסיון נוסף הוא חלק מהלמידה.');
+    $('again').textContent=mode==='join'?'עוד תרגיל':'סיבוב נוסף';
+  }
+}
+function shuffleList(list){let d=list.map(w=>[...w]);for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
+function shuffle(){return shuffleList(WORDS)}
+function meaningOf(word){if(word==='like')return 'כמו (דומה ל־)';const hit=UNITS.ready.words.concat(UNITS.p34.words).find(w=>w[0]===word);return hit?hit[1]:''}
+function joinList(){const names=WORDS.map(w=>w[0]).filter(w=>COMPOUNDS[w]);if(unitId==='ready'&&!names.includes('bathroom'))names.push('bathroom');return names.map(w=>[w,meaningOf(w)])}
+function compoundOf(word){return COMPOUNDS[word]||null}
+function start(m){mode=m;document.body.dataset.mode=m;deck=m==='join'?shuffleList(joinList()):shuffle();pos=0;doneCount=0;show('game');render();window.scrollTo(0,0)}
 function meaningText(){const w=deck[pos][0];return w==='like'?'כמו (דומה ל־)':deck[pos][1]}
 function norm(s){return s.toLowerCase()}
 function audioFile(word){return 'audio/'+word.toLowerCase()+'.mp3'}
@@ -214,12 +248,13 @@ function speakTTS(){
 function soundNote(on){const n=$('soundnote');if(on&&mode==='dictation'){n.textContent='לא שומעים? בדקו את עוצמת הקול ואת מתג השקט.';n.hidden=false}else n.hidden=true}
 function soundError(){$('soundnote').textContent='לא נשמע קול? לחצו על שוב, או על רמז.';$('soundnote').hidden=false}
 function progress(){
-  const s=$('segs');
-  if(!s.children.length)for(let i=0;i<12;i++){const d=document.createElement('div');d.className='seg';s.append(d)}
+  const s=$('segs'),n=deck.length||12;
+  if(s.children.length!==n){s.replaceChildren();for(let i=0;i<n;i++){const d=document.createElement('div');d.className='seg';s.append(d)}}
   [...s.children].forEach((d,i)=>{d.classList.toggle('done',i<doneCount);d.classList.toggle('cur',i===doneCount&&i===pos)});
+  s.setAttribute('aria-valuemax',n);
   s.setAttribute('aria-valuenow',doneCount);
-  s.setAttribute('aria-valuetext',`מילה ${pos+1} מתוך 12`);
-  $('ptext').textContent=`מילה ${pos+1} מתוך 12`;
+  s.setAttribute('aria-valuetext',`מילה ${pos+1} מתוך ${n}`);
+  $('ptext').textContent=`מילה ${pos+1} מתוך ${n}`;
 }
 function firstWrong(){
   const w=deck[pos][0];
@@ -238,19 +273,32 @@ function showLetterHint(){
   fields()[i].focus();
 }
 function focusFirst(){const f=fields().find(x=>!x.readOnly&&!x.value)||fields()[0];if(f)f.focus()}
+function paintSplit(hideEn){
+  const w=deck[pos][0],c=compoundOf(w);
+  if(!c)return;
+  const enA=hideEn?'•'.repeat(c.a.length):c.a;
+  const enB=hideEn?'•'.repeat(c.b.length):c.b;
+  $('split').innerHTML='<div class="parts" dir="ltr" lang="en"><div class="part part-a"><span class="en">'+enA+'</span><span class="he" lang="he" dir="rtl">'+c.ha+'</span></div><div class="part dotcol" aria-hidden="true"><span class="en">·</span><span class="he">&nbsp;</span></div><div class="part part-b"><span class="en">'+enB+'</span><span class="he" lang="he" dir="rtl">'+c.hb+'</span></div></div><div class="wholesum">'+c.ha+' + '+c.hb+' = '+c.whole+'</div>';
+}
 function render(){
   clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;hintStage=0;wrong=0;solved=false;
   progress();
   $('modeTitle').textContent='מילה במילה · '+titles[mode];
   $('instruction').textContent=instructions[mode];
-  $('model').hidden=mode!=='copy';
-  $('model').textContent=deck[pos][0];
+  const c=compoundOf(deck[pos][0]);
+  const showSplit=!!c&&(mode==='copy'||mode==='meaning'||mode==='join');
+  $('model').hidden=mode!=='copy'||showSplit;
+  if(!showSplit)$('model').textContent=deck[pos][0];
+  $('split').hidden=!showSplit;
+  if(showSplit)paintSplit(false);
   $('hideoption').hidden=mode!=='copy';
   $('hideword').checked=hideChoice;
   $('reveal').disabled=false;
-  $('meaning').hidden=mode!=='meaning';
-  if(deck[pos][0]==='do')$('meaning').innerHTML='לעשות<br><span class="gloss">(גם פועל עזר בהווה)</span>';
-  else $('meaning').textContent=meaningText();
+  $('meaning').hidden=mode!=='meaning'||showSplit;
+  if(!showSplit){
+    if(deck[pos][0]==='do')$('meaning').innerHTML='לעשות<br><span class="gloss">(גם פועל עזר בהווה)</span>';
+    else $('meaning').textContent=meaningText();
+  }
   $('feedback').textContent='';$('feedback').className='';
   $('hint').hidden=true;
   soundNote(pos===0);
@@ -260,6 +308,7 @@ function render(){
   for(let i=0;i<n;i++){
     const input=document.createElement('input');
     input.className='letter';
+    if((mode==='copy'||mode==='meaning'||mode==='join')&&c)input.classList.add(i<c.a.length?'part-a':'part-b');
     input.type='text';
     input.inputMode='text';
     input.autocomplete='off';
@@ -317,8 +366,9 @@ function markSolved(){
   a.forEach(x=>{x.readOnly=true;x.classList.add('correct');x.classList.remove('wrong-hint')});
   $('check').hidden=true;$('reveal').disabled=true;
   doneCount=pos+1;progress();
+  if(mode==='join')speak();
   clearTimeout(advanceTimer);
-  advanceTimer=setTimeout(nextWord,850);
+  advanceTimer=setTimeout(nextWord,mode==='join'?1400:850);
 }
 function nextWord(){advanceTimer=null;if(!solved||$('game').hidden)return;pos++;if(pos>=deck.length){clearTimeout(hideTimer);cancelSpeech();show('end');window.scrollTo(0,0)}else{render();window.scrollTo(0,0)}}
 function revealOne(){
@@ -337,6 +387,19 @@ function revealOne(){
     },1000);
     return;
   }
+  const c=compoundOf(w);
+  if(hintStage===1&&c){
+    hintStage=2;
+    for(let i=0;i<c.a.length;i++){
+      a[i].value=w[i];a[i].readOnly=true;a[i].classList.add('revealed');a[i].classList.remove('wrong-hint');
+    }
+    $('hint').hidden=false;
+    $('hint').innerHTML='הרמז: החלק הראשון הוא <bdi dir="ltr" lang="en">'+c.a+'</bdi>';
+    if(isComplete()){markSolved();return}
+    const n=a.findIndex((x,k)=>!x.readOnly&&norm(x.value||'')!==norm(w[k]));
+    if(n>=0)a[n].focus();
+    return;
+  }
   const i=a.findIndex((x,k)=>norm(x.value||'')!==norm(w[k]));
   if(i<0){autoCheck();return}
   a[i].value=w[i];a[i].readOnly=true;a[i].classList.add('revealed');a[i].classList.remove('wrong-hint');
@@ -344,7 +407,7 @@ function revealOne(){
   const n=a.findIndex((x,k)=>!x.readOnly&&norm(x.value||'')!==norm(w[k]));
   if(n>=0)a[n].focus();
 }
-function applyHide(){clearTimeout(hideTimer);$('model').textContent=deck[pos][0];hideTimer=setTimeout(()=>{if(mode==='copy'&&!solved)$('model').textContent='•'.repeat(deck[pos][0].length)},2500)}
+function applyHide(){clearTimeout(hideTimer);const c=compoundOf(deck[pos][0]);if(c){paintSplit(false);hideTimer=setTimeout(()=>{if(mode==='copy'&&!solved)paintSplit(true)},2500)}else{$('model').textContent=deck[pos][0];hideTimer=setTimeout(()=>{if(mode==='copy'&&!solved)$('model').textContent='•'.repeat(deck[pos][0].length)},2500)}}
 $('answer').addEventListener('submit',e=>{
   e.preventDefault();
   if(solved||flashing)return;
@@ -360,7 +423,7 @@ $('answer').addEventListener('submit',e=>{
     else a[0].focus();
   }
 });
-$('hideword').onchange=()=>{hideChoice=$('hideword').checked;clearTimeout(hideTimer);$('model').textContent=deck[pos][0];if(hideChoice)applyHide()};
+$('hideword').onchange=()=>{hideChoice=$('hideword').checked;clearTimeout(hideTimer);const c=compoundOf(deck[pos][0]);if(c)paintSplit(false);else $('model').textContent=deck[pos][0];if(hideChoice)applyHide()};
 $('reveal').onclick=revealOne;
 $('speak').onclick=()=>{soundNote(true);speak()};
 function menu(){clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;cancelSpeech();$('confirm').hidden=true;delete document.body.dataset.mode;show('hub');window.scrollTo(0,0)}
