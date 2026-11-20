@@ -17,7 +17,10 @@
 :root{--navy:#203b5c;--line:#c9d6e6;--muted:#4a5d75}
 body{margin:0;background:#F4F7FF;color:var(--navy);font:18px/1.5 Arial,sans-serif;min-height:100vh;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 main{max-width:600px;margin:auto;padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
-header.top{display:flex;align-items:center;justify-content:flex-start;gap:8px;margin-bottom:8px;min-width:0}
+.titlerow{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 0 6px;min-width:0}
+.titlerow h1{margin:0;min-width:0}
+.back{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:36px;font:700 15px Arial,sans-serif;padding:4px 12px;border-radius:18px;background:#fff;color:var(--navy);border:1.5px solid #b9cadc;box-shadow:0 2px 0 #b9cadc;text-decoration:none;white-space:nowrap}
+.back:active{transform:translateY(2px);box-shadow:none}
 .brand{font-weight:700;min-width:0}
 h1{font-size:28px;margin:4px 0 6px;line-height:1.25}
 p{margin:6px 0 12px}
@@ -32,7 +35,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 .subject[data-id=english],.item[data-kind=english]{--c:#1F8A8A;--ct:#17706F}
 .subject[data-id=geography],.item[data-kind=geography]{--c:#1F7FB8;--ct:#17608c}
 .pill.extra{display:flex;width:fit-content;max-width:100%;white-space:normal;margin:-2px 22px 12px 0;font-weight:400}
-.pill{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:44px;font-size:16px;padding:6px 14px;border-radius:22px;background:#fff;color:var(--navy);border:2px solid #b9cadc;box-shadow:0 3px 0 #b9cadc;text-decoration:none;white-space:nowrap}
+.pill{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:38px;font-size:15px;padding:4px 12px;border-radius:19px;background:#fff;color:var(--navy);border:1.5px solid #b9cadc;box-shadow:0 2px 0 #b9cadc;text-decoration:none;white-space:nowrap}
 .tiny{font-size:16px;color:var(--muted)}
 .footer{margin-top:16px;font-size:16px;color:var(--muted)}
 [hidden]{display:none!important}
@@ -48,14 +51,13 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 <section id="subjects">
 <h1>כיתה ה׳ · בית ספר אשכולות</h1>
 <p class="muted">בחרו מקצוע, ואחר כך תרגול.</p>
-<a class="subject" data-id="english" href="#english"><strong>אנגלית</strong><span>הכתבות לפי העמודים בספר Fantastic Five.</span></a>
+<a class="subject" data-id="english" href="#english"><strong>אנגלית</strong><span>ההכתבה הבאה, והכתבות קודמות. ספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>.</span></a>
 <a class="subject" data-id="geography" href="#geography"><strong>גאוגרפיה</strong><span>מסע בעולם — מושגים, גלובוס ומפה.</span></a>
 <p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.</p>
 </section>
 
 <section id="items" hidden>
-<header class="top"><a class="pill" id="back" href="#">חזור</a></header>
-<h1 id="itemtitle"></h1>
+<div class="titlerow"><h1 id="itemtitle"></h1><a class="back" id="back" href="#">→ חזור</a></div>
 <p class="muted" id="itemlead"></p>
 <div id="itemlist"></div>
 <p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.</p>
@@ -65,12 +67,12 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 const SUBJECTS={
   english:{
     title:'אנגלית',
-    lead:'בחרו עמוד בספר.',
+    lead:'במה מתרגלים היום?',
     items:[
-      {kind:'english',href:'english.html?v=fb1&unit=ready',title:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',sub:'עמ׳ 29 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi><br>תאריך ההכתבה: 26.11.2026',
-       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20',title:'📄 דפי תרגול להדפסה (5 עמודים)'}},
-      {kind:'english',href:'english.html?v=fb1&unit=p34',title:'הכתבה · עמ׳ 34',sub:'עמ׳ 34 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi><br>תאריך ההכתבה: 12.11.2026',
-       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-07-2',title:'📄 דפי תרגול להדפסה (5 עמודים)'}}
+      {kind:'english',href:'english.html?v=fb1&unit=ready',title:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',sub:'רק המילים של ההכתבה הבאה · עמ׳ 29 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>',
+       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20b',title:'📄 דפי תרגול להדפסה'}},
+      {kind:'english',href:'english.html?v=fb1&unit=past',title:'הכתבות קודמות',sub:'כל המילים מכל ההכתבות שכבר היו, יחד',
+       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-20b',title:'📄 דפי תרגול להדפסה'}}
     ]
   },
   geography:{
@@ -120,7 +122,7 @@ function showSubject(id){
       box.append(x);
     }
   });
-  document.title=s.title+' · כיתה ה׳ · בית ספר אשכולות';
+  document.title=s.title+' · בית ספר אשכולות';
   window.scrollTo(0,0);
 }
 

@@ -177,19 +177,31 @@ const TITLES={journey:'✈️ מסע מושגים',compare:'🌐 גלובוס מ
 const ORDER=['journey','compare','detective','find'];
 let mode=null,M=null,hintStage=0,hintFn=null;
 function show(s){['hub','game','end'].forEach(x=>$(x).hidden=x!==s);window.scrollTo(0,0)}
-function setProgress(i,n){const s=$('segs');s.innerHTML='';for(let k=0;k<n;k++){const d=h('div',{class:'seg'+(k<i?' done':k===i?' cur':'')});s.append(d)}$('ptext').textContent=`${Math.min(i+1,n)} מתוך ${n}`}
-function resetStep(){$('hintBtn').after($('helpTurn'));$('fb').textContent='';$('fb').className='';$('hint').hidden=true;$('learn').hidden=true;$('acts').hidden=true;$('helpTurn').hidden=true;hintStage=0;wrongs=0;$('stage').innerHTML='';[...$('acts').children].forEach(x=>{if(x.id!=='next')x.remove()})}
+const STRETCH=10;let streak=0,autoT=null,tenNext=null;
+function setProgress(){const s=$('segs');s.innerHTML='';const solved=!$('acts').hidden,k=streak%STRETCH,n=solved?(k===0&&streak>0?STRETCH:k):k,cur=solved?n:k+1;for(let j=0;j<STRETCH;j++){s.append(h('div',{class:'seg'+(j<n?' done':(!solved&&j===k)?' cur':'')}))}$('ptext').textContent=`תרגיל ${cur} מתוך ${STRETCH}`}
+let holdFn=null;
+function stopAuto(){clearTimeout(autoT);autoT=null;if(holdFn){$('stage').removeEventListener('pointerdown',holdFn);$('learn').removeEventListener('pointerdown',holdFn);holdFn=null}}
+/* An exercise was finished correctly: count it, then move on by itself (or now, with "הבא"). */
+function solvedStep(fn,note){
+ if(note){$('learn').insertAdjacentHTML('beforeend','<div class="roundnote">'+note+'</div>');$('learn').hidden=false}
+ streak++;
+ const go=()=>{stopAuto();if(!mode||$('game').hidden)return;if(streak%STRETCH===0){tenNext=fn;show('end');$('again').focus();return}fn()};
+ nextBtn('הבא ←',go);setProgress();
+ const chars=($('fb').textContent+($('learn').hidden?'':$('learn').textContent)).length;
+ const wait=Math.min(8000,Math.max(3000,1200+55*chars));
+ stopAuto();holdFn=e=>{stopAuto()};$('stage').addEventListener('pointerdown',holdFn);$('learn').addEventListener('pointerdown',holdFn);
+ autoT=setTimeout(function tick(){if(!$('sat').hidden||!$('fbsheet').hidden){autoT=setTimeout(tick,800);return}go()},wait);
+}
+function resetStep(){stopAuto();$('hintBtn').after($('helpTurn'));$('fb').textContent='';$('fb').className='';$('hint').hidden=true;$('learn').hidden=true;$('acts').hidden=true;$('helpTurn').hidden=true;hintStage=0;wrongs=0;$('stage').innerHTML='';[...$('acts').children].forEach(x=>{if(x.id!=='next')x.remove()})}
 let wrongs=0;
 function say(msg,ok){$('fb').textContent=msg;$('fb').className=ok?'success':'tryagain';if(ok){wrongs=0}else if(++wrongs>=2&&hintStage===0&&hintFn){hintFn(++hintStage)}}
 function showHint(t){$('hint').textContent='💡 '+t;$('hint').hidden=false}
 function nextBtn(label,fn){$('next').textContent=label;$('next').onclick=fn;$('acts').hidden=false;setTimeout(()=>$('acts').scrollIntoView({block:'nearest',behavior:'smooth'}),50)}
 $('hintBtn').onclick=()=>{if(hintFn)hintFn(++hintStage)};
-function start(m){mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
+function start(m){stopAuto();streak=0;mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>start(b.dataset.mode));
-$('back').onclick=()=>{mode=null;show('hub')};$('menu').onclick=()=>{mode=null;show('hub')};
-$('again').onclick=()=>start(mode);
-$('nextTopic').onclick=()=>start(ORDER[(ORDER.indexOf(mode)+1)%ORDER.length]);
-function finish(title,html,nextTopicLabel){$('endTitle').textContent=title;$('endText').innerHTML=html;const nt=ORDER[(ORDER.indexOf(mode)+1)%ORDER.length];$('nextTopic').textContent='לנושא הבא: '+TITLES[nt];show('end')}
+$('back').onclick=()=>{stopAuto();mode=null;show('hub')};$('menu').onclick=()=>{stopAuto();mode=null;show('hub')};
+$('again').onclick=()=>{show('game');const f=tenNext;tenNext=null;if(f)f()};
 function options(list,correct,onPick,cls=''){ // list of strings
  const box=h('div',{class:'opts '+cls});let done=false;
  for(const t of list){const b=h('button',{class:'opt',type:'button'});b.textContent=t;b.onclick=()=>{if(done)return;
@@ -198,7 +210,7 @@ function options(list,correct,onPick,cls=''){ // list of strings
  return box}
 
 /* ---------- 1. journey ---------- */
-function jStart(){M={deck:shuffle(CONCEPTS).map(c=>({c,p:PLACES[c][rnd(PLACES[c].length)]})),i:0};jStep()}
+function jStart(){const last=M&&M.deck&&M.deck[M.deck.length-1]&&M.deck[M.deck.length-1].c;let d=shuffle(CONCEPTS);if(d.length>1&&d[0]===last)d.push(d.shift());M={deck:d.map(c=>({c,p:PLACES[c][rnd(PLACES[c].length)]})),i:0};jStep()}
 function drawPlace(box,p){
  const W=Math.min(stageWidth(),420),H=Math.round(W*0.62);
  const svg=el('svg',{class:'globe',viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':'כדור הארץ עם המקום המסומן. אפשר לסובב עם האצבע, העכבר או החצים.'},box);svg.style.margin='auto';svg.style.borderRadius='10px';
@@ -265,8 +277,8 @@ function drawPlace(box,p){
  return {proj,render,svg};
 }
 function jStep(){
- resetStep();const {deck,i}=M;if(i>=deck.length)return finish('סיימת את המסע! 🌍','<p>ביקרת בשבעה מקומות אמיתיים בעולם.<br>עכשיו נסה לכתוב בספר, במילים שלך, מה זה כל מושג.</p>');
- setProgress(i,deck.length);const {c,p}=deck[i];
+ resetStep();const {deck,i}=M;if(i>=deck.length)return jStart();
+ setProgress();const {c,p}=deck[i];
  $('task').textContent=`טסים למקום מסתורי: ${p.near}. מה רואים במקום המסומן?`;
  const box=h('div',{class:'mapbox'});$('stage').append(box);drawPlace(box,p);
  const a=h('button',{class:'ge',type:'button'});a.textContent='🛰️ טוס לשם – תצלום לוויין';a.onclick=()=>openSat(p,a,c);box.append(a);
@@ -285,7 +297,7 @@ function jName(c,p){
    if(!ok){say(`↺ לא בדיוק. ${t}: ${DEF[t]} נסה שוב.`,false);return}
    say(`✓ נכון! ${p.n} – זה ${c}.`,true);
    $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;
-   nextBtn(M.i+1<M.deck.length?'ליעד הבא ✈️':'סיום',()=>{M.i++;jStep()});
+   solvedStep(()=>{M.i++;jStep()},M.i+1>=M.deck.length?'🌍 ביקרת אצל כל שבעת המושגים! נסה לכתוב בספר, במילים שלך, מה זה כל מושג.':'');
    setTimeout(()=>$('acts').scrollIntoView({block:'nearest',behavior:'smooth'}),50)},'two'));
  setTimeout(()=>q.scrollIntoView({block:'nearest',behavior:'smooth'}),50);
 }
@@ -310,11 +322,11 @@ const CTASKS=[
  {id:'carry',t:'דמיין שאתה יוצא לטיול. מה קל יותר לקפל ולשים בתיק?',
   o:['מפה שטוחה','גלובוס'],ok:'נכון! את המפה אפשר לקפל ולשים בתיק, ואת הגלובוס לא.',h1:'מה מהשניים אפשר לקפל?'}
 ];
-function cStart(){M={deck:shuffle(CTASKS),i:0};cStep()}
+function cStart(){const last=M&&M.deck&&M.deck[M.deck.length-1];let d=shuffle(CTASKS);if(d.length>1&&d[0]===last)d.push(d.shift());M={deck:d,i:0};cStep()}
 function cStep(){
  resetStep();const {deck,i}=M;
- if(i>=deck.length)return finish('גילית הבדלים! 🌐','<p>עכשיו חזור לטבלה של תרגיל 23 וכתוב במילים שלך.<br>שאלות שיעזרו לך לחשוב:</p><ul class="think"><li>מה רואים בבת אחת?</li><li>איפה הצורות והגדלים נכונים יותר?</li><li>מה קורה בקצוות של המפה?</li><li>מה נוח לקחת לטיול?</li></ul>');
- setProgress(i,deck.length);const T=deck[i];$('task').textContent=T.t;
+ if(i>=deck.length)return cStart();
+ setProgress();const T=deck[i];$('task').textContent=T.t;
  const W=stageWidth();const duo=h('div',{class:'duo'});$('stage').append(duo);
  const gb=h('div',{class:'mapbox'});duo.append(gb);const info=h('div',{class:'maplabel'});
  const tap=r=>{info.innerHTML=`<span class="tapinfo">${r==='water'?'כאן יש מים 💧':'זו '+CN[r]}</span><span>גרור כדי לסובב</span>`};
@@ -325,7 +337,7 @@ function cStep(){
    if(T.turn&&k>=2){$('helpTurn').hidden=false;$('helpTurn').onclick=()=>{G.turnTo(...T.turn);if(T.labels){G.labels=T.labels}}}};
  const q=h('div');$('stage').append(q);
  q.append(options(shuffle(T.o),T.o[0],ok=>{if(!ok){say('↺ כמעט. סובב שוב את הגלובוס והשווה למפה.',false);return}
-   say('✓ '+T.ok,true);nextBtn(i+1<deck.length?'לגילוי הבא ←':'סיום',()=>{M.i++;cStep()})}));
+   say('✓ '+T.ok,true);solvedStep(()=>{M.i++;cStep()},i+1>=deck.length?'🌐 גילית את כל ההבדלים! עכשיו אפשר לחזור לטבלה של תרגיל 23 ולכתוב במילים שלך.':'')}));
 }
 
 /* ---------- 3. detective ---------- */
@@ -342,7 +354,7 @@ const DCASES=[
 let lastCase=-1;
 function dStart(){let k=rnd(DCASES.length);if(DCASES.length>1&&k===lastCase)k=(k+1)%DCASES.length;lastCase=k;M={K:DCASES[k],step:0,found:false};dStep()}
 function dStep(){
- resetStep();const K=M.K;setProgress(0,2);
+ resetStep();const K=M.K;setProgress();
  $('task').textContent=(K.intro||'')+`במפה השטוחה יש חתיכת יבשה צהובה ${K.side}. סובב את הגלובוס ומצא אותה.`;
  const W=stageWidth();const piece=PIECES[K.piece];const duo=h('div',{class:'duo'});$('stage').append(duo);
  const fbx=h('div',{class:'mapbox'});const F=makeFlat(fbx,{width:Math.min(W,620),center:K.center,piece});
@@ -356,12 +368,12 @@ function dStep(){
  gb.append(info);gb.append($('helpTurn'));legend(gb);$('stage').append(q);
  hintFn=k=>{if(M.found){showHint(k===1?'תסתכל בגלובוס: בצבע של איזו יבשה החתיכה הצהובה נוגעת?':'אפשר ללחוץ על היבשה שנוגעת בחתיכה, והגלובוס יגיד את השם.');return}
    showHint(K.h[Math.min(k,2)-1]);if(k>=2){$('helpTurn').hidden=false;$('helpTurn').onclick=()=>G.turnTo(K.c[0],K.c[1]-8)}};
- function found(){setProgress(1,2);say('🔎 מצאת אותה בגלובוס!',true);$('hint').hidden=true;hintStage=0;$('helpTurn').hidden=true;
+ function found(){say('🔎 מצאת אותה בגלובוס!',true);$('hint').hidden=true;hintStage=0;$('helpTurn').hidden=true;
    $('task').textContent='תסתכל על היבשה שנוגעת בחתיכה הצהובה בגלובוס. לאיזו יבשת החתיכה שייכת?';
    q.innerHTML='';q.append(options(shuffle(K.opts.map(x=>CN[x])),CN[K.ans],(ok,t)=>{
      if(!ok){const key=Object.keys(CN).find(x=>CN[x]===t);say('↺ '+(K.near[key]||'תסתכל שוב על הגלובוס: איזו יבשה נוגעת בחתיכה הצהובה?'),false);return}
-     say('✓ '+K.ok,true);setProgress(2,2);
-     nextBtn('עוד תרגיל 🔎',()=>dStart());const b2=h('button',{class:'secondary',type:'button'});b2.textContent='לנושא הבא';b2.onclick=()=>start(ORDER[(ORDER.indexOf(mode)+1)%ORDER.length]);$('acts').append(b2);
+     say('✓ '+K.ok,true);
+     solvedStep(()=>dStart());
    },'two'));setTimeout(()=>q.scrollIntoView({block:'nearest',behavior:'smooth'}),60)}
  if(d3.geoDistance(K.c,G.center())<0.62){M.found=true;found()}
 }
@@ -389,8 +401,8 @@ function fStart(){
  M={s,fx,fy,items:shuffle(items),i:0};fStep()}
 function fStep(){
  resetStep();const {s,fx,fy,items,i}=M;
- if(i>=items.length)return finish('מצאת את כל המספרים! 🧩','<p>שים לב: לא כל המושגים מופיעים בציור, בדיוק כמו בתרגיל 27.<br>רוצה ציור חדש? לחץ על „עוד תרגיל”.</p>');
- setProgress(i,items.length);const cur=items[i];
+ if(i>=items.length)return fStart();
+ setProgress();const cur=items[i];
  $('task').textContent=`איזה מושג מתאים למספר ${cur.n}?`;
  const box=h('div',{class:'mapbox'});$('stage').append(box);
  const svg=el('svg',{viewBox:'0 0 400 300',width:Math.min(stageWidth(),520),role:'img','aria-label':'ציור של יבשה ומים עם מספרים'},box);svg.style.margin='auto';
@@ -412,7 +424,7 @@ function fStep(){
  const all=shuffle([...CONCEPTS,...DISTRACT]);let done=false;
  for(const c of all){const b=h('button',{class:'chip',type:'button'});b.textContent=c;if(items.slice(0,i).some(x=>x.k===c))b.classList.add('used');
    b.onclick=()=>{if(done)return;if(c===cur.k){done=true;b.classList.add('right');b.style.background='#e6f5ec';b.style.borderColor='#3f7d5d';say(`✓ נכון! מספר ${cur.n} הוא ${c}.`,true);
-       $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;nextBtn(i+1<items.length?'למספר הבא ←':'סיום',()=>{M.i++;fStep()})}
+       $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;solvedStep(()=>{M.i++;fStep()},i+1>=items.length?'🧩 מצאת את כל המספרים! לא כל המושגים מופיעים בציור, כמו בתרגיל 27. עכשיו ציור חדש.':'')}
      else{b.disabled=true;say(DEF[c]?`↺ לא בדיוק. ${c}: ${DEF[c]} נסה שוב.`:(c==='גלובוס'?'↺ גלובוס הוא דגם עגול של כדור הארץ. הוא לא מקום בציור. נסה שוב.':'↺ כדור הארץ הוא כל העולם שלנו, לא מקום אחד בציור. נסה שוב.'),false)}};chips.append(b)}
 }
 
