@@ -34,7 +34,10 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 .subject:active,.item:active,.pill:active{transform:translateY(3px);box-shadow:0 1px 0 #0f2238}
 .subject[data-id=english],.item[data-kind=english]{--c:#1F8A8A;--ct:#17706F}
 .subject[data-id=geography],.item[data-kind=geography]{--c:#1F7FB8;--ct:#17608c}
+.subject[data-id=science],.item[data-kind=science]{--c:#8A6A1F;--ct:#7a5a12}
 .pill.extra{display:flex;width:fit-content;max-width:100%;white-space:normal;margin:-2px 22px 12px 0;font-weight:400}
+.extras{display:flex;flex-wrap:wrap;gap:8px;margin:-2px 22px 12px 0}.extras .pill.extra{margin:0}
+.extras .lbl{width:100%;font-size:14px;color:#555}
 .pill{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-height:38px;font-size:15px;padding:4px 12px;border-radius:19px;background:#fff;color:var(--navy);border:1.5px solid #b9cadc;box-shadow:0 2px 0 #b9cadc;text-decoration:none;white-space:nowrap}
 .tiny{font-size:16px;color:var(--muted)}
 .footer{margin-top:16px;font-size:16px;color:var(--muted)}
@@ -53,6 +56,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 <p class="muted">בוחרים מקצוע, ואחר כך תרגול.</p>
 <a class="subject" data-id="english" href="#english"><strong>אנגלית</strong><span>ההכתבה הבאה, והכתבות קודמות. ספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>.</span></a>
 <a class="subject" data-id="geography" href="#geography"><strong>גאוגרפיה</strong><span>מסע בעולם — מושגים, גלובוס ומפה.</span></a>
+<a class="subject" data-id="science" href="#science"><strong>מדעים</strong><span>עולם הסלעים והקרקעות — לומדים ומתרגלים לבוחן.</span></a>
 <p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.</p>
 </section>
 
@@ -80,6 +84,14 @@ const SUBJECTS={
     lead:'לומדה אחת, עם כמה תרגולים בפנים.',
     items:[
       {kind:'geography',href:'geography/',title:'מסע בעולם',sub:'מושגים בגאוגרפיה: מסע מושגים, גלובוס מול מפה, בלשי המפה, ומוצאים במפה.'}
+    ]
+  },
+  science:{
+    title:'מדעים',
+    lead:'במה מתרגלים היום?',
+    items:[
+      {kind:'science',href:'science-rocks.html',title:'עולם הסלעים והקרקעות',sub:'פרק ב׳ בספר «במבט חדש», עמ׳ 30 עד 44 · סיכום קצר לכל נושא ותרגול',
+       extra:[{href:'pages/science-rocks-practice.pdf',title:'📄 דפי תרגול'},{href:'pages/science-rocks-quiz-a.pdf',title:'📝 בוחן א׳'},{href:'pages/science-rocks-quiz-b.pdf',title:'📝 בוחן ב׳'},{href:'pages/science-rocks-quiz-c.pdf',title:'📝 בוחן ג׳'},{href:'pages/science-rocks-answers.pdf',title:'🔑 תשובות לדפי התרגול',parent:1},{href:'pages/science-rocks-quiz-a-answers.pdf',title:'🔑 תשובות לבוחן א׳',parent:1},{href:'pages/science-rocks-quiz-b-answers.pdf',title:'🔑 תשובות לבוחן ב׳',parent:1},{href:'pages/science-rocks-quiz-c-answers.pdf',title:'🔑 תשובות לבוחן ג׳',parent:1}]}
     ]
   }
 };
@@ -115,16 +127,20 @@ function showSubject(id){
     span.innerHTML=it.sub;
     a.append(strong,span);
     box.append(a);
-    if(it.extra){
-      const x=document.createElement('a');
-      x.className='pill extra';x.href=it.extra.href;x.target='_blank';x.rel='noopener';
-      x.textContent=it.extra.title;
-      box.append(x);
-    }
+    const ex=[].concat(it.extra||[]);
+    if(ex.length<=2){ex.forEach(e=>box.append(pill(e)))}
+    else[[ '🖨️ להדפסה:',ex.filter(e=>!e.parent)],['👪 להורים:',ex.filter(e=>e.parent)]].forEach(([t,list])=>{
+      if(!list.length)return;
+      const w=document.createElement('div');w.className='extras';
+      const l=document.createElement('span');l.className='lbl';l.textContent=t;w.append(l);
+      list.forEach(e=>w.append(pill(e)));box.append(w);
+    });
   });
   document.title=s.title+' · בית ספר אשכולות';
   window.scrollTo(0,0);
 }
+
+function pill(e){const x=document.createElement('a');x.className='pill extra';x.href=e.href;x.target='_blank';x.rel='noopener';x.textContent=e.title;return x}
 
 function route(){
   const id=(location.hash||'').replace(/^#/,'').replace(/\/$/,'');
