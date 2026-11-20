@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; connect-src https://mipui-eshkol.goatcounter.com; media-src 'self'; form-action https://api.web3forms.com; frame-src https://api.web3forms.com; img-src 'self' data: https://mipui-eshkol.goatcounter.com; object-src 'none'; base-uri 'none'"><script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/?v=fb1"}' async src="https://gc.zgo.at/count.js"></script><title>מילה במילה · תרגול להכתבה</title>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; connect-src https://mipui-eshkol.goatcounter.com; media-src 'self'; form-action https://api.web3forms.com; frame-src https://api.web3forms.com; img-src 'self' data: https://mipui-eshkol.goatcounter.com; object-src 'none'; base-uri 'none'"><script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/?v=fb1","no_onload":true}' async src="https://gc.zgo.at/count.js"></script><title>מילה במילה · תרגול להכתבה</title>
 <style>
 *{box-sizing:border-box}
 :root{--navy:#203b5c;--mc:#1F8A8A;--mt:#17706F;--md:#146565}
@@ -141,14 +141,39 @@ const ORD=['הראשונה','השנייה','השלישית','הרביעית','ה
 const PREFERRED=['Samantha','Daniel','Karen','Moira','Rishi','Martha','Arthur','Nicky','Aaron'];
 const NOVELTY=/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|pipe organ|superstar|trinoids|whisper|zarvox|wobble|organ|jester|reed|flo|eddy|rocko|shelley/i;
 const $=id=>document.getElementById(id);
+function gcSkip(){
+  try{
+    if(navigator.webdriver)return true;
+    if(new URLSearchParams(location.search).get('nogc')==='1')return true;
+    if(localStorage&&localStorage.getItem('skipgc')==='t')return true;
+  }catch(e){}
+  return false;
+}
 const tabSeen=new Set();
 function trackTab(path){
-  if(!path||tabSeen.has(path))return;
+  if(!path||tabSeen.has(path)||gcSkip())return;
   tabSeen.add(path);
-  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  const fire=()=>{if(gcSkip())return;try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
   if(window.goatcounter&&goatcounter.count)fire();
   else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
 }
+/* Pageviews are sent as a GET pixel (not sendBeacon POST), once. Retry on first gesture if the load-time hit did not land. */
+let gcPv='idle';
+function gcPageview(){
+  if(gcSkip()||gcPv==='sent'||gcPv==='sending')return;
+  try{if(window.goatcounter&&goatcounter.filter&&goatcounter.filter())return}catch(e){}
+  if(!(window.goatcounter&&goatcounter.url))return;
+  const url=goatcounter.url({});
+  if(!url)return;
+  gcPv='sending';
+  const img=new Image();
+  img.onload=()=>{gcPv='sent'};
+  img.onerror=()=>{gcPv='idle'};
+  img.src=url;
+}
+(function(){let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.url)||++n>50){clearInterval(t);gcPageview()}},100)})();
+document.addEventListener('pointerdown',gcPageview,true);
+document.addEventListener('keydown',gcPageview,true);
 
 let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null,doneCount=0,lastWord='',fbType='';
 const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה',join:'מרכיבים את המילה'};

@@ -3,14 +3,15 @@
 <script>
 /* Old family links such as ?v=fb1 must open the English kit, not this hub. */
 (function(){
-  var q=location.search;
-  if(q&&q.length>1){
+  var q=new URLSearchParams(location.search);
+  /* Only known old family links go to the English kit. A cache-bust query such as ?v=live must not skip the landing count. */
+  if(q.get('v')==='fb1'||q.has('unit')){
     window.goatcounter={no_onload:true};
-    location.replace('english.html'+q+location.hash);
+    location.replace('english.html'+location.search+location.hash);
   }
 })();
 </script>
-<script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/"}' async src="https://gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/","no_onload":true}' async src="https://gc.zgo.at/count.js"></script>
 <title>כיתה ה׳ · בית ספר אשכולות</title>
 <style>
 *{box-sizing:border-box}
@@ -96,14 +97,39 @@ const SUBJECTS={
   }
 };
 
+function gcSkip(){
+  try{
+    if(navigator.webdriver)return true;
+    if(new URLSearchParams(location.search).get('nogc')==='1')return true;
+    if(localStorage&&localStorage.getItem('skipgc')==='t')return true;
+  }catch(e){}
+  return false;
+}
 const tabSeen=new Set();
 function trackTab(path){
-  if(!path||tabSeen.has(path))return;
+  if(!path||tabSeen.has(path)||gcSkip())return;
   tabSeen.add(path);
-  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  const fire=()=>{if(gcSkip())return;try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
   if(window.goatcounter&&goatcounter.count)fire();
   else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
 }
+/* Pageviews are sent as a GET pixel (not sendBeacon POST), once. Retry on first gesture if the load-time hit did not land. */
+let gcPv='idle';
+function gcPageview(){
+  if(gcSkip()||gcPv==='sent'||gcPv==='sending')return;
+  try{if(window.goatcounter&&goatcounter.filter&&goatcounter.filter())return}catch(e){}
+  if(!(window.goatcounter&&goatcounter.url))return;
+  const url=goatcounter.url({});
+  if(!url)return;
+  gcPv='sending';
+  const img=new Image();
+  img.onload=()=>{gcPv='sent'};
+  img.onerror=()=>{gcPv='idle'};
+  img.src=url;
+}
+(function(){let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.url)||++n>50){clearInterval(t);gcPageview()}},100)})();
+document.addEventListener('pointerdown',gcPageview,true);
+document.addEventListener('keydown',gcPageview,true);
 function bindTab(el,path){if(!path||!el)return;const go=()=>trackTab(path);el.addEventListener('click',go);el.addEventListener('auxclick',go)}
 function showSubjects(){
   if(location.hash && location.hash!=='#' && location.hash!==''){

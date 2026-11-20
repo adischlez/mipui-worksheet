@@ -8,14 +8,39 @@ const TAB_PREFIX=(function(){
   }catch(e){}
   return /\/mipui-worksheet\//.test(location.pathname)?'tab/geography':'tab/geography-site';
 })();
+function gcSkip(){
+  try{
+    if(navigator.webdriver)return true;
+    if(new URLSearchParams(location.search).get('nogc')==='1')return true;
+    if(localStorage&&localStorage.getItem('skipgc')==='t')return true;
+  }catch(e){}
+  return false;
+}
 const tabSeen=new Set();
 function trackTab(path){
-  if(!path||tabSeen.has(path))return;
+  if(!path||tabSeen.has(path)||gcSkip())return;
   tabSeen.add(path);
-  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  const fire=()=>{if(gcSkip())return;try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
   if(window.goatcounter&&goatcounter.count)fire();
   else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
 }
+/* Pageviews are sent as a GET pixel (not sendBeacon POST), once. Retry on first gesture if the load-time hit did not land. */
+let gcPv='idle';
+function gcPageview(){
+  if(gcSkip()||gcPv==='sent'||gcPv==='sending')return;
+  try{if(window.goatcounter&&goatcounter.filter&&goatcounter.filter())return}catch(e){}
+  if(!(window.goatcounter&&goatcounter.url))return;
+  const url=goatcounter.url({});
+  if(!url)return;
+  gcPv='sending';
+  const img=new Image();
+  img.onload=()=>{gcPv='sent'};
+  img.onerror=()=>{gcPv='idle'};
+  img.src=url;
+}
+(function(){let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.url)||++n>50){clearInterval(t);gcPageview()}},100)})();
+document.addEventListener('pointerdown',gcPageview,true);
+document.addEventListener('keydown',gcPageview,true);
 const NS='http://www.w3.org/2000/svg';
 const rnd=n=>Math.floor(Math.random()*n);
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
