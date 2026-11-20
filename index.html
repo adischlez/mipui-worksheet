@@ -50,14 +50,14 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 <main>
 <section id="subjects">
 <h1>כיתה ה׳ · בית ספר אשכולות</h1>
-<p class="muted">בחרו מקצוע, ואחר כך תרגול.</p>
+<p class="muted">בוחרים מקצוע, ואחר כך תרגול.</p>
 <a class="subject" data-id="english" href="#english"><strong>אנגלית</strong><span>ההכתבה הבאה, והכתבות קודמות. ספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>.</span></a>
 <a class="subject" data-id="geography" href="#geography"><strong>גאוגרפיה</strong><span>מסע בעולם — מושגים, גלובוס ומפה.</span></a>
 <p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.</p>
 </section>
 
 <section id="items" hidden>
-<div class="titlerow"><h1 id="itemtitle"></h1><a class="back" id="back" href="#">→ חזור</a></div>
+<div class="titlerow"><h1 id="itemtitle"></h1><a class="back" id="back" href="#">→ חזרה</a></div>
 <p class="muted" id="itemlead"></p>
 <div id="itemlist"></div>
 <p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.</p>
@@ -70,16 +70,16 @@ const SUBJECTS={
     lead:'במה מתרגלים היום?',
     items:[
       {kind:'english',href:'english.html?v=fb1&unit=ready',title:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',sub:'רק המילים של ההכתבה הבאה · עמ׳ 29 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>',
-       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20b',title:'📄 דפי תרגול להדפסה'}},
+       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה'}},
       {kind:'english',href:'english.html?v=fb1&unit=past',title:'הכתבות קודמות',sub:'כל המילים מכל ההכתבות שכבר היו, יחד',
-       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-20b',title:'📄 דפי תרגול להדפסה'}}
+       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה'}}
     ]
   },
   geography:{
     title:'גאוגרפיה',
     lead:'לומדה אחת, עם כמה תרגולים בפנים.',
     items:[
-      {kind:'geography',href:'geography/',title:'מסע בעולם',sub:'מושגים בגאוגרפיה: מסע מושגים, גלובוס מול מפה, הבלש של המפה, ומצא במפה.'}
+      {kind:'geography',href:'geography/',title:'מסע בעולם',sub:'מושגים בגאוגרפיה: מסע מושגים, גלובוס מול מפה, בלשי המפה, ומוצאים במפה.'}
     ]
   }
 };

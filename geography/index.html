@@ -42,6 +42,7 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:2p
 .opt.right{background:#e6f5ec;border-color:#3f7d5d;box-shadow:0 3px 0 #3f7d5d}.opt.wrongpick{background:#fff3e3;border-color:#c17017;box-shadow:0 3px 0 #c17017}
 #fb{min-height:24px;margin:6px 0;font-size:16px}.success{color:#236345;font-weight:700}.tryagain{color:#8a4b0c}
 .hint{font-size:16px;color:#6c4b1f;background:#fff6e8;border-radius:8px;padding:7px 9px;margin:6px 0}
+.prev{font-size:15px;line-height:1.35;background:#ecf7f1;border-right:5px solid #3f7d5d;border-radius:8px;padding:6px 10px;margin:4px 0 6px;color:#1f4d36}.prev .success{color:#236345}
 .roundnote{margin-top:6px;font-weight:700}
 .learn{background:#eef6ff;border-right:5px solid var(--mc);border-radius:8px;padding:7px 10px;margin:6px 0}
 .actions{display:flex;gap:8px;margin-top:8px}.actions>*{flex:1}
@@ -89,13 +90,13 @@ textarea{width:100%;font:16px Arial,sans-serif;border:2px solid #b9cadc;border-r
 @media(max-width:360px){main{padding-left:8px;padding-right:8px}.task{font-size:16px}h1{font-size:22px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><main>
-<section id="hub"><header class="top"><div class="brand">🌍 מסע בעולם <span class="tag">גאוגרפיה</span></div><a class="pill" href="../#geography">→ חזור</a></header>
+<section id="hub"><header class="top"><div class="brand">🌍 מסע בעולם <span class="tag">גאוגרפיה</span></div><a class="pill" href="../#geography">→ חזרה</a></header>
 <h1>מושגים בגאוגרפיה</h1>
 <p class="muted">אי, חצי אי, מצר, מפרץ, ים, אוקיינוס ויבשת. גם גלובוס מול מפה שטוחה.</p>
 <button class="mode" data-mode="journey"><strong>✈️ מסע מושגים</strong><span>טסים למקומות אמיתיים בעולם ומגלים מה רואים שם.</span></button>
 <button class="mode" data-mode="compare"><strong>🌐 גלובוס מול מפה שטוחה</strong><span>מסובבים גלובוס ומשווים למפה. רעיונות לתרגיל 23.</span></button>
-<button class="mode" data-mode="detective"><strong>🔎 הבלש של המפה</strong><span>חתיכת יבשה צהובה בקצה המפה. של מי היא? (כמו תרגיל 24)</span></button>
-<button class="mode" data-mode="find"><strong>🧩 מצא במפה</strong><span>מספרים על ציור, ומתאימים לכל מספר מושג. (כמו תרגיל 27)</span></button>
+<button class="mode" data-mode="detective"><strong>🔎 בלשי המפה</strong><span>חתיכת יבשה צהובה בקצה המפה. של מי היא? (כמו תרגיל 24)</span></button>
+<button class="mode" data-mode="find"><strong>🧩 מוצאים במפה</strong><span>מספרים על ציור, ומתאימים לכל מספר מושג. (כמו תרגיל 27)</span></button>
 <p class="tiny">התרגילים מגיעים אחד אחרי השני, בסדר חדש. אחרי 10 תרגילים אפשר לעצור או להמשיך. אין שעון ואין ציונים. את התשובות בספר כותבים במילים שלכם.</p>
 <details class="more"><summary>📖 מילון המושגים</summary><dl>
 <dt>אי</dt><dd>חלק של יבשה שיש סביבו מים מכל הצדדים.</dd>
@@ -108,18 +109,19 @@ textarea{width:100%;font:16px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <dt>כדור הארץ</dt><dd>הכוכב שעליו אנחנו חיים. הוא עגול כמו כדור.</dd>
 <dt>גלובוס</dt><dd>דגם קטן ועגול של כדור הארץ.</dd></dl></details>
 <details class="more"><summary>👨‍👧 להורה: איך עובדים עם הלומדה</summary><ol>
-<li>שבו יחד 10–15 דקות. מתחילים ב„מסע מושגים”.</li>
-<li>תנו לילד לנסות לבד. אחרי שתי טעויות מופיע רמז.</li>
-<li>„גלובוס מול מפה” ו„הבלש” עוזרים לתרגילים 23 ו־24. את הטבלה בספר הילד ממלא במילים שלו.</li>
-<li>„מצא במפה” דומה לתרגיל 27. אחרי כל ציור מגיע ציור חדש לבד.</li></ol></details>
-<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב. כפתור „טוס לשם” מראה תצלום לוויין (Esri) בתוך הדף.<br><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+<li>יושבים יחד 10–15 דקות. מתחילים ב„מסע מושגים”.</li>
+<li>נותנים לילדים לנסות לבד. אחרי שתי טעויות מופיע רמז.</li>
+<li>„גלובוס מול מפה” ו„בלשי המפה” עוזרים לתרגילים 23 ו־24. את הטבלה בספר ממלאים במילים שלהם.</li>
+<li>„מוצאים במפה” דומה לתרגיל 27. אחרי כל ציור מגיע ציור חדש לבד.</li></ol></details>
+<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב. כפתור „טסים לשם” מראה תצלום לוויין (Esri) בתוך הדף.<br><button class="textlink fb">דיווח על בעיה או רעיון לשיפור</button></p></section>
 
 <section id="game" hidden>
 <div class="taskbar"><div class="l1"><span class="gtitle" id="modeTitle"></span><span class="tiny" id="ptext"></span><button id="back" class="pill" type="button">→ תפריט</button></div>
 <div class="segs" id="segs" aria-hidden="true"></div>
 <div class="task" id="task" role="status" aria-live="polite"></div>
-<div class="tools"><button id="hintBtn" class="secondary mini" type="button">💡 רמז</button><button id="helpTurn" class="secondary mini" type="button" hidden>🔄 סובב בשבילי</button><button class="secondary mini report fb" type="button">📝 דווח תקלה / שיפור</button></div>
+<div class="tools"><button id="hintBtn" class="secondary mini" type="button">💡 רמז</button><button id="helpTurn" class="secondary mini" type="button" hidden>🔄 עזרה בסיבוב</button><button class="secondary mini report fb" type="button">📝 דיווח תקלה / שיפור</button></div>
 </div>
+<div id="prev" class="prev" role="status" aria-live="polite" hidden></div>
 <div id="hint" class="hint" hidden></div>
 <div id="stage"></div>
 <div id="fb" role="status" aria-live="polite"></div>
@@ -135,10 +137,10 @@ textarea{width:100%;font:16px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <div id="sat" class="sat" hidden role="dialog" aria-modal="true" aria-labelledby="satT"><div class="sathead"><div class="t"><b id="satT">🛰️ תצלום לוויין · <span id="satNear" style="font-weight:400"></span></b><span>גוררים ומתקרבים עם האצבעות · 🔴 = המקום</span></div><button id="satClose" class="primary" type="button">חזרה ללומדה</button></div>
 <div id="satMap" dir="ltr" role="application" aria-label="תצלום לוויין. אפשר להזיז ולהתקרב."></div>
 <div id="satHint" class="sathint" role="status" aria-live="polite" hidden></div>
-<div class="satfoot"><button id="satHintBtn" class="secondary mini" type="button">💡 רמז</button><button id="satLbl" class="secondary mini" type="button" aria-pressed="false">🏷️ הצג שמות</button><a id="satEarth" href="#" target="_blank" rel="noopener">לפתוח ב־Google Earth</a></div></div>
-<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דווח על בעיה או רעיון</h2>
+<div class="satfoot"><button id="satHintBtn" class="secondary mini" type="button">💡 רמז</button><button id="satLbl" class="secondary mini" type="button" aria-pressed="false">🏷️ להציג שמות</button><a id="satEarth" href="#" target="_blank" rel="noopener">לפתוח ב־Google Earth</a></div></div>
+<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דיווח על בעיה או רעיון</h2>
 <div class="fbchips"><button type="button" class="secondary fbchip" data-t="משהו לא עובד" aria-pressed="false">משהו לא עובד</button><button type="button" class="secondary fbchip" data-t="יש לי רעיון" aria-pressed="false">יש לי רעיון</button></div>
-<textarea id="fbtext" maxlength="500" aria-label="מה תרצו לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
+<textarea id="fbtext" maxlength="500" aria-label="מה רוצים לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
 <p style="margin:2px 0 10px"><b>לא לכתוב שם או פרטים אישיים.</b></p>
 <div class="row"><button type="submit" id="fbsend" class="primary">שליחה</button><button type="button" id="fbclose" class="secondary">ביטול</button></div>
 <p class="tiny" style="margin:8px 0 0">הדיווח נשלח דרך טופס מקוון, בלי שם ובלי פרטים.</p><p id="fbmsg" role="status" aria-live="polite" style="margin:8px 0 0;font-weight:700"></p></form></div>

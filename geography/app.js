@@ -9,8 +9,8 @@ function h(tag,attrs={},html=''){const e=document.createElement(tag);for(const k
 /* ---------- concepts ---------- */
 const SATHINT={
  'אי':'האם יש מים מסביב ליבשה מכל הצדדים?',
- 'חצי אי':'עקוב אחרי קו החוף. בכמה צדדים יש מים, ואיפה היבשה מתחברת?',
- 'מצר':'תסתכל על המים ליד הנקודה. הם רחבים או צרים? מה יש משני הצדדים שלהם?',
+ 'חצי אי':'עוקבים אחרי קו החוף. בכמה צדדים יש מים, ואיפה היבשה מתחברת?',
+ 'מצר':'מסתכלים על המים ליד הנקודה. הם רחבים או צרים? מה יש משני הצדדים שלהם?',
  'מפרץ':'האם המים נכנסים לתוך היבשה? אפשר להתרחק עם שתי אצבעות.',
  'ים':'כמה גדולים המים? האם יש יבשה כמעט מסביב?',
  'אוקיינוס':'רואים סוף למים? כמה רחוקה היבשה?',
@@ -36,13 +36,13 @@ const SEE={ // what did you see? first = correct
  'יבשת':['שטח יבשה ענקי','אי קטן בים','מים ענקיים']
 };
 const SEEHINT={
- 'אי':'תסתכל על הקו בין היבשה למים. האם יש מים מכל הצדדים?',
- 'חצי אי':'עקוב באצבע אחרי החוף. בכמה צדדים יש מים?',
- 'מצר':'תסתכל על המים שליד הסימון. הם רחבים או צרים? מה יש משני הצדדים?',
+ 'אי':'מסתכלים על הקו בין היבשה למים. האם יש מים מכל הצדדים?',
+ 'חצי אי':'עוקבים באצבע אחרי החוף. בכמה צדדים יש מים?',
+ 'מצר':'מסתכלים על המים שליד הסימון. הם רחבים או צרים? מה יש משני הצדדים?',
  'מפרץ':'האם המים נכנסים לתוך היבשה, או שהיבשה נכנסת לתוך המים?',
  'ים':'כמה גדולים המים? האם יש יבשה מכמה צדדים?',
- 'אוקיינוס':'תסתכל כמה גדולים המים. אפשר לראות יבשה מכל הצדדים?',
- 'יבשת':'תסתכל: זה מים או יבשה? וכמה גדול?'
+ 'אוקיינוס':'מסתכלים כמה גדולים המים. אפשר לראות יבשה מכל הצדדים?',
+ 'יבשת':'מסתכלים: זה מים או יבשה? וכמה גדול?'
 };
 // Real places. lat, lon, view radius (deg), detail key (from 50m data) or null
 const PLACES={
@@ -72,7 +72,7 @@ const PLACES={
 function satZoom(p){return Math.max(2,Math.min(12,Math.round(Math.log2(274/p.r))))}
 let satReturn=null;
 let satMap=null,satPin=null,satLabels=null;
-function setSatLabels(on){if(!satMap)return;if(on)satLabels.addTo(satMap);else satLabels.remove();$('satLbl').setAttribute('aria-pressed',on);$('satLbl').textContent=on?'🏷️ הסתר שמות':'🏷️ הצג שמות'}
+function setSatLabels(on){if(!satMap)return;if(on)satLabels.addTo(satMap);else satLabels.remove();$('satLbl').setAttribute('aria-pressed',on);$('satLbl').textContent=on?'🏷️ להסתיר שמות':'🏷️ להציג שמות'}
 $('satLbl').onclick=()=>setSatLabels($('satLbl').getAttribute('aria-pressed')!=='true');
 $('satHintBtn').onclick=()=>{$('satHint').hidden=!$('satHint').hidden};
 function openSat(p,btn,c){satReturn=btn;$('sat').hidden=false;
@@ -173,32 +173,30 @@ function legend(box,lead){const d=h('div',{class:'legend'});if(lead)d.insertAdja
 function stageWidth(){return Math.min($('stage').clientWidth||360,620)-14}
 
 /* ---------- shell ---------- */
-const TITLES={journey:'✈️ מסע מושגים',compare:'🌐 גלובוס מול מפה',detective:'🔎 הבלש של המפה',find:'🧩 מצא במפה'};
+const TITLES={journey:'✈️ מסע מושגים',compare:'🌐 גלובוס מול מפה',detective:'🔎 בלשי המפה',find:'🧩 מוצאים במפה'};
 const ORDER=['journey','compare','detective','find'];
 let mode=null,M=null,hintStage=0,hintFn=null;
 function show(s){['hub','game','end'].forEach(x=>$(x).hidden=x!==s);window.scrollTo(0,0)}
 const STRETCH=10;let streak=0,autoT=null,tenNext=null;
-function setProgress(){const s=$('segs');s.innerHTML='';const solved=!$('acts').hidden,k=streak%STRETCH,n=solved?(k===0&&streak>0?STRETCH:k):k,cur=solved?n:k+1;for(let j=0;j<STRETCH;j++){s.append(h('div',{class:'seg'+(j<n?' done':(!solved&&j===k)?' cur':'')}))}$('ptext').textContent=`תרגיל ${cur} מתוך ${STRETCH}`}
-let holdFn=null;
-function stopAuto(){clearTimeout(autoT);autoT=null;if(holdFn){$('stage').removeEventListener('pointerdown',holdFn);$('learn').removeEventListener('pointerdown',holdFn);holdFn=null}}
-/* An exercise was finished correctly: count it, then move on by itself (or now, with "הבא"). */
+let isSolved=false,carry='';
+function setProgress(){const s=$('segs');s.innerHTML='';const solved=isSolved,k=streak%STRETCH,n=solved?(k===0&&streak>0?STRETCH:k):k,cur=solved?n:k+1;for(let j=0;j<STRETCH;j++){s.append(h('div',{class:'seg'+(j<n?' done':(!solved&&j===k)?' cur':'')}))}$('ptext').textContent=`תרגיל ${cur} מתוך ${STRETCH}`}
+function stopAuto(){clearTimeout(autoT);autoT=null}
+/* An exercise was finished correctly: count it and go straight on.
+   The feedback and explanation travel to the top of the next exercise, so nothing has to wait. */
 function solvedStep(fn,note){
- if(note){$('learn').insertAdjacentHTML('beforeend','<div class="roundnote">'+note+'</div>');$('learn').hidden=false}
- streak++;
- const go=()=>{stopAuto();if(!mode||$('game').hidden)return;if(streak%STRETCH===0){tenNext=fn;show('end');$('again').focus();return}fn()};
- nextBtn('הבא ←',go);setProgress();
- const chars=($('fb').textContent+($('learn').hidden?'':$('learn').textContent)).length;
- const wait=Math.min(8000,Math.max(3000,1200+55*chars));
- stopAuto();holdFn=e=>{stopAuto()};$('stage').addEventListener('pointerdown',holdFn);$('learn').addEventListener('pointerdown',holdFn);
- autoT=setTimeout(function tick(){if(!$('sat').hidden||!$('fbsheet').hidden){autoT=setTimeout(tick,800);return}go()},wait);
+ isSolved=true;streak++;setProgress();
+ const fbHTML=$('fb').innerHTML,learnHTML=$('learn').hidden?'':$('learn').innerHTML;
+ carry=fbHTML+(learnHTML?'<br>'+learnHTML:'')+(note?'<div class="roundnote">'+note+'</div>':'');
+ const go=()=>{stopAuto();if(!mode||$('game').hidden)return;if(streak%STRETCH===0){tenNext=fn;show('end');$('again').focus();return}window.scrollTo(0,0);fn()};
+ stopAuto();autoT=setTimeout(function tick(){if(!$('sat').hidden||!$('fbsheet').hidden){autoT=setTimeout(tick,500);return}go()},900);
 }
-function resetStep(){stopAuto();$('hintBtn').after($('helpTurn'));$('fb').textContent='';$('fb').className='';$('hint').hidden=true;$('learn').hidden=true;$('acts').hidden=true;$('helpTurn').hidden=true;hintStage=0;wrongs=0;$('stage').innerHTML='';[...$('acts').children].forEach(x=>{if(x.id!=='next')x.remove()})}
+function resetStep(){stopAuto();isSolved=false;if(carry){$('prev').innerHTML=carry;$('prev').hidden=false;carry=''}else $('prev').hidden=true;$('hintBtn').after($('helpTurn'));$('fb').textContent='';$('fb').className='';$('hint').hidden=true;$('learn').hidden=true;$('acts').hidden=true;$('helpTurn').hidden=true;hintStage=0;wrongs=0;$('stage').innerHTML='';[...$('acts').children].forEach(x=>{if(x.id!=='next')x.remove()})}
 let wrongs=0;
 function say(msg,ok){$('fb').textContent=msg;$('fb').className=ok?'success':'tryagain';if(ok){wrongs=0}else if(++wrongs>=2&&hintStage===0&&hintFn){hintFn(++hintStage)}}
 function showHint(t){$('hint').textContent='💡 '+t;$('hint').hidden=false}
 function nextBtn(label,fn){$('next').textContent=label;$('next').onclick=fn;$('acts').hidden=false;setTimeout(()=>$('acts').scrollIntoView({block:'nearest',behavior:'smooth'}),50)}
 $('hintBtn').onclick=()=>{if(hintFn)hintFn(++hintStage)};
-function start(m){stopAuto();streak=0;mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
+function start(m){stopAuto();streak=0;carry='';mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>start(b.dataset.mode));
 $('back').onclick=()=>{stopAuto();mode=null;show('hub')};$('menu').onclick=()=>{stopAuto();mode=null;show('hub')};
 $('again').onclick=()=>{show('game');const f=tenNext;tenNext=null;if(f)f()};
@@ -266,7 +264,7 @@ function drawPlace(box,p){
  const bar=h('div',{class:'globebar'});
  const zi=h('button',{type:'button',class:'secondary mini','aria-label':'להתקרב'});zi.textContent='+';zi.onclick=()=>zoom(1.5);
  const zo=h('button',{type:'button',class:'secondary mini','aria-label':'להתרחק'});zo.textContent='−';zo.onclick=()=>zoom(1/1.5);
- const home=h('button',{type:'button',class:'secondary mini'});home.textContent='↺ חזור למקום';
+ const home=h('button',{type:'button',class:'secondary mini'});home.textContent='↺ חזרה למקום';
  home.onclick=()=>{flyTok++;flying=false;const r0=proj.rotate(),s0=proj.scale(),r1=[-p.lon,-p.lat,0];let d0=((r1[0]-r0[0]+540)%360)-180;const t0=performance.now(),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const stp=now=>{let k=reduce?1:Math.min(1,(now-t0)/700);k=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;proj.rotate([r0[0]+d0*k,r0[1]+(r1[1]-r0[1])*k,0]);proj.scale(s0+(R0-s0)*k);render();if(k<1)requestAnimationFrame(stp)};requestAnimationFrame(stp)};
  const whole=h('button',{type:'button',class:'secondary mini'});whole.textContent='🌍 כל הכדור';
@@ -277,67 +275,67 @@ function drawPlace(box,p){
  return {proj,render,svg};
 }
 function jStep(){
- resetStep();const {deck,i}=M;if(i>=deck.length)return jStart();
+ if(M.i>=M.deck.length)return jStart();resetStep();const {deck,i}=M;
  setProgress();const {c,p}=deck[i];
  $('task').textContent=`טסים למקום מסתורי: ${p.near}. מה רואים במקום המסומן?`;
  const box=h('div',{class:'mapbox'});$('stage').append(box);drawPlace(box,p);
- const a=h('button',{class:'ge',type:'button'});a.textContent='🛰️ טוס לשם – תצלום לוויין';a.onclick=()=>openSat(p,a,c);box.append(a);
- const q=h('div');q.innerHTML='<div style="font-weight:700;margin-top:6px">מה ראית?</div>';$('stage').append(q);
- hintFn=k=>showHint(k===1?SEEHINT[c]+' אפשר לסובב את הכדור או להתרחק עם „−” כדי לראות מה יש מסביב.':'לחץ על „טוס לשם” לתצלום לוויין. '+SEEHINT[c]);
+ const a=h('button',{class:'ge',type:'button'});a.textContent='🛰️ טסים לשם – תצלום לוויין';a.onclick=()=>openSat(p,a,c);box.append(a);
+ const q=h('div');q.innerHTML='<div style="font-weight:700;margin-top:6px">מה רואים שם?</div>';$('stage').append(q);
+ hintFn=k=>showHint(k===1?SEEHINT[c]+' אפשר לסובב את הכדור או להתרחק עם „−” כדי לראות מה יש מסביב.':'לוחצים על „טסים לשם” לתצלום לוויין. '+SEEHINT[c]);
  q.append(options(shuffle(SEE[c]),SEE[c][0],ok=>{
-   if(!ok){say('↺ כמעט. תסתכל שוב על המפה ונסה עוד פעם.',false);return}
+   if(!ok){say('↺ כמעט. מסתכלים שוב על המפה ומנסים עוד פעם.',false);return}
    say('✓ נכון, זה מה שרואים שם!',true);jName(c,p)}));
 }
 function jName(c,p){
  const q=h('div');q.innerHTML='<div style="font-weight:700;margin-top:8px">אז איך קוראים לזה?</div>';$('stage').append(q);
- $('task').textContent='איזה מושג מתאים למה שראית?';$('hint').hidden=true;hintStage=0;
- hintFn=k=>showHint(k===1?'חזור למה שראית: '+SEE[c][0]+'.':'המושג שמתאים הוא: „'+DEF[c]+'”');
+ $('task').textContent='איזה מושג מתאים למה שרואים שם?';$('hint').hidden=true;hintStage=0;
+ hintFn=k=>showHint(k===1?'חוזרים למה שרואים שם: '+SEE[c][0]+'.':'המושג שמתאים הוא: „'+DEF[c]+'”');
  const opts=shuffle([c,...shuffle(CONCEPTS.filter(x=>x!==c)).slice(0,3)]);
  q.append(options(opts,c,(ok,t)=>{
-   if(!ok){say(`↺ לא בדיוק. ${t}: ${DEF[t]} נסה שוב.`,false);return}
+   if(!ok){say(`↺ לא בדיוק. ${t}: ${DEF[t]} נננסה שוב.`,false);return}
    say(`✓ נכון! ${p.n} – זה ${c}.`,true);
    $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;
-   solvedStep(()=>{M.i++;jStep()},M.i+1>=M.deck.length?'🌍 ביקרת אצל כל שבעת המושגים! נסה לכתוב בספר, במילים שלך, מה זה כל מושג.':'');
+   solvedStep(()=>{M.i++;jStep()},M.i+1>=M.deck.length?'🌍 ביקרתם אצל כל שבעת המושגים! עכשיו כותבים בספר, במילים שלכם, מה זה כל מושג.':'');
    setTimeout(()=>$('acts').scrollIntoView({block:'nearest',behavior:'smooth'}),50)},'two'));
  setTimeout(()=>q.scrollIntoView({block:'nearest',behavior:'smooth'}),50);
 }
 
 /* ---------- 2. compare ---------- */
 const CTASKS=[
- {id:'pacific',t:'מצא בגלובוס את האוקיינוס השקט (המים הגדולים בין אסיה לאמריקה). עכשיו חפש אותו במפה השטוחה. איפה הוא?',
+ {id:'pacific',t:'מוצאים בגלובוס את האוקיינוס השקט (המים הגדולים בין אסיה לאמריקה). עכשיו מחפשים אותו במפה השטוחה. איפה הוא?',
   o:['חצי בקצה ימין וחצי בקצה שמאל','באמצע המפה','הוא לא מופיע במפה'],ok:'נכון! במפה השטוחה האוקיינוס השקט נחתך לשני חלקים, אחד בכל קצה.',
-  h1:'סובב את הגלובוס עד שתראה כמעט רק מים כחולים.',turn:[-165,0],labels:[{lon:-150,lat:5,t:'השקט'}],flat:[{lon:-155,lat:0,t:'השקט'},{lon:165,lat:0,t:'השקט'}]},
- {id:'bering',t:'מצא בגלובוס את אלסקה (אמריקה הצפונית) ואת רוסיה (אסיה), למעלה. הן קרובות או רחוקות? ומה במפה השטוחה?',
+  h1:'מסובבים את הגלובוס עד שרואים כמעט רק מים כחולים.',turn:[-165,0],labels:[{lon:-150,lat:5,t:'השקט'}],flat:[{lon:-155,lat:0,t:'השקט'},{lon:165,lat:0,t:'השקט'}]},
+ {id:'bering',t:'מוצאים בגלובוס את אלסקה (אמריקה הצפונית) ואת רוסיה (אסיה), למעלה. הן קרובות או רחוקות? ומה במפה השטוחה?',
   o:['בגלובוס קרובות, במפה רחוקות','בגלובוס רחוקות, במפה קרובות','קרובות בשניהם'],ok:'נכון! בגלובוס הן כמעט נוגעות. במפה השטוחה כל אחת נמצאת בקצה אחר.',
-  h1:'סובב את הגלובוס כך שהחלק העליון של האוקיינוס השקט יהיה באמצע.',turn:[-170,55],labels:[{lon:-169,lat:66,dot:1,t:'כאן'}],flat:[{lon:-169,lat:66,dot:1},{lon:179,lat:66,dot:1}]},
- {id:'antarctica',t:'סובב את הגלובוס למטה ומצא את אנטארקטיקה. איך היא נראית במפה השטוחה?',
+  h1:'מסובבים את הגלובוס כך שהחלק העליון של האוקיינוס השקט יהיה באמצע.',turn:[-170,55],labels:[{lon:-169,lat:66,dot:1,t:'כאן'}],flat:[{lon:-169,lat:66,dot:1},{lon:179,lat:66,dot:1}]},
+ {id:'antarctica',t:'מסובבים את הגלובוס למטה ומוצאים את אנטארקטיקה. איך היא נראית במפה השטוחה?',
   o:['פס ארוך לאורך כל התחתית','עיגול קטן, כמו בגלובוס','היא לא מופיעה במפה'],ok:'נכון! בגלובוס אנטארקטיקה עגולה, ובמפה השטוחה היא נמתחת לפס ארוך.',
   h1:'אנטארקטיקה היא היבשת הלבנה ליד הקוטב הדרומי.',turn:[0,-75]},
  {id:'greenland',t:'גרינלנד היא האי הגדול למעלה. בגלובוס היא קטנה בהרבה מאוסטרליה (יותר מפי 3). ובמפה השטוחה?',
   o:['במפה היא נראית כמעט בגודל של אוסטרליה','במפה היא קטנה בהרבה מאוסטרליה, כמו בגלובוס','במפה לא רואים אותה'],ok:'נכון! בגלובוס גרינלנד קטנה בהרבה מאוסטרליה, ובמפה השטוחה היא נראית כמעט באותו גודל.',
-  h1:'מצא במפה השטוחה את גרינלנד (למעלה) ואת אוסטרליה (למטה, מימין). מי נראית גדולה יותר?',turn:[-40,55],labels:[{lon:-41,lat:73,t:'גרינלנד'},{lon:134,lat:-25,t:'אוסטרליה'}],flat:[{lon:-41,lat:74,t:'גרינלנד'},{lon:134,lat:-25,t:'אוסטרליה'}]},
- {id:'whole',t:'נסה לראות את כל העולם בבת אחת. איפה זה אפשרי?',
+  h1:'מוצאים במפה השטוחה את גרינלנד (למעלה) ואת אוסטרליה (למטה, מימין). מי נראית גדולה יותר?',turn:[-40,55],labels:[{lon:-41,lat:73,t:'גרינלנד'},{lon:134,lat:-25,t:'אוסטרליה'}],flat:[{lon:-41,lat:74,t:'גרינלנד'},{lon:134,lat:-25,t:'אוסטרליה'}]},
+ {id:'whole',t:'מנסים לראות את כל העולם בבת אחת. איפה זה אפשרי?',
   o:['במפה השטוחה רואים הכול, בגלובוס רק חצי','בגלובוס רואים הכול, במפה רק חצי','בשניהם רואים רק חצי'],ok:'נכון! בגלובוס צריך לסובב כדי לראות את הצד השני.',
-  h1:'בגלובוס, האם אתה רואה את הצד האחורי בלי לסובב?'},
- {id:'carry',t:'דמיין שאתה יוצא לטיול. מה קל יותר לקפל ולשים בתיק?',
+  h1:'בגלובוס, אפשר לראות את הצד האחורי בלי לסובב?'},
+ {id:'carry',t:'מדמיינים שיוצאים לטיול. מה קל יותר לקפל ולשים בתיק?',
   o:['מפה שטוחה','גלובוס'],ok:'נכון! את המפה אפשר לקפל ולשים בתיק, ואת הגלובוס לא.',h1:'מה מהשניים אפשר לקפל?'}
 ];
 function cStart(){const last=M&&M.deck&&M.deck[M.deck.length-1];let d=shuffle(CTASKS);if(d.length>1&&d[0]===last)d.push(d.shift());M={deck:d,i:0};cStep()}
 function cStep(){
+ if(M.i>=M.deck.length)return cStart();
  resetStep();const {deck,i}=M;
- if(i>=deck.length)return cStart();
  setProgress();const T=deck[i];$('task').textContent=T.t;
  const W=stageWidth();const duo=h('div',{class:'duo'});$('stage').append(duo);
  const gb=h('div',{class:'mapbox'});duo.append(gb);const info=h('div',{class:'maplabel'});
- const tap=r=>{info.innerHTML=`<span class="tapinfo">${r==='water'?'כאן יש מים 💧':'זו '+CN[r]}</span><span>גרור כדי לסובב</span>`};
- const G=makeGlobe(gb,{size:Math.min(innerWidth>=900?320:innerWidth>=700?260:195,W),rotate:[-30,-25],onTap:tap});gb.append(info);gb.append($('helpTurn'));info.innerHTML='<span>🌐 גלובוס · גרור כדי לסובב</span><span>לחץ על יבשה לשם</span>';
+ const tap=r=>{info.innerHTML=`<span class="tapinfo">${r==='water'?'כאן יש מים 💧':'זו '+CN[r]}</span><span>גוררים כדי לסובב</span>`};
+ const G=makeGlobe(gb,{size:Math.min(innerWidth>=900?320:innerWidth>=700?260:195,W),rotate:[-30,-25],onTap:tap});gb.append(info);gb.append($('helpTurn'));info.innerHTML='<span>🌐 גלובוס · גוררים כדי לסובב</span><span>לוחצים על יבשה לשם</span>';
  const fbx=h('div',{class:'mapbox'});duo.append(fbx);const F=makeFlat(fbx,{width:Math.min(W,620),onTap:tap});
  legend(fbx,'🗺️ מפה שטוחה:');
- hintFn=k=>{if(k===1)showHint(T.h1);else{showHint(T.h1+(T.turn?' אפשר ללחוץ על „סובב בשבילי”.':''));if(T.labels){G.labels=T.labels;G.render()}if(T.flat)F.setLabels(T.flat)}
+ hintFn=k=>{if(k===1)showHint(T.h1);else{showHint(T.h1+(T.turn?' אפשר ללחוץ על „עזרה בסיבוב”.':''));if(T.labels){G.labels=T.labels;G.render()}if(T.flat)F.setLabels(T.flat)}
    if(T.turn&&k>=2){$('helpTurn').hidden=false;$('helpTurn').onclick=()=>{G.turnTo(...T.turn);if(T.labels){G.labels=T.labels}}}};
  const q=h('div');$('stage').append(q);
- q.append(options(shuffle(T.o),T.o[0],ok=>{if(!ok){say('↺ כמעט. סובב שוב את הגלובוס והשווה למפה.',false);return}
-   say('✓ '+T.ok,true);solvedStep(()=>{M.i++;cStep()},i+1>=deck.length?'🌐 גילית את כל ההבדלים! עכשיו אפשר לחזור לטבלה של תרגיל 23 ולכתוב במילים שלך.':'')}));
+ q.append(options(shuffle(T.o),T.o[0],ok=>{if(!ok){say('↺ כמעט. מסובבים שוב את הגלובוס ומשווים למפה.',false);return}
+   say('✓ '+T.ok,true);solvedStep(()=>{M.i++;cStep()},i+1>=deck.length?'🌐 גיליתם את כל ההבדלים! עכשיו אפשר לחזור לטבלה של תרגיל 23 ולכתוב במילים שלכם.':'')}));
 }
 
 /* ---------- 3. detective ---------- */
@@ -345,33 +343,33 @@ const DCASES=[
  {piece:'chukotka',center:0,c:[-175,67],side:'בקצה השמאלי, למעלה',ans:'asia',opts:['asia','namerica','europe','oceania'],
   near:{namerica:'כמעט! אלסקה באמת קרובה מאוד, אבל בין החתיכה לאלסקה יש מים (מצר ברינג). עם איזו יבשה היא מחוברת?'},
   ok:'נכון! 🎉 החתיכה הצהובה שייכת לאסיה – זה הקצה של רוסיה. במפה השטוחה היא „נחתכה” ועברה לצד השני של המפה.',
-  h:['החתיכה נמצאת למעלה, ליד הקוטב הצפוני, בקצה של האוקיינוס השקט.','סובב כך שאלסקה תהיה באמצע הגלובוס. החתיכה ממש לידה.']},
+  h:['החתיכה נמצאת למעלה, ליד הקוטב הצפוני, בקצה של האוקיינוס השקט.','מסובבים כך שאלסקה תהיה באמצע הגלובוס. החתיכה ממש לידה.']},
  {piece:'wafrica',center:180,c:[-8,12],side:'בקצה הימני',intro:'זו מפה שהאוקיינוס השקט באמצע שלה. ככה מציירים מפות בחלק מהמדינות. ',ans:'africa',opts:['africa','samerica','europe','asia'],
   near:{samerica:'אמריקה הדרומית רחוקה – יש ביניהן אוקיינוס שלם. עם איזו יבשה החתיכה מחוברת?'},
   ok:'נכון! 🎉 החתיכה הצהובה היא חלק מאפריקה. במפה הזאת אפריקה „נחתכה” לשניים.',
-  h:['החתיכה נמצאת קרוב לקו המשווה, ליד האוקיינוס האטלנטי.','סובב את הגלובוס עד שתראה את אפריקה באמצע.']}
+  h:['החתיכה נמצאת קרוב לקו המשווה, ליד האוקיינוס האטלנטי.','מסובבים את הגלובוס עד שרואים את אפריקה באמצע.']}
 ];
 let lastCase=-1;
 function dStart(){let k=rnd(DCASES.length);if(DCASES.length>1&&k===lastCase)k=(k+1)%DCASES.length;lastCase=k;M={K:DCASES[k],step:0,found:false};dStep()}
 function dStep(){
  resetStep();const K=M.K;setProgress();
- $('task').textContent=(K.intro||'')+`במפה השטוחה יש חתיכת יבשה צהובה ${K.side}. סובב את הגלובוס ומצא אותה.`;
+ $('task').textContent=(K.intro||'')+`במפה השטוחה יש חתיכת יבשה צהובה ${K.side}. מסובבים את הגלובוס ומוצאים אותה.`;
  const W=stageWidth();const piece=PIECES[K.piece];const duo=h('div',{class:'duo'});$('stage').append(duo);
  const fbx=h('div',{class:'mapbox'});const F=makeFlat(fbx,{width:Math.min(W,620),center:K.center,piece});
  const fl=h('div',{class:'maplabel'});fl.innerHTML='<span>🗺️ מפה שטוחה · מחפשים את הצהוב</span>';fbx.append(fl);
- const gb=h('div',{class:'mapbox'});const info=h('div',{class:'maplabel'});info.innerHTML='<span>🌐 גרור כדי לסובב את הגלובוס</span>';
+ const gb=h('div',{class:'mapbox'});const info=h('div',{class:'maplabel'});info.innerHTML='<span>🌐 גוררים כדי לסובב את הגלובוס</span>';
  duo.append(gb);duo.append(fbx);
  const q=h('div');
  const G=makeGlobe(gb,{size:Math.min(innerWidth>=900?320:innerWidth>=700?260:220,W),rotate:K.center===180?[-150,-20]:[-20,-30],piece,
    onTap:r=>{info.innerHTML='<span class="tapinfo">'+(r==='piece'?'זו החתיכה הצהובה 🔎':r==='water'?'כאן יש מים 💧':'זו '+CN[r])+'</span>'},
    onMove:g=>{if(M.found)return;if(d3.geoDistance(K.c,g.center())<0.62){M.found=true;found()}}});
  gb.append(info);gb.append($('helpTurn'));legend(gb);$('stage').append(q);
- hintFn=k=>{if(M.found){showHint(k===1?'תסתכל בגלובוס: בצבע של איזו יבשה החתיכה הצהובה נוגעת?':'אפשר ללחוץ על היבשה שנוגעת בחתיכה, והגלובוס יגיד את השם.');return}
+ hintFn=k=>{if(M.found){showHint(k===1?'מסתכלים בגלובוס: בצבע של איזו יבשה החתיכה הצהובה נוגעת?':'אפשר ללחוץ על היבשה שנוגעת בחתיכה, והגלובוס יגיד את השם.');return}
    showHint(K.h[Math.min(k,2)-1]);if(k>=2){$('helpTurn').hidden=false;$('helpTurn').onclick=()=>G.turnTo(K.c[0],K.c[1]-8)}};
- function found(){say('🔎 מצאת אותה בגלובוס!',true);$('hint').hidden=true;hintStage=0;$('helpTurn').hidden=true;
-   $('task').textContent='תסתכל על היבשה שנוגעת בחתיכה הצהובה בגלובוס. לאיזו יבשת החתיכה שייכת?';
+ function found(){say('🔎 מצאתם אותה בגלובוס!',true);$('hint').hidden=true;hintStage=0;$('helpTurn').hidden=true;
+   $('task').textContent='מסתכלים על היבשה שנוגעת בחתיכה הצהובה בגלובוס. לאיזו יבשת החתיכה שייכת?';
    q.innerHTML='';q.append(options(shuffle(K.opts.map(x=>CN[x])),CN[K.ans],(ok,t)=>{
-     if(!ok){const key=Object.keys(CN).find(x=>CN[x]===t);say('↺ '+(K.near[key]||'תסתכל שוב על הגלובוס: איזו יבשה נוגעת בחתיכה הצהובה?'),false);return}
+     if(!ok){const key=Object.keys(CN).find(x=>CN[x]===t);say('↺ '+(K.near[key]||'מסתכלים שוב על הגלובוס: איזו יבשה נוגעת בחתיכה הצהובה?'),false);return}
      say('✓ '+K.ok,true);
      solvedStep(()=>dStart());
    },'two'));setTimeout(()=>q.scrollIntoView({block:'nearest',behavior:'smooth'}),60)}
@@ -400,8 +398,8 @@ function fStart(){
  const items=keys.map((k,i)=>({k,n:nums[i]})).sort((a,b)=>a.n-b.n);
  M={s,fx,fy,items:shuffle(items),i:0};fStep()}
 function fStep(){
+ if(M.i>=M.items.length)return fStart();
  resetStep();const {s,fx,fy,items,i}=M;
- if(i>=items.length)return fStart();
  setProgress();const cur=items[i];
  $('task').textContent=`איזה מושג מתאים למספר ${cur.n}?`;
  const box=h('div',{class:'mapbox'});$('stage').append(box);
@@ -419,13 +417,13 @@ function fStep(){
  for(const it of items){let [x,y]=s.pts[it.k];if(fx)x=400-x;if(fy)y=300-y;
    const ng=el('g',{class:'num'+(it===cur?' cur':items.indexOf(it)<i?' ok':'')},svg);el('circle',{cx:x,cy:y,r:it===cur?15:13},ng);
    const t=el('text',{x,y},ng);t.textContent=items.indexOf(it)<i?'✓':it.n}
- hintFn=k=>showHint(k===1?'תסתכל סביב המספר: יש שם מים או יבשה? מה מקיף אותו?':'המושג שמתאים הוא: „'+DEF[cur.k]+'”');
+ hintFn=k=>showHint(k===1?'מסתכלים סביב המספר: יש שם מים או יבשה? מה מקיף אותו?':'המושג שמתאים הוא: „'+DEF[cur.k]+'”');
  const chips=h('div',{class:'chips'});$('stage').append(chips);
  const all=shuffle([...CONCEPTS,...DISTRACT]);let done=false;
  for(const c of all){const b=h('button',{class:'chip',type:'button'});b.textContent=c;if(items.slice(0,i).some(x=>x.k===c))b.classList.add('used');
    b.onclick=()=>{if(done)return;if(c===cur.k){done=true;b.classList.add('right');b.style.background='#e6f5ec';b.style.borderColor='#3f7d5d';say(`✓ נכון! מספר ${cur.n} הוא ${c}.`,true);
-       $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;solvedStep(()=>{M.i++;fStep()},i+1>=items.length?'🧩 מצאת את כל המספרים! לא כל המושגים מופיעים בציור, כמו בתרגיל 27. עכשיו ציור חדש.':'')}
-     else{b.disabled=true;say(DEF[c]?`↺ לא בדיוק. ${c}: ${DEF[c]} נסה שוב.`:(c==='גלובוס'?'↺ גלובוס הוא דגם עגול של כדור הארץ. הוא לא מקום בציור. נסה שוב.':'↺ כדור הארץ הוא כל העולם שלנו, לא מקום אחד בציור. נסה שוב.'),false)}};chips.append(b)}
+       $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;solvedStep(()=>{M.i++;fStep()},i+1>=items.length?'🧩 מצאתם את כל המספרים! לא כל המושגים מופיעים בציור, כמו בתרגיל 27. עכשיו ציור חדש.':'')}
+     else{b.disabled=true;say(DEF[c]?`↺ לא בדיוק. ${c}: ${DEF[c]} נננסה שוב.`:(c==='גלובוס'?'↺ גלובוס הוא דגם עגול של כדור הארץ. הוא לא מקום בציור. ננסה שוב.':'↺ כדור הארץ הוא כל העולם שלנו, לא מקום אחד בציור. ננסה שוב.'),false)}};chips.append(b)}
 }
 
 /* ---------- feedback form (same setup as the English kit) ---------- */
@@ -436,7 +434,7 @@ $('fbclose').onclick=()=>{$('fbsheet').hidden=true};
 const FORM_ACTION='https://api.web3forms.com/submit';
 $('fbform').onsubmit=e=>{
  e.preventDefault();const msg=$('fbmsg'),text=$('fbtext').value.trim().slice(0,500);
- if(!fbType&&!text){msg.textContent='בחרו סוג, או כתבו כמה מילים.';return}
+ if(!fbType&&!text){msg.textContent='אפשר לבחור סוג, או לכתוב כמה מילים.';return}
  const data={type:fbType||'לא נבחר',text,mode:mode?TITLES[mode]:'—',screen:fbFrom,iphone:/iPhone|iPad/.test(navigator.userAgent)?'כן':'לא'};
  const f=document.createElement('form');f.method='POST';f.action=FORM_ACTION;f.target='fbsink';f.hidden=true;
  for(const k in data){const x=document.createElement('input');x.type='hidden';x.name=k;x.value=data[k];f.append(x)}

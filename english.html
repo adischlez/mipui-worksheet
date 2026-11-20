@@ -50,7 +50,7 @@ label.option{display:flex;align-items:center;gap:8px;font-size:16px;margin:6px 0
 .overlay{position:fixed;inset:0;background:#0f223866;display:flex;align-items:flex-end;justify-content:center;z-index:9}
 .overlay.center{align-items:center}
 .sheet{background:#fff;width:100%;max-width:600px;border-radius:20px 20px 0 0;padding:18px 16px max(18px,env(safe-area-inset-bottom))}
-.center .sheet{border-radius:20px;width:calc(100% - 32px);text-align:center}
+.center .sheet{border-radius:20px;width:calc(100% - 32px);text-align:center}.sheet.small{max-width:340px;padding:14px 14px 16px}.sheet.small h2{font-size:19px;margin:0 0 4px}
 .sheet h2{font-size:22px;margin:0 0 10px}
 .chips{display:flex;gap:8px}.chip{flex:1}.chip[aria-pressed=true]{border-color:var(--navy);background:#e7eef8}
 textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-radius:12px;padding:10px;margin:10px 0 4px;min-height:96px}
@@ -70,19 +70,19 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 #unittitle{font-size:22px;margin:2px 0 4px}
 </style></head><body><main>
-<section id="hub"><header class="top"><div class="brand">מילה במילה · תרגול להכתבה</div><a class="back" href="index.html#english">→ חזור</a></header>
+<section id="hub"><header class="top"><div class="brand">מילה במילה · תרגול להכתבה</div><a class="back" href="index.html#english">→ חזרה</a></header>
 <h1 id="unittitle">ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi></h1>
 <div id="unitpanel">
 <p class="muted" id="hubmeta">12 מילים · <span lang="en" dir="ltr">Getting Ready</span><br><bdi dir="ltr" lang="en">Fantastic Five</bdi>, עמ׳ 29</p>
 <button class="mode recommended" data-mode="dictation"><strong>🎧 הכתבה <span class="badge">מומלץ</span></strong><span>שומעים מילה באנגלית וכותבים אותה.</span></button>
 <button class="mode" data-mode="copy"><strong>✏️ מעתיקים</strong><span>רואים את המילה וכותבים לפי הדוגמה.</span></button>
 <button class="mode" data-mode="meaning"><strong>🔤 מהפירוש</strong><span>רואים פירוש בעברית וכותבים באנגלית.</span></button>
-<button class="mode" data-mode="join"><strong>🧩 תרכיב את המילה</strong><span>מחברים שני חלקים למילה אחת.</span></button>
+<button class="mode" data-mode="join"><strong>🧩 מרכיבים את המילה</strong><span>מחברים שני חלקים למילה אחת.</span></button>
 <div id="pdfs"></div>
 <p class="tiny" id="pdfnote" style="margin-top:4px" hidden>5 עמודים: העתקה · משפטים · כתיבה מהפירוש · הכתבה עם הורה · פתרונות להורה</p>
 </div>
 <p class="tiny">המילים מגיעות בסדר חדש, אחת אחרי השנייה. אחרי 10 תרגילים אפשר לעצור או להמשיך. אין שעון ואין ציונים.</p>
-<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.<br>ההגייה מוקלטת מראש.<br><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.<br>ההגייה מוקלטת מראש.<br><button class="textlink fb">דיווח על בעיה או רעיון לשיפור</button></p></section>
 <section id="game" hidden><div class="ghead"><div class="l1"><span class="gtitle" id="modeTitle"></span><button id="back" class="pill" type="button">→ תפריט</button></div>
 <div class="l2"><span class="ptext" id="ptext"></span><div class="segs" id="segs" role="progressbar" aria-valuemin="0" aria-valuemax="10"></div></div>
 <div class="l3" id="instruction"></div><p id="soundnote" role="status" hidden></p></div>
@@ -90,7 +90,7 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <div id="split" class="split" hidden></div>
 <label class="option" id="hideoption"><input id="hideword" type="checkbox">להסתיר את הדוגמה אחרי רגע</label>
 <div id="meaning" class="meaning"></div>
-<div class="row tools"><button id="speak" type="button" class="secondary mini" aria-label="השמע שוב את המילה באנגלית">🔊 שוב</button><button id="reveal" class="secondary mini" type="button">💡 רמז</button><button id="report" class="secondary mini report" type="button">📝 דווח תקלה / שיפור</button></div>
+<div class="row tools"><button id="speak" type="button" class="secondary mini" aria-label="השמעה חוזרת של המילה באנגלית">🔊 שוב</button><button id="reveal" class="secondary mini" type="button">💡 רמז</button><button id="report" class="secondary mini report" type="button">📝 דיווח תקלה / שיפור</button></div>
 <form id="answer" autocomplete="off"><div class="boxes" id="boxes" dir="ltr" role="group" aria-label="אות אחת בכל משבצת, משמאל לימין"></div>
 <button id="check" class="primary" style="width:100%" type="submit">בדיקה</button>
 <div id="feedback" role="status" aria-live="polite"></div><div id="hint" class="hint" hidden></div>
@@ -98,9 +98,10 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <section id="end" class="card" hidden><div class="bigcheck">✓</div><h1 id="endtitle">10 תרגילים ברצף!</h1><p id="endblurb">כל הכבוד על ההתמדה.<br>מה עכשיו?</p><div class="endactions"><button id="again" class="primary" type="button">להמשיך עוד קצת</button><button id="menu" class="secondary" type="button">חזרה לתפריט</button></div><p class="tiny" style="margin-top:10px">בתפריט אפשר לבחור תרגול אחר.</p></section>
 </main>
 
-<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דווח על בעיה או רעיון</h2>
+<div id="confirm" class="overlay center" hidden role="dialog" aria-modal="true" aria-labelledby="cfq"><div class="sheet small"><h2 id="cfq">לצאת לתפריט?</h2><p class="tiny" style="margin:0 0 10px">הספירה ל־10 תתחיל מחדש.</p><div class="row"><button id="stay" class="primary" type="button">להמשיך</button><button id="leave" class="secondary" type="button">לצאת</button></div></div></div>
+<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דיווח על בעיה או רעיון</h2>
 <div class="chips"><button type="button" class="secondary chip" data-t="משהו לא עובד" aria-pressed="false">משהו לא עובד</button><button type="button" class="secondary chip" data-t="יש לי רעיון" aria-pressed="false">יש לי רעיון</button></div>
-<textarea id="fbtext" maxlength="500" aria-label="מה תרצו לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
+<textarea id="fbtext" maxlength="500" aria-label="מה רוצים לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
 <p style="margin:2px 0 10px"><b>לא לכתוב שם או פרטים אישיים.</b></p>
 <div class="row"><button type="submit" id="fbsend" class="primary">שליחה</button><button type="button" id="fbclose" class="secondary">ביטול</button></div>
 <p class="tiny" style="margin:8px 0 0">הדיווח נשלח דרך טופס מקוון, בלי שם ובלי פרטים.</p><p id="fbmsg" role="status" aria-live="polite" style="margin:8px 0 0;font-weight:700"></p></form></div>
@@ -113,11 +114,11 @@ const DICTATIONS={
   ready:{
     titleHTML:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',
     metaHTML:'12 מילים · <bdi dir="ltr" lang="en">Fantastic Five</bdi>, עמ׳ 29',
-    pdf:'pages/english-ready-practice.pdf?v=2026-11-20b',
+    pdf:'pages/english-ready-practice.pdf?v=2026-11-20c',
     words:[['candy','ממתק'],['date','תאריך'],['do','לעשות (גם פועל עזר בהווה)'],['everyone','כולם'],['flour','קמח'],['give','לתת'],['July','יולי'],['outside','בחוץ, החוצה'],['ready','מוכן'],['sweet','מתוק'],['then','אז'],['throw','לזרוק']]
   },
   p34:{
-    pdf:'pages/english-p34-practice.pdf?v=2026-11-20b',
+    pdf:'pages/english-p34-practice.pdf?v=2026-11-20c',
     words:[['age','גיל'],['bathroom','חדר אמבטיה'],['building','בניין'],['flat','דירה'],['guitar','גיטרה'],['her','שלה'],['like','כמו'],['same','אותו הדבר'],['sofa','ספה'],['soon','בקרוב'],['teach','ללמד'],['toilet','אסלה']]
   }
 };
@@ -141,8 +142,8 @@ const PREFERRED=['Samantha','Daniel','Karen','Moira','Rishi','Martha','Arthur','
 const NOVELTY=/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|pipe organ|superstar|trinoids|whisper|zarvox|wobble|organ|jester|reed|flo|eddy|rocko|shelley/i;
 const $=id=>document.getElementById(id);
 let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null,doneCount=0,lastWord='',fbType='';
-const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה',join:'תרכיב את המילה'};
-const instructions={copy:'העתיקו את המילה באנגלית.',meaning:'כתבו באנגלית לפי הפירוש.',dictation:'הקשיבו וכתבו באנגלית.',join:'חברו את שני החלקים למילה אחת.'};
+const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה',join:'מרכיבים את המילה'};
+const instructions={copy:'מעתיקים את המילה באנגלית.',meaning:'כותבים באנגלית לפי הפירוש.',dictation:'מקשיבים וכותבים באנגלית.',join:'מחברים את שני החלקים למילה אחת.'};
 const COMPOUNDS={
   everyone:{a:'every',b:'one',ha:'כל',hb:'אחד',whole:'כולם'},
   outside:{a:'out',b:'side',ha:'החוצה',hb:'צד',whole:'בחוץ, החוצה'},
@@ -177,7 +178,9 @@ function show(screen){
 function shuffleList(list){let d=list.map(w=>[...w]);for(let i=d.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}return d}
 function shuffle(){return shuffleList(WORDS)}
 function meaningOf(word){if(word==='like')return 'כמו (דומה ל־)';const hit=ALLWORDS.find(w=>w[0]===word);return hit?hit[1]:''}
-function joinList(){const names=WORDS.map(w=>w[0]).filter(w=>COMPOUNDS[w]);if(unitId==='ready')for(const w of pastWords)if(COMPOUNDS[w[0]]&&!names.includes(w[0]))names.push(w[0]);return names.map(w=>[w,meaningOf(w)])}
+/* Join mode needs at least two compound words. The next dictation borrows learned ones;
+   the past bank, while it has fewer than two, also uses the compounds of the coming dictation. */
+function joinList(){const names=WORDS.map(w=>w[0]).filter(w=>COMPOUNDS[w]);if(unitId==='ready'||names.length<2)for(const w of ALLWORDS)if(COMPOUNDS[w[0]]&&!names.includes(w[0]))names.push(w[0]);return names.map(w=>[w,meaningOf(w)])}
 function compoundOf(word){return COMPOUNDS[word]||null}
 function newDeck(){let d=mode==='join'?shuffleList(joinList()):shuffle();if(d.length>1&&d[0][0]===lastWord)d.push(d.shift());return d}
 function start(m){mode=m;document.body.dataset.mode=m;lastWord='';deck=newDeck();pos=0;doneCount=0;show('game');render();window.scrollTo(0,0)}
@@ -244,8 +247,8 @@ function speakTTS(){
   };
   setTimeout(go, didCancel?320:80);
 }
-function soundNote(on){const n=$('soundnote');if(on&&mode==='dictation'){n.textContent='לא שומעים? בדקו את עוצמת הקול ואת מתג השקט.';n.hidden=false}else n.hidden=true}
-function soundError(){$('soundnote').textContent='לא נשמע קול? לחצו על שוב, או על רמז.';$('soundnote').hidden=false}
+function soundNote(on){const n=$('soundnote');if(on&&mode==='dictation'){n.textContent='לא שומעים? כדאי לבדוק את עוצמת הקול ואת מתג השקט.';n.hidden=false}else n.hidden=true}
+function soundError(){$('soundnote').textContent='לא נשמע קול? אפשר ללחוץ על „שוב”, או על „רמז”.';$('soundnote').hidden=false}
 function progress(){
   const s=$('segs'),n=STRETCH,k=doneCount%STRETCH;
   if(s.children.length!==n){s.replaceChildren();for(let i=0;i<n;i++){const d=document.createElement('div');d.className='seg';s.append(d)}}
@@ -329,7 +332,7 @@ function render(){
     });
     input.addEventListener('input',e=>{
       let raw=input.value;
-      if(/[\u0590-\u05FF]/.test(raw)){input.value='';$('feedback').className='tryagain';$('feedback').textContent='המקלדת בעברית 🙂 לחצו על 🌐 כדי לעבור לאנגלית';return}
+      if(/[\u0590-\u05FF]/.test(raw)){input.value='';$('feedback').className='tryagain';$('feedback').textContent='המקלדת בעברית 🙂 לוחצים על 🌐 כדי לעבור לאנגלית';return}
       let text=raw.toLowerCase().replace(/[^a-z]/g,'');
       if(text.length>1){
         const d=(e.data||'').toLowerCase().replace(/[^a-z]/g,'');
@@ -433,8 +436,10 @@ $('answer').addEventListener('submit',e=>{
 $('hideword').onchange=()=>{hideChoice=$('hideword').checked;clearTimeout(hideTimer);const c=compoundOf(deck[pos][0]);if(c)paintSplit(false);else $('model').textContent=deck[pos][0];if(hideChoice)applyHide()};
 $('reveal').onclick=revealOne;
 $('speak').onclick=()=>{soundNote(true);speak()};
-function menu(){clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;cancelSpeech();delete document.body.dataset.mode;show('hub');window.scrollTo(0,0)}
-$('back').onclick=menu;
+function menu(){$('confirm').hidden=true;clearTimeout(hideTimer);clearTimeout(advanceTimer);advanceTimer=null;clearTimeout(flashTimer);flashTimer=null;flashing=false;cancelSpeech();delete document.body.dataset.mode;show('hub');window.scrollTo(0,0)}
+$('back').onclick=()=>{if(doneCount>0){$('confirm').hidden=false;$('stay').focus()}else menu()};
+$('stay').onclick=()=>{$('confirm').hidden=true;focusFirst()};
+$('leave').onclick=menu;
 $('menu').onclick=menu;$('again').onclick=()=>{show('game');render();window.scrollTo(0,0)};
 function selectUnit(id){
   if(!UNITS[id])id='ready';
@@ -448,7 +453,7 @@ function selectUnit(id){
   U.pdfs.forEach((href,k)=>{const a=document.createElement('a');a.className='pdf';a.href=href;a.target='_blank';a.rel='noopener';a.textContent='🖨️ דפי תרגול להדפסה · PDF'+(U.pdfs.length>1?' '+(k+1):'');box.append(a)});
   $('pdfnote').hidden=!U.pdfs.length;
   const joinBtn=document.querySelector('.mode[data-mode=join]');
-  if(joinBtn)joinBtn.hidden=joinList().length<2;
+  if(joinBtn)joinBtn.hidden=false;
   document.title=(id==='past'?'הכתבות קודמות':'ההכתבה הבאה')+' · מילה במילה';
 }
 {
@@ -468,7 +473,7 @@ const FORM_FIELDS={type:'type',text:'text',mode:'mode',screen:'screen',iphone:'i
 $('fbform').onsubmit=e=>{
   e.preventDefault();
   const msg=$('fbmsg'),text=$('fbtext').value.trim().slice(0,500);
-  if(!fbType&&!text){msg.textContent='בחרו סוג, או כתבו כמה מילים.';return}
+  if(!fbType&&!text){msg.textContent='אפשר לבחור סוג, או לכתוב כמה מילים.';return}
   if(!FORM_ACTION){msg.textContent='השליחה מהדף עוד לא פעילה. תודה שרציתם לעזור!';return}
   const unitLabel=unitId==='ready'?'Getting Ready':'הכתבות קודמות';
   const data={type:fbType||'לא נבחר',text,mode:mode?titles[mode]:'—',screen:fbFrom,iphone:/iPhone|iPad/.test(navigator.userAgent)?'כן':'לא',unit:unitLabel};
