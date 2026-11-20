@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' file: 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; connect-src https://mipui-eshkol.goatcounter.com; form-action https://api.web3forms.com; frame-src https://api.web3forms.com; img-src 'self' data: https://mipui-eshkol.goatcounter.com https://server.arcgisonline.com; object-src 'none'; base-uri 'none'">
+<!-- GoatCounter: same anonymous counter as the English kit, path under this site. -->
+<script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/geography/"}' async src="https://gc.zgo.at/count.js"></script>
+<link rel="stylesheet" href="assets/leaflet.css">
+<title>מסע בעולם · מושגים בגאוגרפיה</title>
+<style>
+*{box-sizing:border-box}
+:root{--navy:#203b5c;--mc:#1F7FB8;--mt:#17608c;--ocean:#9fd3f0;--land:#a9c97f;--landS:#6f8f4e}
+body{margin:0;background:#F2F7FC;color:var(--navy);font:16px/1.45 Arial,sans-serif;min-height:100vh;min-height:100dvh;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body[data-mode=journey]{--mc:#1F7FB8;--mt:#17608c}
+body[data-mode=compare]{--mc:#2E8B57;--mt:#22693f}
+body[data-mode=detective]{--mc:#C2771A;--mt:#93560c}
+body[data-mode=find]{--mc:#6C5CE7;--mt:#5546D6}
+main{max-width:640px;margin:auto;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left))}
+header.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}.brand{min-width:0}.brand .tag{margin-right:8px}header.top a.pill{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:var(--navy);font:700 16px Arial,sans-serif;min-height:44px}.brand{font-weight:700}.tag{font-size:14px;background:#e3eaf3;padding:3px 10px;border-radius:20px}
+h1{font-size:25px;margin:4px 0 6px;line-height:1.25}p{margin:6px 0 10px}.muted{color:#4a5d75}
+.card{background:#fff;border:1px solid #d5dfec;border-radius:14px;padding:12px;margin-bottom:10px}
+button,a{touch-action:manipulation}
+button{font:700 16px Arial,sans-serif;cursor:pointer;min-height:44px;border-radius:12px;color:var(--navy)}
+button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:2px}button:disabled{cursor:default;opacity:.55}
+.primary{background:var(--navy);color:#fff;border:0;padding:10px 18px;box-shadow:0 3px 0 #0f2238}
+.secondary{background:#fff;border:2px solid #b9cadc;padding:8px 12px;box-shadow:0 3px 0 #b9cadc}
+.primary:active,.secondary:active,.mode:active,.opt:active{transform:translateY(2px);box-shadow:none}
+.mode{display:block;text-align:right;width:100%;background:#fff;border:2px solid #c9d6e6;border-right:8px solid var(--c);border-radius:14px;padding:10px 14px;margin:8px 0;box-shadow:0 3px 0 #c9d6e6}
+.mode strong{display:block;font-size:19px;color:var(--ct)}.mode span{display:block;font-size:16px;font-weight:400;color:var(--navy)}
+.mode[data-mode=journey]{--c:#1F7FB8;--ct:#17608c}.mode[data-mode=compare]{--c:#2E8B57;--ct:#22693f}.mode[data-mode=detective]{--c:#C2771A;--ct:#93560c}.mode[data-mode=find]{--c:#6C5CE7;--ct:#5546D6}
+.tiny{font-size:14px;color:#4a5d75}.footer{margin-top:12px;font-size:14px;color:#4a5d75}
+.textlink{background:none;border:0;box-shadow:none;color:var(--navy);text-decoration:underline;font:400 16px Arial,sans-serif;min-height:44px;padding:0}
+/* sticky task line */
+.taskbar{position:sticky;top:0;z-index:5;background:#F2F7FC;padding:6px 0 6px;margin:0 0 6px;border-bottom:2px solid var(--mc)}
+.l1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.gtitle{font-size:17px;font-weight:700;color:var(--mt);white-space:nowrap}
+.pill{min-height:40px;font-size:16px;padding:4px 12px;border-radius:20px;background:#fff;border:2px solid #b9cadc;white-space:nowrap}
+.segs{display:flex;gap:3px;margin:6px 0 4px}.seg{flex:1;height:8px;border-radius:5px;border:2px solid #c9d6e6;background:#fff}.seg.done{background:var(--mc);border-color:var(--mc)}.seg.cur{border-color:var(--mt)}
+.task{font-size:17px;font-weight:700;line-height:1.35}
+.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.mini{min-height:40px;font-size:16px;padding:4px 10px;border-radius:10px;border-width:1.5px;box-shadow:0 2px 0 #b9cadc;white-space:nowrap}
+.tools .report{margin-inline-start:auto;font-size:16px;color:var(--mt);border-color:var(--mc)}
+.opts{display:grid;gap:7px;margin:8px 0}.opts.two{grid-template-columns:1fr 1fr}.opts.three{grid-template-columns:1fr 1fr 1fr}
+.opt{background:#fff;border:2px solid #b9cadc;box-shadow:0 3px 0 #b9cadc;padding:7px 10px;text-align:center;line-height:1.3;min-height:46px}
+.opt.right{background:#e6f5ec;border-color:#3f7d5d;box-shadow:0 3px 0 #3f7d5d}.opt.wrongpick{background:#fff3e3;border-color:#c17017;box-shadow:0 3px 0 #c17017}
+#fb{min-height:24px;margin:6px 0;font-size:16px}.success{color:#236345;font-weight:700}.tryagain{color:#8a4b0c}
+.hint{font-size:16px;color:#6c4b1f;background:#fff6e8;border-radius:8px;padding:7px 9px;margin:6px 0}
+.learn{background:#eef6ff;border-right:5px solid var(--mc);border-radius:8px;padding:7px 10px;margin:6px 0}
+.actions{display:flex;gap:8px;margin-top:8px}.actions>*{flex:1}
+.mapbox{position:relative;background:#fff;border:1px solid #d5dfec;border-radius:12px;padding:4px 6px;margin:4px 0}
+.maplabel{font-size:14px;color:#4a5d75;display:flex;justify-content:space-between;gap:6px;align-items:center;min-height:22px}
+svg{display:block;max-width:100%;height:auto}
+svg.globe{margin:auto;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+svg.globe:active{cursor:grabbing}
+.ge{width:100%;font-size:16px;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:2px solid var(--mc);border-radius:12px;background:#fff;color:var(--mt);font-weight:700;text-decoration:none;margin:6px 0}
+.tapinfo{font-weight:700;color:var(--mt)}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}
+.chip{min-height:44px;font-size:16px;padding:4px 6px;background:#fff;border:2px solid #b9cadc;box-shadow:0 2px 0 #b9cadc}
+.chip.used{opacity:.45}
+.num circle{fill:#fff;stroke:#203b5c;stroke-width:2}.num text{font:700 15px Arial,sans-serif;fill:#203b5c;text-anchor:middle;dominant-baseline:central}
+.num.cur circle{fill:#ffe14d;stroke:#c17017;stroke-width:3}.num.ok circle{fill:#d6f0df;stroke:#3f7d5d}.num.ok text{font-size:11px}
+.num.cur circle{animation:pulse 1.2s infinite}@keyframes pulse{50%{stroke-width:6}}
+.legend{display:flex;flex-wrap:wrap;gap:2px 8px;font-size:13px;line-height:1.3;color:#4a5d75;margin-top:4px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-left:4px;vertical-align:-1px;border:1px solid #0002}
+.endbox{text-align:center}.bigcheck{font-size:36px;color:#236345}
+ul.think{text-align:right;margin:6px 0;padding-right:20px}
+[hidden]{display:none!important}
+
+.globebar{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:4px 0 0}.globebar .mini{min-width:44px;min-height:44px;font-size:18px}.globebar .mini:nth-child(n+3){font-size:16px}.mapbox #helpTurn:not([hidden]){display:block;margin:6px auto 0}
+details.more{background:#fff;border:1px solid #d5dfec;border-radius:12px;margin:8px 0;padding:0 12px}
+details.more summary{min-height:44px;display:flex;align-items:center;font-weight:700;cursor:pointer}
+details.more dl{margin:0 0 10px}details.more dt{font-weight:700;margin-top:6px}details.more dd{margin:0}
+details.more ol{margin:0 0 10px;padding-right:20px}
+body.noscroll{overflow:hidden}
+.sat{position:fixed;inset:0;z-index:20;background:#0f2238;display:flex;flex-direction:column}
+.sathead{display:flex;align-items:center;gap:8px;padding:max(8px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) 8px max(10px,env(safe-area-inset-left));background:#F2F7FC}
+.sathead .t{flex:1;font-size:14px;line-height:1.3;color:var(--navy)}.sathead .t b{display:block;font-size:16px}
+.sat #satMap{flex:1;width:100%;background:#20344d}
+.leaflet-container .leaflet-control-attribution{font-size:10px}
+.leaflet-touch .leaflet-bar a,.leaflet-bar a{width:44px;height:44px;line-height:44px;font-size:22px}
+.satfoot{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px max(10px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));background:#F2F7FC;font-size:14px}
+.sathint{position:absolute;left:10px;right:10px;bottom:calc(100px + env(safe-area-inset-bottom));z-index:1000;background:#fff6e8;color:#6c4b1f;border-radius:10px;padding:8px 10px;font-size:16px;box-shadow:0 2px 8px #0005}
+.satfoot button{flex:0 0 auto}.satfoot a{margin-inline-start:auto;color:var(--navy);min-height:44px;display:inline-flex;align-items:center}
+.overlay{position:fixed;inset:0;background:#0f223866;display:flex;align-items:flex-end;justify-content:center;z-index:9}
+.sheet{background:#fff;width:100%;max-width:600px;border-radius:20px 20px 0 0;padding:16px 16px max(16px,env(safe-area-inset-bottom))}
+.sheet h2{font-size:20px;margin:0 0 10px}
+.fbchips{display:flex;gap:8px}.fbchip{flex:1}.fbchip[aria-pressed=true]{border-color:var(--navy);background:#e7eef8}
+textarea{width:100%;font:16px Arial,sans-serif;border:2px solid #b9cadc;border-radius:12px;padding:10px;margin:10px 0 4px;min-height:90px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+@media(min-width:900px){main{max-width:920px}}
+@media(min-width:700px){.duo{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;align-items:center}}
+@media(max-width:360px){main{padding-left:8px;padding-right:8px}.task{font-size:16px}h1{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body><main>
+<section id="hub"><header class="top"><div class="brand">🌍 מסע בעולם <span class="tag">גאוגרפיה · כיתה ה׳</span></div><a class="pill" href="../">חזור</a></header>
+<h1>מושגים בגאוגרפיה</h1>
+<p class="muted">אי, חצי אי, מצר, מפרץ, ים, אוקיינוס ויבשת. גם גלובוס מול מפה שטוחה.</p>
+<button class="mode" data-mode="journey"><strong>✈️ מסע מושגים</strong><span>טסים למקומות אמיתיים בעולם ומגלים מה רואים שם.</span></button>
+<button class="mode" data-mode="compare"><strong>🌐 גלובוס מול מפה שטוחה</strong><span>מסובבים גלובוס ומשווים למפה. רעיונות לתרגיל 23.</span></button>
+<button class="mode" data-mode="detective"><strong>🔎 הבלש של המפה</strong><span>חתיכת יבשה צהובה בקצה המפה. של מי היא? (כמו תרגיל 24)</span></button>
+<button class="mode" data-mode="find"><strong>🧩 מצא במפה</strong><span>מספרים על ציור, ומתאימים לכל מספר מושג. (כמו תרגיל 27)</span></button>
+<p class="tiny">בכל פעם מקומות ותרגילים בסדר חדש. אין שעון ואין ציונים. את התשובות בספר כותבים במילים שלכם.</p>
+<details class="more"><summary>📖 מילון המושגים</summary><dl>
+<dt>אי</dt><dd>חלק של יבשה שיש סביבו מים מכל הצדדים.</dd>
+<dt>חצי אי</dt><dd>חלק של יבשה שיש סביבו מים משלושה צדדים, ובצד הרביעי הוא מחובר ליבשה.</dd>
+<dt>מצר</dt><dd>מעבר מים צר בין שני חלקי יבשה. הוא מחבר בין שני גופי מים.</dd>
+<dt>מפרץ</dt><dd>חלק של ים או אוקיינוס שנכנס לתוך היבשה.</dd>
+<dt>ים</dt><dd>גוף מים גדול ומלוח, קטן מאוקיינוס. לרוב יש יבשה כמעט מסביב לו.</dd>
+<dt>אוקיינוס</dt><dd>גוף המים הגדול ביותר. בספר לומדים על שלושת הגדולים: האטלנטי, השקט וההודי. יש עוד שניים קטנים יותר: אוקיינוס הקרח הצפוני והאוקיינוס הדרומי (ליד אנטארקטיקה).</dd>
+<dt>יבשת</dt><dd>שטח יבשה גדול מאוד. יש שבע יבשות: אסיה, אפריקה, אירופה, אמריקה הצפונית, אמריקה הדרומית, אוסטרליה ואנטארקטיקה.</dd>
+<dt>כדור הארץ</dt><dd>הכוכב שעליו אנחנו חיים. הוא עגול כמו כדור.</dd>
+<dt>גלובוס</dt><dd>דגם קטן ועגול של כדור הארץ.</dd></dl></details>
+<details class="more"><summary>👨‍👧 להורה: איך עובדים עם הלומדה</summary><ol>
+<li>שבו יחד 10–15 דקות. מתחילים ב„מסע מושגים”.</li>
+<li>תנו לילד לנסות לבד. אחרי שתי טעויות מופיע רמז.</li>
+<li>„גלובוס מול מפה” ו„הבלש” עוזרים לתרגילים 23 ו־24. את הטבלה בספר הילד ממלא במילים שלו.</li>
+<li>„מצא במפה” דומה לתרגיל 27. אפשר ללחוץ „עוד תרגיל” לציור חדש.</li></ol></details>
+<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב. כפתור „טוס לשם” מראה תצלום לוויין (Esri) בתוך הדף.<br><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+
+<section id="game" hidden>
+<div class="taskbar"><div class="l1"><span class="gtitle" id="modeTitle"></span><span class="tiny" id="ptext"></span><button id="back" class="pill">→ תפריט</button></div>
+<div class="segs" id="segs" aria-hidden="true"></div>
+<div class="task" id="task" role="status" aria-live="polite"></div>
+<div class="tools"><button id="hintBtn" class="secondary mini" type="button">💡 רמז</button><button id="helpTurn" class="secondary mini" type="button" hidden>🔄 סובב בשבילי</button><button class="secondary mini report fb" type="button">📝 דווח תקלה / שיפור</button></div>
+</div>
+<div id="hint" class="hint" hidden></div>
+<div id="stage"></div>
+<div id="fb" role="status" aria-live="polite"></div>
+<div id="learn" class="learn" hidden></div>
+<div class="actions" id="acts" hidden><button id="next" class="primary">הבא ←</button></div>
+</section>
+
+<section id="end" class="card endbox" hidden><div class="bigcheck">✓</div><h1 id="endTitle">כל הכבוד!</h1><div id="endText"></div>
+<div class="actions" style="flex-direction:column"><button id="again" class="primary">עוד תרגיל</button><button id="nextTopic" class="secondary">לנושא הבא</button><button id="menu" class="secondary">חזרה לתפריט</button></div>
+<p class="footer"><button class="textlink fb">דווח על בעיה או רעיון לשיפור</button></p></section>
+</main>
+
+<div id="sat" class="sat" hidden role="dialog" aria-modal="true" aria-labelledby="satT"><div class="sathead"><div class="t"><b id="satT">🛰️ תצלום לוויין · <span id="satNear" style="font-weight:400"></span></b><span>גוררים ומתקרבים עם האצבעות · 🔴 = המקום</span></div><button id="satClose" class="primary" type="button">חזרה ללומדה</button></div>
+<div id="satMap" dir="ltr" role="application" aria-label="תצלום לוויין. אפשר להזיז ולהתקרב."></div>
+<div id="satHint" class="sathint" role="status" aria-live="polite" hidden></div>
+<div class="satfoot"><button id="satHintBtn" class="secondary mini" type="button">💡 רמז</button><button id="satLbl" class="secondary mini" type="button" aria-pressed="false">🏷️ הצג שמות</button><a id="satEarth" href="#" target="_blank" rel="noopener">לפתוח ב־Google Earth</a></div></div>
+<div id="fbsheet" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דווח על בעיה או רעיון</h2>
+<div class="fbchips"><button type="button" class="secondary fbchip" data-t="משהו לא עובד" aria-pressed="false">משהו לא עובד</button><button type="button" class="secondary fbchip" data-t="יש לי רעיון" aria-pressed="false">יש לי רעיון</button></div>
+<textarea id="fbtext" maxlength="500" aria-label="מה תרצו לספר?" placeholder="מה קרה, או מה כדאי לשפר?"></textarea>
+<p style="margin:2px 0 10px"><b>לא לכתוב שם או פרטים אישיים.</b></p>
+<div class="row"><button type="submit" id="fbsend" class="primary">שליחה</button><button type="button" id="fbclose" class="secondary">ביטול</button></div>
+<p class="tiny" style="margin:8px 0 0">הדיווח נשלח דרך טופס מקוון, בלי שם ובלי פרטים.</p><p id="fbmsg" role="status" aria-live="polite" style="margin:8px 0 0;font-weight:700"></p></form></div>
+<iframe name="fbsink" id="fbsink" title="" hidden></iframe>
+
+<script src="assets/d3-array.min.js"></script>
+<script src="assets/d3-geo.min.js"></script>
+<script src="assets/geo-data.js"></script>
+<script src="assets/leaflet.js"></script>
+<script src="app.js"></script>
+</body></html>
