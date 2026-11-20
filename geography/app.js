@@ -1,5 +1,21 @@
 'use strict';
 const $=id=>document.getElementById(id);
+const TAB_PREFIX=(function(){
+  try{
+    const s=document.querySelector('script[data-goatcounter-settings]');
+    const p=s&&JSON.parse(s.dataset.goatcounterSettings).path||'';
+    if(String(p).indexOf('/mipui-worksheet/')===0)return 'tab/geography';
+  }catch(e){}
+  return /\/mipui-worksheet\//.test(location.pathname)?'tab/geography':'tab/geography-site';
+})();
+const tabSeen=new Set();
+function trackTab(path){
+  if(!path||tabSeen.has(path))return;
+  tabSeen.add(path);
+  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  if(window.goatcounter&&goatcounter.count)fire();
+  else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
+}
 const NS='http://www.w3.org/2000/svg';
 const rnd=n=>Math.floor(Math.random()*n);
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -196,7 +212,7 @@ function say(msg,ok){$('fb').textContent=msg;$('fb').className=ok?'success':'try
 function showHint(t){$('hint').textContent='💡 '+t;$('hint').hidden=false}
 function nextBtn(label,fn){$('next').textContent=label;$('next').onclick=fn;$('acts').hidden=false;setTimeout(()=>$('acts').scrollIntoView({block:'nearest',behavior:'smooth'}),50)}
 $('hintBtn').onclick=()=>{if(hintFn)hintFn(++hintStage)};
-function start(m){stopAuto();streak=0;carry='';mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
+function start(m){stopAuto();streak=0;carry='';mode=m;document.body.dataset.mode=m;$('modeTitle').textContent=TITLES[m];trackTab(TAB_PREFIX+'/'+m);show('game');({journey:jStart,compare:cStart,detective:dStart,find:fStart})[m]()}
 document.querySelectorAll('.mode').forEach(b=>b.onclick=()=>start(b.dataset.mode));
 $('back').onclick=()=>{stopAuto();mode=null;show('hub')};$('menu').onclick=()=>{stopAuto();mode=null;show('hub')};
 $('again').onclick=()=>{show('game');const f=tenNext;tenNext=null;if(f)f()};

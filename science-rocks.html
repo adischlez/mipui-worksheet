@@ -142,6 +142,15 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <script>
 'use strict';
 const $=id=>document.getElementById(id);
+const tabSeen=new Set();
+function trackTab(path){
+  if(!path||tabSeen.has(path))return;
+  tabSeen.add(path);
+  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  if(window.goatcounter&&goatcounter.count)fire();
+  else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
+}
+
 const rnd=n=>Math.floor(Math.random()*n);
 const pick=a=>a[rnd(a.length)];
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -527,6 +536,7 @@ function answer(btn,o){
   }
 }
 function enterReason(){
+  trackTab('tab/science/reason');
   stage=2;tries=0;hintLevel=0;clearTimeout(nopeTimer);
   document.querySelectorAll('#opts .opt').forEach(b=>b.disabled=true);
   $('hint').hidden=true;
@@ -559,7 +569,7 @@ function finish(){
 function advance(){
   $('feedback').onclick=null;
   count++;                        // one completed question, however many tries it took
-  if(count>=STRETCH){show('end');return}
+  if(count>=STRETCH){trackTab('tab/science/ten');show('end');return}
   nextQuestion();
 }
 function show(id){['hub','learn','game','end'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
@@ -567,7 +577,7 @@ function startPractice(id,topic){
   clearTimeout(timer);
   set={id,topic:topic||null};
   $('gtitle').textContent=topic?('תרגול: '+LEARN.find(l=>(l.topic||l.id)===topic).title):SETS[id].title;
-  count=0;deck=[];buildDeck();show('game');nextQuestion();
+  count=0;deck=[];buildDeck();trackTab('tab/science/practice-'+id);show('game');nextQuestion();
 }
 /* help */
 $('help').onclick=()=>{if(!locked)showHint()};
@@ -583,7 +593,7 @@ let li=0;
 const tbox=$('topics');const ptopic=l=>l.topic||l.id;
 const lname=(l,i)=>l.enrich?'🔭 '+l.title:(i+1)+'. '+l.title;
 LEARN.forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.className='topic';b.innerHTML='';const s=document.createElement('span');s.textContent=lname(l,i);const sm=document.createElement('small');sm.textContent=l.enrich?'מעבר לספר':l.p;b.append(s,sm);b.onclick=()=>openLearn(i);(l.enrich?$('etopics'):tbox).append(b)});
-function openLearn(i){li=i;const l=LEARN[i];$('ltitle').textContent=lname(l,i);$('lbody').innerHTML=l.html+'<p class="src">'+(l.enrich?'העשרה: מעבר לחומר הספר (לפי יחידות «מבט מקוון»)':'מתוך הספר, '+l.p)+'</p>';$('lnext').hidden=i>=LEARN.length-1||!!LEARN[i+1].enrich!==!!l.enrich;show('learn')}
+function openLearn(i){li=i;const l=LEARN[i];trackTab('tab/science/learn-'+l.id);$('ltitle').textContent=lname(l,i);$('lbody').innerHTML=l.html+'<p class="src">'+(l.enrich?'העשרה: מעבר לחומר הספר (לפי יחידות «מבט מקוון»)':'מתוך הספר, '+l.p)+'</p>';$('lnext').hidden=i>=LEARN.length-1||!!LEARN[i+1].enrich!==!!l.enrich;show('learn')}
 $('lback').onclick=()=>show('hub');
 $('lnext').onclick=()=>openLearn(li+1);
 $('lpractice').onclick=()=>startPractice(LEARN[li].set,ptopic(LEARN[li]));

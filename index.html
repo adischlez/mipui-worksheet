@@ -73,29 +73,38 @@ const SUBJECTS={
     title:'אנגלית',
     lead:'במה מתרגלים היום?',
     items:[
-      {kind:'english',href:'english.html?v=fb1&unit=ready',title:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',sub:'רק המילים של ההכתבה הבאה · עמ׳ 29 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>',
-       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה'}},
-      {kind:'english',href:'english.html?v=fb1&unit=past',title:'הכתבות קודמות',sub:'כל המילים מכל ההכתבות שכבר היו, יחד',
-       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה'}}
+      {kind:'english',href:'english.html?v=fb1&unit=ready',title:'ההכתבה הבאה - <bdi dir="ltr" lang="en">Getting Ready</bdi>',sub:'רק המילים של ההכתבה הבאה · עמ׳ 29 בספר <bdi dir="ltr" lang="en">Fantastic Five</bdi>',tab:'tab/landing/english-ready',
+       extra:{href:'pages/english-ready-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה',tab:'tab/landing/english-ready-pdf'}},
+      {kind:'english',href:'english.html?v=fb1&unit=past',title:'הכתבות קודמות',sub:'כל המילים מכל ההכתבות שכבר היו, יחד',tab:'tab/landing/english-past',
+       extra:{href:'pages/english-p34-practice.pdf?v=2026-11-20c',title:'📄 דפי תרגול להדפסה',tab:'tab/landing/english-past-pdf'}}
     ]
   },
   geography:{
     title:'גאוגרפיה',
     lead:'לומדה אחת, עם כמה תרגולים בפנים.',
     items:[
-      {kind:'geography',href:'geography/',title:'מסע בעולם',sub:'מושגים בגאוגרפיה: מסע מושגים, גלובוס מול מפה, בלשי המפה, ומוצאים במפה.'}
+      {kind:'geography',href:'geography/',title:'מסע בעולם',sub:'מושגים בגאוגרפיה: מסע מושגים, גלובוס מול מפה, בלשי המפה, ומוצאים במפה.',tab:'tab/landing/geography-open'}
     ]
   },
   science:{
     title:'מדעים',
     lead:'במה מתרגלים היום?',
     items:[
-      {kind:'science',href:'science-rocks.html',title:'עולם הסלעים והקרקעות',sub:'פרק ב׳ בספר «במבט חדש», עמ׳ 30 עד 44 · סיכום קצר לכל נושא ותרגול',
-       extra:[{href:'pages/science-rocks-practice.pdf',title:'📄 דפי תרגול'},{href:'pages/science-rocks-quiz-a.pdf',title:'📝 בוחן א׳'},{href:'pages/science-rocks-quiz-b.pdf',title:'📝 בוחן ב׳'},{href:'pages/science-rocks-quiz-c.pdf',title:'📝 בוחן ג׳'},{href:'pages/science-rocks-answers.pdf',title:'🔑 תשובות לדפי התרגול',parent:1},{href:'pages/science-rocks-quiz-a-answers.pdf',title:'🔑 תשובות לבוחן א׳',parent:1},{href:'pages/science-rocks-quiz-b-answers.pdf',title:'🔑 תשובות לבוחן ב׳',parent:1},{href:'pages/science-rocks-quiz-c-answers.pdf',title:'🔑 תשובות לבוחן ג׳',parent:1}]}
+      {kind:'science',href:'science-rocks.html',title:'עולם הסלעים והקרקעות',sub:'פרק ב׳ בספר «במבט חדש», עמ׳ 30 עד 44 · סיכום קצר לכל נושא ותרגול',tab:'tab/landing/science-open',
+       extra:[{href:'pages/science-rocks-practice.pdf',title:'📄 דפי תרגול',tab:'tab/landing/science-practice-pdf'},{href:'pages/science-rocks-quiz-a.pdf',title:'📝 בוחן א׳',tab:'tab/landing/science-quiz-a'},{href:'pages/science-rocks-quiz-b.pdf',title:'📝 בוחן ב׳',tab:'tab/landing/science-quiz-b'},{href:'pages/science-rocks-quiz-c.pdf',title:'📝 בוחן ג׳',tab:'tab/landing/science-quiz-c'},{href:'pages/science-rocks-answers.pdf',title:'🔑 תשובות לדפי התרגול',parent:1,tab:'tab/landing/science-answers'},{href:'pages/science-rocks-quiz-a-answers.pdf',title:'🔑 תשובות לבוחן א׳',parent:1,tab:'tab/landing/science-quiz-a-answers'},{href:'pages/science-rocks-quiz-b-answers.pdf',title:'🔑 תשובות לבוחן ב׳',parent:1,tab:'tab/landing/science-quiz-b-answers'},{href:'pages/science-rocks-quiz-c-answers.pdf',title:'🔑 תשובות לבוחן ג׳',parent:1,tab:'tab/landing/science-quiz-c-answers'}]}
     ]
   }
 };
 
+const tabSeen=new Set();
+function trackTab(path){
+  if(!path||tabSeen.has(path))return;
+  tabSeen.add(path);
+  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  if(window.goatcounter&&goatcounter.count)fire();
+  else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
+}
+function bindTab(el,path){if(!path||!el)return;const go=()=>trackTab(path);el.addEventListener('click',go);el.addEventListener('auxclick',go)}
 function showSubjects(){
   if(location.hash && location.hash!=='#' && location.hash!==''){
     history.replaceState(null,'',location.pathname+location.search);
@@ -109,6 +118,7 @@ function showSubjects(){
 function showSubject(id){
   const s=SUBJECTS[id];
   if(!s){showSubjects();return;}
+  trackTab('tab/landing/'+id);
   document.getElementById('subjects').hidden=true;
   document.getElementById('items').hidden=false;
   document.getElementById('itemtitle').textContent=s.title;
@@ -121,6 +131,7 @@ function showSubject(id){
     a.dataset.kind=it.kind;
     a.href=it.href;
     if(it.pdf){a.target='_blank';a.rel='noopener';}
+    bindTab(a,it.tab);
     const strong=document.createElement('strong');
     strong.innerHTML=it.title;
     const span=document.createElement('span');
@@ -140,7 +151,7 @@ function showSubject(id){
   window.scrollTo(0,0);
 }
 
-function pill(e){const x=document.createElement('a');x.className='pill extra';x.href=e.href;x.target='_blank';x.rel='noopener';x.textContent=e.title;return x}
+function pill(e){const x=document.createElement('a');x.className='pill extra';x.href=e.href;x.target='_blank';x.rel='noopener';x.textContent=e.title;bindTab(x,e.tab);return x}
 
 function route(){
   const id=(location.hash||'').replace(/^#/,'').replace(/\/$/,'');

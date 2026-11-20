@@ -141,6 +141,15 @@ const ORD=['הראשונה','השנייה','השלישית','הרביעית','ה
 const PREFERRED=['Samantha','Daniel','Karen','Moira','Rishi','Martha','Arthur','Nicky','Aaron'];
 const NOVELTY=/albert|bad news|bahh|bells|boing|bubbles|cellos|deranged|good news|hysterical|pipe organ|superstar|trinoids|whisper|zarvox|wobble|organ|jester|reed|flo|eddy|rocko|shelley/i;
 const $=id=>document.getElementById(id);
+const tabSeen=new Set();
+function trackTab(path){
+  if(!path||tabSeen.has(path))return;
+  tabSeen.add(path);
+  const fire=()=>{try{window.goatcounter&&goatcounter.count&&goatcounter.count({path,title:path,event:true})}catch(e){}};
+  if(window.goatcounter&&goatcounter.count)fire();
+  else{let n=0;const t=setInterval(()=>{if((window.goatcounter&&goatcounter.count)||++n>50){clearInterval(t);fire()}},100)}
+}
+
 let mode,deck=[],pos=0,wrong=0,solved=false,hideTimer,speechToken=0,advanceTimer=null,hideChoice=false,hintStage=0,flashing=false,flashTimer=null,doneCount=0,lastWord='',fbType='';
 const titles={copy:'מעתיקים',meaning:'מהפירוש',dictation:'הכתבה',join:'מרכיבים את המילה'};
 const instructions={copy:'מעתיקים את המילה באנגלית.',meaning:'כותבים באנגלית לפי הפירוש.',dictation:'מקשיבים וכותבים באנגלית.',join:'מחברים את שני החלקים למילה אחת.'};
@@ -183,7 +192,7 @@ function meaningOf(word){if(word==='like')return 'כמו (דומה ל־)';const 
 function joinList(){const names=WORDS.map(w=>w[0]).filter(w=>COMPOUNDS[w]);if(unitId==='ready'||names.length<2)for(const w of ALLWORDS)if(COMPOUNDS[w[0]]&&!names.includes(w[0]))names.push(w[0]);return names.map(w=>[w,meaningOf(w)])}
 function compoundOf(word){return COMPOUNDS[word]||null}
 function newDeck(){let d=mode==='join'?shuffleList(joinList()):shuffle();if(d.length>1&&d[0][0]===lastWord)d.push(d.shift());return d}
-function start(m){mode=m;document.body.dataset.mode=m;lastWord='';deck=newDeck();pos=0;doneCount=0;show('game');render();window.scrollTo(0,0)}
+function start(m){mode=m;document.body.dataset.mode=m;lastWord='';deck=newDeck();pos=0;doneCount=0;trackTab('tab/english/'+m);show('game');render();window.scrollTo(0,0)}
 function meaningText(){const w=deck[pos][0];return w==='like'?'כמו (דומה ל־)':deck[pos][1]}
 function norm(s){return s.toLowerCase()}
 function audioFile(word){return 'audio/'+word.toLowerCase()+'.mp3'}
@@ -447,6 +456,7 @@ function selectUnit(id){
   unitId=id;
   WORDS=U.words;
   document.body.dataset.unit=id;
+  trackTab('tab/english/'+id);
   $('unittitle').innerHTML=U.titleHTML;
   $('hubmeta').innerHTML=U.metaHTML;
   const box=$('pdfs');box.replaceChildren();
