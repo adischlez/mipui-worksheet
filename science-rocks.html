@@ -27,6 +27,12 @@ button:focus-visible,a:focus-visible{outline:3px solid #c17017;outline-offset:3p
 .item:active{transform:translateY(3px);box-shadow:0 1px 0 #0f2238}
 .item[data-k=rocks]{--c:#A0522D;--ct:#8B4513}.item[data-k=soils]{--c:#5B8C2A;--ct:#41691c}.item[data-k=all]{--c:#1F7FB8;--ct:#17608c}.item[data-k=riddle]{--c:#7A4FB8;--ct:#5e3a96}
 .badge{font-size:13px!important;display:inline!important;background:#e3eef9;color:#17608c;padding:2px 8px;border-radius:12px;margin-right:6px}
+.ask{font-weight:700;margin:10px 0 4px;font-size:18px}
+.cat{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:#fff;color:inherit;border:2px solid var(--line);border-right:8px solid #8A6A1F;border-radius:18px;padding:16px 14px;margin:10px 0;box-shadow:0 3px 0 var(--line);min-height:84px;cursor:pointer;font:inherit}
+.cat .ci{font-size:30px}.cat strong{display:block;font-size:20px;color:#7a5a12}.cat small{display:block;font-size:15px;color:#555;margin-top:2px}
+#goPractice{border-right-color:#2f7fb8}#goPractice strong{color:#1d5f8f}
+.soft-tag{background:#efe3c4;color:#6b5210;border-radius:10px;padding:0 6px;font-size:14px;white-space:nowrap}
+.enrichbox.small{padding:2px 8px 4px}.enrichbox.small h2{font-size:16px}
 .enrichbox{margin-top:14px;padding:4px 10px 8px;border:2px dashed #c9b27a;border-radius:14px;background:#fffaf0}.enrichbox h2{margin-top:6px}.badge.soft{background:#efe3c4;color:#6b5210}
 .topics{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0 4px}
 .topic{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:7px 8px;text-align:right;font:700 15px/1.3 Arial,sans-serif;min-height:44px;box-shadow:0 2px 0 var(--line)}
@@ -89,21 +95,30 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 
 <section id="hub">
 <div class="titlerow"><h1>עולם הסלעים והקרקעות</h1><a class="back" href="index.html#science">→ חזרה</a></div>
-<p class="muted">מדעים · פרק ב׳ בספר «במבט חדש», עמ׳ 30 עד 44. קודם קוראים סיכום קצר, ואחר כך מתרגלים.</p>
-<h2>📖 לומדים</h2>
+<p class="muted">מדעים · פרק ב׳ בספר «במבט חדש», עמ׳ 30 עד 44.</p>
+<p class="ask">מה רוצים לעשות עכשיו?</p>
+<button class="cat" id="goLearn" type="button"><span class="ci">📖</span><span><strong>לומדים / חוזרים על החומר</strong><small>סיכום קצר לכל נושא, אחד אחרי השני.</small></span></button>
+<button class="cat" id="goPractice" type="button"><span class="ci">✏️</span><span><strong>מתרגלים</strong><small>שאלה אחת בכל פעם, עם רמז כשטועים.</small></span></button>
+<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.<br><button class="textlink fb" type="button">דיווח על בעיה או רעיון לשיפור</button></p>
+</section>
+
+<section id="catlearn" hidden>
+<div class="titlerow"><h1>📖 לומדים</h1><button class="back" type="button" data-up>→ חזרה</button></div>
+<p class="muted">בוחרים נושא. בסוף כל סיכום אפשר לתרגל אותו או לעבור לנושא הבא.</p>
 <div class="topics" id="topics"></div>
-<h2>✏️ מתרגלים</h2>
+<div class="enrichbox small"><h2>🔭 העשרה <span class="badge soft">מעבר לספר</span></h2>
+<div class="topics" id="etopics"></div></div>
+</section>
+
+<section id="catpractice" hidden>
+<div class="titlerow"><h1>✏️ מתרגלים</h1><button class="back" type="button" data-up>→ חזרה</button></div>
 <button class="item" data-k="all" data-set="all"><strong>כל הפרק <span class="badge">לפני הבוחן</span></strong><span>שאלות מכל הנושאים, בסדר חדש בכל פעם.</span></button>
 <button class="item" data-k="rocks" data-set="rocks"><strong>🪨 עולם הסלעים</strong><span>מבנה, קשיות, עיסתיות, חומצה ושימושים.</span></button>
 <button class="item" data-k="soils" data-set="soils"><strong>🌱 עולם הקרקעות</strong><span>מהי קרקע, חרסיתית מול חולית, ניסוי החלחול, שמירה על הקרקע.</span></button>
 <button class="item" data-k="riddle" data-set="riddle"><strong>🔎 חידות: מי אני?</strong><span>מזהים סלע לפי רמזים.</span></button>
+<div class="enrichbox small"><button class="item" data-k="enrich" data-set="enrich"><strong>🔭 העשרה: בזלת ובולענים</strong><span><b class="soft-tag">מעבר לספר</b> · הרי געש בישראל, הבזלת, ולמה נפתחים בולענים.</span></button></div>
 <div><a class="pdf" href="pages/science-rocks-practice.pdf" target="_blank" rel="noopener">📄 דפי תרגול להדפסה</a></div>
-<div class="enrichbox"><h2>🔭 העשרה <span class="badge soft">מעבר לספר</span></h2>
-<p class="tiny" style="margin:0 0 6px">לסקרנים ולסקרניות: נושאים שלא מופיעים בספר.</p>
-<div class="topics" id="etopics"></div>
-<button class="item" data-k="enrich" data-set="enrich"><strong>העשרה: בזלת ובולענים (מעבר לספר)</strong><span>הרי געש בישראל, תכונות הבזלת והשימושים בה, ולמה נפתחים בולענים.</span></button></div>
-<p class="tiny">שאלה אחת בכל פעם. כשטועים מקבלים רמז ומנסים שוב, ואחרי תשובה נכונה ממשיכים לבד. אחרי 10 שאלות אפשר לעצור או להמשיך. אין שעון ואין ציונים.</p>
-<p class="footer">בלי שמות, בלי שמירת תשובות ובלי מעקב.<br><button class="textlink fb" type="button">דיווח על בעיה או רעיון לשיפור</button></p>
+<p class="tiny">כשטועים מקבלים רמז ומנסים שוב. אחרי תשובה נכונה ממשיכים לבד, ואחרי 10 שאלות אפשר לעצור או להמשיך. אין שעון ואין ציונים.</p>
 </section>
 
 <section id="learn" hidden>
@@ -597,21 +612,26 @@ function advance(){
   if(count>=STRETCH){trackTab('tab/science/ten');show('end');return}
   nextQuestion();
 }
-function show(id){['hub','learn','game','end'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
+let home='catpractice';
+function show(id){['hub','catlearn','catpractice','learn','game','end'].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0)}
+function openCat(id){trackTab('tab/science/cat-'+(id==='catlearn'?'learn':'practice'));show(id)}
+$('goLearn').onclick=()=>openCat('catlearn');
+$('goPractice').onclick=()=>openCat('catpractice');
+document.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>show('hub'));
 function startPractice(id,topic){
   clearTimeout(timer);
   set={id,topic:topic||null};
   $('gtitle').textContent=topic?('תרגול: '+LEARN.find(l=>(l.topic||l.id)===topic).title):SETS[id].title;
-  count=0;deck=[];buildDeck();trackTab('tab/science/practice-'+id);show('game');nextQuestion();
+  home=topic?'learn':'catpractice';count=0;deck=[];buildDeck();trackTab('tab/science/practice-'+id);show('game');nextQuestion();
 }
 /* help */
 $('help').onclick=()=>{if(!locked)showHint()};
 /* exit */
-$('gback').onclick=()=>{if(count>0||tries>0||stage===2){clearTimeout(timer);$('confirm').hidden=false;$('stay').focus()}else{clearTimeout(timer);show('hub')}};
+$('gback').onclick=()=>{if(count>0||tries>0||stage===2){clearTimeout(timer);$('confirm').hidden=false;$('stay').focus()}else{clearTimeout(timer);show(home)}};
 $('stay').onclick=()=>{$('confirm').hidden=true;if(locked)advance()};
-$('leave').onclick=()=>{$('confirm').hidden=true;clearTimeout(timer);show('hub')};
+$('leave').onclick=()=>{$('confirm').hidden=true;clearTimeout(timer);show(home)};
 $('again').onclick=()=>{count=0;show('game');nextQuestion()};
-$('menu').onclick=()=>show('hub');
+$('menu').onclick=()=>show('catpractice');
 document.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>startPractice(b.dataset.set));
 /* learning */
 let li=0;
@@ -619,7 +639,7 @@ const tbox=$('topics');const ptopic=l=>l.topic||l.id;
 const lname=(l,i)=>l.enrich?'🔭 '+l.title:(i+1)+'. '+l.title;
 LEARN.forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.className='topic';b.innerHTML='';const s=document.createElement('span');s.textContent=lname(l,i);const sm=document.createElement('small');sm.textContent=l.enrich?'מעבר לספר':l.p;b.append(s,sm);b.onclick=()=>openLearn(i);(l.enrich?$('etopics'):tbox).append(b)});
 function openLearn(i){li=i;const l=LEARN[i];trackTab('tab/science/learn-'+l.id);$('ltitle').textContent=lname(l,i);$('lbody').innerHTML=l.html+'<p class="src">'+(l.enrich?'העשרה: מעבר לחומר הספר (לפי יחידות «מבט מקוון»)':'מתוך הספר, '+l.p)+'</p>';$('lnext').hidden=i>=LEARN.length-1||!!LEARN[i+1].enrich!==!!l.enrich;show('learn')}
-$('lback').onclick=()=>show('hub');
+$('lback').onclick=()=>show('catlearn');
 $('lnext').onclick=()=>openLearn(li+1);
 $('lpractice').onclick=()=>startPractice(LEARN[li].set,ptopic(LEARN[li]));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('confirm').hidden)$('stay').click();if(!$('fbsheet').hidden)$('fbsheet').hidden=true}});
