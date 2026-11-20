@@ -292,7 +292,7 @@ function jName(c,p){
  hintFn=k=>showHint(k===1?'חוזרים למה שרואים שם: '+SEE[c][0]+'.':'המושג שמתאים הוא: „'+DEF[c]+'”');
  const opts=shuffle([c,...shuffle(CONCEPTS.filter(x=>x!==c)).slice(0,3)]);
  q.append(options(opts,c,(ok,t)=>{
-   if(!ok){say(`↺ לא בדיוק. ${t}: ${DEF[t]} נננסה שוב.`,false);return}
+   if(!ok){say(`↺ לא בדיוק. ${t}: ${DEF[t]} ננסה שוב.`,false);return}
    say(`✓ נכון! ${p.n} – זה ${c}.`,true);
    $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;
    solvedStep(()=>{M.i++;jStep()},M.i+1>=M.deck.length?'🌍 ביקרתם אצל כל שבעת המושגים! עכשיו כותבים בספר, במילים שלכם, מה זה כל מושג.':'');
@@ -423,7 +423,7 @@ function fStep(){
  for(const c of all){const b=h('button',{class:'chip',type:'button'});b.textContent=c;if(items.slice(0,i).some(x=>x.k===c))b.classList.add('used');
    b.onclick=()=>{if(done)return;if(c===cur.k){done=true;b.classList.add('right');b.style.background='#e6f5ec';b.style.borderColor='#3f7d5d';say(`✓ נכון! מספר ${cur.n} הוא ${c}.`,true);
        $('learn').innerHTML=`<b>${c}</b> – ${DEF[c]}`;$('learn').hidden=false;solvedStep(()=>{M.i++;fStep()},i+1>=items.length?'🧩 מצאתם את כל המספרים! לא כל המושגים מופיעים בציור, כמו בתרגיל 27. עכשיו ציור חדש.':'')}
-     else{b.disabled=true;say(DEF[c]?`↺ לא בדיוק. ${c}: ${DEF[c]} נננסה שוב.`:(c==='גלובוס'?'↺ גלובוס הוא דגם עגול של כדור הארץ. הוא לא מקום בציור. ננסה שוב.':'↺ כדור הארץ הוא כל העולם שלנו, לא מקום אחד בציור. ננסה שוב.'),false)}};chips.append(b)}
+     else{b.disabled=true;say(DEF[c]?`↺ לא בדיוק. ${c}: ${DEF[c]} ננסה שוב.`:(c==='גלובוס'?'↺ גלובוס הוא דגם עגול של כדור הארץ. הוא לא מקום בציור. ננסה שוב.':'↺ כדור הארץ הוא כל העולם שלנו, לא מקום אחד בציור. ננסה שוב.'),false)}};chips.append(b)}
 }
 
 /* ---------- feedback form (same setup as the English kit) ---------- */
