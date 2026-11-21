@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; connect-src https://mipui-eshkol.goatcounter.com; form-action https://api.web3forms.com; frame-src https://api.web3forms.com; img-src 'self' data: https://mipui-eshkol.goatcounter.com; object-src 'none'; base-uri 'none'">
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; connect-src https://mipui-eshkol.goatcounter.com; form-action https://api.web3forms.com; frame-src https://api.web3forms.com https://www.youtube-nocookie.com; img-src 'self' data: https://mipui-eshkol.goatcounter.com; object-src 'none'; base-uri 'none'">
 <meta name="robots" content="noindex">
 <script data-goatcounter="https://mipui-eshkol.goatcounter.com/count" data-goatcounter-settings='{"path":"/mipui-worksheet/science-rocks/","no_onload":true}' async src="https://gc.zgo.at/count.js"></script>
 <title>מדעים · עולם הסלעים והקרקעות</title>
@@ -90,6 +90,30 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 .sheet{background:#fff;border-radius:20px;width:calc(100% - 32px);max-width:340px;padding:14px 14px 16px;text-align:center}.sheet h2{font-size:19px;margin:0 0 4px}
 .sheet .row>*{flex:1}
 @media(max-width:360px){h1{font-size:22px}.question{font-size:18px}.topics{grid-template-columns:1fr}main{padding-left:10px;padding-right:10px}}
+
+.more{margin-top:10px;border-top:1px dashed #d5dfec;padding-top:8px}
+.more-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.morebtn{font:700 15px Arial,sans-serif}
+.panel{margin-top:6px}
+.vcard{border:1.5px solid #d5dfec;border-radius:12px;overflow:hidden;margin:0 0 8px;background:#fbfcff}
+.vmeta{padding:6px 10px 8px;font-size:15px}
+.vmeta b{display:block;font-size:16px;line-height:1.3}
+.vmeta .by{color:var(--muted);font-size:14px}
+.vnote{margin:4px 0 0;font-size:14px;color:#6c4b1f;background:#fff6e8;border-radius:8px;padding:5px 8px}
+.yt{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;border-radius:0;background:#1a1a1a;cursor:pointer;box-shadow:none}
+.yt img{width:100%;height:100%;object-fit:cover;display:block}
+.yt .play{position:absolute;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;background:#00000099;color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;line-height:1;border:2px solid #fff}
+.yt:focus-visible{outline:3px solid #c17017;outline-offset:2px}
+.vframe{width:100%;aspect-ratio:16/9;border:0;display:block;background:#000}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.fig{margin:0;border:1px solid #d5dfec;border-radius:12px;overflow:hidden;background:#fff;padding:0;cursor:pointer;width:100%;text-align:right;font:inherit;box-shadow:none;min-height:0}
+ .fig img{width:100%;height:110px;object-fit:cover;display:block}
+.fig figcap,.fig span{display:block;font-size:15px;line-height:1.3;padding:4px 6px 6px;color:var(--navy);font-weight:400}
+.credits{font-size:12px;color:var(--muted);margin:8px 0 0;line-height:1.35}
+.links a{display:inline-block;margin:4px 0 0;font:700 15px Arial,sans-serif}
+#picbox .sheet{max-width:520px;width:calc(100% - 24px);padding:10px;text-align:center}
+#picbox img{max-width:100%;max-height:70vh;border-radius:10px}
+#picbox p{font-size:14px;margin:6px 0 0}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style></head><body><main>
 
@@ -145,6 +169,7 @@ textarea{width:100%;font:17px Arial,sans-serif;border:2px solid #b9cadc;border-r
 <section id="end" class="card" hidden><div class="bigcheck">✓</div><h1>10 שאלות ברצף!</h1><p>כל הכבוד על ההתמדה.<br>מה עכשיו?</p><div class="endactions"><button id="again" class="primary" type="button">להמשיך עוד קצת</button><button id="menu" class="secondary" type="button">חזרה לתפריט / לתרגל אחרת</button></div></section>
 </main>
 
+<div id="picbox" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="piccap"><div class="sheet"><img id="picimg" alt=""><p id="piccap"></p><div class="row" style="margin-top:8px"><button type="button" class="secondary" id="picclose">סגירה</button></div></div></div>
 <div id="confirm" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="cfq"><div class="sheet"><h2 id="cfq">לצאת לתפריט?</h2><p class="tiny" style="margin:0 0 10px">הספירה ל־10 תתחיל מחדש.</p><div class="row"><button id="stay" class="primary" type="button">להמשיך</button><button id="leave" class="secondary" type="button">לצאת</button></div></div></div>
 
 <div id="fbsheet" class="overlay bottom" hidden role="dialog" aria-modal="true" aria-labelledby="fbh"><form class="sheet" id="fbform"><h2 id="fbh">דיווח על בעיה או רעיון</h2>
@@ -633,16 +658,179 @@ $('leave').onclick=()=>{$('confirm').hidden=true;clearTimeout(timer);show(home)}
 $('again').onclick=()=>{count=0;show('game');nextQuestion()};
 $('menu').onclick=()=>show('catpractice');
 document.querySelectorAll('[data-set]').forEach(b=>b.onclick=()=>startPractice(b.dataset.set));
+
+/* ---------- media under learning cards (loaded only after a tap) ---------- */
+const MEDIA={
+ rock:{
+  videos:[{id:'NkKPp7nLqPk',title:'סלעים',ch:'מכון דוידסון',len:'3:42',lang:'he',
+    note:'הסרטון מספר גם איך סלעים נוצרים (סלעי יסוד, משקע והתמרה). זה מעבר לפרק בספר: בפרק לומדים בעיקר את התכונות של הסלע.'}],
+  photos:['granite','basalt-pores','limestone'],
+  links:[{href:'https://apps.assets.cet.ac.il/library/science/rockexperiment/he/index.-768225599.htm',title:'בודקים תכונות של סלעים (מט״ח)',note:'הדמיה עם הסלעים מהספר. שימו לב: בטבלה שם הבזלת תמיד נקבובית, ובספר היא נקבובית רק לפעמים.'}]
+ },
+ struct:{
+  photos:['granite','basalt-pores','kurkar']
+ },
+ hard:{
+  photos:['talc','granite']
+ },
+ props:{
+  photos:['limestone'],
+  links:[{href:'https://apps.assets.cet.ac.il/library/science/rockexperiment/he/index.-768225599.htm',title:'בודקים תכונות של סלעים (מט״ח)',note:'אפשר לבדוק גם תסיסה ועיסתיות. בספר הבזלת לא מגיבה לחומצה, ולפעמים היא נקבובית (לא תמיד).'}]
+ },
+ riddle:{
+  photos:['granite','basalt-pores','limestone','kurkar','flint'],
+  links:[{href:'https://apps.assets.cet.ac.il/library/science/rockexperiment/he/index.-768225599.htm',title:'בודקים תכונות של סלעים (מט״ח)',note:'כדאי להשוות לטבלה במסך הזה. בספר הבזלת נקבובית רק לפעמים.'}]
+ },
+ rockuse:{
+  photos:['granite']
+ },
+ soil:{
+  photos:['weathering','terra-rossa','rendzina']
+ },
+ types:{
+  photos:['clay-wet','sandy-soil','quartz']
+ },
+ exp:{
+  photos:['sandy-soil','clay-wet']
+ },
+ soiluse:{
+  photos:['terra-rossa']
+ },
+ soilcare:{
+  photos:['weathering']
+ },
+ basalt:{
+  photos:['bental','basalt-golan','basalt-pores','scoria']
+ },
+ sink:{
+  photos:['sinkhole'],
+  links:[{href:'https://eureka.org.il/item/20343/%D7%90%D7%99%D7%9A-%D7%A0%D7%95%D7%A6%D7%A8%D7%99%D7%9D-%D7%94%D7%91%D7%95%D7%9C%D7%A2%D7%A0%D7%99%D7%9D-%D7%91%D7%99%D7%9D-%D7%94%D7%9E%D7%9C%D7%97',title:'איך נוצרים הבולענים בים המלח? (אאוריקה)',note:'הסבר קצר בעברית, נפתח בחלון חדש.'}]
+ }
+};
+const PHOTO={
+ 'granite':['גרניט: רואים את הגבישים','Eugenio Hansen, CC BY-SA 3.0'],
+ 'basalt-pores':['בזלת עם נקבים (לפעמים, לא תמיד)','James St. John, CC BY 2.0'],
+ 'basalt-golan':['קילוח בזלת ברמת הגולן','Daniel Ventura, CC BY-SA 3.0'],
+ 'limestone':['סלע גיר','Tisquesusa, CC BY 4.0'],
+ 'chalk':['סלע קרטון (קירטון)','N Chadwick, CC BY-SA 2.0'],
+ 'flint':['צור','James St. John, CC BY 2.0'],
+ 'kurkar':['רכס כורכר בחוף הארץ, בראש הנקרה','שלמה רודד, CC BY 2.5, PikiWiki'],
+ 'clay-wet':['קרקע חרסיתית רטובה: המים נשארים ולא מחלחלים מהר','Cmoffroad, CC0'],
+ 'sandy-soil':['קרקע חולית: גרגירים נפרדים','Ready Street, CC BY-SA 4.0'],
+ 'quartz':['גבישי קוורץ','JJ Harrison, CC BY-SA 2.5'],
+ 'gypsum-ramon':['מחצבת גבס במכתש רמון','Ducky, CC BY 3.0'],
+ 'talc':['טלק, החומר הרך ביותר בסולם מוס','Shannon Heinle, CC0'],
+ 'weathering':['בלייה: סלע שנשבר ונשחק','Ian D. Medeiros, CC BY 4.0'],
+ 'soil-profile':['שכבת הקרקע מעל הסלע','נחלת הכלל, ויקישיתוף'],
+ 'terra-rossa':['קרקע טרה רוסה, שנוצרת מסלע גיר','Michael J. Zirbes, CC BY 3.0'],
+ 'rendzina':['קרקע רנדזינה, שנוצרת מסלע קרטון','Victor M. Vicente Selvas, נחלת הכלל'],
+ 'sinkhole':['בולענים ליד ים המלח','שרון שלמה, נחלת הכלל, PikiWiki'],
+ 'bental':['הר בנטל ברמת הגולן, הר געש כבוי','זאב שטיין, CC BY 2.5, PikiWiki'],
+ 'scoria':['סקוריה: בזלת עם הרבה נקבים','Jonathan Zander, CC BY-SA 3.0']
+};
+let mediaOnce={};
+function trackMedia(kind,id){
+  const k=kind+'-'+id;
+  if(mediaOnce[k])return;
+  mediaOnce[k]=1;
+  trackTab('tab/science/'+kind+'-'+id);
+}
+function renderMedia(topic){
+  const m=MEDIA[topic]; if(!m)return;
+  const wrap=document.createElement('div');wrap.className='more';
+  const row=document.createElement('div');row.className='more-row';
+  const panels={};
+  function addBtn(key,label){
+    const b=document.createElement('button');b.type='button';b.className='mini morebtn';b.textContent=label;
+    b.onclick=()=>{
+      const open=panels[key] && !panels[key].hidden;
+      Object.values(panels).forEach(p=>p.hidden=true);
+      if(!open){panels[key].hidden=false;if(key==='vids')trackMedia('video',topic);if(key==='pics')trackMedia('photos',topic);if(key==='links')trackMedia('link',topic)}
+    };
+    row.append(b);
+  }
+  if(m.videos&&m.videos.length){
+    addBtn('vids','🎬 סרטון'+(m.videos.length>1?'ים':''));
+    const p=document.createElement('div');p.className='panel';p.hidden=true;
+    m.videos.forEach(v=>{
+      const card=document.createElement('div');card.className='vcard';
+      const btn=document.createElement('button');btn.type='button';btn.className='yt';
+      btn.setAttribute('aria-label','להציג את הסרטון: '+v.title);
+      const img=document.createElement('img');img.src='media/thumbs/'+v.id+'.jpg';img.alt='';img.width=640;img.height=360;
+      const play=document.createElement('span');play.className='play';play.textContent='▶';
+      btn.append(img,play);
+      btn.onclick=()=>loadVideo(btn,v,topic);
+      const meta=document.createElement('div');meta.className='vmeta';
+      const t=document.createElement('b');t.textContent=v.title;
+      const by=document.createElement('div');by.className='by';
+      by.textContent=v.ch+' · '+v.len+(v.lang==='en'?' · באנגלית':' · בעברית');
+      meta.append(t,by);
+      if(v.note){const n=document.createElement('p');n.className='vnote';n.textContent=v.note;meta.append(n)}
+      card.append(btn,meta);p.append(card);
+    });
+    panels.vids=p;wrap.append(p);
+  }
+  if(m.photos&&m.photos.length){
+    addBtn('pics','🖼️ תמונות');
+    const p=document.createElement('div');p.className='panel';p.hidden=true;
+    const g=document.createElement('div');g.className='gallery';
+    m.photos.forEach(id=>{
+      const info=PHOTO[id]; if(!info)return;
+      const b=document.createElement('button');b.type='button';b.className='fig';
+      const im=document.createElement('img');im.src='media/img/'+id+'.webp';im.alt=info[0];im.loading='lazy';im.onerror=()=>b.remove();
+      const cap=document.createElement('span');cap.textContent=info[0];
+      b.append(im,cap);
+      b.onclick=()=>openPic(id);
+      g.append(b);
+    });
+    p.append(g);
+    const cr=document.createElement('p');cr.className='credits';
+    cr.textContent='מקורות התמונות: '+m.photos.map(id=>PHOTO[id][1]).join(' · ')+'. כולם מוויקישיתוף, ברישיון חופשי.';
+    p.append(cr);
+    panels.pics=p;wrap.append(p);
+  }
+  if(m.links&&m.links.length){
+    addBtn('links','🔗 עוד');
+    const p=document.createElement('div');p.className='panel links';p.hidden=true;
+    m.links.forEach(L=>{
+      const a=document.createElement('a');a.href=L.href;a.target='_blank';a.rel='noopener';a.textContent=L.title;
+      a.onclick=()=>trackMedia('link',topic);
+      p.append(a);
+      if(L.note){const n=document.createElement('p');n.className='vnote';n.textContent=L.note;p.append(n)}
+    });
+    panels.links=p;wrap.append(p);
+  }
+  wrap.prepend(row);
+  return wrap;
+}
+function loadVideo(btn,v,topic){
+  trackMedia('video',topic);
+  const fr=document.createElement('iframe');
+  fr.className='vframe';
+  fr.src='https://www.youtube-nocookie.com/embed/'+v.id+'?autoplay=1&rel=0&modestbranding=1';
+  fr.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+  fr.allowFullscreen=true;fr.title=v.title;
+  btn.replaceWith(fr);
+}
+function openPic(id){
+  const info=PHOTO[id];
+  $('picimg').src='media/img/'+id+'.webp';
+  $('picimg').alt=info[0];
+  $('piccap').textContent=info[0]+' · '+info[1]+'. ויקישיתוף, רישיון חופשי.';
+  $('picbox').hidden=false;
+}
+$('picclose').onclick=()=>{$('picbox').hidden=true;$('picimg').src=''};
+$('picbox').addEventListener('click',e=>{if(e.target===$('picbox'))$('picclose').click()});
 /* learning */
 let li=0;
 const tbox=$('topics');const ptopic=l=>l.topic||l.id;
 const lname=(l,i)=>l.enrich?'🔭 '+l.title:(i+1)+'. '+l.title;
 LEARN.forEach((l,i)=>{const b=document.createElement('button');b.type='button';b.className='topic';b.innerHTML='';const s=document.createElement('span');s.textContent=lname(l,i);const sm=document.createElement('small');sm.textContent=l.enrich?'מעבר לספר':l.p;b.append(s,sm);b.onclick=()=>openLearn(i);(l.enrich?$('etopics'):tbox).append(b)});
-function openLearn(i){li=i;const l=LEARN[i];trackTab('tab/science/learn-'+l.id);$('ltitle').textContent=lname(l,i);$('lbody').innerHTML=l.html+'<p class="src">'+(l.enrich?'העשרה: מעבר לחומר הספר (לפי יחידות «מבט מקוון»)':'מתוך הספר, '+l.p)+'</p>';$('lnext').hidden=i>=LEARN.length-1||!!LEARN[i+1].enrich!==!!l.enrich;show('learn')}
+function openLearn(i){li=i;const l=LEARN[i];trackTab('tab/science/learn-'+l.id);$('ltitle').textContent=lname(l,i);$('lbody').innerHTML=l.html+'<p class="src">'+(l.enrich?'העשרה: מעבר לחומר הספר (לפי יחידות «מבט מקוון»)':'מתוך הספר, '+l.p)+'</p>';const media=renderMedia(l.id);if(media)$('lbody').append(media);$('lnext').hidden=i>=LEARN.length-1||!!LEARN[i+1].enrich!==!!l.enrich;show('learn')}
 $('lback').onclick=()=>show('catlearn');
 $('lnext').onclick=()=>openLearn(li+1);
 $('lpractice').onclick=()=>startPractice(LEARN[li].set,ptopic(LEARN[li]));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('confirm').hidden)$('stay').click();if(!$('fbsheet').hidden)$('fbsheet').hidden=true}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('confirm').hidden)$('stay').click();if(!$('fbsheet').hidden)$('fbsheet').hidden=true;if(!$('picbox').hidden)$('picclose').click()}});
 /* report form: same endpoint and fields as english.html */
 let fbFrom='תפריט',fbType='';
 function openFb(from){fbFrom=from;$('fbmsg').textContent='';$('fbsheet').hidden=false;$('fbtext').focus()}
